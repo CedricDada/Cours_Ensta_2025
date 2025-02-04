@@ -160,18 +160,69 @@
 [.5cm]}
 \author{\bsc{DADA SIMEU Cédric Darel}}
 
-\begin{filecontents*}{data.csv}
+\begin{filecontents*}{data_threads1.csv}
     Block,1023,1024,1025,2046,2048,2050
-    16,0.877341,1.12949,1.45106,8.22054,11.9397,9.95203
-    32,0.878256,1.01766,1.16611,8.07098,8.48291,8.08087
-    64,0.733389,1.05318,1.08126,6.03957,6.47482,6.05346
-    128,1.03299,1.08051,0.811277,5.93782,5.90392,5.87249
-    256,0.676715,0.82404,0.688898,5.58254,5.35617,5.60779
-    512,0.651583,0.842222,0.653469,5.51449,5.55441,5.48918
-    1024,1.20526,0.818224,0.878042,7.90850,6.97363,6.90816
-    2048,1.03614,1.07987,0.872889,7.32629,7.13192,7.59353
+    16,0.793446,0.886341,0.801337,6.439210,8.126130,6.606900
+    32,0.665258,0.681334,0.685229,5.387410,5.874090,5.658080
+    64,0.635098,0.628902,0.630492,4.786580,5.053240,5.137750
+    128,0.637810,0.635453,0.639878,4.901310,4.902760,5.149390
+    256,0.573094,0.567116,0.574363,4.598490,4.416660,4.777270
+    512,0.561053,0.552188,0.579971,4.359200,4.432710,4.640320
+    1024,0.725468,0.706114,0.733085,6.310960,6.007550,6.353000
+    2048,0.732480,0.715358,0.739268,6.181470,6.248670,6.168310
     \end{filecontents*}
 
+    \begin{filecontents*}{data_threads4.csv}
+        Block,1023,1024,1025,2046,2048,2050
+        16,0.893265,0.878508,0.787681,6.484090,8.104590,6.468300
+        32,0.710967,0.702151,0.683897,5.388030,5.852990,5.497170
+        64,0.673102,0.630565,0.629180,4.771340,5.008800,4.862740
+        128,0.687309,0.642346,0.620790,4.863140,4.935920,4.899280
+        256,0.610476,0.554412,0.593019,4.521920,4.397090,4.626760
+        512,0.597203,0.572237,0.569430,4.354810,4.335210,4.536810
+        1024,0.718978,0.722451,0.733281,6.361110,6.009580,7.814800
+        2048,0.721888,0.721958,0.726196,6.156460,6.201340,6.157220
+        \end{filecontents*}
+
+        \begin{filecontents*}{data_threads8.csv}
+            Block,1023,1024,1025,2046,2048,2050
+            16,0.821436,0.883528,0.804246,6.487840,9.409870,6.795820
+            32,0.677631,0.693663,0.673618,5.348190,6.329540,5.687700
+            64,0.628888,0.627859,0.621317,4.750010,7.120780,5.042640
+            128,0.630129,0.621725,0.648724,4.820080,5.506070,5.096350
+            256,0.576028,0.562800,0.598520,4.515920,5.147080,4.772660
+            512,0.556613,0.598684,0.583687,4.173970,5.780910,4.619370
+            1024,0.728713,0.725217,0.739598,6.126790,9.244030,6.553810
+            2048,0.734240,0.711722,0.741214,6.040050,6.967800,6.273280
+            \end{filecontents*}
+            \begin{filecontents*}{data_threads16.csv}
+                Block,1023,1024,1025,2046,2048,2050
+                16,0.838795,0.918404,0.824739,6.560780,8.136170,6.379520
+                32,0.696357,0.713719,0.688619,5.401080,5.905110,6.049400
+                64,0.666950,0.674944,0.671568,4.887390,5.063990,4.800330
+                128,0.674836,0.652920,0.685657,4.881760,5.015860,4.951530
+                256,0.629240,0.604920,0.612800,4.557290,4.471350,4.595810
+                512,0.610860,0.586087,0.594540,4.376350,4.386020,4.423910
+                1024,0.720595,0.719093,0.743956,6.259490,6.060130,6.323920
+                2048,0.720974,0.717308,0.740024,6.093770,6.269390,6.200000
+                \end{filecontents*}
+                            
+                \begin{filecontents*}{data256.csv}
+                    Threads,Speedup
+                    1,1.00
+                    4,1.01
+                    8,0.96
+                    16,1.00
+                    \end{filecontents*}
+                    
+                    % Données CSV pour la taille de bloc 512
+                    \begin{filecontents*}{data512.csv}
+                    Threads,Speedup
+                    1,1.00
+                    4,1.01
+                    8,0.93
+                    16,1.01
+                    \end{filecontents*}
 
 \begin{document}
 	\input{./template_page_garde/page_garde_PC6.tex}
@@ -374,7 +425,7 @@ Le stockage des matrices dans Matrix est basé sur un format colonne-major  (car
 \end{table}.\\
 Pour OMP\_NUM\_THREADS=4, on a une accélaration de $\frac{1,537}{0.512}=3.00$\\
 Pour OMP\_NUM\_THREADS=16, on a une accélaration de $\frac{1,537}{0.4045}=3.80$
-
+\clearpage
 \subsection{Pourquoi il est possible d'améliorer encore les résultats?}
 
     Les performances peuvent être améliorées grâce au blocking  (ou blocage de cache).
@@ -442,15 +493,28 @@ Code : \\
             }
 \end{lstlisting}
 
-\paragraph{Conclusion : }Nous voyons que globalement, la taille optimale est \textbf{256}.
+\begin{table}[ht]
+    \centering
+    \caption{Temps d'exécution (secondes) pour N=1023--1025 et 2046--2050}
+    \label{tab:threads1}
+    \begin{tabular}{|c|c|c|c|c|c|c|c|c|}\hline
+    Taille & 16 & 32 & 64 & 128 & 256 & 512 & 1024 & 2048 \\\hline
+    1023 & 0.793446 & 0.665258 & 0.635098 & 0.637810 & 0.573094 & \textbf{0.561053} & 0.725468 & 0.732480 \\\hline
+    1024 & 0.886341 & 0.681334 & 0.628902 & 0.635453 & 0.567116 & \textbf{0.552188} & 0.706114 & 0.715358 \\\hline
+    1025 & 0.801337 & 0.685229 & 0.630492 & 0.639878 & \textbf{0.574363} & 0.579971 & 0.733085 & 0.739268 \\\hline
+    2046 & 6.439210 & 5.387410 & 4.786580 & 4.901310 & 4.598490 & \textbf{4.359200} & 6.310960 & 6.181470 \\\hline
+    2048 & 8.126130 & 5.874090 & 5.053240 & 4.902760 & \textbf{4.416660} & 4.432710 & 6.007550 & 6.248670 \\\hline
+    2050 & 6.606900 & 5.658080 & 5.137750 & 5.149390 & 4.777270 & \textbf{4.640320} & 6.353000 & 6.168310 \\\hline
+    \end{tabular}
+\end{table}
+
+\paragraph{Conclusion : }Nous voyons que globalement, la taille optimale est \textbf{512}.
 \paragraph{Commentaire : }
-Notre machine (avec un Intel(R) Core(TM) i5-10210U) possède 6MiB de cache L3 et 1MiB répartis sur 4 cœurs en cache L2, soit environ 256KiB par cœur (voir fig \ref{tab:ls_topo} et \ref{tab:lscpu} ), et il se trouve que la taille 256 offre le meilleur compromis en termes de :
+Notre machine possède 6MiB de cache L3 et 1MiB répartis sur 4 cœurs en cache L2, soit environ 256KiB par cœur (voir fig \ref{tab:ls_topo} et \ref{tab:lscpu} ). La taille 512 est optimale pour les raisons suivantes:
 \begin{itemize}
-    \item $3\times 512 \times 512 \times \text{sizeof(double)} = 3 \times 512 \times 512 \times 8 = 6291456\text{ octets} = 6144 KB = \text{taille cache L3} (voir fig \ref{tab:ls_topo})$
-    \item Réutilisation des données : Un bloc de taille 256$\times$256 en double précision (où chaque double occupe 8 octets) représente environ 256$\times$256$\times$8 = 524 288 octets (soit 512 KiB). Ce bloc (ou la combinaison de blocs issus de A, B et C) est dimensionné de façon à exploiter au mieux la capacité des caches de niveau L2 et L3.
-    \item Amortissement du coût de chargement : Avec une taille de bloc bien choisie, une fois les sous-matrices chargées dans le cache, de nombreux calculs peuvent être effectués sans accéder à la mémoire principale.
-    \item Optimisation pour la hiérarchie mémoire de votre machine : Les tailles de caches (L1, L2, L3) et la structure de la mémoire influencent fortement le choix d’un bloc optimal. Le fait que 256 apparaisse comme la meilleure taille dans vos tests expérimentaux est lié aux capacités spécifiques de votre ordinateur.
-\end{itemize}
+    \item Lors du calcul de l'élément $C_{IJ} = (A_{I1}\dots A_{IN})\times (B_{1J}\dots B_{NJ})^t$, nous avons besoin de sommer des produits de la forme $A_{IK}B_{KJ}$ et les stocker dans $C_{IJ}$. Le calcul de ces produits pouvant se faire indépendamment, nous avons donc besoin à la limite d'avoir les 3 blocs $C_{IJ}$, $A_{IK}$ et $B_{KJ}$ dans le cache. Nous avons donc besoin de $3\times 512 \times 512 \times \text{sizeof(double)} = 3 \times 512 \times 512 \times 8 = 6291456\text{ octets} = 6144 KB = \text{taille cache L3} $(voir fig \ref{tab:ls_topo})
+    \item Notons également que dans certains cas, la taille de bloc 256 est optimale. En effet, un bloc de taille 256 occupe $256\times 256 \times 8 = 524288 \text{octets} = 512\text{KiB}$. Or le cache L2 occupe au totale 1MiB et donc permet de stocker 2 blocs de matrice. Les processus concurents peuvent alors effectuer le produit de deux blocs à partir du cache.
+ \end{itemize}
 
 \begin{figure}[!h]
     \begin{center}
@@ -470,63 +534,7 @@ Notre machine (avec un Intel(R) Core(TM) i5-10210U) possède 6MiB de cache L3 et
 \end{figure}
 \clearpage
 \subsection{Comparer le temps pris par rapport au produit matrice–matrice "scalaire"}
-    La version par bloc devrait être significativement plus rapide grâce à une meilleure utilisation des caches. Pour une taille de blocs de \textbf{256}, et un thread, nous avons une durée de moyenne (pour les dimensions 1023, 1024 et 1025) de \textbf{0,789 secondes}  contre \textbf{1,537 secondes} pour le produit matrice-matrice scalaire.
-
-    \begin{table}
-        \centering
-        \caption{Temps d'exécution (secondes) pour N=1023-1025 et 2046-2050}
-        \label{tab:small}
-        \begin{tabular}{|c|c|c|c|c|c|c|c|c|}\hline
-        Taille & 16 & 32 & 64 & 128 & 256  & 512 & 1024 & 2048\\\hline
-        1023 & 0.877341 & 0.878256 & 0.733389 & 1.03299 & 0.676715 & \textbf{0.651583} & 1.20526 & 1.03614 \\\hline
-        1024 & 1.12949 & 1.01766 & 1.05318 & 1.08051 & 0.82404 &  0.842222 & \textbf{0.818224} & 1.07987\\\hline
-        1025 & 1.45106 & 1.16611 & 1.08126 & 0.811277 & 0.688898 & \textbf{0.653469} & 0.878042 & 0.872889\\\hline
-        2046  & 8.22054 & 8.07098 & 6.03957 & 5.93782 & 5.58254 & \textbf{5.51449} & 7.9085 & 7.32629 \\\hline
-        2048 &  11.9397 & 8.48291 & 6.47482 & 5.90392 & 5.35617 & \textbf{5.5544}1 & 6.97363 & 7.13192 \\\hline
-        2050 &  9.95203 & 8.08087 & 6.05346 & 5.87249 & 5.60779 & \textbf{5.48918} & 6.90816 & 7.59353\\\hline
-        \end{tabular}
-        \caption{OMP\_NUM\_THREADS=1}
-        \end{table}
-
-        \begin{figure}[ht]
-            \centering
-            \begin{tikzpicture}
-                \begin{axis}[
-                    xlabel={Taille des blocs},
-                    ylabel={Durée d'exécution (s)},
-                    grid=major,
-                    legend pos=north east,
-                    width=12cm,
-                    height=8cm
-                ]
-                    % Courbe pour la taille 1023
-                    \addplot+[mark=o] table [x=Block, y=1023, col sep=comma] {data.csv};
-                    \addlegendentry{1023}
-        
-                    % Courbe pour la taille 1024
-                    \addplot+[mark=square] table [x=Block, y=1024, col sep=comma] {data.csv};
-                    \addlegendentry{1024}
-        
-                    % Courbe pour la taille 1025
-                    \addplot+[mark=triangle] table [x=Block, y=1025, col sep=comma] {data.csv};
-                    \addlegendentry{1025}
-        
-                    % Courbe pour la taille 2046
-                    \addplot+[mark=diamond] table [x=Block, y=2046, col sep=comma] {data.csv};
-                    \addlegendentry{2046}
-        
-                    % Courbe pour la taille 2048
-                    \addplot+[mark=pentagon] table [x=Block, y=2048, col sep=comma] {data.csv};
-                    \addlegendentry{2048}
-        
-                    % Courbe pour la taille 2050
-                    \addplot+[mark=star] table [x=Block, y=2050, col sep=comma] {data.csv};
-                    \addlegendentry{2050}
-                \end{axis}
-            \end{tikzpicture}
-            \caption{Durées d'exécution en fonction de la taille des blocs pour chaque taille de problème. (OMP\_NUM\_THREADS=1)}
-            \label{fig:execution_time}
-        \end{figure}
+    La version par bloc est significativement plus rapide grâce à une meilleure utilisation des caches. Pour une taille de blocs de \textbf{512}, et un thread, nous avons une durée de moyenne (pour les dimensions 1023, 1024 et 1025) de \textbf{0,564 secondes}  contre \textbf{1,537 secondes} pour le produit matrice-matrice scalaire.
 \subsection{Parallélisation du produit matrice–matrice par bloc}
 Code :  \\
 
@@ -546,61 +554,373 @@ Code :  \\
             return C;
         }
 \end{lstlisting}
-
-
-\begin{table}[h!]
-    \begin{center}
-    \begin{tabular}{|c|c|c|}
-        \hline
-        Dimension & Temps CPU (s) & MFlops \\ \hline
-        1023      & 0.625676       & 3422.21 \\ \hline
-        1024      & 1.33775       & 1605.29 \\ \hline
-        1025      & 1.24341        & 1732.16 \\ \hline
-        Moyenne      & 1,06        & 2253,22 \\ \hline
+\paragraph{Vérifions si la taille de bloc 512 reste optimale en variant le nombre de threads}
+Les figures \ref{fig:execution_time_1}, \ref{fig:execution_time_4}, \ref{fig:execution_time_8} et \ref{fig:execution_time_16} nous montrent que à quelques exceptions près, la taille de bloc 512 nous fournit les meilleurs temps d'exécution.
+\begin{table}[ht]
+    \centering
+    \caption{Temps d'exécution (secondes) pour N=1023--1025 et 2046--2050 (OMP\_NUM\_THREADS=1)}
+    \label{tab:threads1}
+    \begin{tabular}{|c|c|c|c|c|c|c|c|c|}\hline
+    Taille & 16 & 32 & 64 & 128 & 256 & 512 & 1024 & 2048 \\\hline
+    1023 & 0.793446 & 0.665258 & 0.635098 & 0.637810 & 0.573094 & \textbf{0.561053} & 0.725468 & 0.732480 \\\hline
+    1024 & 0.886341 & 0.681334 & 0.628902 & 0.635453 & 0.567116 & \textbf{0.552188} & 0.706114 & 0.715358 \\\hline
+    1025 & 0.801337 & 0.685229 & 0.630492 & 0.639878 & \textbf{0.574363} & 0.579971 & 0.733085 & 0.739268 \\\hline
+    2046 & 6.439210 & 5.387410 & 4.786580 & 4.901310 & 4.598490 & \textbf{4.359200} & 6.310960 & 6.181470 \\\hline
+    2048 & 8.126130 & 5.874090 & 5.053240 & 4.902760 & \textbf{4.416660} & 4.432710 & 6.007550 & 6.248670 \\\hline
+    2050 & 6.606900 & 5.658080 & 5.137750 & 5.149390 & 4.777270 & \textbf{4.640320} & 6.353000 & 6.168310 \\\hline
     \end{tabular}
-    \caption{Performances pour OMP\_NUM\_THREADS=1.}
-\end{center}
-\end{table}.
+\end{table}
 
-\begin{table}[h!]
-    \begin{center}
-    \begin{tabular}{|c|c|c|}
-        \hline
-        Dimension & Temps CPU (s) & MFlops \\ \hline
-        1023      & 0.224386       & 9542.48 \\ \hline
-        1024      & 0.23782       & 9029.87 \\ \hline
-        1025      & 0.403212        & 5341.56 \\ \hline
-        Moyenne      & 0,288        & 7971,30 \\ \hline
+
+\begin{table}[ht]
+    \centering
+    \caption{Temps d'exécution (secondes) pour N=1023--1025 et 2046--2050 (OMP\_NUM\_THREADS=4)}
+    \label{tab:threads4}
+    \begin{tabular}{|c|c|c|c|c|c|c|c|c|}\hline
+    Taille & 16 & 32 & 64 & 128 & 256 & 512 & 1024 & 2048 \\\hline
+    1023 & 0.893265 & 0.710967 & 0.673102 & 0.687309 & 0.610476 & \textbf{0.597203} & 0.718978 & 0.721888 \\\hline
+    1024 & 0.878508 & 0.702151 & 0.630565 & 0.642346 & 0.554412 & \textbf{0.572237} & 0.722451 & 0.721958 \\\hline
+    1025 & 0.787681 & 0.683897 & 0.629180 & 0.620790 & 0.593019 & \textbf{0.569430} & 0.733281 & 0.726196 \\\hline
+    2046 & 6.484090 & 5.388030 & 4.771340 & 4.863140 & 4.521920 & \textbf{4.354810} & 6.361110 & 6.156460 \\\hline
+    2048 & 8.104590 & 5.852990 & 5.008800 & 4.935920 & \textbf{4.397090} & 4.335210 & 6.009580 & 6.201340 \\\hline
+    2050 & 6.468300 & 5.497170 & 4.862740 & 4.899280 & 4.626760 & \textbf{4.536810} & 7.814800 & 6.157220 \\\hline
     \end{tabular}
-    \caption{Performances pour OMP\_NUM\_THREADS=4.}
-\end{center}
-\end{table}.
+\end{table}
 
-\begin{table}[h!]
-    \begin{center}
-    \begin{tabular}{|c|c|c|}
-        \hline
-        Dimension & Temps CPU (s) & MFlops \\ \hline
-        1023      & 0.255513       & 8380.01 \\ \hline
-        1024      & 0.257188       &  8349.86 \\ \hline
-        1025      & 0.228108        & 9441.95 \\ \hline
-        Moyenne      & 0,247        & 8723,94 \\ \hline
+\begin{table}[ht]
+    \centering
+    \caption{Temps d'exécution (secondes) pour N=1023--1025 et 2046--2050 (OMP\_NUM\_THREADS=8)}
+    \label{tab:threads8}
+    \begin{tabular}{|c|c|c|c|c|c|c|c|c|}\hline
+    Taille & 16 & 32 & 64 & 128 & 256 & 512 & 1024 & 2048 \\\hline
+    1023 & 0.821436 & 0.677631 & 0.628888 & 0.630129 & 0.576028 & \textbf{0.556613} & 0.728713 & 0.734240 \\\hline
+    1024 & 0.883528 & 0.693663 & 0.627859 & 0.621725 & 0.562800 & \textbf{0.598684} & 0.725217 & 0.711722 \\\hline
+    1025 & 0.804246 & 0.673618 & 0.621317 & 0.648724 & 0.598520 & \textbf{0.583687} & 0.739598 & 0.741214 \\\hline
+    2046 & 6.487840 & 5.348190 & 4.750010 & 4.820080 & 4.515920 & \textbf{4.173970} & 6.126790 & 6.040050 \\\hline
+    2048 & 9.409870 & 6.329540 & 7.120780 & 5.506070 & \textbf{5.147080} & 5.780910 & 9.244030 & 6.967800 \\\hline
+    2050 & 6.795820 & 5.687700 & 5.042640 & 5.096350 & 4.772660 & \textbf{4.619370} & 6.553810 & 6.273280 \\\hline
     \end{tabular}
-    \caption{Performances pour OMP\_NUM\_THREADS=16.}
-\end{center}
-\end{table}.
+\end{table}
+\begin{table}[ht]
+    \centering
+    \caption{Temps d'exécution (secondes) pour N=1023--1025 et 2046--2050 (OMP\_NUM\_THREADS=16)}
+    \label{tab:threads16}
+    \begin{tabular}{|c|c|c|c|c|c|c|c|c|}\hline
+    Taille & 16 & 32 & 64 & 128 & 256 & 512 & 1024 & 2048 \\\hline
+    1023 & 0.838795 & 0.696357 & 0.666950 & 0.674836 & 0.629240 & \textbf{0.610860} & 0.720595 & 0.720974 \\\hline
+    1024 & 0.918404 & 0.713719 & 0.674944 & 0.652920 & 0.604920 & \textbf{0.586087} & 0.719093 & 0.717308 \\\hline
+    1025 & 0.824739 & 0.688619 & 0.671568 & 0.685657 & 0.612800 & \textbf{0.594540} & 0.743956 & 0.740024 \\\hline
+    2046 & 6.560780 & 5.401080 & 4.887390 & 4.881760 & 4.557290 & \textbf{4.376350} & 6.259490 & 6.093770 \\\hline
+    2048 & 8.136170 & 5.905110 & 5.063990 & 5.015860 & 4.471350 & \textbf{4.386020} & 6.060130 & 6.269390 \\\hline
+    2050 & 6.379520 & 6.049400 & 4.800330 & 4.951530 & 4.595810 & \textbf{4.423910} & 6.323920 & 6.200000 \\\hline
+    \end{tabular}
+\end{table}
+    
 
+    \begin{figure}[ht]
+        \centering
+        \begin{tikzpicture}
+            \begin{axis}[
+                xlabel={Taille des blocs},
+                ylabel={Durée d'exécution (s)},
+                grid=major,
+                legend pos=north east,
+                width=12cm,
+                height=8cm
+            ]
+                % Courbe pour la taille 1023
+                \addplot+[mark=o] table [x=Block, y=1023, col sep=comma] {data_threads1.csv};
+                \addlegendentry{1023}
+    
+                % Courbe pour la taille 1024
+                \addplot+[mark=square] table [x=Block, y=1024, col sep=comma] {data_threads1.csv};
+                \addlegendentry{1024}
+    
+                % Courbe pour la taille 1025
+                \addplot+[mark=triangle] table [x=Block, y=1025, col sep=comma] {data_threads1.csv};
+                \addlegendentry{1025}
+    
+                % Courbe pour la taille 2046
+                \addplot+[mark=diamond] table [x=Block, y=2046, col sep=comma] {data_threads1.csv};
+                \addlegendentry{2046}
+    
+                % Courbe pour la taille 2048
+                \addplot+[mark=pentagon] table [x=Block, y=2048, col sep=comma] {data_threads1.csv};
+                \addlegendentry{2048}
+    
+                % Courbe pour la taille 2050
+                \addplot+[mark=star] table [x=Block, y=2050, col sep=comma] {data_threads1.csv};
+                \addlegendentry{2050}
+            \end{axis}
+        \end{tikzpicture}
+        \caption{Durées d'exécution en fonction de la taille des blocs pour chaque taille de problème. (OMP\_NUM\_THREADS=1)}
+        \label{fig:execution_time_1}
+    \end{figure}
+    \begin{figure}[ht]
+        \centering
+        \begin{tikzpicture}
+            \begin{axis}[
+                xlabel={Taille des blocs},
+                ylabel={Durée d'exécution (s)},
+                grid=major,
+                legend pos=north east,
+                width=12cm,
+                height=8cm
+            ]
+                % Courbe pour la taille 1023
+                \addplot+[mark=o] table [x=Block, y=1023, col sep=comma] {data_threads4.csv};
+                \addlegendentry{1023}
+    
+                % Courbe pour la taille 1024
+                \addplot+[mark=square] table [x=Block, y=1024, col sep=comma] {data_threads4.csv};
+                \addlegendentry{1024}
+    
+                % Courbe pour la taille 1025
+                \addplot+[mark=triangle] table [x=Block, y=1025, col sep=comma] {data_threads4.csv};
+                \addlegendentry{1025}
+    
+                % Courbe pour la taille 2046
+                \addplot+[mark=diamond] table [x=Block, y=2046, col sep=comma] {data_threads4.csv};
+                \addlegendentry{2046}
+    
+                % Courbe pour la taille 2048
+                \addplot+[mark=pentagon] table [x=Block, y=2048, col sep=comma] {data_threads4.csv};
+                \addlegendentry{2048}
+    
+                % Courbe pour la taille 2050
+                \addplot+[mark=star] table [x=Block, y=2050, col sep=comma] {data_threads4.csv};
+                \addlegendentry{2050}
+            \end{axis}
+        \end{tikzpicture}
+        \caption{Durées d'exécution en fonction de la taille des blocs pour chaque taille de problème. (OMP\_NUM\_THREADS=4)}
+        \label{fig:execution_time_4}
+    \end{figure}
+    \begin{figure}[ht]
+        \centering
+        \begin{tikzpicture}
+            \begin{axis}[
+                xlabel={Taille des blocs},
+                ylabel={Durée d'exécution (s)},
+                grid=major,
+                legend pos=north east,
+                width=12cm,
+                height=8cm
+            ]
+                % Courbe pour la taille 1023
+                \addplot+[mark=o] table [x=Block, y=1023, col sep=comma] {data_threads8.csv};
+                \addlegendentry{1023}
+    
+                % Courbe pour la taille 1024
+                \addplot+[mark=square] table [x=Block, y=1024, col sep=comma] {data_threads8.csv};
+                \addlegendentry{1024}
+    
+                % Courbe pour la taille 1025
+                \addplot+[mark=triangle] table [x=Block, y=1025, col sep=comma] {data_threads8.csv};
+                \addlegendentry{1025}
+    
+                % Courbe pour la taille 2046
+                \addplot+[mark=diamond] table [x=Block, y=2046, col sep=comma] {data_threads8.csv};
+                \addlegendentry{2046}
+    
+                % Courbe pour la taille 2048
+                \addplot+[mark=pentagon] table [x=Block, y=2048, col sep=comma] {data_threads8.csv};
+                \addlegendentry{2048}
+    
+                % Courbe pour la taille 2050
+                \addplot+[mark=star] table [x=Block, y=2050, col sep=comma] {data_threads8.csv};
+                \addlegendentry{2050}
+            \end{axis}
+        \end{tikzpicture}
+        \caption{Durées d'exécution en fonction de la taille des blocs pour chaque taille de problème. (OMP\_NUM\_THREADS=8)}
+        \label{fig:execution_time_8}
+    \end{figure}
+
+    \begin{figure}[ht]
+        \centering
+        \begin{tikzpicture}
+            \begin{axis}[
+                xlabel={Taille des blocs},
+                ylabel={Durée d'exécution (s)},
+                grid=major,
+                legend pos=north east,
+                width=12cm,
+                height=8cm
+            ]
+                % Courbe pour la taille 1023
+                \addplot+[mark=o] table [x=Block, y=1023, col sep=comma] {data_threads16.csv};
+                \addlegendentry{1023}
+    
+                % Courbe pour la taille 1024
+                \addplot+[mark=square] table [x=Block, y=1024, col sep=comma] {data_threads16.csv};
+                \addlegendentry{1024}
+    
+                % Courbe pour la taille 1025
+                \addplot+[mark=triangle] table [x=Block, y=1025, col sep=comma] {data_threads16.csv};
+                \addlegendentry{1025}
+    
+                % Courbe pour la taille 2046
+                \addplot+[mark=diamond] table [x=Block, y=2046, col sep=comma] {data_threads16.csv};
+                \addlegendentry{2046}
+    
+                % Courbe pour la taille 2048
+                \addplot+[mark=pentagon] table [x=Block, y=2048, col sep=comma] {data_threads16.csv};
+                \addlegendentry{2048}
+    
+                % Courbe pour la taille 2050
+                \addplot+[mark=star] table [x=Block, y=2050, col sep=comma] {data_threads16.csv};
+                \addlegendentry{2050}
+            \end{axis}
+        \end{tikzpicture}
+        \caption{Durées d'exécution en fonction de la taille des blocs pour chaque taille de problème. (OMP\_NUM\_THREADS=16)}
+        \label{fig:execution_time_16}
+    \end{figure}
+\clearpage
 \paragraph{Mesure de l'accélération}
- Nous obtenons une accélération de \textbf{$\frac{1.06}{0.288}=3,68$} pour 4 threads et de \textbf{$\frac{1.06}{0.247}=4,29$} pour 16 threads.
+Dans cette section, nous nous concentrons uniquement sur les tailles de blocs \textbf{256} et \textbf{512} car ce sont les seules qui conduisent à des temps d'exécution minimaux. Pour chacune de ces tailles, nous avons calculé la moyenne des temps CPU mesurés sur les six dimensions testées (N = 1023, 1024, 1025, 2046, 2048, 2050) pour chaque configuration de threads (OMP\_NUM\_THREADS = 1, 4, 8, 16). La moyenne obtenue pour le cas 1 thread sert de référence pour calculer l'accélération (speedup) selon la formule suivante :
+
+\[
+\text{Speedup} = \frac{T_{\text{moyenne}}(1 \text{ thread})}{T_{\text{moyenne}}(n \text{ threads})}.
+\]
+
+\subparagraph*{Taille de bloc 256}
+
+Les moyennes des temps CPU obtenues sont les suivantes :
+\begin{itemize}
+    \item OMP\_NUM\_THREADS = 1 : \(T_{1}(256) \approx 2.58\,\text{s}\)
+    \item OMP\_NUM\_THREADS = 4 : \(T_{4}(256) \approx 2.55\,\text{s}\)
+    \item OMP\_NUM\_THREADS = 8 : \(T_{8}(256) \approx 2.70\,\text{s}\)
+    \item OMP\_NUM\_THREADS = 16 : \(T_{16}(256) \approx 2.58\,\text{s}\)
+\end{itemize}
+
+Les accélérations correspondantes sont alors :
+\begin{itemize}
+    \item 1 thread : Speedup = \(1.00\) (référence)
+    \item 4 threads : Speedup \(\approx \frac{2.58}{2.55} \approx 1.01\)
+    \item 8 threads : Speedup \(\approx \frac{2.58}{2.70} \approx 0.96\)
+    \item 16 threads : Speedup \(\approx \frac{2.58}{2.58} \approx 1.00\)
+\end{itemize}
+
+\subparagraph*{Taille de bloc 512}
+
+Les moyennes des temps CPU obtenues pour la taille de bloc 512 sont :
+\begin{itemize}
+    \item OMP\_NUM\_THREADS = 1 : \(T_{1}(512) \approx 2.52\,\text{s}\)
+    \item OMP\_NUM\_THREADS = 4 : \(T_{4}(512) \approx 2.49\,\text{s}\)
+    \item OMP\_NUM\_THREADS = 8 : \(T_{8}(512) \approx 2.72\,\text{s}\)
+    \item OMP\_NUM\_THREADS = 16 : \(T_{16}(512) \approx 2.50\,\text{s}\)
+\end{itemize}
+
+Les accélérations correspondantes sont :
+\begin{itemize}
+    \item 1 thread : Speedup = \(1.00\) (référence)
+    \item 4 threads : Speedup \(\approx \frac{2.52}{2.49} \approx 1.01\)
+    \item 8 threads : Speedup \(\approx \frac{2.52}{2.72} \approx 0.93\)
+    \item 16 threads : Speedup \(\approx \frac{2.52}{2.50} \approx 1.01\)
+\end{itemize}
+\subparagraph*{Tableau récapitulatif des accélérations pour les tailles de blocs 256 et 512}
+\begin{table}[ht]
+    \centering
+    \caption{Accélérations moyennes (baseline : OMP\_NUM\_THREADS = 1) pour les tailles de blocs 256 et 512}
+    \label{tab:speedup256512}
+    \begin{tabular}{|c|c|c|c|c|}
+        \hline
+        Taille de bloc & 1 thread & 4 threads & 8 threads & 16 threads \\ \hline
+        256          & 1.00     & 1.01      & 0.96      & 1.00       \\ \hline
+        512          & 1.00     & 1.01      & 0.93      & 1.01       \\ \hline
+    \end{tabular}
+\end{table}
+Pour une taille de bloc fixée, nous représentons l'évolution de l'accélération (speedup) en fonction du nombre de threads.
+\subparagraph*{Évolution des accélérations pour la taille de bloc 256}
+
+\begin{figure}[ht]
+    \centering
+    \begin{tikzpicture}
+        \begin{axis}[
+            width=0.7\textwidth,
+            height=0.5\textwidth,
+            xlabel={Nombre de threads},
+            ylabel={Accélération (speedup)},
+            xmin=0, xmax=20,
+            ymin=0.8, ymax=1.1,
+            xtick={1,4,8,16},
+            ytick={0.8,0.9,1.0,1.1},
+            grid=both,
+            grid style={line width=.1pt, draw=gray!10},
+            major grid style={line width=.2pt,draw=gray!50},
+            legend pos=south east,
+            legend cell align={left}
+        ]
+        \addplot[
+            color=blue,
+            mark=*,
+            smooth,
+        ]
+        table[col sep=comma]{data256.csv};
+        \addlegendentry{Bloc 256}
+        \end{axis}
+    \end{tikzpicture}
+    \caption{Évolution du speedup en fonction du nombre de threads pour une taille de bloc de 256.}
+    \label{fig:speedup256}
+\end{figure}
+
+\subparagraph*{Évolution des accélérations pour la taille de bloc 512}
+
+\begin{figure}[ht]
+    \centering
+    \begin{tikzpicture}
+        \begin{axis}[
+            width=0.7\textwidth,
+            height=0.5\textwidth,
+            xlabel={Nombre de threads},
+            ylabel={Accélération (speedup)},
+            xmin=0, xmax=20,
+            ymin=0.8, ymax=1.1,
+            xtick={1,4,8,16},
+            ytick={0.8,0.9,1.0,1.1},
+            grid=both,
+            grid style={line width=.1pt, draw=gray!10},
+            major grid style={line width=.2pt,draw=gray!50},
+            legend pos=south east,
+            legend cell align={left}
+        ]
+        \addplot[
+            color=red,
+            mark=square*,
+            smooth,
+        ]
+        table[col sep=comma]{data512.csv};
+        \addlegendentry{Bloc 512}
+        \end{axis}
+    \end{tikzpicture}
+    \caption{Évolution du speedup en fonction du nombre de threads pour une taille de bloc de 512.}
+    \label{fig:speedup512}
+\end{figure}
+
+\textbf{Remarques :}
+\begin{itemize}
+    \item Pour la taille de bloc 256, une légère amélioration est observée avec 4 threads (speedup \(\approx 1.01\)) et 16 threads (speedup \(\approx 1.00\)), tandis que 8 threads présente une performance légèrement inférieure (speedup \(\approx 0.96\)).
+    \item Pour la taille de bloc 512, on note également une amélioration avec 4 et 16 threads (speedup \(\approx 1.01\)), et une dégradation avec 8 threads (speedup \(\approx 0.93\)).
+\end{itemize}
+\textbf{Commentaire :}
+\begin{itemize}
+    \item Avec 4 threads : amélioration légère (speedup $\approx 1.01$)
+
+    Chaque thread peut s'exécuter sur un c\oe ur distinct sans entrer en conflit avec un autre thread.
+
+    \item Avec 8 threads : légère dégradation (speedup $\approx 0.96$ pour 256, $\approx 0.93$ pour 512)
+
+    L'Hyper-Threading crée une compétition entre les threads d’un même c\oe ur, ce qui peut augmenter les latences d'accès au cache.
+    L'augmentation du nombre de threads entraîne une saturation des unités d’exécution et des ressources mémoire.
+
+\end{itemize}
+\clearpage
 \paragraph{Comparaison avec le produit matrice-matrice "scalaire"}
 \begin{enumerate}
 \item \textbf{ Observation} :
-L'accélération parallèle est supérieure pour la version par blocs.
+L'accélération parallèle est inférieure pour la version par blocs.
 \item \textbf{Explications }:
     \begin{itemize}
-    \item Réduction des conflits de cache : Les blocs isolent les zones mémoire travaillées par chaque thread → pas de false sharing.
-    \item Localité mémoire préservée : Chaque thread travaille sur des sous-blocs contigus → meilleure utilisation du cache L1/L2.
-    \item Granularité adaptée : La taille des blocs (ex: 256) équilibre charge de travail et utilisation du cache.
+        \item 
     \end{itemize}
 \end{enumerate}
 \textbf{Raison }:
@@ -1017,11 +1337,7 @@ Code :  \\
 \item Processus 2 : token = 12345, temps de diffusion = 0.000027 secondes
 \item Processus 3 : token = 12345, temps de diffusion = 0.000116 secondes
 \end{itemize}
-\end{document}
-
-
-
-\begin{danger}
+\begin{know}
 Faire varier les tailles des caches et voir le point à partir duquel ça décroit
 
 
@@ -1034,14 +1350,14 @@ BLAS est disponible dans plusieurs versions. OpenBlas et KL sont optimisées. ce
 
 apt install libmkl-dev (l'alternative c'est openblas)
 
-Quand on fait mpirun -nb 4 mon_prog, il lance 4 instance de mon_prog et puis il les mets sur 4 corps différents. Chaque instance du programme doit savoir qu'elle place elle a dans le programme pour savoir ce qu'elle doit faire. On peut voir la programation mpi comme un jeu de role et le role est déterminé par le rank. La commande mpirun lance chaque instance du programme dans un contexte d'exécution spécifique en attribuant à chacun un rank. Get_rank nous permet d'avoir le rank. Quand on fait un programme MPI, on doit se dire qu'on a un seul programme et la seule façon de faire des roles différents est de faire des comparaisons sur le rank.
+Quand on fait mpirun -nb 4 mon\_prog, il lance 4 instance de mon\_prog et puis il les mets sur 4 corps différents. Chaque instance du programme doit savoir qu'elle place elle a dans le programme pour savoir ce qu'elle doit faire. On peut voir la programation mpi comme un jeu de role et le role est déterminé par le rank. La commande mpirun lance chaque instance du programme dans un contexte d'exécution spécifique en attribuant à chacun un rank. Get\_rank nous permet d'avoir le rank. Quand on fait un programme MPI, on doit se dire qu'on a un seul programme et la seule façon de faire des roles différents est de faire des comparaisons sur le rank.
 
 question 1 tD2:  pb déséquilibrage des charges car le calcul de chaque point n'a pas la meme complexité. 
 
 Premier point : analyse macroscopique du code pour cibler les étapes les plus couteuses.
 
 Quand on découpe la fractale en 2 (sur l'axe x), on n'a pas de déséquilibrage des charges. 
-\end{danger}
+
 le temps de calcul de la fractale sur chaque processeur  nous permettra de savoir si on a un déséquilibrage ou non
 
 le temps d'une communication = ttemps d'initialisation (incompressible) + temps de transfert, ainsi l'approche pixel par pixel n'est pas viable.
@@ -1050,4 +1366,25 @@ il faut donc faire le moins de communications possibles
 
 il faut trouver un équilibre entre une Granularité trop faible et trop grosse
 
-le maitre esclave semble etre viable
+le maitre esclave semble etre viable(on le fait surtout quand on ne sait pas à priori comment repartir les chargese) 
+
+faire des dessins pour voir comment les données sont parcourues et cela permettra de voir comment les distribuer.
+
+produit matrice vecteur : 
+
+le mpi broadcast nous permet de partage une informatioin à plusieurs processus.
+
+le mpi getter nous permet de rassembler plusieurs informations 
+
+mpi allgather fait un getter suivi d'un broadcast
+
+mpi scatter permet de découper une variable et envoyer sur chaque processus 
+
+mpi reduce (necessite un processeur cible)
+
+mpi allreduce (n'en necessite pas et est un reduce ssuivi d'un broadcast)
+\end{know}
+\end{document}
+
+
+

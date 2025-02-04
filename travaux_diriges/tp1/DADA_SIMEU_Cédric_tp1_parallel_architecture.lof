@@ -1,4 +1,0 @@
-\babel@toc {french}{}\relax 
-\contentsline {figure}{\numberline {1}{\ignorespaces Résultat de la commande lscpu\relax }}{9}{figure.caption.13}%
-\contentsline {figure}{\numberline {2}{\ignorespaces Résultat de la commande lstopo : Nous pouvons visualiser les tailles des caches\relax }}{10}{figure.caption.14}%
-\contentsline {figure}{\numberline {3}{\ignorespaces Durées d'exécution en fonction de la taille des blocs pour chaque taille de problème. (OMP\_NUM\_THREADS=1)\relax }}{11}{figure.caption.16}%

@@ -50,16 +50,23 @@
             }
             } // namespace
 
-            Matrix operator*(const Matrix& A, const Matrix& B) {
-                Matrix C(A.nbRows, B.nbCols, 0.0);
-                const int szBlock = findOptimalBlockSize(A, B);
-            
-                for (int I = 0; I < A.nbRows; I += szBlock) {       // Parcours lignes A
-                    for (int J = 0; J < B.nbCols; J += szBlock) {   // Parcours colonnes B
-                        for (int K = 0; K < A.nbCols; K += szBlock) { // Parcours commun
-                            prodSubBlocks(I, J, K, szBlock, A, B, C);
-                        }
+        Matrix operator*(const Matrix& A, const Matrix& B) {
+            Matrix C(A.nbRows, B.nbCols, 0.0);
+            const int szBlock = findOptimalBlockSize(A, B);
+        
+            #pragma omp parallel for
+            for (int I = 0; I < A.nbRows; I += szBlock) {
+                for (int J = 0; J < B.nbCols; J += szBlock) {
+                    for (int K = 0; K < A.nbCols; K += szBlock) {
+                        prodSubBlocks(I, J, K, szBlock, A, B, C);
                     }
                 }
-                return C;
             }
+            return C;
+        }
+
+
+
+
+
+   

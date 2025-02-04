@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2022/dev/Debian) (preloaded format=pdflatex 2025.2.3)  4 FEB 2025 11:34
+This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2022/dev/Debian) (preloaded format=pdflatex 2025.2.3)  5 FEB 2025 00:44
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -814,11 +814,39 @@ File: pgflibraryfadings.code.tex 2021/05/15 v3.1.9a (3.1.9a)
 ))) (/usr/share/texlive/texmf-dist/tex/latex/tcolorbox/tcbposter.code.tex
 Library (tcolorbox): 'tcbposter.code.tex' version '5.0.2'
 ))
+Package minitoc Info: I0024
+(minitoc)             PREPARING MINITOCS FROM DADA_SIMEU_Cédric_tp1_parallel_architecture.toc on input line 124.
 
-Package minitoc Warning: W0010
-(minitoc)                No file DADA_SIMEU_Cédric_tp1_parallel_architecture.toc. 
-(minitoc)                MINITOCS NOT PREPARED on input line 124.
-
+{\reset@font\mtcSfont\mtc@string\contentsline{section}{\noexpand \leavevmode \numberline {1}Produit matrice-matrice}{\reset@font\mtcSfont 4}{section.0.1}}
+{\reset@font\mtcSSfont\mtc@string\contentsline{subsection}{\noexpand \leavevmode \numberline {1.1}Explication des résultats}{\reset@font\mtcSSfont 4}{subsection.0.1.1}}
+{\reset@font\mtcSSfont\mtc@string\contentsline{subsection}{\noexpand \leavevmode \numberline {1.2}Première optimisation : Permutez les boucles jusqu’à obtenir un temps optimum }{\reset@font\mtcSSfont 4}{subsection.0.1.2}}
+{\reset@font\mtcPfont\mtc@string\contentsline{paragraph}{\noexpand \leavevmode Optimisation}{\reset@font\mtcPfont 6}{table.caption.9}}
+{\reset@font\mtcPfont\mtc@string\contentsline{paragraph}{\noexpand \leavevmode Explication}{\reset@font\mtcPfont 6}{lstnumber.-1.6}}
+{\reset@font\mtcSSfont\mtc@string\contentsline{subsection}{\noexpand \leavevmode \numberline {1.3}Première parallélisation}{\reset@font\mtcSSfont 6}{subsection.0.1.3}}
+{\reset@font\mtcPfont\mtc@string\contentsline{paragraph}{\noexpand \leavevmode Explication}{\reset@font\mtcPfont 6}{lstnumber.-2.12}}
+{\reset@font\mtcPfont\mtc@string\contentsline{paragraph}{\noexpand \leavevmode Mesure de l'acclération}{\reset@font\mtcPfont 6}{lstnumber.-2.12}}
+{\reset@font\mtcSSfont\mtc@string\contentsline{subsection}{\noexpand \leavevmode \numberline {1.4}Pourquoi il est possible d'améliorer encore les résultats?}{\reset@font\mtcSSfont 8}{subsection.0.1.4}}
+{\reset@font\mtcSSfont\mtc@string\contentsline{subsection}{\noexpand \leavevmode \numberline {1.5}Deuxième optimisation : Optimisez le produit matrice–matrice par bloc}{\reset@font\mtcSSfont 8}{subsection.0.1.5}}
+{\reset@font\mtcPfont\mtc@string\contentsline{paragraph}{\noexpand \leavevmode Conclusion : }{\reset@font\mtcPfont 9}{table.caption.13}}
+{\reset@font\mtcPfont\mtc@string\contentsline{paragraph}{\noexpand \leavevmode Commentaire : }{\reset@font\mtcPfont 9}{table.caption.13}}
+{\reset@font\mtcSSfont\mtc@string\contentsline{subsection}{\noexpand \leavevmode \numberline {1.6}Comparer le temps pris par rapport au produit matrice–matrice "scalaire"}{\reset@font\mtcSSfont 12}{subsection.0.1.6}}
+{\reset@font\mtcSSfont\mtc@string\contentsline{subsection}{\noexpand \leavevmode \numberline {1.7}Parallélisation du produit matrice–matrice par bloc}{\reset@font\mtcSSfont 12}{subsection.0.1.7}}
+{\reset@font\mtcPfont\mtc@string\contentsline{paragraph}{\noexpand \leavevmode Vérifions si la taille de bloc 512 reste optimale en variant le nombre de threads}{\reset@font\mtcPfont 12}{lstnumber.-4.14}}
+{\reset@font\mtcPfont\mtc@string\contentsline{paragraph}{\noexpand \leavevmode Mesure de l'accélération}{\reset@font\mtcPfont 16}{figure.caption.23}}
+{\reset@font\mtcPfont\mtc@string\contentsline{paragraph}{\noexpand \leavevmode Comparaison avec le produit matrice-matrice "scalaire"}{\reset@font\mtcPfont 19}{figure.caption.26}}
+{\reset@font\mtcSSfont\mtc@string\contentsline{subsection}{\noexpand \leavevmode \numberline {1.8}Comparaison avec BLAS}{\reset@font\mtcSSfont 19}{subsection.0.1.8}}
+{\reset@font\mtcSfont\mtc@string\contentsline{section}{\noexpand \leavevmode \numberline {2}Parallélisation MPI}{\reset@font\mtcSfont 19}{section.0.2}}
+{\reset@font\mtcSSfont\mtc@string\contentsline{subsection}{\noexpand \leavevmode \numberline {2.1}Circulation d'un jeton dans un anneau.}{\reset@font\mtcSSfont 19}{subsection.0.2.1}}
+{\reset@font\mtcPfont\mtc@string\contentsline{paragraph}{\noexpand \leavevmode Exécution}{\reset@font\mtcPfont 20}{lstnumber.-5.46}}
+{\reset@font\mtcSSSfont\mtc@string\contentsline{subsubsection}{\noexpand \leavevmode Calcul très approché de \pi }{\reset@font\mtcSSSfont 20}{Item.4}}
+{\reset@font\mtcPfont\mtc@string\contentsline{paragraph}{\noexpand \leavevmode Version séquentielle en c}{\reset@font\mtcPfont 20}{Item.4}}
+{\reset@font\mtcPfont\mtc@string\contentsline{paragraph}{\noexpand \leavevmode Paralléliser en mémoire partagée le programme séquentiel en C à l'aide d’OpenMP}{\reset@font\mtcPfont 21}{lstnumber.-6.32}}
+{\reset@font\mtcPfont\mtc@string\contentsline{paragraph}{\noexpand \leavevmode Mesure de l'accélération (fig \ref {tab:pi_approximation})}{\reset@font\mtcPfont 22}{lstnumber.-7.38}}
+{\reset@font\mtcPfont\mtc@string\contentsline{paragraph}{\noexpand \leavevmode Version en mémoire distribuée avec MPI en C}{\reset@font\mtcPfont 22}{table.caption.28}}
+{\reset@font\mtcPfont\mtc@string\contentsline{paragraph}{\noexpand \leavevmode Mesure de l'accélération (fig \ref {tab:pi_mpi})}{\reset@font\mtcPfont 23}{lstnumber.-8.44}}
+{\reset@font\mtcPfont\mtc@string\contentsline{paragraph}{\noexpand \leavevmode Commentaire }{\reset@font\mtcPfont 23}{table.caption.29}}
+{\reset@font\mtcPfont\mtc@string\contentsline{paragraph}{\noexpand \leavevmode Version MPI en python avec mpi4py}{\reset@font\mtcPfont 23}{table.caption.29}}
+{\reset@font\mtcSSfont\mtc@string\contentsline{subsection}{\noexpand \leavevmode \numberline {2.2}Diffusion d'un entier dans un réseau hypercube. }{\reset@font\mtcSSfont 24}{subsection.0.2.2}}
 (/usr/share/texlive/texmf-dist/tex/latex/caption/caption.sty
 Package: caption 2020/10/26 v3.5g Customizing captions (AR)
  (/usr/share/texlive/texmf-dist/tex/latex/caption/caption3.sty
@@ -841,10 +869,30 @@ Package caption Info: listings package is loaded.
 \BBbox=\box86
 
 
-LaTeX Info: File `data.csv' already exists on the system.
+LaTeX Info: File `data_threads1.csv' already exists on the system.
             Not generating it from this source.
 
-LaTeX Font Info:    Trying to load font information for T1+ptm on input line 176.
+
+LaTeX Info: File `data_threads4.csv' already exists on the system.
+            Not generating it from this source.
+
+
+LaTeX Info: File `data_threads8.csv' already exists on the system.
+            Not generating it from this source.
+
+
+LaTeX Info: File `data_threads16.csv' already exists on the system.
+            Not generating it from this source.
+
+
+LaTeX Info: File `data256.csv' already exists on the system.
+            Not generating it from this source.
+
+
+LaTeX Info: File `data512.csv' already exists on the system.
+            Not generating it from this source.
+
+LaTeX Font Info:    Trying to load font information for T1+ptm on input line 227.
 (/usr/share/texlive/texmf-dist/tex/latex/psnfss/t1ptm.fd
 File: t1ptm.fd 2001/06/04 font definitions for T1/ptm.
 )
@@ -852,28 +900,35 @@ File: t1ptm.fd 2001/06/04 font definitions for T1/ptm.
 LaTeX Warning: Unused global option(s):
     [13pt].
 
-No file DADA_SIMEU_Cédric_tp1_parallel_architecture.aux.
+(./DADA_SIMEU_Cédric_tp1_parallel_architecture.aux
+
+LaTeX Warning: Label `tab:threads1' multiply defined.
+
+
+LaTeX Warning: Label `tab:perf_matrix' multiply defined.
+
+)
 \openout1 = `DADA_SIMEU_Cédric_tp1_parallel_architecture.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 176.
-LaTeX Font Info:    ... okay on input line 176.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 176.
-LaTeX Font Info:    ... okay on input line 176.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 176.
-LaTeX Font Info:    ... okay on input line 176.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 176.
-LaTeX Font Info:    ... okay on input line 176.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 176.
-LaTeX Font Info:    ... okay on input line 176.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 176.
-LaTeX Font Info:    ... okay on input line 176.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 176.
-LaTeX Font Info:    ... okay on input line 176.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 176.
-LaTeX Font Info:    ... okay on input line 176.
-LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 176.
-LaTeX Font Info:    ... okay on input line 176.
-(/usr/share/texlive/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 227.
+LaTeX Font Info:    ... okay on input line 227.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 227.
+LaTeX Font Info:    ... okay on input line 227.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 227.
+LaTeX Font Info:    ... okay on input line 227.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 227.
+LaTeX Font Info:    ... okay on input line 227.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 227.
+LaTeX Font Info:    ... okay on input line 227.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 227.
+LaTeX Font Info:    ... okay on input line 227.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 227.
+LaTeX Font Info:    ... okay on input line 227.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 227.
+LaTeX Font Info:    ... okay on input line 227.
+LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 227.
+LaTeX Font Info:    ... okay on input line 227.
+ (/usr/share/texlive/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
 \scratchcounter=\count362
 \scratchdimen=\dimen322
@@ -926,15 +981,15 @@ File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Live
 * \@reversemarginfalse
 * (1in=72.27pt=25.4mm, 1cm=28.453pt)
 
-LaTeX Info: Redefining \degres on input line 176.
+LaTeX Info: Redefining \degres on input line 227.
 Package french.ldf Info: Setting StandardItemizeEnv=true for
 (french.ldf)             compatibility with enumitem package,
-(french.ldf)             reported on input line 176.
+(french.ldf)             reported on input line 227.
 Package french.ldf Info: Setting StandardEnumerateEnv=true for
 (french.ldf)             compatibility with enumitem package,
-(french.ldf)             reported on input line 176.
-LaTeX Info: Redefining \up on input line 176.
-Package hyperref Info: Link coloring OFF on input line 176.
+(french.ldf)             reported on input line 227.
+LaTeX Info: Redefining \up on input line 227.
+Package hyperref Info: Link coloring OFF on input line 227.
 (/usr/share/texlive/texmf-dist/tex/latex/hyperref/nameref.sty
 Package: nameref 2021-04-02 v2.47 Cross-referencing by name of section
  (/usr/share/texlive/texmf-dist/tex/latex/refcount/refcount.sty
@@ -944,16 +999,17 @@ Package: gettitlestring 2019/12/15 v1.6 Cleanup title references (HO)
 )
 \c@section@level=\count368
 )
-LaTeX Info: Redefining \ref on input line 176.
-LaTeX Info: Redefining \pageref on input line 176.
-LaTeX Info: Redefining \nameref on input line 176.
+LaTeX Info: Redefining \ref on input line 227.
+LaTeX Info: Redefining \pageref on input line 227.
+LaTeX Info: Redefining \nameref on input line 227.
+ (./DADA_SIMEU_Cédric_tp1_parallel_architecture.out) (./DADA_SIMEU_Cédric_tp1_parallel_architecture.out)
 \@outlinefile=\write6
 \openout6 = `DADA_SIMEU_Cédric_tp1_parallel_architecture.out'.
 
 
 
 Package pgfplots Warning: running in backwards compatibility mode (unsuitable tick labels; missing features). Consider writing \pgfplotsset{compat=1.18} into your preamble.
- on input line 176.
+ on input line 227.
 
 Package minitoc(hints) Info: I0049
 (minitoc(hints))             ==> You requested the hints option. 
@@ -988,7 +1044,7 @@ Package minitoc(hints) Warning: W0023
 Package caption Info: Begin \AtBeginDocument code.
 Package caption Info: End \AtBeginDocument code.
 (./template_page_garde/page_garde_PC6.tex
-<./template_page_garde/logo.jpg, id=43, 803.0pt x 1176.395pt>
+<./template_page_garde/logo.jpg, id=91, 803.0pt x 1176.395pt>
 File: ./template_page_garde/logo.jpg Graphic file (type jpg)
 <use ./template_page_garde/logo.jpg>
 Package pdftex.def Info: ./template_page_garde/logo.jpg  used on input line 4.
@@ -1025,13 +1081,33 @@ LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <6> not available
 (Font)              Font shape `OT1/ptm/b/n' tried instead on input line 10.
  [1
 
-{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map} <./template_page_garde/logo.jpg>])
+{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map} <./template_page_garde/logo.jpg>]) (./DADA_SIMEU_Cédric_tp1_parallel_architecture.toc)
 \tf@toc=\write7
 \openout7 = `DADA_SIMEU_Cédric_tp1_parallel_architecture.toc'.
 
  [2
 
-]
+] (./DADA_SIMEU_Cédric_tp1_parallel_architecture.lof
+Overfull \hbox (48.87563pt too wide) in paragraph at lines 4--4
+ [][] [][]\T1/ptm/m/n/10 Dur�es d'ex�-cu-tion en fonc-tion de la taille des blocs pour chaque taille de pro-bl�me. (OMP_NUM_THREADS=1)[] [][]  
+ []
+
+
+Overfull \hbox (48.87563pt too wide) in paragraph at lines 5--5
+ [][] [][]\T1/ptm/m/n/10 Dur�es d'ex�-cu-tion en fonc-tion de la taille des blocs pour chaque taille de pro-bl�me. (OMP_NUM_THREADS=4)[] [][]  
+ []
+
+
+Overfull \hbox (48.87563pt too wide) in paragraph at lines 6--6
+ [][] [][]\T1/ptm/m/n/10 Dur�es d'ex�-cu-tion en fonc-tion de la taille des blocs pour chaque taille de pro-bl�me. (OMP_NUM_THREADS=8)[] [][]  
+ []
+
+
+Overfull \hbox (53.87563pt too wide) in paragraph at lines 7--7
+ [][] [][]\T1/ptm/m/n/10 Dur�es d'ex�-cu-tion en fonc-tion de la taille des blocs pour chaque taille de pro-bl�me. (OMP_NUM_THREADS=16)[] [][]  
+ []
+
+)
 \tf@lof=\write8
 \openout8 = `DADA_SIMEU_Cédric_tp1_parallel_architecture.lof'.
 
@@ -1051,543 +1127,15 @@ LaTeX Warning: `!h' float specifier changed to `!ht'.
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
 [4] [5]
-Overfull \hbox (35.53986pt too wide) in paragraph at lines 292--294
+Overfull \hbox (35.53986pt too wide) in paragraph at lines 343--345
 [] []\T1/ptm/b/n/10 Op-ti-mi-sa-tion[] \T1/ptm/m/n/10 : Le sto-ckage des ma-trices dans Ma-trix est bas� sur un for-mat colonne-major (car m_arr_coefs[i+j*nbRows]
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 292--294
+Underfull \hbox (badness 10000) in paragraph at lines 343--345
 
  []
 
 (/usr/share/texlive/texmf-dist/tex/latex/listings/lstlang1.sty
 File: lstlang1.sty 2020/03/24 1.8d listings language file
-) (/usr/share/texlive/texmf-dist/tex/latex/listings/lstmisc.sty
-File: lstmisc.sty 2020/03/24 1.8d (Carsten Heinz)
 )
-LaTeX Font Info:    Trying to load font information for T1+cmtt on input line 295.
- (/usr/share/texlive/texmf-dist/tex/latex/base/t1cmtt.fd
-File: t1cmtt.fd 2019/12/16 v2.5j Standard LaTeX font definitions
-)
-
-LaTeX Warning: `!h' float specifier changed to `!ht'.
-
-
-LaTeX Warning: `!h' float specifier changed to `!ht'.
-
-
-LaTeX Warning: `!h' float specifier changed to `!ht'.
-
-[6
-
-]
-Underfull \hbox (badness 10000) in paragraph at lines 385--386
-
- []
-
-[7]
-
-LaTeX Warning: Reference `tab:ls_topo' on page 8 undefined on input line 447.
-
-
-LaTeX Warning: Reference `tab:lscpu' on page 8 undefined on input line 447.
-
-
-LaTeX Warning: Reference `tab:ls_topo' on page 8 undefined on input line 449.
-
-
-Overfull \hbox (3.99483pt too wide) in paragraph at lines 449--450
-[]$\OT1/ztmcm/m/n/10 3 \OMS/ztmcm/m/n/10 ^^B \OT1/ztmcm/m/n/10 512 \OMS/ztmcm/m/n/10 ^^B \OT1/ztmcm/m/n/10 512 \OMS/ztmcm/m/n/10 ^^B [] \OT1/ztmcm/m/n/10 = 3 \OMS/ztmcm/m/n/10 ^^B \OT1/ztmcm/m/n/10 512 \OMS/ztmcm/m/n/10 ^^B \OT1/ztmcm/m/n/10 512 \OMS/ztmcm/m/n/10 ^^B \OT1/ztmcm/m/n/10 8 = 6291456[] = 6144\OML/ztmcm/m/it/10 KB \OT1/ztmcm/m/n/10 = [](\OML/ztmcm/m/it/10 voirfig[]\OT1/ztmcm/m/n/10 )$ 
- []
-
-[8]
-<images/lscpu.png, id=180, 1374.13374pt x 860.21375pt>
-File: images/lscpu.png Graphic file (type png)
-<use images/lscpu.png>
-Package pdftex.def Info: images/lscpu.png  used on input line 457.
-(pdftex.def)             Requested size: 687.0652pt x 430.10582pt.
-
-Overfull \hbox (231.82109pt too wide) in paragraph at lines 457--458
- [] 
- []
-
-<images/lstopo.png, id=182, 1583.9175pt x 1009.7725pt>
-File: images/lstopo.png Graphic file (type png)
-<use images/lstopo.png>
-Package pdftex.def Info: images/lstopo.png  used on input line 466.
-(pdftex.def)             Requested size: 475.17892pt x 302.93408pt.
-
-Overfull \hbox (19.93481pt too wide) in paragraph at lines 466--467
- [] 
- []
-
-
-LaTeX Warning: `!h' float specifier changed to `!ht'.
-
-[9 <./images/lscpu.png>] [10 <./images/lstopo.png>]
-PGFPlots: reading {data.csv}
-PGFPlots: reading {data.csv}
-PGFPlots: reading {data.csv}
-PGFPlots: reading {data.csv}
-PGFPlots: reading {data.csv}
-PGFPlots: reading {data.csv}
-
-Underfull \hbox (badness 2088) in paragraph at lines 527--527
-[]\T1/ptm/m/sc/10 Figure 3 \T1/ptm/m/n/10 ^^U |Du-r�es d'ex�-cu-tion en fonc-tion de la taille des blocs pour chaque taille de pro-bl�me.
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 531--532
-
- []
-
-[11
-
-]
-LaTeX Info: Symbol \textrightarrow not provided by
-            font family ptm in TS1 encoding.
-            Default family used instead on input line 601.
-LaTeX Info: Symbol \textrightarrow not provided by
-            font family ptm in TS1 encoding.
-            Default family used instead on input line 602.
- [12]
-Underfull \hbox (badness 10000) in paragraph at lines 631--632
-
- []
-
-[13]
-
-/media/cedric/DSCD/Projets/ENSTA/Parrallel_architcture/Cours_Ensta_2025/travaux_diriges/tp1/DADA_SIMEU_Cédric_tp1_parallel_architecture.tex:662: LaTeX Error: Invalid UTF-8 byte sequence (�\expandafter).
-
-See the LaTeX manual or LaTeX Companion for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.662 ...            printf("Processus %d a reçu 
-                                                  le jeton %d depuis le proc...
-The document does not appear to be in UTF-8 encoding.
-Try adding \UseRawInputEncoding as the first line of the file
-or specify an encoding such as \usepackage [latin1]{inputenc}
-in the document preamble.
-Alternatively, save the file in UTF-8 using your editor or another tool
-
-
-/media/cedric/DSCD/Projets/ENSTA/Parrallel_architcture/Cours_Ensta_2025/travaux_diriges/tp1/DADA_SIMEU_Cédric_tp1_parallel_architecture.tex:662: LaTeX Error: Invalid UTF-8 byte "A7.
-
-See the LaTeX manual or LaTeX Companion for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.662 ...            printf("Processus %d a reçu 
-                                                  le jeton %d depuis le proc...
-The document does not appear to be in UTF-8 encoding.
-Try adding \UseRawInputEncoding as the first line of the file
-or specify an encoding such as \usepackage [latin1]{inputenc}
-in the document preamble.
-Alternatively, save the file in UTF-8 using your editor or another tool
-
-
-/media/cedric/DSCD/Projets/ENSTA/Parrallel_architcture/Cours_Ensta_2025/travaux_diriges/tp1/DADA_SIMEU_Cédric_tp1_parallel_architecture.tex:665: LaTeX Error: Invalid UTF-8 byte sequence (�\expandafter).
-
-See the LaTeX manual or LaTeX Companion for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.665 ... /* Tous les autres processus reçoivent 
-                                                  le jeton du processus prec...
-The document does not appear to be in UTF-8 encoding.
-Try adding \UseRawInputEncoding as the first line of the file
-or specify an encoding such as \usepackage [latin1]{inputenc}
-in the document preamble.
-Alternatively, save the file in UTF-8 using your editor or another tool
-
-
-/media/cedric/DSCD/Projets/ENSTA/Parrallel_architcture/Cours_Ensta_2025/travaux_diriges/tp1/DADA_SIMEU_Cédric_tp1_parallel_architecture.tex:665: LaTeX Error: Invalid UTF-8 byte "A7.
-
-See the LaTeX manual or LaTeX Companion for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.665 ... /* Tous les autres processus reçoivent 
-                                                  le jeton du processus prec...
-The document does not appear to be in UTF-8 encoding.
-Try adding \UseRawInputEncoding as the first line of the file
-or specify an encoding such as \usepackage [latin1]{inputenc}
-in the document preamble.
-Alternatively, save the file in UTF-8 using your editor or another tool
-
-
-/media/cedric/DSCD/Projets/ENSTA/Parrallel_architcture/Cours_Ensta_2025/travaux_diriges/tp1/DADA_SIMEU_Cédric_tp1_parallel_architecture.tex:668: LaTeX Error: Invalid UTF-8 byte sequence (�\expandafter).
-
-See the LaTeX manual or LaTeX Companion for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.668 ...            printf("Processus %d a reçu 
-                                                  le jeton et l'incremente �...
-The document does not appear to be in UTF-8 encoding.
-Try adding \UseRawInputEncoding as the first line of the file
-or specify an encoding such as \usepackage [latin1]{inputenc}
-in the document preamble.
-Alternatively, save the file in UTF-8 using your editor or another tool
-
-
-/media/cedric/DSCD/Projets/ENSTA/Parrallel_architcture/Cours_Ensta_2025/travaux_diriges/tp1/DADA_SIMEU_Cédric_tp1_parallel_architecture.tex:668: LaTeX Error: Invalid UTF-8 byte "A7.
-
-See the LaTeX manual or LaTeX Companion for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.668 ...            printf("Processus %d a reçu 
-                                                  le jeton et l'incremente �...
-The document does not appear to be in UTF-8 encoding.
-Try adding \UseRawInputEncoding as the first line of the file
-or specify an encoding such as \usepackage [latin1]{inputenc}
-in the document preamble.
-Alternatively, save the file in UTF-8 using your editor or another tool
-
-
-/media/cedric/DSCD/Projets/ENSTA/Parrallel_architcture/Cours_Ensta_2025/travaux_diriges/tp1/DADA_SIMEU_Cédric_tp1_parallel_architecture.tex:668: LaTeX Error: Invalid UTF-8 byte sequence (�\lst@FillFixed@).
-
-See the LaTeX manual or LaTeX Companion for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.668 ...s %d a reçu le jeton et l'incremente à 
-                                                  %d\n", rank, token);
-The document does not appear to be in UTF-8 encoding.
-Try adding \UseRawInputEncoding as the first line of the file
-or specify an encoding such as \usepackage [latin1]{inputenc}
-in the document preamble.
-Alternatively, save the file in UTF-8 using your editor or another tool
-
-
-/media/cedric/DSCD/Projets/ENSTA/Parrallel_architcture/Cours_Ensta_2025/travaux_diriges/tp1/DADA_SIMEU_Cédric_tp1_parallel_architecture.tex:668: LaTeX Error: Invalid UTF-8 byte "A0.
-
-See the LaTeX manual or LaTeX Companion for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.668 ...s %d a reçu le jeton et l'incremente à 
-                                                  %d\n", rank, token);
-The document does not appear to be in UTF-8 encoding.
-Try adding \UseRawInputEncoding as the first line of the file
-or specify an encoding such as \usepackage [latin1]{inputenc}
-in the document preamble.
-Alternatively, save the file in UTF-8 using your editor or another tool
-
-/media/cedric/DSCD/Projets/ENSTA/Parrallel_architcture/Cours_Ensta_2025/travaux_diriges/tp1/DADA_SIMEU_Cédric_tp1_parallel_architecture.tex:696: Missing $ inserted.
-<inserted text> 
-                $
-l.696 ...subsection{Calcul très approché de \pi}
-                                                  
-I've inserted a begin-math/end-math symbol since I think
-you left one out. Proceed, with fingers crossed.
-
-/media/cedric/DSCD/Projets/ENSTA/Parrallel_architcture/Cours_Ensta_2025/travaux_diriges/tp1/DADA_SIMEU_Cédric_tp1_parallel_architecture.tex:696: Missing $ inserted.
-<inserted text> 
-                $
-l.696 ...subsection{Calcul très approché de \pi}
-                                                  
-I've inserted a begin-math/end-math symbol since I think
-you left one out. Proceed, with fingers crossed.
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 697--698
-
- []
-
-[14]
-Underfull \hbox (badness 10000) in paragraph at lines 734--735
-
- []
-
-[15]
-
-LaTeX Warning: Reference `tab:pi_approximation' on page 16 undefined on input line 778.
-
-/media/cedric/DSCD/Projets/ENSTA/Parrallel_architcture/Cours_Ensta_2025/travaux_diriges/tp1/DADA_SIMEU_Cédric_tp1_parallel_architecture.tex:783: Undefined control sequence.
-<recently read> \toprule 
-                         
-l.783     \toprule
-                  
-The control sequence at the end of the top line
-of your error message was never \def'ed. If you have
-misspelled it (e.g., `\hobx'), type `I' and the correct
-spelling (e.g., `I\hbox'). Otherwise just continue,
-and I'll forget about whatever was undefined.
-
-/media/cedric/DSCD/Projets/ENSTA/Parrallel_architcture/Cours_Ensta_2025/travaux_diriges/tp1/DADA_SIMEU_Cédric_tp1_parallel_architecture.tex:785: Undefined control sequence.
-<recently read> \midrule 
-                         
-l.785     \midrule
-                  
-The control sequence at the end of the top line
-of your error message was never \def'ed. If you have
-misspelled it (e.g., `\hobx'), type `I' and the correct
-spelling (e.g., `I\hbox'). Otherwise just continue,
-and I'll forget about whatever was undefined.
-
-/media/cedric/DSCD/Projets/ENSTA/Parrallel_architcture/Cours_Ensta_2025/travaux_diriges/tp1/DADA_SIMEU_Cédric_tp1_parallel_architecture.tex:790: Undefined control sequence.
-<recently read> \bottomrule 
-                            
-l.790     \bottomrule
-                     
-The control sequence at the end of the top line
-of your error message was never \def'ed. If you have
-misspelled it (e.g., `\hobx'), type `I' and the correct
-spelling (e.g., `I\hbox'). Otherwise just continue,
-and I'll forget about whatever was undefined.
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 796--797
-
- []
-
-Package hyperref Info: bookmark level for unknown lstlisting defaults to 0 on input line 797.
-
-Package Listings Warning: Text dropped after begin of listing on input line 797.
-
-[16]
-
-LaTeX Warning: Reference `tab:pi_mpi' on page 17 undefined on input line 844.
-
-
-/media/cedric/DSCD/Projets/ENSTA/Parrallel_architcture/Cours_Ensta_2025/travaux_diriges/tp1/DADA_SIMEU_Cédric_tp1_parallel_architecture.tex:865: LaTeX Error: Lonely \item--perhaps a missing list environment.
-
-See the LaTeX manual or LaTeX Companion for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.865     \item N
-                 ombre de slots disponibles insuffisant
-Try typing  <return>  to proceed.
-If that doesn't work, type  X <return>  to quit.
-
-
-Underfull \hbox (badness 10000) detected at line 865
-[][]
- []
-
-
-LaTeX Warning: Reference `tab:lscpu' on page 17 undefined on input line 868.
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 871--872
-
- []
-
-[17]
-
-/media/cedric/DSCD/Projets/ENSTA/Parrallel_architcture/Cours_Ensta_2025/travaux_diriges/tp1/DADA_SIMEU_Cédric_tp1_parallel_architecture.tex:889: LaTeX Error: Invalid UTF-8 byte sequence (�\expandafter).
-
-See the LaTeX manual or LaTeX Companion for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.889 ...ssus initialise sa graine pour générer 
-                                                  des nombres aleatoires dif...
-The document does not appear to be in UTF-8 encoding.
-Try adding \UseRawInputEncoding as the first line of the file
-or specify an encoding such as \usepackage [latin1]{inputenc}
-in the document preamble.
-Alternatively, save the file in UTF-8 using your editor or another tool
-
-
-/media/cedric/DSCD/Projets/ENSTA/Parrallel_architcture/Cours_Ensta_2025/travaux_diriges/tp1/DADA_SIMEU_Cédric_tp1_parallel_architecture.tex:889: LaTeX Error: Invalid UTF-8 byte "A9.
-
-See the LaTeX manual or LaTeX Companion for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.889 ...ssus initialise sa graine pour générer 
-                                                  des nombres aleatoires dif...
-The document does not appear to be in UTF-8 encoding.
-Try adding \UseRawInputEncoding as the first line of the file
-or specify an encoding such as \usepackage [latin1]{inputenc}
-in the document preamble.
-Alternatively, save the file in UTF-8 using your editor or another tool
-
-
-/media/cedric/DSCD/Projets/ENSTA/Parrallel_architcture/Cours_Ensta_2025/travaux_diriges/tp1/DADA_SIMEU_Cédric_tp1_parallel_architecture.tex:889: LaTeX Error: Invalid UTF-8 byte sequence (�\expandafter).
-
-See the LaTeX manual or LaTeX Companion for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.889 ...ssus initialise sa graine pour générer 
-                                                  des nombres aleatoires dif...
-The document does not appear to be in UTF-8 encoding.
-Try adding \UseRawInputEncoding as the first line of the file
-or specify an encoding such as \usepackage [latin1]{inputenc}
-in the document preamble.
-Alternatively, save the file in UTF-8 using your editor or another tool
-
-
-/media/cedric/DSCD/Projets/ENSTA/Parrallel_architcture/Cours_Ensta_2025/travaux_diriges/tp1/DADA_SIMEU_Cédric_tp1_parallel_architecture.tex:889: LaTeX Error: Invalid UTF-8 byte "A9.
-
-See the LaTeX manual or LaTeX Companion for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.889 ...ssus initialise sa graine pour générer 
-                                                  des nombres aleatoires dif...
-The document does not appear to be in UTF-8 encoding.
-Try adding \UseRawInputEncoding as the first line of the file
-or specify an encoding such as \usepackage [latin1]{inputenc}
-in the document preamble.
-Alternatively, save the file in UTF-8 using your editor or another tool
-
-
-/media/cedric/DSCD/Projets/ENSTA/Parrallel_architcture/Cours_Ensta_2025/travaux_diriges/tp1/DADA_SIMEU_Cédric_tp1_parallel_architecture.tex:889: LaTeX Error: Invalid UTF-8 byte sequence (�\expandafter).
-
-See the LaTeX manual or LaTeX Companion for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.889 ...nérer des nombres aleatoires différents
-                                                  
-The document does not appear to be in UTF-8 encoding.
-Try adding \UseRawInputEncoding as the first line of the file
-or specify an encoding such as \usepackage [latin1]{inputenc}
-in the document preamble.
-Alternatively, save the file in UTF-8 using your editor or another tool
-
-
-/media/cedric/DSCD/Projets/ENSTA/Parrallel_architcture/Cours_Ensta_2025/travaux_diriges/tp1/DADA_SIMEU_Cédric_tp1_parallel_architecture.tex:889: LaTeX Error: Invalid UTF-8 byte "A9.
-
-See the LaTeX manual or LaTeX Companion for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.889 ...nérer des nombres aleatoires différents
-                                                  
-The document does not appear to be in UTF-8 encoding.
-Try adding \UseRawInputEncoding as the first line of the file
-or specify an encoding such as \usepackage [latin1]{inputenc}
-in the document preamble.
-Alternatively, save the file in UTF-8 using your editor or another tool
-
-
-/media/cedric/DSCD/Projets/ENSTA/Parrallel_architcture/Cours_Ensta_2025/travaux_diriges/tp1/DADA_SIMEU_Cédric_tp1_parallel_architecture.tex:899: LaTeX Error: Invalid UTF-8 byte sequence (�\expandafter).
-
-See the LaTeX manual or LaTeX Companion for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.899         # Réduire 
-                         les resultats de tous les processus (somme)
-The document does not appear to be in UTF-8 encoding.
-Try adding \UseRawInputEncoding as the first line of the file
-or specify an encoding such as \usepackage [latin1]{inputenc}
-in the document preamble.
-Alternatively, save the file in UTF-8 using your editor or another tool
-
-
-/media/cedric/DSCD/Projets/ENSTA/Parrallel_architcture/Cours_Ensta_2025/travaux_diriges/tp1/DADA_SIMEU_Cédric_tp1_parallel_architecture.tex:899: LaTeX Error: Invalid UTF-8 byte "A9.
-
-See the LaTeX manual or LaTeX Companion for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.899         # Réduire 
-                         les resultats de tous les processus (somme)
-The document does not appear to be in UTF-8 encoding.
-Try adding \UseRawInputEncoding as the first line of the file
-or specify an encoding such as \usepackage [latin1]{inputenc}
-in the document preamble.
-Alternatively, save the file in UTF-8 using your editor or another tool
-
-/media/cedric/DSCD/Projets/ENSTA/Parrallel_architcture/Cours_Ensta_2025/travaux_diriges/tp1/DADA_SIMEU_Cédric_tp1_parallel_architecture.tex:917: Undefined control sequence.
-l.917     \toprule
-                  
-The control sequence at the end of the top line
-of your error message was never \def'ed. If you have
-misspelled it (e.g., `\hobx'), type `I' and the correct
-spelling (e.g., `I\hbox'). Otherwise just continue,
-and I'll forget about whatever was undefined.
-
-/media/cedric/DSCD/Projets/ENSTA/Parrallel_architcture/Cours_Ensta_2025/travaux_diriges/tp1/DADA_SIMEU_Cédric_tp1_parallel_architecture.tex:920: Undefined control sequence.
-<recently read> \midrule 
-                         
-l.920     \midrule
-                  
-The control sequence at the end of the top line
-of your error message was never \def'ed. If you have
-misspelled it (e.g., `\hobx'), type `I' and the correct
-spelling (e.g., `I\hbox'). Otherwise just continue,
-and I'll forget about whatever was undefined.
-
-/media/cedric/DSCD/Projets/ENSTA/Parrallel_architcture/Cours_Ensta_2025/travaux_diriges/tp1/DADA_SIMEU_Cédric_tp1_parallel_architecture.tex:927: Undefined control sequence.
-<recently read> \bottomrule 
-                            
-l.927     \bottomrule
-                     
-The control sequence at the end of the top line
-of your error message was never \def'ed. If you have
-misspelled it (e.g., `\hobx'), type `I' and the correct
-spelling (e.g., `I\hbox'). Otherwise just continue,
-and I'll forget about whatever was undefined.
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 934--935
-
- []
-
-[18]
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
- [19]
-Package minitoc Info: I0009
-(minitoc)             Listing minitoc auxiliary files. 
-(minitoc)             Creating the DADA_SIMEU_Cédric_tp1_parallel_architecture.maf file.
-\openout5 = `DADA_SIMEU_Cédric_tp1_parallel_architecture.maf'.
-
-
-
-Package minitoc(hints) Warning: W0078
-(minitoc(hints))                You have used \dominitoc, 
-(minitoc(hints))                but not \minitoc.
-
-
-Package minitoc(hints) Warning: W0033
-(minitoc(hints))                The caption package should be 
-(minitoc(hints))                loaded BEFORE the minitoc package.
-
-
-Package minitoc(hints) Warning: W0024
-(minitoc(hints))                Some hints have been written 
-(minitoc(hints))                in the DADA_SIMEU_Cédric_tp1_parallel_architecture.log file.
-
-[20] (./DADA_SIMEU_Cédric_tp1_parallel_architecture.aux)
-
-LaTeX Warning: There were undefined references.
-
-
-LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
-
-
-Package rerunfilecheck Warning: File `DADA_SIMEU_Cédric_tp1_parallel_architecture.out' has changed.
-(rerunfilecheck)                Rerun to get outlines right
-(rerunfilecheck)                or use package `bookmark'.
-
-Package rerunfilecheck Info: Checksums for `DADA_SIMEU_Cédric_tp1_parallel_architecture.out':
-(rerunfilecheck)             Before: <no file>
-(rerunfilecheck)             After:  95C392F57961ECE90680E6C8DF8BE64B;3555.
- ) 
-Here is how much of TeX's memory you used:
- 45694 strings out of 479624
- 1025938 string characters out of 5877755
- 2240978 words of memory out of 5000000
- 62369 multiletter control sequences out of 15000+600000
- 522229 words of font info for 87 fonts, out of 8000000 for 9000
- 350 hyphenation exceptions out of 8191
- 99i,19n,96p,914b,2367s stack positions out of 5000i,500n,10000p,200000b,80000s
- </home/cedric/.texlive2021/texmf-var/fonts/pk/ljfour/jknappen/ec/tcrm1000.600pk>{/usr/share/texlive/texmf-dist/fonts/enc/dvips/base/8r.enc} </home/cedric/.texlive2021/texmf-var/fonts/pk/ljfour/jknappen/ec/ectt0800.600pk></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/symbol/usyr.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmb8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmr8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmri8a.pfb>
-Output written on DADA_SIMEU_Cédric_tp1_parallel_architecture.pdf (20 pages, 418932 bytes).
-PDF statistics:
- 757 PDF objects out of 1000 (max. 8388607)
- 601 compressed objects within 7 object streams
- 421 named destinations out of 1000 (max. 500000)
- 172 words of extra memory for PDF output out of 10000 (max. 10000000)
-
