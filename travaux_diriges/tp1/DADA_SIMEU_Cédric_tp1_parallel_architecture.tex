@@ -9,13 +9,16 @@
 \everymath{\displaystyle} 
 \usepackage{hyperref}
 %\usepackage{"./tpack"}
-
 \usepackage{mathptmx}
 
 \usepackage{mathtools}
 \DeclarePairedDelimiter\ceil{\lceil}{\rceil}
 \DeclarePairedDelimiter\floor{\lfloor}{\rfloor}
 \usepackage{enumitem}
+
+\documentclass{article}
+\usepackage{pgfplots} % Package pour tracer les courbes
+\usepackage{filecontents} % Permet d'intégrer les données dans le fichier source
 \usepackage[explicit]{ titlesec}
 \usepackage{fancybox}
 %\usepackage{thmbox}   
@@ -156,8 +159,22 @@
 {\end{minipage}\end{lrbox}\noindent\colorbox{Zgris}{\usebox{\BBbox}} \\
 [.5cm]}
 \author{\bsc{DADA SIMEU Cédric Darel}}
+
+\begin{filecontents*}{data.csv}
+    Block,1023,1024,1025,2046,2048,2050
+    16,0.877341,1.12949,1.45106,8.22054,11.9397,9.95203
+    32,0.878256,1.01766,1.16611,8.07098,8.48291,8.08087
+    64,0.733389,1.05318,1.08126,6.03957,6.47482,6.05346
+    128,1.03299,1.08051,0.811277,5.93782,5.90392,5.87249
+    256,0.676715,0.82404,0.688898,5.58254,5.35617,5.60779
+    512,0.651583,0.842222,0.653469,5.51449,5.55441,5.48918
+    1024,1.20526,0.818224,0.878042,7.90850,6.97363,6.90816
+    2048,1.03614,1.07987,0.872889,7.32629,7.13192,7.59353
+    \end{filecontents*}
+
+
 \begin{document}
-	\input{../Parallel_architecture/template_page_garde/page_garde_PC6.tex}
+	\input{./template_page_garde/page_garde_PC6.tex}
 \tableofcontents
 \listoffigures
 \newpage
@@ -429,6 +446,7 @@ Code : \\
 \paragraph{Commentaire : }
 Notre machine (avec un Intel(R) Core(TM) i5-10210U) possède 6MiB de cache L3 et 1MiB répartis sur 4 cœurs en cache L2, soit environ 256KiB par cœur (voir fig \ref{tab:ls_topo} et \ref{tab:lscpu} ), et il se trouve que la taille 256 offre le meilleur compromis en termes de :
 \begin{itemize}
+    \item $3\times 512 \times 512 \times \text{sizeof(double)} = 3 \times 512 \times 512 \times 8 = 6291456\text{ octets} = 6144 KB = \text{taille cache L3} (voir fig \ref{tab:ls_topo})$
     \item Réutilisation des données : Un bloc de taille 256$\times$256 en double précision (où chaque double occupe 8 octets) représente environ 256$\times$256$\times$8 = 524 288 octets (soit 512 KiB). Ce bloc (ou la combinaison de blocs issus de A, B et C) est dimensionné de façon à exploiter au mieux la capacité des caches de niveau L2 et L3.
     \item Amortissement du coût de chargement : Avec une taille de bloc bien choisie, une fois les sous-matrices chargées dans le cache, de nombreux calculs peuvent être effectués sans accéder à la mémoire principale.
     \item Optimisation pour la hiérarchie mémoire de votre machine : Les tailles de caches (L1, L2, L3) et la structure de la mémoire influencent fortement le choix d’un bloc optimal. Le fait que 256 apparaisse comme la meilleure taille dans vos tests expérimentaux est lié aux capacités spécifiques de votre ordinateur.
@@ -456,22 +474,60 @@ Notre machine (avec un Intel(R) Core(TM) i5-10210U) possède 6MiB de cache L3 et
 
     \begin{table}
         \centering
-        \caption{Temps d'exécution (secondes) pour N=1023-1025}
+        \caption{Temps d'exécution (secondes) pour N=1023-1025 et 2046-2050}
         \label{tab:small}
-        \begin{tabular}{|c|c|c|c|c|c|}\hline
-        Taille & 16 & 32 & 64 & 128 & 256 \\\hline
-        1023 & 0.769 & 0.675 & 0.638 & 0.631 & \textbf{0.582} \\\hline
-        1024 & 1.199 & \textbf{1.017} & 1.438 & 1.455 & 1.218 \\\hline
-        1025 & 1.549 & 1.180 & 0.902 & 0.766 & \textbf{0.566} \\\hline
-        2046  & 6.25 & 7.67 & 5.15 & 6.19 & \textbf{4.79} \\\hline
-        2048 & 11.07 & 9.38 & 7.55 & 7.45 & \textbf{7.30} \\\hline
-        2050 &  8.69 & 6.86 & 6.42 & 6.19 & \textbf{4.94} \\\hline
+        \begin{tabular}{|c|c|c|c|c|c|c|c|c|}\hline
+        Taille & 16 & 32 & 64 & 128 & 256  & 512 & 1024 & 2048\\\hline
+        1023 & 0.877341 & 0.878256 & 0.733389 & 1.03299 & 0.676715 & \textbf{0.651583} & 1.20526 & 1.03614 \\\hline
+        1024 & 1.12949 & 1.01766 & 1.05318 & 1.08051 & 0.82404 &  0.842222 & \textbf{0.818224} & 1.07987\\\hline
+        1025 & 1.45106 & 1.16611 & 1.08126 & 0.811277 & 0.688898 & \textbf{0.653469} & 0.878042 & 0.872889\\\hline
+        2046  & 8.22054 & 8.07098 & 6.03957 & 5.93782 & 5.58254 & \textbf{5.51449} & 7.9085 & 7.32629 \\\hline
+        2048 &  11.9397 & 8.48291 & 6.47482 & 5.90392 & 5.35617 & \textbf{5.5544}1 & 6.97363 & 7.13192 \\\hline
+        2050 &  9.95203 & 8.08087 & 6.05346 & 5.87249 & 5.60779 & \textbf{5.48918} & 6.90816 & 7.59353\\\hline
         \end{tabular}
         \caption{OMP\_NUM\_THREADS=1}
         \end{table}
+
+        \begin{figure}[ht]
+            \centering
+            \begin{tikzpicture}
+                \begin{axis}[
+                    xlabel={Taille des blocs},
+                    ylabel={Durée d'exécution (s)},
+                    grid=major,
+                    legend pos=north east,
+                    width=12cm,
+                    height=8cm
+                ]
+                    % Courbe pour la taille 1023
+                    \addplot+[mark=o] table [x=Block, y=1023, col sep=comma] {data.csv};
+                    \addlegendentry{1023}
+        
+                    % Courbe pour la taille 1024
+                    \addplot+[mark=square] table [x=Block, y=1024, col sep=comma] {data.csv};
+                    \addlegendentry{1024}
+        
+                    % Courbe pour la taille 1025
+                    \addplot+[mark=triangle] table [x=Block, y=1025, col sep=comma] {data.csv};
+                    \addlegendentry{1025}
+        
+                    % Courbe pour la taille 2046
+                    \addplot+[mark=diamond] table [x=Block, y=2046, col sep=comma] {data.csv};
+                    \addlegendentry{2046}
+        
+                    % Courbe pour la taille 2048
+                    \addplot+[mark=pentagon] table [x=Block, y=2048, col sep=comma] {data.csv};
+                    \addlegendentry{2048}
+        
+                    % Courbe pour la taille 2050
+                    \addplot+[mark=star] table [x=Block, y=2050, col sep=comma] {data.csv};
+                    \addlegendentry{2050}
+                \end{axis}
+            \end{tikzpicture}
+            \caption{Durées d'exécution en fonction de la taille des blocs pour chaque taille de problème. (OMP\_NUM\_THREADS=1)}
+            \label{fig:execution_time}
+        \end{figure}
 \subsection{Parallélisation du produit matrice–matrice par bloc}
-
-
 Code :  \\
 
 	\begin{lstlisting}[language=C]
@@ -962,3 +1018,36 @@ Code :  \\
 \item Processus 3 : token = 12345, temps de diffusion = 0.000116 secondes
 \end{itemize}
 \end{document}
+
+
+
+\begin{danger}
+Faire varier les tailles des caches et voir le point à partir duquel ça décroit
+
+
+à un moment donnée il faut qu'on fasse entre 3 fois la taille d'un bloc soit bloc\_size * block\_size * 8 * 3  et comparer ceci à la taille des caches L1, L2, L3
+
+
+vérifier si la taille des blocs en monothreadé est optimale en multithreadé
+
+BLAS est disponible dans plusieurs versions. OpenBlas et KL sont optimisées. celle de notre machine ne l'est pas forcément.
+
+apt install libmkl-dev (l'alternative c'est openblas)
+
+Quand on fait mpirun -nb 4 mon_prog, il lance 4 instance de mon_prog et puis il les mets sur 4 corps différents. Chaque instance du programme doit savoir qu'elle place elle a dans le programme pour savoir ce qu'elle doit faire. On peut voir la programation mpi comme un jeu de role et le role est déterminé par le rank. La commande mpirun lance chaque instance du programme dans un contexte d'exécution spécifique en attribuant à chacun un rank. Get_rank nous permet d'avoir le rank. Quand on fait un programme MPI, on doit se dire qu'on a un seul programme et la seule façon de faire des roles différents est de faire des comparaisons sur le rank.
+
+question 1 tD2:  pb déséquilibrage des charges car le calcul de chaque point n'a pas la meme complexité. 
+
+Premier point : analyse macroscopique du code pour cibler les étapes les plus couteuses.
+
+Quand on découpe la fractale en 2 (sur l'axe x), on n'a pas de déséquilibrage des charges. 
+\end{danger}
+le temps de calcul de la fractale sur chaque processeur  nous permettra de savoir si on a un déséquilibrage ou non
+
+le temps d'une communication = ttemps d'initialisation (incompressible) + temps de transfert, ainsi l'approche pixel par pixel n'est pas viable.
+
+il faut donc faire le moins de communications possibles 
+
+il faut trouver un équilibre entre une Granularité trop faible et trop grosse
+
+le maitre esclave semble etre viable

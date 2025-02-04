@@ -1,0 +1,165 @@
+%Template_made_by_SGjTeX
+
+\documentclass[a4paper,13pt]{book}
+\usepackage[utf8]{inputenc}     
+\usepackage[T1]{fontenc}
+\usepackage{amsmath,amsthm, amssymb,xcolor,amsfonts,mathrsfs} 
+\usepackage[left=2.5cm,right=2.5cm,top=2.5cm,bottom=2.5cm]{geometry}
+\usepackage[french]{babel}
+\everymath{\displaystyle} 
+\usepackage{hyperref}
+%\usepackage{"./tpack"}
+
+\usepackage{mathptmx}
+
+\usepackage{mathtools}
+\DeclarePairedDelimiter\ceil{\lceil}{\rceil}
+\DeclarePairedDelimiter\floor{\lfloor}{\rfloor}
+\usepackage{enumitem}
+\usepackage[explicit]{ titlesec}
+\usepackage{fancybox}
+%\usepackage{thmbox}   
+%================================ 
+\usepackage{fancyhdr}
+\usepackage{fancybox}
+
+\usepackage{xcolor}
+\pagestyle{fancy}
+\fancyhf{} 
+
+%\fancyfoot[RO,LE]{\rightmark} 
+
+\cfoot{\thepage}
+\lfoot{}
+\renewcommand{\chaptermark}[1]{\markboth{#1}{}}
+%===============================
+\newtheorem{definition}{Définition}[section]
+\newtheorem{theo}{Théorème}[section]
+\newtheorem{pro}{Proposition}[section] 
+\newtheorem{cor}{Corollaire}[section]
+\newtheorem{lem}{Lemme}[section]
+\newtheorem{rem}{Remarque}[section]
+
+\definecolor{gris}{gray}{0.9}
+\definecolor{perfectorange}{RGB}{255,165,20}
+\definecolor{darkblue}{RGB}{25,25,100}
+\definecolor{darkkblue}{RGB}{0,0,50}
+\definecolor{darkred}{RGB}{180,0,0}
+\definecolor{green_identifiers}{RGB}{00,80,00}
+\definecolor{blue_know}{RGB}{00,20,20}
+\definecolor{orange_comments}{RGB}{214, 161, 126}
+\definecolor{red_keywords}{RGB}{215, 103, 129}
+\definecolor{black_strings}{RGB}{50, 50, 50}
+%utilis� dans la partie analyse
+\definecolor{fond}{rgb}{.55,.55,.92}
+%fin creation couleurs
+% Définir le théorème avec couleur rouge
+\newtheorem{danger1}{Attention}[section]
+\newenvironment{danger}{\begin{danger1}\color{darkred}}{\end{danger1}}
+
+% Définir le théorème avec couleur verte
+\newtheorem{know1}{A Savoir}[section]
+\newenvironment{know}{\begin{know1}\color{blue_know}}{\end{know1}}
+
+\renewcommand{\footrulewidth}{1pt} 
+\renewcommand{\thesection}{\arabic{section}}
+\renewcommand{\thesubsection}{\thesection.\arabic{subsection}}
+\renewcommand{\thesubsubsection}{\thesubsection.\arabic{subsubsection}}
+
+\newcommand{\Hrule}{
+	\rule{\linewidth}{0.5mm}
+}
+\newcommand\justify{%
+  \let\\\@centercr
+  \rightskip\z@skip
+  \leftskip\z@skip}
+%%===exercices 
+%\newcounter{ex}
+\newenvironment{exe}% exple \begin{exe}...\end{exe}
+{\refstepcounter{ex}%
+	\par\noindent
+	{\underline{\bfseries{Exercice \theex \hspace*{0.009 cm} :}} }
+	\mdseries
+	\slshape}
+{\par
+	\medskip}
+%====exemples
+\newcounter{exple}
+\newenvironment{exple}
+{\refstepcounter{exple}%
+	\par\noindent
+	{\underline{\bfseries{Exemple  :}} }
+	\mdseries
+	\slshape}
+{\par
+	\medskip}
+%====preuve
+%\newenvironment{proof}
+%{\rmfamily\mdseries{\bfseries Preuve : }}
+%{\hfill$\blacksquare$}
+%======
+\renewcommand{\baselinestretch}{1.3}  
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\newcommand{\ps}[2]{\left\langle #1 ,#2 \right\rangle  }
+%%%%%%%%%%%%%%%%%%%%%% 
+\let\cleardoublepage\clearpage 
+
+\usepackage[explicit]{titlesec}
+\usepackage{minitoc}
+\renewcommand{\mtctitle}{Plan}
+\usepackage[most]{tcolorbox}
+\newcommand\mychapter{\titleformat{\chapter}[block]{}{}{0pt}{\centering\hrule height 5pt
+		\vglue-1.1 \baselineskip
+		\tcbox[enhanced,colback=white,frame code={}]{\bfseries\chaptername\hskip2mm \thechapter}
+		\bigskip
+		\vglue-3mm\hrule \vglue3mm
+		{\huge \bfseries ##1}\vglue3mm\hrule
+	}[]\chapter}
+\dominitoc
+\usepackage{caption}
+\usepackage{listings}
+
+%%configuration de listings
+\definecolor{codegreen}{rgb}{0,0.6,0}
+\definecolor{codegray}{rgb}{0.5,0.5,0.5}
+\definecolor{codepurple}{rgb}{0.58,0,0.82}
+\definecolor{backcolour}{rgb}{0.99,0.99,0.97}
+
+\lstdefinestyle{mystyle}{
+    backgroundcolor=\color{backcolour},
+    commentstyle=\color{codegreen},
+    keywordstyle=\color{magenta},
+    numberstyle=\tiny\color{codegray},
+    stringstyle=\color{codepurple},
+    basicstyle=\ttfamily\footnotesize,
+    breakatwhitespace=false,
+    breaklines=true,
+    captionpos=b,
+    keepspaces=true,
+    numbers=left,
+    numbersep=5pt,
+    showspaces=false,
+    showstringspaces=false,
+    showtabs=false,
+    tabsize=4
+}
+
+\lstset{style=mystyle}
+
+\definecolor{Zgris}{rgb}{238, 238, 238}
+
+\newsavebox{\BBbox}
+\newenvironment{DDbox}[1]{
+\begin{lrbox}{\BBbox}\begin{minipage}{\linewidth}}
+{\end{minipage}\end{lrbox}\noindent\colorbox{Zgris}{\usebox{\BBbox}} \\
+[.5cm]}
+\author{\bsc{DADA SIMEU Cédric Darel}}
+\begin{document}
+	%\input{../Parallel_architecture/template_page_garde/page_garde_PC6.tex}
+\tableofcontents
+\listoffigures
+\newpage
+
+\end{document}
