@@ -1,8 +1,9 @@
 # Fdb version 3
-["pdflatex"] 1738712522 "/media/cedric/DSCD/Projets/ENSTA/Parrallel_architcture/Cours_Ensta_2025/travaux_diriges/tp1/DADA_SIMEU_Cédric_tp1_parallel_architecture.tex" "DADA_SIMEU_Cédric_tp1_parallel_architecture.pdf" "DADA_SIMEU_Cédric_tp1_parallel_architecture" 1738712522
+["pdflatex"] 1738752526 "/media/cedric/DSCD/Projets/ENSTA/Parrallel_architcture/Cours_Ensta_2025/travaux_diriges/tp1/DADA_SIMEU_Cédric_tp1_parallel_architecture.tex" "DADA_SIMEU_Cédric_tp1_parallel_architecture.pdf" "DADA_SIMEU_Cédric_tp1_parallel_architecture" 1738752526
   "/etc/texmf/web2c/texmf.cnf" 1726557303 475 c0e671620eb5563b2130f56340a5fde8 ""
   "/home/cedric/.texlive2021/texmf-var/fonts/pk/ljfour/jknappen/ec/ectt0800.600pk" 1738643335 15172 571692a2f0054a2b2ed6f6d98a6e25c8 ""
-  "/media/cedric/DSCD/Projets/ENSTA/Parrallel_architcture/Cours_Ensta_2025/travaux_diriges/tp1/DADA_SIMEU_Cédric_tp1_parallel_architecture.tex" 1738712512 60515 66af22cfcddd3649712a5f6ef290bee3 ""
+  "/home/cedric/.texlive2021/texmf-var/fonts/pk/ljfour/jknappen/ec/ectt1000.600pk" 1727266519 20008 ce7abacbde7657586cf01b5863fccd74 ""
+  "/media/cedric/DSCD/Projets/ENSTA/Parrallel_architcture/Cours_Ensta_2025/travaux_diriges/tp1/DADA_SIMEU_Cédric_tp1_parallel_architecture.tex" 1738752520 60733 6afee947f826e6efc4d663022e2293b0 ""
   "/usr/share/texlive/texmf-dist/fonts/enc/dvips/base/8r.enc" 1165713224 4850 80dc9bab7f31fb78a000ccfed0e27cab ""
   "/usr/share/texlive/texmf-dist/fonts/map/fontname/texfonts.map" 1577235249 3524 cb3e574dea2d1052e39280babc910dc8 ""
   "/usr/share/texlive/texmf-dist/fonts/tfm/adobe/symbol/psyr.tfm" 1136768653 1408 5937f58aa508ea2cea4901c07d10f5fe ""
@@ -486,10 +487,10 @@
   "/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map" 1738495640 131109 0ab265fff85f1c3c2fecd2a30e60fd14 ""
   "/var/lib/texmf/web2c/pdftex/pdflatex.fmt" 1738602525 2035373 0dfcc31b020438620a439456405e6eef ""
   "DADA_SIMEU_Cédric_tp1_parallel_architecture.aux" 0 -1 0 "pdflatex"
-  "DADA_SIMEU_Cédric_tp1_parallel_architecture.mtc" 1738712523 0 d41d8cd98f00b204e9800998ecf8427e "pdflatex"
-  "DADA_SIMEU_Cédric_tp1_parallel_architecture.mtc0" 1738712523 0 d41d8cd98f00b204e9800998ecf8427e "pdflatex"
+  "DADA_SIMEU_Cédric_tp1_parallel_architecture.mtc" 1738752527 0 d41d8cd98f00b204e9800998ecf8427e "pdflatex"
+  "DADA_SIMEU_Cédric_tp1_parallel_architecture.mtc0" 1738752527 0 d41d8cd98f00b204e9800998ecf8427e "pdflatex"
   "DADA_SIMEU_Cédric_tp1_parallel_architecture.out" 0 -1 0 "pdflatex"
-  "DADA_SIMEU_Cédric_tp1_parallel_architecture.tex" 1738712512 60515 66af22cfcddd3649712a5f6ef290bee3 ""
+  "DADA_SIMEU_Cédric_tp1_parallel_architecture.tex" 1738752520 60733 6afee947f826e6efc4d663022e2293b0 ""
   "data256.csv" 1738691487 166 54dee8e492cda3c010713f8acbc05edf ""
   "data512.csv" 1738691487 166 d7c806fdf6e30515e388698b0adde27b ""
   "data_threads1.csv" 1738689875 540 b421266c3dce78b5517ba1e8774455a7 ""

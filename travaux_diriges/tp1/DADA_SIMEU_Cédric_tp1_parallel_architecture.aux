@@ -42,4 +42,74 @@
 \@writefile{lot}{\contentsline {table}{\numberline {6}{\ignorespaces Temps de calcul et performances en MFlops pour différentes dimensions de matrices (permutation k,i,j).\relax }}{5}{table.caption.8}\protected@file@percent }
 \newlabel{tab:perf_matrix_first_k,i,j}{{6}{5}{Temps de calcul et performances en MFlops pour différentes dimensions de matrices (permutation k,i,j).\relax }{table.caption.8}{}}
 \@writefile{lot}{\contentsline {table}{\numberline {7}{\ignorespaces Temps de calcul et performances en MFlops pour différentes dimensions de matrices (permutation k,j,i).\relax }}{5}{table.caption.9}\protected@file@percent }
-\newlabel{tab:perf_matrix_first_k,j,i}{{7}{5}{Temps de calcul et performances en MFlops pour différentes dimensions de matrices
+\newlabel{tab:perf_matrix_first_k,j,i}{{7}{5}{Temps de calcul et performances en MFlops pour différentes dimensions de matrices (permutation k,j,i).\relax }{table.caption.9}{}}
+\@writefile{toc}{\contentsline {paragraph}{Optimisation}{6}{table.caption.9}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Explication}{6}{lstnumber.-1.6}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {1.3}Première parallélisation}{6}{subsection.0.1.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Explication}{6}{lstnumber.-2.12}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Mesure de l'acclération}{6}{lstnumber.-2.12}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {8}{\ignorespaces Performances pour OMP\_NUM\_THREADS=1.\relax }}{7}{table.caption.10}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {9}{\ignorespaces Performances pour OMP\_NUM\_THREADS=4.\relax }}{7}{table.caption.11}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {10}{\ignorespaces Performances pour OMP\_NUM\_THREADS=16.\relax }}{7}{table.caption.12}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {1.4}Pourquoi il est possible d'améliorer encore les résultats?}{8}{subsection.0.1.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {1.5}Deuxième optimisation : Optimisez le produit matrice–matrice par bloc}{8}{subsection.0.1.5}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {11}{\ignorespaces Temps d'exécution (secondes) pour N=1023--1025 et 2046--2050\relax }}{9}{table.caption.13}\protected@file@percent }
+\newlabel{tab:threads1}{{11}{9}{Temps d'exécution (secondes) pour N=1023--1025 et 2046--2050\relax }{table.caption.13}{}}
+\@writefile{toc}{\contentsline {paragraph}{Conclusion : }{9}{table.caption.13}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Commentaire : }{9}{table.caption.13}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {1}{\ignorespaces Résultat de la commande lscpu\relax }}{10}{figure.caption.14}\protected@file@percent }
+\newlabel{tab:lscpu}{{1}{10}{Résultat de la commande lscpu\relax }{figure.caption.14}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {2}{\ignorespaces Résultat de la commande lstopo : Nous pouvons visualiser les tailles des caches\relax }}{11}{figure.caption.15}\protected@file@percent }
+\newlabel{tab:ls_topo}{{2}{11}{Résultat de la commande lstopo : Nous pouvons visualiser les tailles des caches\relax }{figure.caption.15}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {1.6}Comparer le temps pris par rapport au produit matrice–matrice "scalaire"}{12}{subsection.0.1.6}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {1.7}Parallélisation du produit matrice–matrice par bloc}{12}{subsection.0.1.7}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Vérifions si la taille de bloc 512 reste optimale en variant le nombre de threads}{12}{lstnumber.-4.14}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {12}{\ignorespaces Temps d'exécution (secondes) pour N=1023--1025 et 2046--2050 (OMP\_NUM\_THREADS=1)\relax }}{12}{table.caption.16}\protected@file@percent }
+\newlabel{tab:threads1}{{12}{12}{Temps d'exécution (secondes) pour N=1023--1025 et 2046--2050 (OMP\_NUM\_THREADS=1)\relax }{table.caption.16}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {13}{\ignorespaces Temps d'exécution (secondes) pour N=1023--1025 et 2046--2050 (OMP\_NUM\_THREADS=4)\relax }}{12}{table.caption.17}\protected@file@percent }
+\newlabel{tab:threads4}{{13}{12}{Temps d'exécution (secondes) pour N=1023--1025 et 2046--2050 (OMP\_NUM\_THREADS=4)\relax }{table.caption.17}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {14}{\ignorespaces Temps d'exécution (secondes) pour N=1023--1025 et 2046--2050 (OMP\_NUM\_THREADS=8)\relax }}{13}{table.caption.18}\protected@file@percent }
+\newlabel{tab:threads8}{{14}{13}{Temps d'exécution (secondes) pour N=1023--1025 et 2046--2050 (OMP\_NUM\_THREADS=8)\relax }{table.caption.18}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {15}{\ignorespaces Temps d'exécution (secondes) pour N=1023--1025 et 2046--2050 (OMP\_NUM\_THREADS=16)\relax }}{13}{table.caption.19}\protected@file@percent }
+\newlabel{tab:threads16}{{15}{13}{Temps d'exécution (secondes) pour N=1023--1025 et 2046--2050 (OMP\_NUM\_THREADS=16)\relax }{table.caption.19}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {3}{\ignorespaces Durées d'exécution en fonction de la taille des blocs pour chaque taille de problème. (OMP\_NUM\_THREADS=1)\relax }}{13}{figure.caption.20}\protected@file@percent }
+\newlabel{fig:execution_time_1}{{3}{13}{Durées d'exécution en fonction de la taille des blocs pour chaque taille de problème. (OMP\_NUM\_THREADS=1)\relax }{figure.caption.20}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {4}{\ignorespaces Durées d'exécution en fonction de la taille des blocs pour chaque taille de problème. (OMP\_NUM\_THREADS=4)\relax }}{14}{figure.caption.21}\protected@file@percent }
+\newlabel{fig:execution_time_4}{{4}{14}{Durées d'exécution en fonction de la taille des blocs pour chaque taille de problème. (OMP\_NUM\_THREADS=4)\relax }{figure.caption.21}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {5}{\ignorespaces Durées d'exécution en fonction de la taille des blocs pour chaque taille de problème. (OMP\_NUM\_THREADS=8)\relax }}{14}{figure.caption.22}\protected@file@percent }
+\newlabel{fig:execution_time_8}{{5}{14}{Durées d'exécution en fonction de la taille des blocs pour chaque taille de problème. (OMP\_NUM\_THREADS=8)\relax }{figure.caption.22}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {6}{\ignorespaces Durées d'exécution en fonction de la taille des blocs pour chaque taille de problème. (OMP\_NUM\_THREADS=16)\relax }}{15}{figure.caption.23}\protected@file@percent }
+\newlabel{fig:execution_time_16}{{6}{15}{Durées d'exécution en fonction de la taille des blocs pour chaque taille de problème. (OMP\_NUM\_THREADS=16)\relax }{figure.caption.23}{}}
+\@writefile{toc}{\contentsline {paragraph}{Mesure de l'accélération}{16}{figure.caption.23}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {16}{\ignorespaces Accélérations moyennes (baseline : OMP\_NUM\_THREADS = 1) pour les tailles de blocs 256 et 512\relax }}{16}{table.caption.24}\protected@file@percent }
+\newlabel{tab:speedup256512}{{16}{16}{Accélérations moyennes (baseline : OMP\_NUM\_THREADS = 1) pour les tailles de blocs 256 et 512\relax }{table.caption.24}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {7}{\ignorespaces Évolution du speedup en fonction du nombre de threads pour une taille de bloc de 256.\relax }}{17}{figure.caption.25}\protected@file@percent }
+\newlabel{fig:speedup256}{{7}{17}{Évolution du speedup en fonction du nombre de threads pour une taille de bloc de 256.\relax }{figure.caption.25}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {8}{\ignorespaces Évolution du speedup en fonction du nombre de threads pour une taille de bloc de 512.\relax }}{18}{figure.caption.26}\protected@file@percent }
+\newlabel{fig:speedup512}{{8}{18}{Évolution du speedup en fonction du nombre de threads pour une taille de bloc de 512.\relax }{figure.caption.26}{}}
+\@writefile{toc}{\contentsline {paragraph}{Comparaison avec le produit matrice-matrice "scalaire"}{19}{figure.caption.26}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {1.8}Comparaison avec BLAS}{19}{subsection.0.1.8}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Explication des options}{19}{lstnumber.-6.4}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {17}{\ignorespaces Temps de calcul et performances en MFlops pour différentes dimensions de matrices obtenus avec Blas.\relax }}{20}{table.caption.27}\protected@file@percent }
+\newlabel{tab:perf_matrix}{{17}{20}{Temps de calcul et performances en MFlops pour différentes dimensions de matrices obtenus avec Blas.\relax }{table.caption.27}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {2}Parallélisation MPI}{20}{section.0.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.1}Circulation d'un jeton dans un anneau.}{20}{subsection.0.2.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Exécution}{21}{lstnumber.-7.46}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{Calcul très approché de \pi }{21}{Item.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Version séquentielle en c}{21}{Item.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Paralléliser en mémoire partagée le programme séquentiel en C à l'aide d’OpenMP}{22}{lstnumber.-8.32}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Mesure de l'accélération (fig \ref  {tab:pi_approximation})}{23}{lstnumber.-9.38}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {18}{\ignorespaces Résultats de l'approximation de $\pi $ avec OpenMP pour différents nombres de threads.\relax }}{23}{table.caption.28}\protected@file@percent }
+\newlabel{tab:pi_approximation}{{18}{23}{Résultats de l'approximation de $\pi $ avec OpenMP pour différents nombres de threads.\relax }{table.caption.28}{}}
+\@writefile{toc}{\contentsline {paragraph}{Version en mémoire distribuée avec MPI en C}{23}{table.caption.28}\protected@file@percent }
+\@writefile{lol}{\contentsline {lstlisting}{[}{23}{lstlisting.0.-10}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Mesure de l'accélération (fig \ref  {tab:pi_mpi})}{24}{lstnumber.-10.44}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {19}{\ignorespaces Résultats de l'approximation de $\pi $ avec MPI pour différents nombres de processus.\relax }}{24}{table.caption.29}\protected@file@percent }
+\newlabel{tab:pi_mpi}{{19}{24}{Résultats de l'approximation de $\pi $ avec MPI pour différents nombres de processus.\relax }{table.caption.29}{}}
+\@writefile{toc}{\contentsline {paragraph}{Commentaire }{24}{table.caption.29}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Version MPI en python avec mpi4py}{24}{table.caption.29}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {20}{\ignorespaces Résultats de l'approximation de $\pi $ avec MPI pour différents nombres de processus.\relax }}{25}{table.caption.30}\protected@file@percent }
+\newlabel{tab:pi_mpi_py}{{20}{25}{Résultats de l'approximation de $\pi $ avec MPI pour différents nombres de processus.\relax }{table.caption.30}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.2}Diffusion d'un entier dans un réseau hypercube. }{25}{subsection.0.2.2}\protected@file@percent }
+\global\mtcsecondpartfalse
+\gdef \@abspage@last{27}

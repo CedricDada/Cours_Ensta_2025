@@ -918,32 +918,57 @@ Pour une taille de bloc fixée, nous représentons l'évolution de l'accélérat
 \begin{enumerate}
 \item \textbf{ Observation} :
 L'accélération parallèle est inférieure pour la version par blocs.
-\item \textbf{Explications }:
-    \begin{itemize}
-        \item 
-    \end{itemize}
+\item \textbf{Explication }:
+La version parallèle du produit par blocs peut introduire des surcoûts liés à la synchronisation entre threads et à la gestion de la répartition des blocs. Chaque thread peut devoir attendre la fin des calculs sur certains blocs pour pouvoir recombiner les résultats, ce qui limite l’efficacité du parallélisme comparé à un produit matriciel simple.
 \end{enumerate}
-\textbf{Raison }:
-Le surcoût de synchronisation est amorti par le volume de calcul dans chaque bloc.
- \subsection{Comparaison avec BLAS} 
 
- \begin{table}[h!]
+\subsection{Comparaison avec BLAS} 
+Nous avons installé libmkl-dev pour pouvoir effectuer les tests. Le code du fichier test\_product\_matrice\_blas.cpp appelle explicitement la fonction BLAS dgemm\_ via l'instruction :
+\begin{lstlisting}[language=C]
+    extern "C" void dgemm_(char const& trA, char const& trB, int const& m, int const& n, int const& k,
+    double const& alpha, double const* A, int const& ldA, double const* B,
+    int const& ldB, double const& beta, double* C, int const& ldC );
+\end{lstlisting}
+Pour la compilation, nous avons utilisé la commande suivante :
+\begin{lstlisting}[language=bash]
+g++ -O3 -m64 -I${MKLROOT}/include test_product_matrice_blas.cpp Matrix.cpp \
+    -L${MKLROOT}/lib/intel64 -lmkl_intel_lp64 -lmkl_core -lmkl_intel_thread -liomp5 -lpthread \
+    -o test_product_matrice_blas
+./test_product_matrice_blas
+\end{lstlisting}
+\paragraph{Explication des options}
+\begin{itemize}
+    \item \texttt{-O3} : Active un niveau d'optimisation agressif pour améliorer les performances du code. Sans cette option, les performances sont plus variables sur différents tests ( 0.0262079, 0.0412135, 0.0267867, 0.0324142 secondes) contre 0.0277023, 0.0289546, 0.0281378 secondes avec cette option. Le test étant effectué avec une dimension de 1024.
+    \item \texttt{-m64} : Indique une compilation en mode 64 bits.
+    \item \texttt{-I\$\{MKLROOT\}/include} : Spécifie le chemin vers les fichiers d'en-tête de la bibliothèque Intel MKL.
+    \item \texttt{test\_product\_matrice\_blas.cpp Matrix.cpp} : Liste des fichiers sources à compiler.
+    \item \texttt{-L\$\{MKLROOT\}/lib/intel64} : Spécifie le répertoire contenant les bibliothèques MKL à linker.
+    \item \texttt{-lmkl\_intel\_lp64} : Lie la version LP64 (long pointer 64 bits) de MKL pour une compatibilité avec les types de données 64 bits.
+    \item \texttt{-lmkl\_core} : Lie le cœur de la bibliothèque MKL, qui contient les implémentations des algorithmes de calcul.
+    \item \texttt{-lmkl\_intel\_thread} : Utilise la version multi-thread de MKL pour améliorer les performances sur plusieurs cœurs.
+    \item \texttt{-liomp5} : Lie la bibliothèque OpenMP d'Intel pour la gestion du parallélisme.
+    \item \texttt{-lpthread} : Lie la bibliothèque POSIX Threads, nécessaire pour le support multi-threading.
+    \item \texttt{-o test\_product\_matrice\_blas} : Spécifie le nom de l'exécutable généré.
+\end{itemize}
+\begin{table}[h!]
     \begin{center}
     \begin{tabular}{|c|c|c|}
         \hline
         Dimension & Temps CPU (s) & MFlops \\ \hline
-        1023      & 0.0473309       & 45238.9 \\ \hline
-        1024      & 0.0609969       & 35206.4 \\ \hline
-        1025      & 0.057084       & 37730 \\ \hline
-        Moyenne & 0.055 & 39391,77 \\ \hline
+        1023      & 0.0251497     & 85138.2 \\ \hline
+        1024      & 0.0251589     & 85356.7 \\ \hline
+        1025      & 0.0264412     & 81455.6 \\ \hline
+        2046      & 0.143318      & 119522  \\ \hline
+        2048      & 0.152871      & 112381  \\ \hline
+        2050      & 0.140413      & 122711  \\ \hline
+        Moyenne   & 0.0852253     & 102094.25 \\ \hline
     \end{tabular}
     \caption{Temps de calcul et performances en MFlops pour différentes dimensions de matrices obtenus avec Blas.}
     \label{tab:perf_matrix}
 \end{center}
 \end{table}
-Les performances obtenues avec BLAS sont meilleures que celles obtenues avec notre produit matrice matrice par blocs parallélisé (16 threads). Le rapport moyen des performances $\approx \frac{0,247}{0.055} = 4.49$.
+Les \textbf{performances obtenues avec BLAS sont meilleures} que celles obtenues avec notre produit matrice matrice par blocs de 512 et parallélisé (4 threads). Le rapport moyen des performances $\approx \frac{T_4(512)}{0.085} = \frac{2.49}{0.085} = 29.29$.
 
-La meilleure version est celle de BLAS.
 \section{Parallélisation MPI}
 \subsection{Circulation d'un jeton dans un anneau.}
 
@@ -1337,53 +1362,6 @@ Code :  \\
 \item Processus 2 : token = 12345, temps de diffusion = 0.000027 secondes
 \item Processus 3 : token = 12345, temps de diffusion = 0.000116 secondes
 \end{itemize}
-\begin{know}
-Faire varier les tailles des caches et voir le point à partir duquel ça décroit
-
-
-à un moment donnée il faut qu'on fasse entre 3 fois la taille d'un bloc soit bloc\_size * block\_size * 8 * 3  et comparer ceci à la taille des caches L1, L2, L3
-
-
-vérifier si la taille des blocs en monothreadé est optimale en multithreadé
-
-BLAS est disponible dans plusieurs versions. OpenBlas et KL sont optimisées. celle de notre machine ne l'est pas forcément.
-
-apt install libmkl-dev (l'alternative c'est openblas)
-
-Quand on fait mpirun -nb 4 mon\_prog, il lance 4 instance de mon\_prog et puis il les mets sur 4 corps différents. Chaque instance du programme doit savoir qu'elle place elle a dans le programme pour savoir ce qu'elle doit faire. On peut voir la programation mpi comme un jeu de role et le role est déterminé par le rank. La commande mpirun lance chaque instance du programme dans un contexte d'exécution spécifique en attribuant à chacun un rank. Get\_rank nous permet d'avoir le rank. Quand on fait un programme MPI, on doit se dire qu'on a un seul programme et la seule façon de faire des roles différents est de faire des comparaisons sur le rank.
-
-question 1 tD2:  pb déséquilibrage des charges car le calcul de chaque point n'a pas la meme complexité. 
-
-Premier point : analyse macroscopique du code pour cibler les étapes les plus couteuses.
-
-Quand on découpe la fractale en 2 (sur l'axe x), on n'a pas de déséquilibrage des charges. 
-
-le temps de calcul de la fractale sur chaque processeur  nous permettra de savoir si on a un déséquilibrage ou non
-
-le temps d'une communication = ttemps d'initialisation (incompressible) + temps de transfert, ainsi l'approche pixel par pixel n'est pas viable.
-
-il faut donc faire le moins de communications possibles 
-
-il faut trouver un équilibre entre une Granularité trop faible et trop grosse
-
-le maitre esclave semble etre viable(on le fait surtout quand on ne sait pas à priori comment repartir les chargese) 
-
-faire des dessins pour voir comment les données sont parcourues et cela permettra de voir comment les distribuer.
-
-produit matrice vecteur : 
-
-le mpi broadcast nous permet de partage une informatioin à plusieurs processus.
-
-le mpi getter nous permet de rassembler plusieurs informations 
-
-mpi allgather fait un getter suivi d'un broadcast
-
-mpi scatter permet de découper une variable et envoyer sur chaque processus 
-
-mpi reduce (necessite un processeur cible)
-
-mpi allreduce (n'en necessite pas et est un reduce ssuivi d'un broadcast)
-\end{know}
 \end{document}
 
 
