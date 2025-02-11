@@ -128,7 +128,7 @@
 \definecolor{codegreen}{rgb}{0,0.6,0}
 \definecolor{codegray}{rgb}{0.5,0.5,0.5}
 \definecolor{codepurple}{rgb}{0.58,0,0.82}
-\definecolor{backcolour}{rgb}{0.99,0.99,0.97}
+\definecolor{backcolour}{rgb}{0.97,0.99,0.99}
 
 \lstdefinestyle{mystyle}{
     backgroundcolor=\color{backcolour},
@@ -225,7 +225,7 @@
                     \end{filecontents*}
 
 \begin{document}
-	\input{./template_page_garde/page_garde_PC6.tex}
+	\input{../template_page_garde/page_garde_TP1.tex}
 \tableofcontents
 \listoffigures
 \newpage
@@ -518,7 +518,7 @@ Notre machine possède 6MiB de cache L3 et 1MiB répartis sur 4 cœurs en cache 
 
 \begin{figure}[!h]
     \begin{center}
-    \includegraphics[scale=0.5]{images/lscpu.png}
+    \includegraphics[scale=0.5]{../images/lscpu.png}
     \caption{Résultat de la commande lscpu}
     \label{tab:lscpu}
 \end{center}
@@ -527,7 +527,7 @@ Notre machine possède 6MiB de cache L3 et 1MiB répartis sur 4 cœurs en cache 
 
 \begin{figure}[!h]
     \begin{center}
-        \includegraphics[scale=0.3]{images/lstopo.png}
+        \includegraphics[scale=0.3]{../images/lstopo.png}
         \caption{Résultat de la commande lstopo : Nous pouvons visualiser les tailles des caches}
         \label{tab:ls_topo}
     \end{center}
@@ -1004,13 +1004,13 @@ Code : \\
                 
                 /* Processus 0 attend ensuite de recevoir le jeton venant du dernier processus */
                 MPI_Recv(&token, 1, MPI_INT, nbp - 1, 0, MPI_COMM_WORLD, MPI_STATUS_IGNORE);
-                printf("Processus %d a reçu le jeton %d depuis le processus %d\n", rank, token, nbp - 1);
+                printf("Processus %d a recu le jeton %d depuis le processus %d\n", rank, token, nbp - 1);
             }
             else {
-                /* Tous les autres processus reçoivent le jeton du processus precedent */
+                /* Tous les autres processus recoivent le jeton du processus precedent */
                 MPI_Recv(&token, 1, MPI_INT, rank - 1, 0, MPI_COMM_WORLD, MPI_STATUS_IGNORE);
                 token++;  // incrementation du jeton
-                printf("Processus %d a reçu le jeton et l'incremente à %d\n", rank, token);
+                printf("Processus %d a recu le jeton et l'incremente a %d\n", rank, token);
         
                 /* Envoi du jeton au processus suivant.
                    Le processus nbp-1 envoie vers le processus 0 pour fermer l'anneau. */
@@ -1038,7 +1038,7 @@ Code : \\
 \item Processus 3 a reçu le jeton et l'incrémente à 4
 \item Processus 0 a reçu le jeton 4 depuis le processus 3
 \end{itemize}
-\subsubsection{Calcul très approché de \pi}
+\subsubsection{Calcul très approché de $\pi$}
 \paragraph{Version séquentielle en c}.\\
 
 	\begin{lstlisting}[language=C]
@@ -1125,14 +1125,11 @@ Code : \\
     \centering
     \begin{tabular}{|c|c|c|c|}
         \hline
-    \toprule
-    \textbf{Nombre de threads} & \textbf{Approximation de $\pi$ (OpenMP)} & \textbf{Temps d'exécution (secondes)} & \textbf{Accélération}\\
-    \midrule
+    \textbf{Nombre de threads} & \textbf{Approximation de $\pi$ (OpenMP)} & \textbf{Temps d'exécution (secondes)} & \textbf{Accélération}\\\hline
     1 thread                  & 3.141976                                  & 0.118586        & 1                       \\\hline
     4 threads                 & 3.142339                                  & 0.055988         &    2,118061013                  \\\hline
     8 threads                 & 3.140559                                  & 0.054829           & 2,162833537                   \\\hline
     16 threads                 & 3.141930                                  &  0.04843           & 2,448606236                   \\\hline
-    \bottomrule
     \end{tabular}
     \caption{Résultats de l'approximation de $\pi$ avec OpenMP pour différents nombres de threads.}
     \label{tab:pi_approximation}
@@ -1207,8 +1204,8 @@ Code : \\
     
     \paragraph{Commentaire }
     Causes des erreurs : 
-    \item Nombre de slots disponibles insuffisant
     \begin{itemize}
+    \item Nombre de slots disponibles insuffisant
     \item Open MPI utilise le concept de slots pour allouer des processus. Un slot correspond à une unité d'allocation (généralement un cœur ou un thread).
     \item Notre processeur (Intel Core i5-10210U) a 4 cœurs physiques et 8 threads logiques (grâce à la technologie Hyper-Threading (fig \ref{tab:lscpu})).
     \item Par défaut, Open MPI limite le nombre de slots au nombre de cœurs physiques ou threads disponibles. Si on essaie de lancer plus de processus que de slots disponibles, l'erreur se produit.
@@ -1231,7 +1228,7 @@ Code : \\
         # Debut de la mesure de temps (commence avant le calcul)
         start = MPI.Wtime()
         
-        # Chaque processus initialise sa graine pour générer des nombres aleatoires différents
+        # Chaque processus initialise sa graine pour generer des nombres aleatoires differents
         np.random.seed(int(time.time()) ^ rank)
         
         # Generation des points aleatoires dans [-1, 1] pour x et y
@@ -1241,7 +1238,7 @@ Code : \\
         # Compter le nombre de points tombant dans le cercle unite
         local_count = np.count_nonzero(x*x + y*y <= 1.0)
         
-        # Réduire les resultats de tous les processus (somme)
+        # Reduire les resultats de tous les processus (somme)
         total_count = comm.reduce(local_count, op=MPI.SUM, root=0)
         
         # Fin de la mesure de temps
@@ -1259,17 +1256,14 @@ Code : \\
 \begin{table}[h!]
     \centering
     \begin{tabular}{|c|c|c|c|}
-    \toprule
     \hline
     \textbf{Nombre de processus} & \textbf{Approximation de $\pi$ (MPI)} & \textbf{Temps d'exécution (secondes)} & \textbf{Accélération}\\
-    \midrule    
     \hline
     1                           & 3.141979                              & 1.43688583   & 1                              \\\hline
     2                           & 3.1421147                              & 0.709724572     &    2,024568243                       \\\hline
     4                           & 3.1417664                              & 0.684759401      &     2,098380581                    \\\hline
     6                           & \textit{Erreur}                       & \textit{Non disponible}    & Non disponible            \\\hline
     8                           & \textit{Erreur}                       & \textit{Non disponible}    & Non disponible           \\\hline
-    \bottomrule
     \end{tabular}
     \caption{Résultats de l'approximation de $\pi$ avec MPI pour différents nombres de processus.}
     \label{tab:pi_mpi_py}
