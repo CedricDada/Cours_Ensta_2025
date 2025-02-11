@@ -1,0 +1,13 @@
+\babel@toc {french}{}\relax 
+\contentsline {figure}{\numberline {1}{\ignorespaces Résultat de la commande lstopo : Nous pouvons visualiser les tailles des caches\relax }}{4}{figure.caption.3}%
+\contentsline {figure}{\numberline {2}{\ignorespaces Résultat de la commande lscpu\relax }}{5}{figure.caption.4}%
+\contentsline {figure}{\numberline {3}{\ignorespaces Rendu de la fractale\relax }}{7}{figure.caption.5}%
+\contentsline {figure}{\numberline {4}{\ignorespaces Speedup mesuré (base = 1 processus).\relax }}{8}{figure.caption.8}%
+\contentsline {figure}{\numberline {5}{\ignorespaces Déséquilibrage en fonction du nombre de processus.\relax }}{8}{figure.caption.9}%
+\contentsline {figure}{\numberline {6}{\ignorespaces Speedup mesuré (base = 1 processus, temps séquentiel = 3,214~s).\relax }}{10}{figure.caption.12}%
+\contentsline {figure}{\numberline {7}{\ignorespaces Déséquilibrage en fonction du nombre de processus (code optimisé en round robin).\relax }}{10}{figure.caption.13}%
+\contentsline {figure}{\numberline {8}{\ignorespaces Speedup mesuré (base = 1 processus, temps séquentiel = 3,261~s).\relax }}{12}{figure.caption.16}%
+\contentsline {figure}{\numberline {9}{\ignorespaces Déséquilibrage en fonction du nombre de processus (code optimisé en round robin).\relax }}{12}{figure.caption.17}%
+\contentsline {figure}{\numberline {10}{\ignorespaces Comparaison des différents speedup\relax }}{13}{figure.caption.18}%
+\contentsline {figure}{\numberline {11}{\ignorespaces Comparaison des différents Déséquilibrages en fonction du nombre de processus.\relax }}{14}{figure.caption.19}%
+\contentsline {figure}{\numberline {12}{\ignorespaces Speedup en fonction du nombre de processus pour les deux approches.\relax }}{16}{figure.caption.22}%

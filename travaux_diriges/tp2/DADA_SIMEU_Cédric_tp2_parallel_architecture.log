@@ -1,10 +1,10 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2022/dev/Debian) (preloaded format=pdflatex 2025.2.3)  11 FEB 2025 05:21
+This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2022/dev/Debian) (preloaded format=pdflatex 2025.2.3)  11 FEB 2025 06:21
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
  %&-line parsing enabled.
-**/media/cedric/DSCD/Projets/ENSTA/Parrallel_architcture/Cours_Ensta_2025/travaux_diriges/tp1/DADA_SIMEU_Cédric_tp1_parallel_architecture.tex
-(/media/cedric/DSCD/Projets/ENSTA/Parrallel_architcture/Cours_Ensta_2025/travaux_diriges/tp1/DADA_SIMEU_Cédric_tp1_parallel_architecture.tex
+**/media/cedric/DSCD/Projets/ENSTA/Parrallel_architcture/Cours_Ensta_2025/travaux_diriges/tp2/DADA_SIMEU_Cédric_tp2_parallel_architecture.tex
+(/media/cedric/DSCD/Projets/ENSTA/Parrallel_architcture/Cours_Ensta_2025/travaux_diriges/tp2/DADA_SIMEU_Cédric_tp2_parallel_architecture.tex
 LaTeX2e <2021-11-15> patch level 1
 L3 programming layer <2022-01-21> (/usr/share/texlive/texmf-dist/tex/latex/base/book.cls
 Document Class: book 2021/10/04 v1.4n Standard LaTeX document class
@@ -354,19 +354,7 @@ Package: enumitem 2019/06/20 v3.9 Customized lists
 \enit@inbox=\box53
 \enit@count@id=\count298
 \enitdp@description=\count299
-)
-
-/media/cedric/DSCD/Projets/ENSTA/Parrallel_architcture/Cours_Ensta_2025/travaux_diriges/tp1/DADA_SIMEU_Cédric_tp1_parallel_architecture.tex:19: LaTeX Error: Two \documentclass or \documentstyle commands.
-
-See the LaTeX manual or LaTeX Companion for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.19 \documentclass{
-                    article}
-The document may only declare one class.
-
-(/usr/share/texlive/texmf-dist/tex/latex/pgfplots/pgfplots.sty (/usr/share/texlive/texmf-dist/tex/generic/pgfplots/pgfplots.revision.tex)
+) (/usr/share/texlive/texmf-dist/tex/latex/pgfplots/pgfplots.sty (/usr/share/texlive/texmf-dist/tex/generic/pgfplots/pgfplots.revision.tex)
 Package: pgfplots 2021/05/15 v1.18.1 Data Visualization (1.18.1)
  (/usr/share/texlive/texmf-dist/tex/latex/graphics/graphicx.sty
 Package: graphicx 2021/09/16 v1.2d Enhanced LaTeX Graphics (DPC,SPQR)
@@ -571,7 +559,8 @@ File: tikzlibrarytopaths.code.tex 2021/05/15 v3.1.9a (3.1.9a)
 ) (/usr/share/texlive/texmf-dist/tex/generic/pgfplots/liststructure/pgfplotsmatrix.code.tex) (/usr/share/texlive/texmf-dist/tex/generic/pgfplots/numtable/pgfplotstableshared.code.tex
 \c@pgfplotstable@counta=\count324
 \t@pgfplotstable@a=\toks48
-) (/usr/share/texlive/texmf-dist/tex/generic/pgfplots/liststructure/pgfplotsdeque.code.tex) (/usr/share/texlive/texmf-dist/tex/generic/pgfplots/util/pgfplotsbinary.code.tex (/usr/share/texlive/texmf-dist/tex/generic/pgfplots/util/pgfplotsbinary.data.code.tex)) (/usr/share/texlive/texmf-dist/tex/generic/pgfplots/util/pgfplotsutil.verb.code.tex) (/usr/share/texlive/texmf-dist/tex/generic/pgfplots/libs/pgflibrarypgfplots.surfshading.code.tex
+) (/usr/share/texlive/texmf-dist/tex/generic/pgfplots/liststructure/pgfplotsdeque.code.tex) (/usr/share/texlive/texmf-dist/tex/generic/pgfplots/util/pgfplotsbinary.code.tex
+(/usr/share/texlive/texmf-dist/tex/generic/pgfplots/util/pgfplotsbinary.data.code.tex)) (/usr/share/texlive/texmf-dist/tex/generic/pgfplots/util/pgfplotsutil.verb.code.tex) (/usr/share/texlive/texmf-dist/tex/generic/pgfplots/libs/pgflibrarypgfplots.surfshading.code.tex
 \c@pgfplotslibrarysurf@no=\count325
  (/usr/share/texlive/texmf-dist/tex/generic/pgfplots/sys/pgflibrarypgfplots.surfshading.pgfsys-pdftex.def))) (/usr/share/texlive/texmf-dist/tex/generic/pgfplots/util/pgfplotscolormap.code.tex (/usr/share/texlive/texmf-dist/tex/generic/pgfplots/util/pgfplotscolor.code.tex)) (/usr/share/texlive/texmf-dist/tex/generic/pgfplots/pgfplotsstackedplots.code.tex) (/usr/share/texlive/texmf-dist/tex/generic/pgfplots/pgfplotsplothandlers.code.tex (/usr/share/texlive/texmf-dist/tex/generic/pgfplots/pgfplotsmeshplothandler.code.tex (/usr/share/texlive/texmf-dist/tex/generic/pgfplots/pgfplotsmeshplotimage.code.tex))) (/usr/share/texlive/texmf-dist/tex/generic/pgfplots/pgfplots.scaling.code.tex) (/usr/share/texlive/texmf-dist/tex/generic/pgfplots/pgfplotscoordprocessing.code.tex) (/usr/share/texlive/texmf-dist/tex/generic/pgfplots/pgfplots.errorbars.code.tex) (/usr/share/texlive/texmf-dist/tex/generic/pgfplots/pgfplots.markers.code.tex) (/usr/share/texlive/texmf-dist/tex/generic/pgfplots/pgfplotsticks.code.tex) (/usr/share/texlive/texmf-dist/tex/generic/pgfplots/pgfplots.paths.code.tex) (/usr/share/texlive/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tikzlibrarydecorations.code.tex (/usr/share/texlive/texmf-dist/tex/generic/pgf/modules/pgfmoduledecorations.code.tex
 \pgfdecoratedcompleteddistance=\dimen289
@@ -628,6 +617,25 @@ Style option: `fancybox' v1.4 <2010/05/15> (tvz)
 \EndVerbatimTokens=\toks53
 \Verbatim@Outfile=\write4
 \Verbatim@Infile=\read4
+) (/usr/share/texlive/texmf-dist/tex/latex/booktabs/booktabs.sty
+Package: booktabs 2020/01/12 v1.61803398 Publication quality tables
+\heavyrulewidth=\dimen308
+\lightrulewidth=\dimen309
+\cmidrulewidth=\dimen310
+\belowrulesep=\dimen311
+\belowbottomsep=\dimen312
+\aboverulesep=\dimen313
+\abovetopsep=\dimen314
+\cmidrulesep=\dimen315
+\cmidrulekern=\dimen316
+\defaultaddspace=\dimen317
+\@cmidla=\count328
+\@cmidlb=\count329
+\@aboverulesep=\dimen318
+\@belowrulesep=\dimen319
+\@thisruleclass=\count330
+\@lastruleclass=\count331
+\@thisrulewidth=\dimen320
 ) (/usr/share/texlive/texmf-dist/tex/latex/fancyhdr/fancyhdr.sty
 Package: fancyhdr 2021/01/28 v4.0.1 Extensive control of page headers and footers
 \f@nch@headwidth=\skip63
@@ -640,15 +648,15 @@ Package: fancyhdr 2021/01/28 v4.0.1 Extensive control of page headers and footer
 \f@nch@O@olf=\skip70
 \f@nch@O@orf=\skip71
 )
-\c@definition=\count328
-\c@theo=\count329
-\c@pro=\count330
-\c@cor=\count331
-\c@lem=\count332
-\c@rem=\count333
-\c@danger1=\count334
-\c@know1=\count335
-\c@exple=\count336
+\c@definition=\count332
+\c@theo=\count333
+\c@pro=\count334
+\c@cor=\count335
+\c@lem=\count336
+\c@rem=\count337
+\c@danger1=\count338
+\c@know1=\count339
+\c@exple=\count340
  (/usr/share/texlive/texmf-dist/tex/latex/minitoc/minitoc.sty
 Package: minitoc 2018/07/12 v62 Package minitoc
  (/usr/share/texlive/texmf-dist/tex/latex/minitoc/mtcmess.sty
@@ -670,24 +678,24 @@ Package minitoc Info: I0003
 \mtc@hstrutbox=\box70
 Package minitoc Info: I0002
 (minitoc)             Autoconfiguration of extensions.
-\openout5 = `DADA_SIMEU_Cédric_tp1_parallel_architecture.mtc0'.
+\openout5 = `DADA_SIMEU_Cédric_tp2_parallel_architecture.mtc0'.
 
-\openout5 = `DADA_SIMEU_Cédric_tp1_parallel_architecture.mtc'.
+\openout5 = `DADA_SIMEU_Cédric_tp2_parallel_architecture.mtc'.
 
- (./DADA_SIMEU_Cédric_tp1_parallel_architecture.mtc0)
+ (./DADA_SIMEU_Cédric_tp2_parallel_architecture.mtc0)
 Package minitoc Info: I0012
 (minitoc)             Long extensions (Unix-like) will be used.
 Package minitoc Info: I0031
 (minitoc)             ==> this version is configured for UNIX-like 
 (minitoc)                 (long extensions) file names.
-\openout5 = `DADA_SIMEU_Cédric_tp1_parallel_architecture.mtc'.
+\openout5 = `DADA_SIMEU_Cédric_tp2_parallel_architecture.mtc'.
 
-\openout5 = `DADA_SIMEU_Cédric_tp1_parallel_architecture.mtc0'.
+\openout5 = `DADA_SIMEU_Cédric_tp2_parallel_architecture.mtc0'.
 
-\c@mtc=\count337
-\c@minitocdepth=\count338
-\c@ptc=\count339
-\c@parttocdepth=\count340
+\c@mtc=\count341
+\c@minitocdepth=\count342
+\c@ptc=\count343
+\c@parttocdepth=\count344
 \ptcindent=\skip74
 Package minitoc Info: I0010
 (minitoc)             The english language is selected.
@@ -709,25 +717,25 @@ Package: environ 2014/05/04 v0.3 A new way to define environments
 Package: trimspaces 2009/09/17 v1.1 Trim spaces around a token list
 )) (/usr/share/texlive/texmf-dist/tex/latex/etoolbox/etoolbox.sty
 Package: etoolbox 2020/10/05 v2.5k e-TeX tools for LaTeX (JAW)
-\etb@tempcnta=\count341
+\etb@tempcnta=\count345
 )
 \tcb@titlebox=\box71
 \tcb@upperbox=\box72
 \tcb@lowerbox=\box73
 \tcb@phantombox=\box74
-\c@tcbbreakpart=\count342
-\c@tcblayer=\count343
-\c@tcolorbox@number=\count344
+\c@tcbbreakpart=\count346
+\c@tcblayer=\count347
+\c@tcolorbox@number=\count348
 \tcb@temp=\box75
 \tcb@temp=\box76
 \tcb@temp=\box77
 \tcb@temp=\box78
  (/usr/share/texlive/texmf-dist/tex/latex/tcolorbox/tcbraster.code.tex
 Library (tcolorbox): 'tcbraster.code.tex' version '5.0.2'
-\c@tcbrastercolumn=\count345
-\c@tcbrasterrow=\count346
-\c@tcbrasternum=\count347
-\c@tcbraster=\count348
+\c@tcbrastercolumn=\count349
+\c@tcbrasterrow=\count350
+\c@tcbrasternum=\count351
+\c@tcbraster=\count352
 ) (/usr/share/texlive/texmf-dist/tex/latex/tcolorbox/tcbskins.code.tex
 Library (tcolorbox): 'tcbskins.code.tex' version '5.0.2'
 \tcb@waterbox=\box79
@@ -748,17 +756,17 @@ Library (tcolorbox): 'tcbhooks.code.tex' version '5.0.2'
 Library (tcolorbox): 'tcbtheorems.code.tex' version '5.0.2'
 ) (/usr/share/texlive/texmf-dist/tex/latex/tcolorbox/tcbfitting.code.tex
 Library (tcolorbox): 'tcbfitting.code.tex' version '5.0.2'
-\tcbfitdim=\dimen308
-\tcb@lowerfitdim=\dimen309
-\tcb@upperfitdim=\dimen310
-\tcb@cur@hbadness=\count349
+\tcbfitdim=\dimen321
+\tcb@lowerfitdim=\dimen322
+\tcb@upperfitdim=\dimen323
+\tcb@cur@hbadness=\count353
 ) (/usr/share/texlive/texmf-dist/tex/latex/tcolorbox/tcbxparse.code.tex
 Library (tcolorbox): 'tcbxparse.code.tex' version '5.0.2'
 (/usr/share/texlive/texmf-dist/tex/latex/l3packages/xparse/xparse.sty (/usr/share/texlive/texmf-dist/tex/latex/l3kernel/expl3.sty
 Package: expl3 2022-01-21 L3 programming layer (loader) 
  (/usr/share/texlive/texmf-dist/tex/latex/l3backend/l3backend-pdftex.def
 File: l3backend-pdftex.def 2022-01-12 L3 backend support: PDF output (pdfTeX)
-\l__color_backend_stack_int=\count350
+\l__color_backend_stack_int=\count354
 \l__pdf_internal_box=\box83
 ))
 Package: xparse 2022-01-12 L3 Experimental document command parser
@@ -767,22 +775,22 @@ Library (tcolorbox): 'tcblistingsutf8.code.tex' version '5.0.2'
 (/usr/share/texlive/texmf-dist/tex/latex/tcolorbox/tcblistings.code.tex
 Library (tcolorbox): 'tcblistings.code.tex' version '5.0.2'
 (/usr/share/texlive/texmf-dist/tex/latex/listings/listings.sty
-\lst@mode=\count351
+\lst@mode=\count355
 \lst@gtempboxa=\box84
 \lst@token=\toks57
-\lst@length=\count352
-\lst@currlwidth=\dimen311
-\lst@column=\count353
-\lst@pos=\count354
-\lst@lostspace=\dimen312
-\lst@width=\dimen313
-\lst@newlines=\count355
-\lst@lineno=\count356
-\lst@maxwidth=\dimen314
+\lst@length=\count356
+\lst@currlwidth=\dimen324
+\lst@column=\count357
+\lst@pos=\count358
+\lst@lostspace=\dimen325
+\lst@width=\dimen326
+\lst@newlines=\count359
+\lst@lineno=\count360
+\lst@maxwidth=\dimen327
  (/usr/share/texlive/texmf-dist/tex/latex/listings/lstmisc.sty
 File: lstmisc.sty 2020/03/24 1.8d (Carsten Heinz)
-\c@lstnumber=\count357
-\lst@skipnumbers=\count358
+\c@lstnumber=\count361
+\lst@skipnumbers=\count362
 \lst@framebox=\box85
 ) (/usr/share/texlive/texmf-dist/tex/latex/listings/listings.cfg
 File: listings.cfg 2020/03/24 1.8d listings configuration
@@ -796,7 +804,7 @@ Library (tcolorbox): 'tcbprocessing.code.tex' version '5.0.2'
 Package: shellesc 2019/11/08 v1.0c unified shell escape interface for LaTeX
 Package shellesc Info: Restricted shell escape enabled on input line 77.
 ))
-\c@tcblisting=\count359
+\c@tcblisting=\count363
 )) (/usr/share/texlive/texmf-dist/tex/latex/listingsutf8/listingsutf8.sty
 Package: listingsutf8 2019-12-10 v1.5 Allow UTF-8 in listings input (HO)
  (/usr/share/texlive/texmf-dist/tex/generic/stringenc/stringenc.sty
@@ -814,97 +822,103 @@ File: pgflibraryfadings.code.tex 2021/05/15 v3.1.9a (3.1.9a)
 ))) (/usr/share/texlive/texmf-dist/tex/latex/tcolorbox/tcbposter.code.tex
 Library (tcolorbox): 'tcbposter.code.tex' version '5.0.2'
 ))
+Package minitoc Info: I0024
+(minitoc)             PREPARING MINITOCS FROM DADA_SIMEU_Cédric_tp2_parallel_architecture.toc on input line 124.
 
-Package minitoc Warning: W0010
-(minitoc)                No file DADA_SIMEU_Cédric_tp1_parallel_architecture.toc. 
-(minitoc)                MINITOCS NOT PREPARED on input line 124.
-
+{\reset@font\mtcSfont\mtc@string\contentsline{section}{\noexpand \leavevmode \numberline {1}Architecture de l'ordinateur}{\reset@font\mtcSfont 4}{section.0.1}}
+{\reset@font\mtcSfont\mtc@string\contentsline{section}{\noexpand \leavevmode \numberline {2}Parallélisation ensemble de Mandelbrot}{\reset@font\mtcSfont 6}{section.0.2}}
+{\reset@font\mtcSSfont\mtc@string\contentsline{subsection}{\noexpand \leavevmode \numberline {2.1}Répartition par lignes de blocs}{\reset@font\mtcSSfont 6}{subsection.0.2.1}}
+{\reset@font\mtcSSSfont\mtc@string\contentsline{subsubsection}{\noexpand \leavevmode Analyse des résultats (n $\leq 4$)}{\reset@font\mtcSSSfont 6}{lstnumber.0.1.7}}
+{\reset@font\mtcSSSfont\mtc@string\contentsline{subsubsection}{\noexpand \leavevmode Analyse des résultats (n $\leq 8$)}{\reset@font\mtcSSSfont 7}{figure.caption.9}}
+{\reset@font\mtcSSfont\mtc@string\contentsline{subsection}{\noexpand \leavevmode \numberline {2.2}Meilleure répartition statique des lignes}{\reset@font\mtcSSfont 9}{subsection.0.2.2}}
+{\reset@font\mtcPfont\mtc@string\contentsline{paragraph}{\noexpand \leavevmode Démarche : }{\reset@font\mtcPfont 9}{subsection.0.2.2}}
+{\reset@font\mtcPfont\mtc@string\contentsline{paragraph}{\noexpand \leavevmode Analyse des résultats}{\reset@font\mtcPfont 9}{figure.caption.13}}
+{\reset@font\mtcSSfont\mtc@string\contentsline{subsection}{\noexpand \leavevmode \numberline {2.3}Maitre esclave}{\reset@font\mtcSSfont 11}{subsection.0.2.3}}
+{\reset@font\mtcPfont\mtc@string\contentsline{paragraph}{\noexpand \leavevmode Observation}{\reset@font\mtcPfont 11}{figure.caption.17}}
+{\reset@font\mtcPfont\mtc@string\contentsline{paragraph}{\noexpand \leavevmode Comparaison des approches fig (\ref {fig:desequilibres}, \ref {fig:speedups})}{\reset@font\mtcPfont 13}{figure.caption.17}}
+{\reset@font\mtcSfont\mtc@string\contentsline{section}{\noexpand \leavevmode \numberline {3}Produit matrice-vecteur}{\reset@font\mtcSfont 15}{section.0.3}}
+{\reset@font\mtcSSfont\mtc@string\contentsline{subsection}{\noexpand \leavevmode \numberline {3.1}Produit matrice-vecteur colonnes}{\reset@font\mtcSSfont 15}{subsection.0.3.1}}
+{\reset@font\mtcSSfont\mtc@string\contentsline{subsection}{\noexpand \leavevmode \numberline {3.2}Analyse des résultats}{\reset@font\mtcSSfont 15}{subsection.0.3.2}}
+{\reset@font\mtcSSSfont\mtc@string\contentsline{subsubsection}{\noexpand \leavevmode Produit matrice--vecteur par colonnes}{\reset@font\mtcSSSfont 15}{subsection.0.3.2}}
+{\reset@font\mtcPfont\mtc@string\contentsline{paragraph}{\noexpand \leavevmode Temps de calcul et répartition de la charge :}{\reset@font\mtcPfont 15}{subsection.0.3.2}}
+{\reset@font\mtcPfont\mtc@string\contentsline{paragraph}{\noexpand \leavevmode Speedup obtenu :}{\reset@font\mtcPfont 15}{subsection.0.3.2}}
+{\reset@font\mtcSSSfont\mtc@string\contentsline{subsubsection}{\noexpand \leavevmode Produit matrice--vecteur par lignes}{\reset@font\mtcSSSfont 15}{subsection.0.3.2}}
+{\reset@font\mtcPfont\mtc@string\contentsline{paragraph}{\noexpand \leavevmode Temps de calcul et homogénéité du travail :}{\reset@font\mtcPfont 15}{subsection.0.3.2}}
+{\reset@font\mtcPfont\mtc@string\contentsline{paragraph}{\noexpand \leavevmode Speedup obtenu :}{\reset@font\mtcPfont 16}{subsection.0.3.2}}
+{\reset@font\mtcSSSfont\mtc@string\contentsline{subsubsection}{\noexpand \leavevmode Comparaison des deux approches}{\reset@font\mtcSSSfont 16}{subsection.0.3.2}}
+{\reset@font\mtcPfont\mtc@string\contentsline{paragraph}{\noexpand \leavevmode Répartition de la charge :}{\reset@font\mtcPfont 16}{subsection.0.3.2}}
+{\reset@font\mtcPfont\mtc@string\contentsline{paragraph}{\noexpand \leavevmode Scalabilité :}{\reset@font\mtcPfont 16}{subsection.0.3.2}}
+{\reset@font\mtcPfont\mtc@string\contentsline{paragraph}{\noexpand \leavevmode Conclusion générale :}{\reset@font\mtcPfont 16}{subsection.0.3.2}}
+{\reset@font\mtcSfont\mtc@string\contentsline{section}{\noexpand \leavevmode \numberline {4}Entraînement pour l'examen écrit}{\reset@font\mtcSfont 17}{section.0.4}}
+{\reset@font\mtcSSfont\mtc@string\contentsline{subsection}{\noexpand \leavevmode \numberline {4.1}Application de la loi d'Amdahl}{\reset@font\mtcSSfont 17}{subsection.0.4.1}}
+{\reset@font\mtcSSSfont\mtc@string\contentsline{subsubsection}{\noexpand \leavevmode Choix raisonnable du nombre de n\oe uds}{\reset@font\mtcSSSfont 17}{subsection.0.4.1}}
+{\reset@font\mtcSSfont\mtc@string\contentsline{subsection}{\noexpand \leavevmode \numberline {4.2}Application de la loi de Gustafson}{\reset@font\mtcSSfont 17}{subsection.0.4.2}}
+{\reset@font\mtcSSfont\mtc@string\contentsline{subsection}{\noexpand \leavevmode \numberline {4.3}Conclusion}{\reset@font\mtcSSfont 18}{subsection.0.4.3}}
 (/usr/share/texlive/texmf-dist/tex/latex/caption/caption.sty
 Package: caption 2020/10/26 v3.5g Customizing captions (AR)
  (/usr/share/texlive/texmf-dist/tex/latex/caption/caption3.sty
 Package: caption3 2020/10/21 v2.2e caption3 kernel (AR)
-\captionmargin=\dimen315
-\captionmargin@=\dimen316
-\captionwidth=\dimen317
-\caption@tempdima=\dimen318
-\caption@indent=\dimen319
-\caption@parindent=\dimen320
-\caption@hangindent=\dimen321
+\captionmargin=\dimen328
+\captionmargin@=\dimen329
+\captionwidth=\dimen330
+\caption@tempdima=\dimen331
+\caption@indent=\dimen332
+\caption@parindent=\dimen333
+\caption@hangindent=\dimen334
 Package caption Info: Standard document class detected.
 Package caption Info: french babel package is loaded.
 )
-\c@caption@flags=\count360
-\c@continuedfloat=\count361
+\c@caption@flags=\count364
+\c@continuedfloat=\count365
 Package caption Info: hyperref package is loaded.
 Package caption Info: listings package is loaded.
 )
 \BBbox=\box86
-
-
-LaTeX Info: File `data_threads1.csv' already exists on the system.
-            Not generating it from this source.
-
-
-LaTeX Info: File `data_threads4.csv' already exists on the system.
-            Not generating it from this source.
-
-
-LaTeX Info: File `data_threads8.csv' already exists on the system.
-            Not generating it from this source.
-
-
-LaTeX Info: File `data_threads16.csv' already exists on the system.
-            Not generating it from this source.
-
-
-LaTeX Info: File `data256.csv' already exists on the system.
-            Not generating it from this source.
-
-
-LaTeX Info: File `data512.csv' already exists on the system.
-            Not generating it from this source.
-
-LaTeX Font Info:    Trying to load font information for T1+ptm on input line 227.
-(/usr/share/texlive/texmf-dist/tex/latex/psnfss/t1ptm.fd
+LaTeX Font Info:    Trying to load font information for T1+ptm on input line 163.
+ (/usr/share/texlive/texmf-dist/tex/latex/psnfss/t1ptm.fd
 File: t1ptm.fd 2001/06/04 font definitions for T1/ptm.
 )
 
 LaTeX Warning: Unused global option(s):
     [13pt].
 
-No file DADA_SIMEU_Cédric_tp1_parallel_architecture.aux.
-\openout1 = `DADA_SIMEU_Cédric_tp1_parallel_architecture.aux'.
+(./DADA_SIMEU_Cédric_tp2_parallel_architecture.aux
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 227.
-LaTeX Font Info:    ... okay on input line 227.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 227.
-LaTeX Font Info:    ... okay on input line 227.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 227.
-LaTeX Font Info:    ... okay on input line 227.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 227.
-LaTeX Font Info:    ... okay on input line 227.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 227.
-LaTeX Font Info:    ... okay on input line 227.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 227.
-LaTeX Font Info:    ... okay on input line 227.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 227.
-LaTeX Font Info:    ... okay on input line 227.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 227.
-LaTeX Font Info:    ... okay on input line 227.
-LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 227.
-LaTeX Font Info:    ... okay on input line 227.
-(/usr/share/texlive/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
+LaTeX Warning: Label `fig:speedup' multiply defined.
+
+)
+\openout1 = `DADA_SIMEU_Cédric_tp2_parallel_architecture.aux'.
+
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 163.
+LaTeX Font Info:    ... okay on input line 163.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 163.
+LaTeX Font Info:    ... okay on input line 163.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 163.
+LaTeX Font Info:    ... okay on input line 163.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 163.
+LaTeX Font Info:    ... okay on input line 163.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 163.
+LaTeX Font Info:    ... okay on input line 163.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 163.
+LaTeX Font Info:    ... okay on input line 163.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 163.
+LaTeX Font Info:    ... okay on input line 163.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 163.
+LaTeX Font Info:    ... okay on input line 163.
+LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 163.
+LaTeX Font Info:    ... okay on input line 163.
+ (/usr/share/texlive/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count362
-\scratchdimen=\dimen322
+\scratchcounter=\count366
+\scratchdimen=\dimen335
 \scratchbox=\box87
-\nofMPsegments=\count363
-\nofMParguments=\count364
+\nofMPsegments=\count367
+\nofMParguments=\count368
 \everyMPshowfont=\toks58
-\MPscratchCnt=\count365
-\MPscratchDim=\dimen323
-\MPnumerator=\count366
-\makeMPintoPDFobject=\count367
+\MPscratchCnt=\count369
+\MPscratchDim=\dimen336
+\MPnumerator=\count370
+\makeMPintoPDFobject=\count371
 \everyMPtoPDFconversion=\toks59
 ) (/usr/share/texlive/texmf-dist/tex/latex/epstopdf-pkg/epstopdf-base.sty
 Package: epstopdf-base 2020-01-24 v2.11 Base part for package epstopdf
@@ -946,15 +960,15 @@ File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Live
 * \@reversemarginfalse
 * (1in=72.27pt=25.4mm, 1cm=28.453pt)
 
-LaTeX Info: Redefining \degres on input line 227.
+LaTeX Info: Redefining \degres on input line 163.
 Package french.ldf Info: Setting StandardItemizeEnv=true for
 (french.ldf)             compatibility with enumitem package,
-(french.ldf)             reported on input line 227.
+(french.ldf)             reported on input line 163.
 Package french.ldf Info: Setting StandardEnumerateEnv=true for
 (french.ldf)             compatibility with enumitem package,
-(french.ldf)             reported on input line 227.
-LaTeX Info: Redefining \up on input line 227.
-Package hyperref Info: Link coloring OFF on input line 227.
+(french.ldf)             reported on input line 163.
+LaTeX Info: Redefining \up on input line 163.
+Package hyperref Info: Link coloring OFF on input line 163.
 (/usr/share/texlive/texmf-dist/tex/latex/hyperref/nameref.sty
 Package: nameref 2021-04-02 v2.47 Cross-referencing by name of section
  (/usr/share/texlive/texmf-dist/tex/latex/refcount/refcount.sty
@@ -962,18 +976,19 @@ Package: refcount 2019/12/15 v3.6 Data extraction from label references (HO)
 ) (/usr/share/texlive/texmf-dist/tex/generic/gettitlestring/gettitlestring.sty
 Package: gettitlestring 2019/12/15 v1.6 Cleanup title references (HO)
 )
-\c@section@level=\count368
+\c@section@level=\count372
 )
-LaTeX Info: Redefining \ref on input line 227.
-LaTeX Info: Redefining \pageref on input line 227.
-LaTeX Info: Redefining \nameref on input line 227.
+LaTeX Info: Redefining \ref on input line 163.
+LaTeX Info: Redefining \pageref on input line 163.
+LaTeX Info: Redefining \nameref on input line 163.
+ (./DADA_SIMEU_Cédric_tp2_parallel_architecture.out) (./DADA_SIMEU_Cédric_tp2_parallel_architecture.out)
 \@outlinefile=\write6
-\openout6 = `DADA_SIMEU_Cédric_tp1_parallel_architecture.out'.
+\openout6 = `DADA_SIMEU_Cédric_tp2_parallel_architecture.out'.
 
 
 
 Package pgfplots Warning: running in backwards compatibility mode (unsuitable tick labels; missing features). Consider writing \pgfplotsset{compat=1.18} into your preamble.
- on input line 227.
+ on input line 163.
 
 Package minitoc(hints) Info: I0049
 (minitoc(hints))             ==> You requested the hints option. 
@@ -1004,11 +1019,11 @@ Package minitoc(hints) Warning: W0023
 (minitoc(hints))                --- It may be the consequence 
 (minitoc(hints))                of loading the ``hyperref'' package.
 
-\c@lstlisting=\count369
+\c@lstlisting=\count373
 Package caption Info: Begin \AtBeginDocument code.
 Package caption Info: End \AtBeginDocument code.
-(../template_page_garde/page_garde_TP1.tex
-<../template_page_garde/logo.jpg, id=43, 803.0pt x 1176.395pt>
+(../template_page_garde/page_garde_TP2.tex
+<../template_page_garde/logo.jpg, id=91, 803.0pt x 1176.395pt>
 File: ../template_page_garde/logo.jpg Graphic file (type jpg)
 <use ../template_page_garde/logo.jpg>
 Package pdftex.def Info: ../template_page_garde/logo.jpg  used on input line 4.
@@ -1045,243 +1060,76 @@ LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <6> not available
 (Font)              Font shape `OT1/ptm/b/n' tried instead on input line 10.
  [1
 
-{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map} <../template_page_garde/logo.jpg>])
+{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map} <../template_page_garde/logo.jpg>]) (./DADA_SIMEU_Cédric_tp2_parallel_architecture.toc)
 \tf@toc=\write7
-\openout7 = `DADA_SIMEU_Cédric_tp1_parallel_architecture.toc'.
+\openout7 = `DADA_SIMEU_Cédric_tp2_parallel_architecture.toc'.
 
  [2
 
-]
+] (./DADA_SIMEU_Cédric_tp2_parallel_architecture.lof)
 \tf@lof=\write8
-\openout8 = `DADA_SIMEU_Cédric_tp1_parallel_architecture.lof'.
+\openout8 = `DADA_SIMEU_Cédric_tp2_parallel_architecture.lof'.
 
  [3
 
 ]
+<../images/lstopo.png, id=145, 1583.9175pt x 1009.7725pt>
+File: ../images/lstopo.png Graphic file (type png)
+<use ../images/lstopo.png>
+Package pdftex.def Info: ../images/lstopo.png  used on input line 171.
+(pdftex.def)             Requested size: 475.17892pt x 302.93408pt.
 
-LaTeX Warning: `!h' float specifier changed to `!ht'.
+Overfull \hbox (19.93481pt too wide) in paragraph at lines 171--172
+ [] 
+ []
 
+<../images/lscpu.png, id=147, 1374.13374pt x 860.21375pt>
+File: ../images/lscpu.png Graphic file (type png)
+<use ../images/lscpu.png>
+Package pdftex.def Info: ../images/lscpu.png  used on input line 178.
+(pdftex.def)             Requested size: 687.0652pt x 430.10582pt.
 
-LaTeX Warning: `!h' float specifier changed to `!ht'.
-
-
-LaTeX Warning: `!h' float specifier changed to `!ht'.
-
-
-LaTeX Warning: `!h' float specifier changed to `!ht'.
-
-[4] [5]
-Overfull \hbox (35.53986pt too wide) in paragraph at lines 343--345
-[] []\T1/ptm/b/n/10 Op-ti-mi-sa-tion[] \T1/ptm/m/n/10 : Le sto-ckage des ma-trices dans Ma-trix est bas� sur un for-mat colonne-major (car m_arr_coefs[i+j*nbRows]
+Overfull \hbox (231.82109pt too wide) in paragraph at lines 178--179
+ [] 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 343--345
+LaTeX Warning: `!h' float specifier changed to `!ht'.
 
- []
-
-(/usr/share/texlive/texmf-dist/tex/latex/listings/lstlang1.sty
+[4 <../images/lstopo.png>] [5 <../images/lscpu.png>] (/usr/share/texlive/texmf-dist/tex/latex/listings/lstlang1.sty
 File: lstlang1.sty 2020/03/24 1.8d listings language file
 ) (/usr/share/texlive/texmf-dist/tex/latex/listings/lstmisc.sty
 File: lstmisc.sty 2020/03/24 1.8d (Carsten Heinz)
 )
-LaTeX Font Info:    Trying to load font information for T1+cmtt on input line 346.
+Package hyperref Info: bookmark level for unknown lstlisting defaults to 0 on input line 190.
+LaTeX Font Info:    Trying to load font information for T1+cmtt on input line 190.
  (/usr/share/texlive/texmf-dist/tex/latex/base/t1cmtt.fd
 File: t1cmtt.fd 2019/12/16 v2.5j Standard LaTeX font definitions
 )
+<./fractale.PNG, id=158, 1027.84pt x 1027.84pt>
+File: ./fractale.PNG Graphic file (type png)
+<use ./fractale.PNG>
+Package pdftex.def Info: ./fractale.PNG  used on input line 223.
+(pdftex.def)             Requested size: 205.56436pt x 205.56436pt.
+ [6
 
-LaTeX Warning: `!h' float specifier changed to `!ht'.
+] [7 <./fractale.PNG>] [8] (/usr/share/texlive/texmf-dist/tex/latex/listings/lstlang1.sty
+File: lstlang1.sty 2020/03/24 1.8d listings language file
+) [9
 
+] [10] [11
 
-LaTeX Warning: `!h' float specifier changed to `!ht'.
+] [12] [13
 
+] [14] [15
 
-LaTeX Warning: `!h' float specifier changed to `!ht'.
-
-[6
-
-] [7]
-Underfull \hbox (badness 10000) in paragraph at lines 436--437
-
- []
-
-[8
+] [16] [17
 
 ]
-
-LaTeX Warning: Reference `tab:ls_topo' on page 9 undefined on input line 513.
-
-
-LaTeX Warning: Reference `tab:lscpu' on page 9 undefined on input line 513.
-
-
-LaTeX Warning: Reference `tab:ls_topo' on page 9 undefined on input line 515.
-
-<../images/lscpu.png, id=166, 1374.13374pt x 860.21375pt>
-File: ../images/lscpu.png Graphic file (type png)
-<use ../images/lscpu.png>
-Package pdftex.def Info: ../images/lscpu.png  used on input line 521.
-(pdftex.def)             Requested size: 687.0652pt x 430.10582pt.
-
-Overfull \hbox (231.82109pt too wide) in paragraph at lines 521--522
- [] 
- []
-
-
-LaTeX Warning: `!h' float specifier changed to `!ht'.
-
-<../images/lstopo.png, id=168, 1583.9175pt x 1009.7725pt>
-File: ../images/lstopo.png Graphic file (type png)
-<use ../images/lstopo.png>
-Package pdftex.def Info: ../images/lstopo.png  used on input line 530.
-(pdftex.def)             Requested size: 475.17892pt x 302.93408pt.
-
-Overfull \hbox (19.93481pt too wide) in paragraph at lines 530--531
- [] 
- []
-
-
-LaTeX Warning: `!h' float specifier changed to `!ht'.
-
-[9] [10 <../images/lscpu.png>] [11 <../images/lstopo.png>]
-Underfull \hbox (badness 10000) in paragraph at lines 539--540
-
- []
-
-
-LaTeX Warning: Reference `fig:execution_time_1' on page 12 undefined on input line 558.
-
-
-LaTeX Warning: Reference `fig:execution_time_4' on page 12 undefined on input line 558.
-
-
-LaTeX Warning: Reference `fig:execution_time_8' on page 12 undefined on input line 558.
-
-
-LaTeX Warning: Reference `fig:execution_time_16' on page 12 undefined on input line 558.
-
-PGFPlots: reading {data_threads1.csv}
-PGFPlots: reading {data_threads1.csv}
-PGFPlots: reading {data_threads1.csv}
-PGFPlots: reading {data_threads1.csv}
-PGFPlots: reading {data_threads1.csv}
-PGFPlots: reading {data_threads1.csv}
-
-Underfull \hbox (badness 2088) in paragraph at lines 656--656
-[]\T1/ptm/m/sc/10 Figure 3 \T1/ptm/m/n/10 ^^U |Du-r�es d'ex�-cu-tion en fonc-tion de la taille des blocs pour chaque taille de pro-bl�me.
- []
-
-PGFPlots: reading {data_threads4.csv}
-PGFPlots: reading {data_threads4.csv}
-PGFPlots: reading {data_threads4.csv}
-PGFPlots: reading {data_threads4.csv}
-PGFPlots: reading {data_threads4.csv}
-PGFPlots: reading {data_threads4.csv}
-
-Underfull \hbox (badness 2088) in paragraph at lines 695--695
-[]\T1/ptm/m/sc/10 Figure 4 \T1/ptm/m/n/10 ^^U |Du-r�es d'ex�-cu-tion en fonc-tion de la taille des blocs pour chaque taille de pro-bl�me.
- []
-
-PGFPlots: reading {data_threads8.csv}
-PGFPlots: reading {data_threads8.csv}
-PGFPlots: reading {data_threads8.csv}
-PGFPlots: reading {data_threads8.csv}
-PGFPlots: reading {data_threads8.csv}
-PGFPlots: reading {data_threads8.csv}
-
-Underfull \hbox (badness 2088) in paragraph at lines 734--734
-[]\T1/ptm/m/sc/10 Figure 5 \T1/ptm/m/n/10 ^^U |Du-r�es d'ex�-cu-tion en fonc-tion de la taille des blocs pour chaque taille de pro-bl�me.
- []
-
-PGFPlots: reading {data_threads16.csv}
-PGFPlots: reading {data_threads16.csv}
-PGFPlots: reading {data_threads16.csv}
-PGFPlots: reading {data_threads16.csv}
-PGFPlots: reading {data_threads16.csv}
-PGFPlots: reading {data_threads16.csv}
-
-Underfull \hbox (badness 2088) in paragraph at lines 774--774
-[]\T1/ptm/m/sc/10 Figure 6 \T1/ptm/m/n/10 ^^U |Du-r�es d'ex�-cu-tion en fonc-tion de la taille des blocs pour chaque taille de pro-bl�me.
- []
-
-[12
-
-] [13] [14] [15]
-PGFPlots: reading {data256.csv}
-PGFPlots: reading {data512.csv}
- [16
-
-] [17] [18]
-Overfull \hbox (4.39502pt too wide) in paragraph at lines 926--927
-[]\T1/ptm/m/n/10 Nous avons ins-tall� libmkl-dev pour pou-voir ef-fec-tuer les tests. Le code du fi-chier test_product_matrice_blas.cpp
- []
-
-(/usr/share/texlive/texmf-dist/tex/latex/listings/lstlang1.sty
-File: lstlang1.sty 2020/03/24 1.8d listings language file
-) (/usr/share/texlive/texmf-dist/tex/latex/listings/lstlang1.sty
-File: lstlang1.sty 2020/03/24 1.8d listings language file
-)
-
-LaTeX Warning: `!h' float specifier changed to `!ht'.
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 976--977
-
- []
-
-[19
-
-]
-Underfull \vbox (badness 1117) has occurred while \output is active []
-
- [20]
-Underfull \hbox (badness 10000) in paragraph at lines 1042--1043
-
- []
-
-[21]
-Underfull \hbox (badness 10000) in paragraph at lines 1079--1080
-
- []
-
-[22]
-
-LaTeX Warning: Reference `tab:pi_approximation' on page 23 undefined on input line 1123.
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 1138--1139
-
- []
-
-Package hyperref Info: bookmark level for unknown lstlisting defaults to 0 on input line 1139.
-
-Package Listings Warning: Text dropped after begin of listing on input line 1139.
-
-[23]
-
-LaTeX Warning: Reference `tab:pi_mpi' on page 24 undefined on input line 1186.
-
-
-LaTeX Warning: Reference `tab:lscpu' on page 24 undefined on input line 1210.
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 1213--1214
-
- []
-
-[24]
-Underfull \hbox (badness 10000) in paragraph at lines 1273--1274
-
- []
-
-[25]
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
- [26]
 Package minitoc Info: I0009
 (minitoc)             Listing minitoc auxiliary files. 
-(minitoc)             Creating the DADA_SIMEU_Cédric_tp1_parallel_architecture.maf file.
-\openout5 = `DADA_SIMEU_Cédric_tp1_parallel_architecture.maf'.
+(minitoc)             Creating the DADA_SIMEU_Cédric_tp2_parallel_architecture.maf file.
+\openout5 = `DADA_SIMEU_Cédric_tp2_parallel_architecture.maf'.
 
 
 
@@ -1297,37 +1145,28 @@ Package minitoc(hints) Warning: W0033
 
 Package minitoc(hints) Warning: W0024
 (minitoc(hints))                Some hints have been written 
-(minitoc(hints))                in the DADA_SIMEU_Cédric_tp1_parallel_architecture.log file.
+(minitoc(hints))                in the DADA_SIMEU_Cédric_tp2_parallel_architecture.log file.
 
-[27] (./DADA_SIMEU_Cédric_tp1_parallel_architecture.aux)
+[18] (./DADA_SIMEU_Cédric_tp2_parallel_architecture.aux)
 
-LaTeX Warning: There were undefined references.
+LaTeX Warning: There were multiply-defined labels.
 
-
-LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
-
-
-Package rerunfilecheck Warning: File `DADA_SIMEU_Cédric_tp1_parallel_architecture.out' has changed.
-(rerunfilecheck)                Rerun to get outlines right
-(rerunfilecheck)                or use package `bookmark'.
-
-Package rerunfilecheck Info: Checksums for `DADA_SIMEU_Cédric_tp1_parallel_architecture.out':
-(rerunfilecheck)             Before: <no file>
-(rerunfilecheck)             After:  95C392F57961ECE90680E6C8DF8BE64B;3555.
+Package rerunfilecheck Info: File `DADA_SIMEU_Cédric_tp2_parallel_architecture.out' has not changed.
+(rerunfilecheck)             Checksum: AFBF4D3288E438FB677C2248F7DF57B0;2452.
  ) 
 Here is how much of TeX's memory you used:
- 45945 strings out of 479624
- 1029855 string characters out of 5877755
- 2199522 words of memory out of 5000000
- 62583 multiletter control sequences out of 15000+600000
- 522074 words of font info for 90 fonts, out of 8000000 for 9000
+ 45454 strings out of 479624
+ 1023150 string characters out of 5877755
+ 1790595 words of memory out of 5000000
+ 62434 multiletter control sequences out of 15000+600000
+ 523552 words of font info for 93 fonts, out of 8000000 for 9000
  350 hyphenation exceptions out of 8191
- 99i,19n,96p,914b,2367s stack positions out of 5000i,500n,10000p,200000b,80000s
- </home/cedric/.texlive2021/texmf-var/fonts/pk/ljfour/jknappen/ec/ectt1000.600pk>{/usr/share/texlive/texmf-dist/fonts/enc/dvips/base/8r.enc} </home/cedric/.texlive2021/texmf-var/fonts/pk/ljfour/jknappen/ec/ectt0800.600pk></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/symbol/usyr.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmb8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmr8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmri8a.pfb>
-Output written on DADA_SIMEU_Cédric_tp1_parallel_architecture.pdf (27 pages, 453348 bytes).
+ 99i,19n,96p,914b,2313s stack positions out of 5000i,500n,10000p,200000b,80000s
+{/usr/share/texlive/texmf-dist/fonts/enc/dvips/base/8r.enc} </home/cedric/.texlive2021/texmf-var/fonts/pk/ljfour/jknappen/ec/ectt1000.600pk> </home/cedric/.texlive2021/texmf-var/fonts/pk/ljfour/jknappen/ec/ectt0800.600pk></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/symbol/usyr.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmb8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmbi8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmr8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmri8a.pfb>
+Output written on DADA_SIMEU_Cédric_tp2_parallel_architecture.pdf (18 pages, 599928 bytes).
 PDF statistics:
- 843 PDF objects out of 1000 (max. 8388607)
- 644 compressed objects within 7 object streams
- 444 named destinations out of 1000 (max. 500000)
- 172 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 422 PDF objects out of 1000 (max. 8388607)
+ 268 compressed objects within 3 object streams
+ 92 named destinations out of 1000 (max. 500000)
+ 273 words of extra memory for PDF output out of 10000 (max. 10000000)
 

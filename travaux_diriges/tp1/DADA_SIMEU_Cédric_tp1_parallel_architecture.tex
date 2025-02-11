@@ -482,9 +482,9 @@ Code : \\
                 Matrix C(A.nbRows, B.nbCols, 0.0);
                 const int szBlock = 256;
             
-                for (int I = 0; I < A.nbRows; I += szBlock) {       // Parcours lignes A
-                    for (int J = 0; J < B.nbCols; J += szBlock) {   // Parcours colonnes B
-                        for (int K = 0; K < A.nbCols; K += szBlock) { // Parcours commun
+                for (int I = 0; I < A.nbRows; I += szBlock) {      
+                    for (int J = 0; J < B.nbCols; J += szBlock) {   
+                        for (int K = 0; K < A.nbCols; K += szBlock) { 
                             prodSubBlocks(I, J, K, szBlock, A, B, C);
                         }
                     }
@@ -975,7 +975,7 @@ Les \textbf{performances obtenues avec BLAS sont meilleures} que celles obtenues
 
 Code : \\
 
-	\begin{lstlisting}[language=C]
+	\begin{lstlisting}[language=C, caption=Code source de \texttt{jeton.c}]
 
         #include <stdio.h>
         #include <mpi.h>
@@ -1062,7 +1062,7 @@ Code : \\
         }
         
         int main(void) {
-            unsigned long nbSamples = 10000000UL; // par exemple 10 millions de points
+            unsigned long nbSamples = 10000000UL; 
             srand(time(NULL));
             clock_t tdeb = clock();
             double pi = approximate_pi(nbSamples);
@@ -1155,7 +1155,7 @@ Code : \\
             unsigned long nbSamples = nbSamplesTotal / nbp;
             unsigned long nbDarts_local = 0;
         
-            /* Utiliser une graine differente pour chaque processus */
+            /* Utilisation d'une graine differente pour chaque processus */
             unsigned int seed = time(NULL) ^ rank;
         
             double tdeb = MPI_Wtime();
@@ -1212,7 +1212,7 @@ Code : \\
     \end{itemize}
 \paragraph{Version MPI en python avec mpi4py}.\\
 
-	\begin{lstlisting}[language=C]
+	\begin{lstlisting}[language=C, caption=Code source de \texttt{pi\_mpi.py}]
         #!/usr/bin/env python3
         # pi_mpi.py
         from mpi4py import MPI
@@ -1273,7 +1273,7 @@ Code : \\
 Code :  \\
 
 
-	\begin{lstlisting}[language=C]
+	\begin{lstlisting}[language=C, caption=Code source de \texttt{hypercube.c}]
         #include <stdio.h>
         #include <stdlib.h>
         #include <mpi.h>

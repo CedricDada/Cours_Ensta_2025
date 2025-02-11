@@ -1,0 +1,30 @@
+\babel@toc {french}{}\relax 
+\contentsline {section}{\numberline {1}Architecture de l'ordinateur}{4}{section.0.1}%
+\contentsline {section}{\numberline {2}Parallélisation ensemble de Mandelbrot}{6}{section.0.2}%
+\contentsline {subsection}{\numberline {2.1}Répartition par lignes de blocs}{6}{subsection.0.2.1}%
+\contentsline {subsubsection}{Analyse des résultats (n $\leq 4$)}{6}{lstnumber.0.1.7}%
+\contentsline {subsubsection}{Analyse des résultats (n $\leq 8$)}{7}{figure.caption.9}%
+\contentsline {subsection}{\numberline {2.2}Meilleure répartition statique des lignes}{9}{subsection.0.2.2}%
+\contentsline {paragraph}{Démarche : }{9}{subsection.0.2.2}%
+\contentsline {paragraph}{Analyse des résultats}{9}{figure.caption.13}%
+\contentsline {subsection}{\numberline {2.3}Maitre esclave}{11}{subsection.0.2.3}%
+\contentsline {paragraph}{Observation}{11}{figure.caption.17}%
+\contentsline {paragraph}{Comparaison des approches fig (\ref {fig:desequilibres}, \ref {fig:speedups})}{13}{figure.caption.17}%
+\contentsline {section}{\numberline {3}Produit matrice-vecteur}{15}{section.0.3}%
+\contentsline {subsection}{\numberline {3.1}Produit matrice-vecteur colonnes}{15}{subsection.0.3.1}%
+\contentsline {subsection}{\numberline {3.2}Analyse des résultats}{15}{subsection.0.3.2}%
+\contentsline {subsubsection}{Produit matrice--vecteur par colonnes}{15}{subsection.0.3.2}%
+\contentsline {paragraph}{Temps de calcul et répartition de la charge :}{15}{subsection.0.3.2}%
+\contentsline {paragraph}{Speedup obtenu :}{15}{subsection.0.3.2}%
+\contentsline {subsubsection}{Produit matrice--vecteur par lignes}{15}{subsection.0.3.2}%
+\contentsline {paragraph}{Temps de calcul et homogénéité du travail :}{15}{subsection.0.3.2}%
+\contentsline {paragraph}{Speedup obtenu :}{16}{subsection.0.3.2}%
+\contentsline {subsubsection}{Comparaison des deux approches}{16}{subsection.0.3.2}%
+\contentsline {paragraph}{Répartition de la charge :}{16}{subsection.0.3.2}%
+\contentsline {paragraph}{Scalabilité :}{16}{subsection.0.3.2}%
+\contentsline {paragraph}{Conclusion générale :}{16}{subsection.0.3.2}%
+\contentsline {section}{\numberline {4}Entraînement pour l'examen écrit}{17}{section.0.4}%
+\contentsline {subsection}{\numberline {4.1}Application de la loi d'Amdahl}{17}{subsection.0.4.1}%
+\contentsline {subsubsection}{Choix raisonnable du nombre de n\oe uds}{17}{subsection.0.4.1}%
+\contentsline {subsection}{\numberline {4.2}Application de la loi de Gustafson}{17}{subsection.0.4.2}%
+\contentsline {subsection}{\numberline {4.3}Conclusion}{18}{subsection.0.4.3}%

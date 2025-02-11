@@ -1,9 +1,0 @@
-\babel@toc {french}{}\relax 
-\contentsline {figure}{\numberline {1}{\ignorespaces Résultat de la commande lscpu\relax }}{10}{figure.caption.14}%
-\contentsline {figure}{\numberline {2}{\ignorespaces Résultat de la commande lstopo : Nous pouvons visualiser les tailles des caches\relax }}{11}{figure.caption.15}%
-\contentsline {figure}{\numberline {3}{\ignorespaces Durées d'exécution en fonction de la taille des blocs pour chaque taille de problème. (OMP\_NUM\_THREADS=1)\relax }}{13}{figure.caption.20}%
-\contentsline {figure}{\numberline {4}{\ignorespaces Durées d'exécution en fonction de la taille des blocs pour chaque taille de problème. (OMP\_NUM\_THREADS=4)\relax }}{14}{figure.caption.21}%
-\contentsline {figure}{\numberline {5}{\ignorespaces Durées d'exécution en fonction de la taille des blocs pour chaque taille de problème. (OMP\_NUM\_THREADS=8)\relax }}{14}{figure.caption.22}%
-\contentsline {figure}{\numberline {6}{\ignorespaces Durées d'exécution en fonction de la taille des blocs pour chaque taille de problème. (OMP\_NUM\_THREADS=16)\relax }}{15}{figure.caption.23}%
-\contentsline {figure}{\numberline {7}{\ignorespaces Évolution du speedup en fonction du nombre de threads pour une taille de bloc de 256.\relax }}{17}{figure.caption.25}%
-\contentsline {figure}{\numberline {8}{\ignorespaces Évolution du speedup en fonction du nombre de threads pour une taille de bloc de 512.\relax }}{18}{figure.caption.26}%

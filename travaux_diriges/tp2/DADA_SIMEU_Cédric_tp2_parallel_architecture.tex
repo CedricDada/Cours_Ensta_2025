@@ -184,9 +184,25 @@
 
 \clearpage
 \section{Parallélisation ensemble de Mandelbrot}
-\subsection{}
+\subsection{Répartition par lignes de blocs}
+Notre objectif est de répartir équitablement les lignes d’une image de hauteur height entre nbp processus, en gérant le cas où height n’est pas divisible par nbp. 
 
+\begin{lstlisting}[language=C, caption={Bloc du fichier mandelbrot\_question1.py montrant comment la taille des blocs de lignes répartis}]
+chunk = height // nbp      # Lignes de base par processus
+rest = height % nbp        # Lignes restantes a distribuer
 
+start = rank * chunk + min(rank, rest)  # Ajoute 1 ligne supplementaire pour les premiers rest processus
+end = start + chunk + (1 if rank < rest else 0)  # +1 si le processus est dans les `rest` premiers
+
+local_height = end - start # Nombre de lignes locales
+\end{lstlisting}
+Nous avons décider de définir les tailles des blocs de lignes ainsi pour les raisons suivantes : 
+\begin{itemize}
+  \item Equilibrage : Les premiers rest processus ont chunk + 1 lignes, les autres chunk.
+
+  \item Garantie : Aucune ligne n’est perdue, et la charge est en première approximmation(nous ne tenons pas encore compte du fait que certains points peuvent etre plus complexes que d'autres) la plus équilibrée possible.
+\end{itemize}
+Le code complet se trouve dans le fichier \texttt{mandelbrot\_question1.py}
 \subsubsection{Analyse des résultats (n $\leq 4$)}
 
 \begin{enumerate}
@@ -195,9 +211,10 @@ Le speedup augmente avec le nombre de processus, mais reste loin de l’idéal e
 \begin{itemize}
 \item Du déséquilibrage de charge (surtout pour n=3).
 \item De la surcharge de communication (visible pour n=4).
+\end{itemize}
 \item Déséquilibrage :
 \begin{itemize}
-\item Nous avons évaluer le déséquilibrage max/min (entre le processus le plus gourmand en temps et le processus le moins gourmand) en terme de ratio ($\frac{\Delta t}{t_{max}}\times 100$)
+\item Nous avons évaluer le déséquilibrage max/min (entre le processus le plus gourmand en temps et le processus le moins gourmand, pour une execution donnée) en terme de ratio ($\frac{\Delta t}{t_{max}}\times 100$)
 \item Le ratio culmine à 13.5\% pour n=3, ce qui s’explique par une répartition non optimale des lignes complexes.
 \end{itemize}
 \end{enumerate}
@@ -207,7 +224,6 @@ Le speedup augmente avec le nombre de processus, mais reste loin de l’idéal e
   \caption{Rendu de la fractale}
 \end{center}
 \end{figure}
-\subsubsection{Tableaux de résultats}
 
 \begin{table}[ht]
   \centering
@@ -294,10 +310,9 @@ Le speedup augmente avec le nombre de processus, mais reste loin de l’idéal e
   \caption{Déséquilibrage en fonction du nombre de processus.}
   \label{fig:desequilibre}
 \end{figure}
-\subsection{Analyse des résultats (n $\leq 8$)}
+\subsubsection{Analyse des résultats (n $\leq 8$)}
 \begin{itemize}
-\item Échec avec n=5 : La commande mpirun -n 8 python3 mandelbrot\_question1.py provoque l’erreur "not enough slots" provient de la configuration matérielle : Le CPU possède 4 cœurs physiques (8 threads), mais Open MPI limite les slots par défaut aux cœurs physiques.
-\item Nous avons utiliser l'option \emph{--oversubscribe} pour contourner cette limite.
+\item Échec au préalable pour $n\geq 5$ : La commande mpirun -n 5 python3 mandelbrot\_question1.py provoque l’erreur "not enough slots" provient de la configuration matérielle : Le CPU possède 4 cœurs physiques (8 threads), mais Open MPI limite les slots par défaut aux cœurs physiques. \textbf{Nous avons utiliser l'option \emph{--oversubscribe} pour contourner cette limite.}
 \item Speedup
 \begin{itemize}
   \item Pour n = 5, le speedup chutte à 1.03 en raison d'un déséquilibrage extreme (55.2\%)
@@ -316,8 +331,8 @@ Le speedup augmente avec le nombre de processus, mais reste loin de l’idéal e
 \end{itemize}
 \clearpage
 \subsection{Meilleure répartition statique des lignes}
-\paragraph{Démarche : }Équilibrer la charge en répartissant les lignes de manière cyclique (round-robin) pour atténuer le déséquilibrage causé par les zones complexes de l’image.
-\subparagraph{Répartition : }Chaque processus reçoit des lignes éparpillées (exemple : pour 4 processus, les lignes 0,4,8,\dots vont au processus 0)
+\paragraph{Démarche : }Équilibrer la charge en répartissant les lignes de manière cyclique (round-robin) pour atténuer le déséquilibrage causé par les zones complexes de l’image.\\
+\textbf{Répartition : }Chaque processus reçoit des lignes éparpillées (exemple : pour 4 processus, les lignes 0,4,8,\dots vont au processus 0)
 Code modifié :
 \begin{lstlisting}[language=python]
   # Repartition cyclique des lignes
@@ -449,7 +464,7 @@ Nous voyons que le déséquilibrage de charge a été réduit significativement 
 \begin{table}[ht]
   \centering
   \caption{Temps de calcul et déséquilibre (code optimisé en round robin).}
-  \label{tab:temps_roundrobin}
+  \label{tab:temps_slave}
   \begin{tabular}{@{}ccccc@{}}
     \toprule
   \textbf{Nombre de processus} & \textbf{Temps max (s)} & \textbf{Temps min (s)} & \textbf{Déséquilibre (\%)} & \textbf{Temps parallèle (s)} \\
@@ -466,8 +481,8 @@ Nous voyons que le déséquilibrage de charge a été réduit significativement 
   % Deuxième tableau - Speedup
   \begin{table}[ht]
   \centering
-  \caption{Speedup obtenu (base = exécution séquentielle à 3,261 s).}
-  \label{tab:speedup_roundrobin}
+  \caption{Speedup obtenu pour le maitre esclave (base = exécution séquentielle à 3,261 s).}
+  \label{tab:speedup_slave}
   \begin{tabular}{@{}ccc@{}}
     \toprule
   \textbf{Nombre de processus} & \textbf{Temps parallèle (s)} & \textbf{Speedup} \\
@@ -504,11 +519,11 @@ Nous voyons que le déséquilibrage de charge a été réduit significativement 
       (4, 2.42)
       (8, 2.61)
   };
-  \addlegendentry{Speedup mesuré}
+  \addlegendentry{Speedup Maitre esclave mesuré}
   \end{axis}
   \end{tikzpicture}
   \caption{Speedup mesuré (base = 1 processus, temps séquentiel = 3,261~s).}
-  \label{fig:speedup_rr}
+  \label{fig:speedup_slave}
   \end{figure}
   
   % Graphique du déséquilibrage
@@ -536,16 +551,16 @@ Nous voyons que le déséquilibrage de charge a été réduit significativement 
   \end{axis}
   \end{tikzpicture}
   \caption{Déséquilibrage en fonction du nombre de processus (code optimisé en round robin).}
-  \label{fig:desequilibre_rr}
+  \label{fig:desequilibre_slave}
   \end{figure}
   \paragraph{Observation}
-  Observations :  
 \begin{itemize}
    \item  La stratégie maître-esclave minimise le déséquilibre de charge, quel que soit le nombre de processus.
-   \item  Même avec un nombre de processus inadapté (comme 5), le déséquilibre reste faible (1.5%).
+   \item  Même avec un nombre de processus inadapté (comme 5), le déséquilibre reste faible (1.5\%).
    \item  Le temps total est globalement réduit par rapport aux autres méthodes, car tous les processus sont pleinement utilisés.
 \end{itemize}   
-  \paragraph{Comparaison des approches}
+\clearpage
+  \paragraph{Comparaison des approches fig (\ref{fig:desequilibres}, \ref{fig:speedups})}
   \begin{enumerate}
     \item Déséquilibrage des charges 
     \begin{itemize}
@@ -562,10 +577,98 @@ Nous voyons que le déséquilibrage de charge a été réduit significativement 
       \item Maître-Esclave (Q1.3) :
       \begin{itemize}
         \item Meilleure répartition dynamique, minimisant le déséquilibre quel que soit le nombre de processus.
+        \item Le speedup reste légèrement inférieur à celui obtenu pour les autres approches. Nous justifions cela par le fait qu'un des processus est choisi comme maitre et ne réalise pas de calculs. Ainsi à nombres de processus égaux, cette approche présente un speedup moins important.
       \end{itemize} 
     \end{itemize}
   \end{enumerate}
-Ainsi, La stratégie maître-esclave (Q1.3) est clairement la meilleure option pour ce problème,
+Ainsi, La stratégie maître-esclave (Q1.3) est globalement la meilleure option pour ce problème.
+
+
+\begin{figure}[ht]
+  \centering
+  \begin{tikzpicture}
+    \begin{axis}[
+      width=0.8\textwidth,
+      height=0.5\textwidth,
+      xlabel={Nombre de processus},
+      ylabel={Speedup},
+      xmin=1, xmax=9,
+      ymin=0, ymax=4,
+      xtick={1,2,3,4,5,8},
+      ytick={0,1,2,3,4},
+      grid=both,
+      legend pos=north west,
+    ]
+    \addplot[red, mark=*, thick] coordinates {
+      (1, 1.00) (2, 1.93) (3, 2.53) (4, 2.97) (5, 1.98) (8, 2.64)
+    };
+    \addlegendentry{Speedup (1.1)}
+    % Calcul : speedup = temps séquentiel (3.214 s) / temps parallèle (temps maximum mesuré)
+    \addplot[blue, mark=*, thick] coordinates {
+      (1, 1.00)    % 3.214 / 3.214
+      (2, 1.96)    % 3.214 / 1.645 ≈ 1.96
+      (3, 2.55)    % 3.214 / 1.263 ≈ 2.55
+      (4, 3.10)    % 3.214 / 1.039 ≈ 3.10
+      (5, 2.05)    % 3.214 / 1.569 ≈ 2.05 (avec oversubscribe)
+      (8, 2.87)    % 3.214 / 1.121 ≈ 2.87
+    };
+    \addlegendentry{Speedup (1.2)}
+    \addplot[black, mark=*, thick] coordinates {
+        (1, 1.00)
+        (2, 1.86)
+        (3, 2.48)
+        (4, 2.42)
+        (8, 2.61)
+    };
+    \addlegendentry{Speedup (1.3)}
+    \end{axis}
+  \end{tikzpicture}
+  \caption{Comparaison des différents speedup}
+  \label{fig:speedups}
+\end{figure}
+
+\begin{figure}[ht]
+  \centering
+  \begin{tikzpicture}
+    \begin{axis}[
+      width=0.8\textwidth,
+      height=0.5\textwidth,
+      xlabel={Nombre de processus},
+      ylabel={Déséquilibrage (\%)},
+      xmin=1, xmax=9,
+      ymin=0, ymax=60,
+      xtick={1,2,3,4,5,8},
+      ytick={0,20,40,60},
+      grid=both,
+    ]
+    \addplot[red, mark=square*, thick] coordinates {
+      (1, 0.0) (2, 1.6) (3, 13.5) (4, 6.4) (5, 55.2) (8, 22.6)
+    };
+    \addlegendentry{Déséquilibrage (1.1)}
+    \addplot[blue, mark=square*, thick] coordinates {
+      (1, 0.0)
+      (2, 0.4)
+      (3, 2.6)
+      (4, 5.4)
+      (5, 42.7)
+      (8, 6.8)
+    };
+    \addlegendentry{Déséquilibrage (1.2)}
+    \addplot[black, mark=square*, thick] coordinates {
+      (1, 0.0)
+      (2, 0.1)
+      (3, 0.2)
+      (4, 0.4)
+      (8, 1.4)
+  };
+  \addlegendentry{Déséquilibrage (1.3)}
+
+    \end{axis}
+  \end{tikzpicture}
+  \caption{Comparaison des différents Déséquilibrages en fonction du nombre de processus.}
+  \label{fig:desequilibres}
+\end{figure}
+\clearpage
 \section{Produit matrice-vecteur}
 \subsection{Produit matrice-vecteur colonnes}
 
