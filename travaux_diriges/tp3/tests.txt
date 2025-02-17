@@ -1,0 +1,2968 @@
+cedric@ns2:/media/cedric/DSCD/Projets/ENSTA/Parrallel_architcture/Cours_Ensta_2025/travaux_diriges/tp3$ mpirun -n 2 parallelBucketSort.py
+N = 1000
+Métriques par processus :
+Processus 0:
+  gen_data: 0.000000 secondes
+  scatter: 0.000065 secondes
+  local_sort: 0.000036 secondes
+  sampling: 0.000287 secondes
+  compute_bounds: 0.000000 secondes
+  redistribute: 0.000268 secondes
+  final_sort: 0.000090 secondes
+  gather: 0.000006 secondes
+
+Processus 1:
+  gen_data: 0.000000 secondes
+  scatter: 0.000052 secondes
+  local_sort: 0.000032 secondes
+  sampling: 0.000306 secondes
+  compute_bounds: 0.000000 secondes
+  redistribute: 0.000260 secondes
+  final_sort: 0.000062 secondes
+  gather: 0.000000 secondes
+
+cedric@ns2:/media/cedric/DSCD/Projets/ENSTA/Parrallel_architcture/Cours_Ensta_2025/travaux_diriges/tp3$ mpirun -n 3  parallelBucketSort.py
+N = 1000
+Métriques par processus :
+Processus 0:
+  gen_data: 0.000000 secondes
+  scatter: 0.000069 secondes
+  local_sort: 0.000019 secondes
+  sampling: 0.000234 secondes
+  compute_bounds: 0.000000 secondes
+  redistribute: 0.000245 secondes
+  final_sort: 0.000080 secondes
+  gather: 0.000006 secondes
+
+Processus 1:
+  gen_data: 0.000000 secondes
+  scatter: 0.000029 secondes
+  local_sort: 0.000021 secondes
+  sampling: 0.000251 secondes
+  compute_bounds: 0.000000 secondes
+  redistribute: 0.000242 secondes
+  final_sort: 0.000041 secondes
+  gather: 0.000000 secondes
+
+Processus 2:
+  gen_data: 0.000000 secondes
+  scatter: 0.000038 secondes
+  local_sort: 0.000017 secondes
+  sampling: 0.000245 secondes
+  compute_bounds: 0.000000 secondes
+  redistribute: 0.000241 secondes
+  final_sort: 0.000045 secondes
+  gather: 0.000000 secondes
+
+cedric@ns2:/media/cedric/DSCD/Projets/ENSTA/Parrallel_architcture/Cours_Ensta_2025/travaux_diriges/tp3$ mpirun -n 4 parallelBucketSort.py
+N = 1000
+Métriques par processus :
+Processus 0:
+  gen_data: 0.000000 secondes
+  scatter: 0.038777 secondes
+  local_sort: 0.000051 secondes
+  sampling: 0.000362 secondes
+  compute_bounds: 0.000000 secondes
+  redistribute: 0.000472 secondes
+  final_sort: 0.000147 secondes
+  gather: 0.000012 secondes
+
+Processus 1:
+  gen_data: 0.000000 secondes
+  scatter: 0.000044 secondes
+  local_sort: 0.000019 secondes
+  sampling: 0.013095 secondes
+  compute_bounds: 0.000000 secondes
+  redistribute: 0.000423 secondes
+  final_sort: 0.000060 secondes
+  gather: 0.000000 secondes
+
+Processus 2:
+  gen_data: 0.000000 secondes
+  scatter: 0.019490 secondes
+  local_sort: 0.000035 secondes
+  sampling: 0.013087 secondes
+  compute_bounds: 0.000000 secondes
+  redistribute: 0.000444 secondes
+  final_sort: 0.000062 secondes
+  gather: 0.000000 secondes
+
+Processus 3:
+  gen_data: 0.000000 secondes
+  scatter: 0.000043 secondes
+  local_sort: 0.000021 secondes
+  sampling: 0.000369 secondes
+  compute_bounds: 0.000000 secondes
+  redistribute: 0.000446 secondes
+  final_sort: 0.000060 secondes
+  gather: 0.000000 secondes
+
+cedric@ns2:/media/cedric/DSCD/Projets/ENSTA/Parrallel_architcture/Cours_Ensta_2025/travaux_diriges/tp3$ mpirun -n 4 parallelBucketSort.py
+N = 10000
+Métriques par processus :
+Processus 0:
+  gen_data: 0.000000 secondes
+  scatter: 0.021841 secondes
+  local_sort: 0.000123 secondes
+  sampling: 0.000359 secondes
+  compute_bounds: 0.000000 secondes
+  redistribute: 0.000659 secondes
+  final_sort: 0.000311 secondes
+  gather: 0.000016 secondes
+
+Processus 1:
+  gen_data: 0.000000 secondes
+  scatter: 0.000049 secondes
+  local_sort: 0.000154 secondes
+  sampling: 0.000420 secondes
+  compute_bounds: 0.000000 secondes
+  redistribute: 0.000654 secondes
+  final_sort: 0.000187 secondes
+  gather: 0.000000 secondes
+
+Processus 2:
+  gen_data: 0.000000 secondes
+  scatter: 0.019132 secondes
+  local_sort: 0.000126 secondes
+  sampling: 0.000406 secondes
+  compute_bounds: 0.000000 secondes
+  redistribute: 0.000645 secondes
+  final_sort: 0.000200 secondes
+  gather: 0.000000 secondes
+
+Processus 3:
+  gen_data: 0.000000 secondes
+  scatter: 0.000096 secondes
+  local_sort: 0.000146 secondes
+  sampling: 0.000360 secondes
+  compute_bounds: 0.000000 secondes
+  redistribute: 0.000654 secondes
+  final_sort: 0.000205 secondes
+  gather: 0.000000 secondes
+
+cedric@ns2:/media/cedric/DSCD/Projets/ENSTA/Parrallel_architcture/Cours_Ensta_2025/travaux_diriges/tp3$ mpirun -n 3 parallelBucketSort.py
+N = 10000
+Métriques par processus :
+Processus 0:
+  gen_data: 0.000000 secondes
+  scatter: 0.001425 secondes
+  local_sort: 0.000204 secondes
+  sampling: 0.000301 secondes
+  compute_bounds: 0.000000 secondes
+  redistribute: 0.000410 secondes
+  final_sort: 0.000318 secondes
+  gather: 0.000013 secondes
+
+Processus 1:
+  gen_data: 0.000000 secondes
+  scatter: 0.000092 secondes
+  local_sort: 0.000208 secondes
+  sampling: 0.001611 secondes
+  compute_bounds: 0.000000 secondes
+  redistribute: 0.000389 secondes
+  final_sort: 0.000224 secondes
+  gather: 0.000000 secondes
+
+Processus 2:
+  gen_data: 0.000000 secondes
+  scatter: 0.000032 secondes
+  local_sort: 0.000162 secondes
+  sampling: 0.000354 secondes
+  compute_bounds: 0.000000 secondes
+  redistribute: 0.000407 secondes
+  final_sort: 0.000235 secondes
+  gather: 0.000000 secondes
+
+cedric@ns2:/media/cedric/DSCD/Projets/ENSTA/Parrallel_architcture/Cours_Ensta_2025/travaux_diriges/tp3$ mpirun -n 2 parallelBucketSort.py
+N = 10000
+Métriques par processus :
+Processus 0:
+  gen_data: 0.000000 secondes
+  scatter: 0.000100 secondes
+  local_sort: 0.000281 secondes
+  sampling: 0.000366 secondes
+  compute_bounds: 0.000000 secondes
+  redistribute: 0.000331 secondes
+  final_sort: 0.000346 secondes
+  gather: 0.000009 secondes
+
+Processus 1:
+  gen_data: 0.000000 secondes
+  scatter: 0.000096 secondes
+  local_sort: 0.000283 secondes
+  sampling: 0.000376 secondes
+  compute_bounds: 0.000000 secondes
+  redistribute: 0.000323 secondes
+  final_sort: 0.000281 secondes
+  gather: 0.000000 secondes
+
+cedric@ns2:/media/cedric/DSCD/Projets/ENSTA/Parrallel_architcture/Cours_Ensta_2025/travaux_diriges/tp3$ mpirun -n 2 parallelBucketSort.py
+N = 100000
+Métriques par processus :
+Processus 0:
+  gen_data: 0.000000 secondes
+  scatter: 0.000449 secondes
+  local_sort: 0.003419 secondes
+  sampling: 0.000348 secondes
+  compute_bounds: 0.000000 secondes
+  redistribute: 0.001342 secondes
+  final_sort: 0.004156 secondes
+  gather: 0.000428 secondes
+
+Processus 1:
+  gen_data: 0.000000 secondes
+  scatter: 0.000424 secondes
+  local_sort: 0.003424 secondes
+  sampling: 0.000357 secondes
+  compute_bounds: 0.000000 secondes
+  redistribute: 0.001329 secondes
+  final_sort: 0.003635 secondes
+  gather: 0.000000 secondes
+
+cedric@ns2:/media/cedric/DSCD/Projets/ENSTA/Parrallel_architcture/Cours_Ensta_2025/travaux_diriges/tp3$ mpirun -n 3 parallelBucketSort.py
+N = 100000
+Métriques par processus :
+Processus 0:
+  gen_data: 0.000000 secondes
+  scatter: 0.003755 secondes
+  local_sort: 0.002050 secondes
+  sampling: 0.000323 secondes
+  compute_bounds: 0.000000 secondes
+  redistribute: 0.000953 secondes
+  final_sort: 0.001816 secondes
+  gather: 0.000330 secondes
+
+Processus 1:
+  gen_data: 0.000000 secondes
+  scatter: 0.000144 secondes
+  local_sort: 0.001971 secondes
+  sampling: 0.000609 secondes
+  compute_bounds: 0.000000 secondes
+  redistribute: 0.000946 secondes
+  final_sort: 0.001292 secondes
+  gather: 0.000000 secondes
+
+Processus 2:
+  gen_data: 0.000000 secondes
+  scatter: 0.000299 secondes
+  local_sort: 0.002060 secondes
+  sampling: 0.000331 secondes
+  compute_bounds: 0.000000 secondes
+  redistribute: 0.000956 secondes
+  final_sort: 0.001399 secondes
+  gather: 0.000000 secondes
+
+cedric@ns2:/media/cedric/DSCD/Projets/ENSTA/Parrallel_architcture/Cours_Ensta_2025/travaux_diriges/tp3$ mpirun -n 4 parallelBucketSort.py
+N = 100000
+Métriques par processus :
+Processus 0:
+  gen_data: 0.000000 secondes
+  scatter: 0.048907 secondes
+  local_sort: 0.001458 secondes
+  sampling: 0.000682 secondes
+  compute_bounds: 0.000000 secondes
+  redistribute: 0.000962 secondes
+  final_sort: 0.002096 secondes
+  gather: 0.000370 secondes
+
+Processus 1:
+  gen_data: 0.000000 secondes
+  scatter: 0.000129 secondes
+  local_sort: 0.001463 secondes
+  sampling: 0.031043 secondes
+  compute_bounds: 0.000000 secondes
+  redistribute: 0.000910 secondes
+  final_sort: 0.001459 secondes
+  gather: 0.000000 secondes
+
+Processus 2:
+  gen_data: 0.000000 secondes
+  scatter: 0.000167 secondes
+  local_sort: 0.001735 secondes
+  sampling: 0.001976 secondes
+  compute_bounds: 0.000000 secondes
+  redistribute: 0.000964 secondes
+  final_sort: 0.001511 secondes
+  gather: 0.000000 secondes
+
+Processus 3:
+  gen_data: 0.000000 secondes
+  scatter: 0.000135 secondes
+  local_sort: 0.001834 secondes
+  sampling: 0.000343 secondes
+  compute_bounds: 0.000000 secondes
+  redistribute: 0.000961 secondes
+  final_sort: 0.001617 secondes
+  gather: 0.000000 secondes
+
+cedric@ns2:/media/cedric/DSCD/Projets/ENSTA/Parrallel_architcture/Cours_Ensta_2025/travaux_diriges/tp3$ mpirun -n 2 parallelBucketSort.py
+N = 1000000
+Métriques par processus :
+Processus 0:
+  gen_data: 0.000000 secondes
+  scatter: 0.004342 secondes
+  local_sort: 0.036187 secondes
+  sampling: 0.000796 secondes
+  compute_bounds: 0.000000 secondes
+  redistribute: 0.005430 secondes
+  final_sort: 0.033221 secondes
+  gather: 0.002168 secondes
+
+Processus 1:
+  gen_data: 0.000000 secondes
+  scatter: 0.004327 secondes
+  local_sort: 0.036669 secondes
+  sampling: 0.000329 secondes
+  compute_bounds: 0.000000 secondes
+  redistribute: 0.005421 secondes
+  final_sort: 0.029521 secondes
+  gather: 0.000000 secondes
+
+cedric@ns2:/media/cedric/DSCD/Projets/ENSTA/Parrallel_architcture/Cours_Ensta_2025/travaux_diriges/tp3$ mpirun -n 3 parallelBucketSort.py
+N = 1000000
+Métriques par processus :
+Processus 0:
+  gen_data: 0.000000 secondes
+  scatter: 0.029535 secondes
+  local_sort: 0.024723 secondes
+  sampling: 0.000328 secondes
+  compute_bounds: 0.000000 secondes
+  redistribute: 0.005541 secondes
+  final_sort: 0.018856 secondes
+  gather: 0.002473 secondes
+
+Processus 1:
+  gen_data: 0.000000 secondes
+  scatter: 0.001069 secondes
+  local_sort: 0.024721 secondes
+  sampling: 0.002213 secondes
+  compute_bounds: 0.000000 secondes
+  redistribute: 0.005127 secondes
+  final_sort: 0.013936 secondes
+  gather: 0.000000 secondes
+
+Processus 2:
+  gen_data: 0.000000 secondes
+  scatter: 0.002911 secondes
+  local_sort: 0.024678 secondes
+  sampling: 0.000380 secondes
+  compute_bounds: 0.000000 secondes
+  redistribute: 0.005534 secondes
+  final_sort: 0.014655 secondes
+  gather: 0.000000 secondes
+
+cedric@ns2:/media/cedric/DSCD/Projets/ENSTA/Parrallel_architcture/Cours_Ensta_2025/travaux_diriges/tp3$ mpirun -n 4 parallelBucketSort.py
+N = 1000000
+Métriques par processus :
+Processus 0:
+  gen_data: 0.000000 secondes
+  scatter: 0.011324 secondes
+  local_sort: 0.022649 secondes
+  sampling: 0.000325 secondes
+  compute_bounds: 0.000000 secondes
+  redistribute: 0.005565 secondes
+  final_sort: 0.023683 secondes
+  gather: 0.002497 secondes
+
+Processus 1:
+  gen_data: 0.000000 secondes
+  scatter: 0.001027 secondes
+  local_sort: 0.022870 secondes
+  sampling: 0.002320 secondes
+  compute_bounds: 0.000000 secondes
+  redistribute: 0.005539 secondes
+  final_sort: 0.015854 secondes
+  gather: 0.000000 secondes
+
+Processus 2:
+  gen_data: 0.000000 secondes
+  scatter: 0.010081 secondes
+  local_sort: 0.017594 secondes
+  sampling: 0.006621 secondes
+  compute_bounds: 0.000000 secondes
+  redistribute: 0.005546 secondes
+  final_sort: 0.016923 secondes
+  gather: 0.000000 secondes
+
+Processus 3:
+  gen_data: 0.000000 secondes
+  scatter: 0.003247 secondes
+  local_sort: 0.017734 secondes
+  sampling: 0.005256 secondes
+  compute_bounds: 0.000000 secondes
+  redistribute: 0.005287 secondes
+  final_sort: 0.018259 secondes
+  gather: 0.000000 secondes
+
+cedric@ns2:/media/cedric/DSCD/Projets/ENSTA/Parrallel_architcture/Cours_Ensta_2025/travaux_diriges/tp3$ mpirun -n 2 parallelBucketSort.py
+N = 10000000
+Métriques par processus :
+Processus 0:
+  gen_data: 0.000000 secondes
+  scatter: 0.013833 secondes
+  local_sort: 0.392884 secondes
+  sampling: 0.004231 secondes
+  compute_bounds: 0.000000 secondes
+  redistribute: 0.037234 secondes
+  final_sort: 0.441347 secondes
+  gather: 0.013637 secondes
+
+Processus 1:
+  gen_data: 0.000000 secondes
+  scatter: 0.013804 secondes
+  local_sort: 0.396785 secondes
+  sampling: 0.000338 secondes
+  compute_bounds: 0.000000 secondes
+  redistribute: 0.037227 secondes
+  final_sort: 0.406736 secondes
+  gather: 0.000000 secondes
+
+cedric@ns2:/media/cedric/DSCD/Projets/ENSTA/Parrallel_architcture/Cours_Ensta_2025/travaux_diriges/tp3$ mpirun -n 3 parallelBucketSort.py
+N = 10000000
+Métriques par processus :
+Processus 0:
+  gen_data: 0.000000 secondes
+  scatter: 0.015178 secondes
+  local_sort: 0.264802 secondes
+  sampling: 0.000724 secondes
+  compute_bounds: 0.000000 secondes
+  redistribute: 0.046177 secondes
+  final_sort: 0.196092 secondes
+  gather: 0.013849 secondes
+
+Processus 1:
+  gen_data: 0.000000 secondes
+  scatter: 0.009638 secondes
+  local_sort: 0.270690 secondes
+  sampling: 0.000362 secondes
+  compute_bounds: 0.000000 secondes
+  redistribute: 0.044201 secondes
+  final_sort: 0.151076 secondes
+  gather: 0.000000 secondes
+
+Processus 2:
+  gen_data: 0.000000 secondes
+  scatter: 0.015132 secondes
+  local_sort: 0.264572 secondes
+  sampling: 0.000967 secondes
+  compute_bounds: 0.000000 secondes
+  redistribute: 0.046163 secondes
+  final_sort: 0.160480 secondes
+  gather: 0.000000 secondes
+
+cedric@ns2:/media/cedric/DSCD/Projets/ENSTA/Parrallel_architcture/Cours_Ensta_2025/travaux_diriges/tp3$ mpirun -n 4 parallelBucketSort.py
+N = 10000000
+Métriques par processus :
+Processus 0:
+  gen_data: 0.000000 secondes
+  scatter: 0.016936 secondes
+  local_sort: 0.216178 secondes
+  sampling: 0.030330 secondes
+  compute_bounds: 0.000000 secondes
+  redistribute: 0.060331 secondes
+  final_sort: 0.222167 secondes
+  gather: 0.018006 secondes
+
+Processus 1:
+  gen_data: 0.000000 secondes
+  scatter: 0.008375 secondes
+  local_sort: 0.220832 secondes
+  sampling: 0.034243 secondes
+  compute_bounds: 0.000000 secondes
+  redistribute: 0.060171 secondes
+  final_sort: 0.147354 secondes
+  gather: 0.000000 secondes
+
+Processus 2:
+  gen_data: 0.000000 secondes
+  scatter: 0.012466 secondes
+  local_sort: 0.250515 secondes
+  sampling: 0.000449 secondes
+  compute_bounds: 0.000000 secondes
+  redistribute: 0.060528 secondes
+  final_sort: 0.157508 secondes
+  gather: 0.000000 secondes
+
+Processus 3:
+  gen_data: 0.000000 secondes
+  scatter: 0.016876 secondes
+  local_sort: 0.219928 secondes
+  sampling: 0.026628 secondes
+  compute_bounds: 0.000000 secondes
+  redistribute: 0.060502 secondes
+  final_sort: 0.166430 secondes
+  gather: 0.000000 secondes
+
+cedric@ns2:/media/cedric/DSCD/Projets/ENSTA/Parrallel_architcture/Cours_Ensta_2025/travaux_diriges/tp3$ mpirun -n 2 parallelBucketSort.py
+N = 100000000
+Métriques par processus :
+Processus 0:
+  gen_data: 0.000000 secondes
+  scatter: 0.126745 secondes
+  local_sort: 4.679235 secondes
+  sampling: 0.000369 secondes
+  compute_bounds: 0.000000 secondes
+  redistribute: 0.429994 secondes
+  final_sort: 5.137499 secondes
+  gather: 0.134005 secondes
+
+Processus 1:
+  gen_data: 0.000000 secondes
+  scatter: 0.126717 secondes
+  local_sort: 4.628920 secondes
+  sampling: 0.050718 secondes
+  compute_bounds: 0.000000 secondes
+  redistribute: 0.429960 secondes
+  final_sort: 4.824415 secondes
+  gather: 0.000000 secondes
+
+cedric@ns2:/media/cedric/DSCD/Projets/ENSTA/Parrallel_architcture/Cours_Ensta_2025/travaux_diriges/tp3$ mpirun -n 3 parallelBucketSort.py
+N = 100000000
+Métriques par processus :
+Processus 0:
+  gen_data: 0.000000 secondes
+  scatter: 0.135272 secondes
+  local_sort: 3.058560 secondes
+  sampling: 0.000298 secondes
+  compute_bounds: 0.000000 secondes
+  redistribute: 0.417298 secondes
+  final_sort: 2.008178 secondes
+  gather: 0.132728 secondes
+
+Processus 1:
+  gen_data: 0.000000 secondes
+  scatter: 0.087503 secondes
+  local_sort: 3.047747 secondes
+  sampling: 0.058869 secondes
+  compute_bounds: 0.000000 secondes
+  redistribute: 0.397167 secondes
+  final_sort: 1.598457 secondes
+  gather: 0.000000 secondes
+
+Processus 2:
+  gen_data: 0.000000 secondes
+  scatter: 0.135206 secondes
+  local_sort: 3.052450 secondes
+  sampling: 0.006431 secondes
+  compute_bounds: 0.000000 secondes
+  redistribute: 0.417275 secondes
+  final_sort: 1.684801 secondes
+  gather: 0.000000 secondes
+
+cedric@ns2:/media/cedric/DSCD/Projets/ENSTA/Parrallel_architcture/Cours_Ensta_2025/travaux_diriges/tp3$ mpirun -n 4 parallelBucketSort.py
+N = 100000000
+Métriques par processus :
+Processus 0:
+  gen_data: 0.000000 secondes
+  scatter: 0.144523 secondes
+  local_sort: 2.461286 secondes
+  sampling: 0.000372 secondes
+  compute_bounds: 0.000000 secondes
+  redistribute: 0.496209 secondes
+  final_sort: 2.411860 secondes
+  gather: 0.212327 secondes
+
+Processus 1:
+  gen_data: 0.000000 secondes
+  scatter: 0.065260 secondes
+  local_sort: 2.432894 secondes
+  sampling: 0.108061 secondes
+  compute_bounds: 0.000000 secondes
+  redistribute: 0.497298 secondes
+  final_sort: 1.710022 secondes
+  gather: 0.000000 secondes
+
+Processus 2:
+  gen_data: 0.000000 secondes
+  scatter: 0.103891 secondes
+  local_sort: 2.461761 secondes
+  sampling: 0.040542 secondes
+  compute_bounds: 0.000000 secondes
+  redistribute: 0.497165 secondes
+  final_sort: 1.815747 secondes
+  gather: 0.000000 secondes
+
+Processus 3:
+  gen_data: 0.000000 secondes
+  scatter: 0.144473 secondes
+  local_sort: 2.461246 secondes
+  sampling: 0.000439 secondes
+  compute_bounds: 0.000000 secondes
+  redistribute: 0.497320 secondes
+  final_sort: 1.928209 secondes
+  gather: 0.000000 secondes
+
+cedric@ns2:/media/cedric/DSCD/Projets/ENSTA/Parrallel_architcture/Cours_Ensta_2025/travaux_diriges/tp3$ mpirun --oversubscribe -n 8 parallelBucketSort.py
+N = 100000000
+Métriques par processus :
+Processus 0:
+  gen_data: 0.000000 secondes
+  scatter: 0.206608 secondes
+  local_sort: 1.684590 secondes
+  sampling: 0.000706 secondes
+  compute_bounds: 0.000000 secondes
+  redistribute: 0.913705 secondes
+  final_sort: 1.893574 secondes
+  gather: 0.168113 secondes
+
+Processus 1:
+  gen_data: 0.000000 secondes
+  scatter: 0.039811 secondes
+  local_sort: 1.695302 secondes
+  sampling: 0.156796 secondes
+  compute_bounds: 0.000000 secondes
+  redistribute: 0.918340 secondes
+  final_sort: 1.238991 secondes
+  gather: 0.000000 secondes
+
+Processus 2:
+  gen_data: 0.000000 secondes
+  scatter: 0.061738 secondes
+  local_sort: 1.645499 secondes
+  sampling: 0.184665 secondes
+  compute_bounds: 0.000000 secondes
+  redistribute: 0.911604 secondes
+  final_sort: 1.308084 secondes
+  gather: 0.000000 secondes
+
+Processus 3:
+  gen_data: 0.000000 secondes
+  scatter: 0.085308 secondes
+  local_sort: 1.675925 secondes
+  sampling: 0.130611 secondes
+  compute_bounds: 0.000000 secondes
+  redistribute: 0.918310 secondes
+  final_sort: 1.359522 secondes
+  gather: 0.000000 secondes
+
+Processus 4:
+  gen_data: 0.000000 secondes
+  scatter: 0.111084 secondes
+  local_sort: 1.658752 secondes
+  sampling: 0.122218 secondes
+  compute_bounds: 0.000000 secondes
+  redistribute: 0.903458 secondes
+  final_sort: 1.430578 secondes
+  gather: 0.000000 secondes
+
+Processus 5:
+  gen_data: 0.000000 secondes
+  scatter: 0.138292 secondes
+  local_sort: 1.689158 secondes
+  sampling: 0.066250 secondes
+  compute_bounds: 0.000000 secondes
+  redistribute: 0.910116 secondes
+  final_sort: 1.465573 secondes
+  gather: 0.000000 secondes
+
+Processus 6:
+  gen_data: 0.000000 secondes
+  scatter: 0.172820 secondes
+  local_sort: 1.649266 secondes
+  sampling: 0.069929 secondes
+  compute_bounds: 0.000000 secondes
+  redistribute: 0.917482 secondes
+  final_sort: 1.506168 secondes
+  gather: 0.000000 secondes
+
+Processus 7:
+  gen_data: 0.000000 secondes
+  scatter: 0.206466 secondes
+  local_sort: 1.640978 secondes
+  sampling: 0.044536 secondes
+  compute_bounds: 0.000000 secondes
+  redistribute: 0.910595 secondes
+  final_sort: 1.550602 secondes
+  gather: 0.000000 secondes
+
+cedric@ns2:/media/cedric/DSCD/Projets/ENSTA/Parrallel_architcture/Cours_Ensta_2025/travaux_diriges/tp3$ mpirun --oversubscribe -n 16 parallelBucketSort.py
+N = 100000000
+Métriques par processus :
+Processus 0:
+  gen_data: 0.000000 secondes
+  scatter: 0.539472 secondes
+  local_sort: 1.496747 secondes
+  sampling: 0.250833 secondes
+  compute_bounds: 0.000000 secondes
+  redistribute: 1.237358 secondes
+  final_sort: 2.535907 secondes
+  gather: 0.131572 secondes
+
+Processus 1:
+  gen_data: 0.000000 secondes
+  scatter: 0.030130 secondes
+  local_sort: 1.541548 secondes
+  sampling: 0.715314 secondes
+  compute_bounds: 0.000000 secondes
+  redistribute: 1.151665 secondes
+  final_sort: 1.509926 secondes
+  gather: 0.000000 secondes
+
+Processus 2:
+  gen_data: 0.000000 secondes
+  scatter: 0.052792 secondes
+  local_sort: 1.644621 secondes
+  sampling: 0.589550 secondes
+  compute_bounds: 0.000000 secondes
+  redistribute: 1.238347 secondes
+  final_sort: 1.477455 secondes
+  gather: 0.000000 secondes
+
+Processus 3:
+  gen_data: 0.000000 secondes
+  scatter: 0.067311 secondes
+  local_sort: 1.695754 secondes
+  sampling: 0.530314 secondes
+  compute_bounds: 0.000000 secondes
+  redistribute: 1.160348 secondes
+  final_sort: 1.641001 secondes
+  gather: 0.000000 secondes
+
+Processus 4:
+  gen_data: 0.000000 secondes
+  scatter: 0.091547 secondes
+  local_sort: 1.563669 secondes
+  sampling: 0.631908 secondes
+  compute_bounds: 0.000000 secondes
+  redistribute: 1.149171 secondes
+  final_sort: 1.731261 secondes
+  gather: 0.000000 secondes
+
+Processus 5:
+  gen_data: 0.000000 secondes
+  scatter: 0.106861 secondes
+  local_sort: 1.128446 secondes
+  sampling: 1.055036 secondes
+  compute_bounds: 0.000000 secondes
+  redistribute: 1.168109 secondes
+  final_sort: 1.797148 secondes
+  gather: 0.000000 secondes
+
+Processus 6:
+  gen_data: 0.000000 secondes
+  scatter: 0.118760 secondes
+  local_sort: 1.826175 secondes
+  sampling: 0.365140 secondes
+  compute_bounds: 0.000000 secondes
+  redistribute: 1.128154 secondes
+  final_sort: 1.891929 secondes
+  gather: 0.000000 secondes
+
+Processus 7:
+  gen_data: 0.000000 secondes
+  scatter: 0.160544 secondes
+  local_sort: 1.716750 secondes
+  sampling: 0.412246 secondes
+  compute_bounds: 0.000000 secondes
+  redistribute: 1.146698 secondes
+  final_sort: 1.956181 secondes
+  gather: 0.000000 secondes
+
+Processus 8:
+  gen_data: 0.000000 secondes
+  scatter: 0.251537 secondes
+  local_sort: 1.687502 secondes
+  sampling: 0.348065 secondes
+  compute_bounds: 0.000000 secondes
+  redistribute: 1.160287 secondes
+  final_sort: 2.012459 secondes
+  gather: 0.000000 secondes
+
+Processus 9:
+  gen_data: 0.000000 secondes
+  scatter: 0.285782 secondes
+  local_sort: 0.966185 secondes
+  sampling: 1.034808 secondes
+  compute_bounds: 0.000000 secondes
+  redistribute: 1.166568 secondes
+  final_sort: 2.068295 secondes
+  gather: 0.000000 secondes
+
+Processus 10:
+  gen_data: 0.000000 secondes
+  scatter: 0.312130 secondes
+  local_sort: 1.729826 secondes
+  sampling: 0.254598 secondes
+  compute_bounds: 0.000000 secondes
+  redistribute: 1.239926 secondes
+  final_sort: 2.030499 secondes
+  gather: 0.000000 secondes
+
+Processus 11:
+  gen_data: 0.000000 secondes
+  scatter: 0.409184 secondes
+  local_sort: 1.628341 secondes
+  sampling: 0.255866 secondes
+  compute_bounds: 0.000000 secondes
+  redistribute: 1.152847 secondes
+  final_sort: 2.150940 secondes
+  gather: 0.000000 secondes
+
+Processus 12:
+  gen_data: 0.000000 secondes
+  scatter: 0.451627 secondes
+  local_sort: 1.664687 secondes
+  sampling: 0.170620 secondes
+  compute_bounds: 0.000000 secondes
+  redistribute: 1.151784 secondes
+  final_sort: 2.187844 secondes
+  gather: 0.000000 secondes
+
+Processus 13:
+  gen_data: 0.000000 secondes
+  scatter: 0.471711 secondes
+  local_sort: 1.198969 secondes
+  sampling: 0.616258 secondes
+  compute_bounds: 0.000000 secondes
+  redistribute: 1.155108 secondes
+  final_sort: 2.208699 secondes
+  gather: 0.000000 secondes
+
+Processus 14:
+  gen_data: 0.000000 secondes
+  scatter: 0.508381 secondes
+  local_sort: 1.741383 secondes
+  sampling: 0.044079 secondes
+  compute_bounds: 0.000000 secondes
+  redistribute: 1.143949 secondes
+  final_sort: 2.235419 secondes
+  gather: 0.000000 secondes
+
+Processus 15:
+  gen_data: 0.000000 secondes
+  scatter: 0.537875 secondes
+  local_sort: 1.744207 secondes
+  sampling: 0.005161 secondes
+  compute_bounds: 0.000000 secondes
+  redistribute: 1.273979 secondes
+  final_sort: 2.135248 secondes
+  gather: 0.000000 secondes
+
+cedric@ns2:/media/cedric/DSCD/Projets/ENSTA/Parrallel_architcture/Cours_Ensta_2025/travaux_diriges/tp3$ mpirun --oversubscribe -n 8 parallelBucketSort.py
+N = 10000000
+Métriques par processus :
+Processus 0:
+  gen_data: 0.000000 secondes
+  scatter: 0.029748 secondes
+  local_sort: 0.145621 secondes
+  sampling: 0.013322 secondes
+  compute_bounds: 0.000000 secondes
+  redistribute: 0.070173 secondes
+  final_sort: 0.199755 secondes
+  gather: 0.016856 secondes
+
+Processus 1:
+  gen_data: 0.000000 secondes
+  scatter: 0.007128 secondes
+  local_sort: 0.142246 secondes
+  sampling: 0.039371 secondes
+  compute_bounds: 0.000000 secondes
+  redistribute: 0.069419 secondes
+  final_sort: 0.105450 secondes
+  gather: 0.000000 secondes
+
+Processus 2:
+  gen_data: 0.000000 secondes
+  scatter: 0.010423 secondes
+  local_sort: 0.152493 secondes
+  sampling: 0.025822 secondes
+  compute_bounds: 0.000000 secondes
+  redistribute: 0.067777 secondes
+  final_sort: 0.113441 secondes
+  gather: 0.000000 secondes
+
+Processus 3:
+  gen_data: 0.000000 secondes
+  scatter: 0.013824 secondes
+  local_sort: 0.152840 secondes
+  sampling: 0.022049 secondes
+  compute_bounds: 0.000000 secondes
+  redistribute: 0.069781 secondes
+  final_sort: 0.117574 secondes
+  gather: 0.000000 secondes
+
+Processus 4:
+  gen_data: 0.000000 secondes
+  scatter: 0.017710 secondes
+  local_sort: 0.149802 secondes
+  sampling: 0.021183 secondes
+  compute_bounds: 0.000000 secondes
+  redistribute: 0.069174 secondes
+  final_sort: 0.124644 secondes
+  gather: 0.000000 secondes
+
+Processus 5:
+  gen_data: 0.000000 secondes
+  scatter: 0.021287 secondes
+  local_sort: 0.156535 secondes
+  sampling: 0.010858 secondes
+  compute_bounds: 0.000000 secondes
+  redistribute: 0.070065 secondes
+  final_sort: 0.130151 secondes
+  gather: 0.000000 secondes
+
+Processus 6:
+  gen_data: 0.000000 secondes
+  scatter: 0.025731 secondes
+  local_sort: 0.144215 secondes
+  sampling: 0.018738 secondes
+  compute_bounds: 0.000000 secondes
+  redistribute: 0.069692 secondes
+  final_sort: 0.137418 secondes
+  gather: 0.000000 secondes
+
+Processus 7:
+  gen_data: 0.000000 secondes
+  scatter: 0.029646 secondes
+  local_sort: 0.158382 secondes
+  sampling: 0.000606 secondes
+  compute_bounds: 0.000000 secondes
+  redistribute: 0.069658 secondes
+  final_sort: 0.142870 secondes
+  gather: 0.000000 secondes
+
+cedric@ns2:/media/cedric/DSCD/Projets/ENSTA/Parrallel_architcture/Cours_Ensta_2025/travaux_diriges/tp3$ mpirun --oversubscribe -n 16 parallelBucketSort.py
+N = 1000000
+Métriques par processus :
+Processus 0:
+  gen_data: 0.000000 secondes
+  scatter: 0.027857 secondes
+  local_sort: 0.005370 secondes
+  sampling: 0.006077 secondes
+  compute_bounds: 0.000000 secondes
+  redistribute: 0.021513 secondes
+  final_sort: 0.020981 secondes
+  gather: 0.004000 secondes
+
+Processus 1:
+  gen_data: 0.000000 secondes
+  scatter: 0.004922 secondes
+  local_sort: 0.009104 secondes
+  sampling: 0.025348 secondes
+  compute_bounds: 0.000000 secondes
+  redistribute: 0.018151 secondes
+  final_sort: 0.012009 secondes
+  gather: 0.000000 secondes
+
+Processus 2:
+  gen_data: 0.000000 secondes
+  scatter: 0.005153 secondes
+  local_sort: 0.005522 secondes
+  sampling: 0.028600 secondes
+  compute_bounds: 0.000000 secondes
+  redistribute: 0.017161 secondes
+  final_sort: 0.013310 secondes
+  gather: 0.000000 secondes
+
+Processus 3:
+  gen_data: 0.000000 secondes
+  scatter: 0.005491 secondes
+  local_sort: 0.007723 secondes
+  sampling: 0.029703 secondes
+  compute_bounds: 0.000000 secondes
+  redistribute: 0.017795 secondes
+  final_sort: 0.009334 secondes
+  gather: 0.000000 secondes
+
+Processus 4:
+  gen_data: 0.000000 secondes
+  scatter: 0.005694 secondes
+  local_sort: 0.008748 secondes
+  sampling: 0.024703 secondes
+  compute_bounds: 0.000000 secondes
+  redistribute: 0.017536 secondes
+  final_sort: 0.013573 secondes
+  gather: 0.000000 secondes
+
+Processus 5:
+  gen_data: 0.000000 secondes
+  scatter: 0.006264 secondes
+  local_sort: 0.006308 secondes
+  sampling: 0.026820 secondes
+  compute_bounds: 0.000000 secondes
+  redistribute: 0.017221 secondes
+  final_sort: 0.014253 secondes
+  gather: 0.000000 secondes
+
+Processus 6:
+  gen_data: 0.000000 secondes
+  scatter: 0.014192 secondes
+  local_sort: 0.005361 secondes
+  sampling: 0.026395 secondes
+  compute_bounds: 0.000000 secondes
+  redistribute: 0.014742 secondes
+  final_sort: 0.010359 secondes
+  gather: 0.000000 secondes
+
+Processus 7:
+  gen_data: 0.000000 secondes
+  scatter: 0.014583 secondes
+  local_sort: 0.006235 secondes
+  sampling: 0.022122 secondes
+  compute_bounds: 0.000000 secondes
+  redistribute: 0.017561 secondes
+  final_sort: 0.017500 secondes
+  gather: 0.000000 secondes
+
+Processus 8:
+  gen_data: 0.000000 secondes
+  scatter: 0.015265 secondes
+  local_sort: 0.006090 secondes
+  sampling: 0.018012 secondes
+  compute_bounds: 0.000000 secondes
+  redistribute: 0.017220 secondes
+  final_sort: 0.022445 secondes
+  gather: 0.000000 secondes
+
+Processus 9:
+  gen_data: 0.000000 secondes
+  scatter: 0.015586 secondes
+  local_sort: 0.007971 secondes
+  sampling: 0.015815 secondes
+  compute_bounds: 0.000000 secondes
+  redistribute: 0.017187 secondes
+  final_sort: 0.015848 secondes
+  gather: 0.000000 secondes
+
+Processus 10:
+  gen_data: 0.000000 secondes
+  scatter: 0.020276 secondes
+  local_sort: 0.009078 secondes
+  sampling: 0.013731 secondes
+  compute_bounds: 0.000000 secondes
+  redistribute: 0.013990 secondes
+  final_sort: 0.018052 secondes
+  gather: 0.000000 secondes
+
+Processus 11:
+  gen_data: 0.000000 secondes
+  scatter: 0.020543 secondes
+  local_sort: 0.005663 secondes
+  sampling: 0.013183 secondes
+  compute_bounds: 0.000000 secondes
+  redistribute: 0.017114 secondes
+  final_sort: 0.016646 secondes
+  gather: 0.000000 secondes
+
+Processus 12:
+  gen_data: 0.000000 secondes
+  scatter: 0.020784 secondes
+  local_sort: 0.006033 secondes
+  sampling: 0.017824 secondes
+  compute_bounds: 0.000000 secondes
+  redistribute: 0.019838 secondes
+  final_sort: 0.071188 secondes
+  gather: 0.000000 secondes
+
+Processus 13:
+  gen_data: 0.000000 secondes
+  scatter: 0.024040 secondes
+  local_sort: 0.005619 secondes
+  sampling: 0.018047 secondes
+  compute_bounds: 0.000000 secondes
+  redistribute: 0.009078 secondes
+  final_sort: 0.037128 secondes
+  gather: 0.000000 secondes
+
+Processus 14:
+  gen_data: 0.000000 secondes
+  scatter: 0.027353 secondes
+  local_sort: 0.010082 secondes
+  sampling: 0.007152 secondes
+  compute_bounds: 0.000000 secondes
+  redistribute: 0.019996 secondes
+  final_sort: 0.009704 secondes
+  gather: 0.000000 secondes
+
+Processus 15:
+  gen_data: 0.000000 secondes
+  scatter: 0.027714 secondes
+  local_sort: 0.010819 secondes
+  sampling: 0.006093 secondes
+  compute_bounds: 0.000000 secondes
+  redistribute: 0.011842 secondes
+  final_sort: 0.026806 secondes
+  gather: 0.000000 secondes
+
+cedric@ns2:/media/cedric/DSCD/Projets/ENSTA/Parrallel_architcture/Cours_Ensta_2025/travaux_diriges/tp3$ mpirun --oversubscribe -n 8 parallelBucketSort.py
+N = 1000000
+Métriques par processus :
+Processus 0:
+  gen_data: 0.000000 secondes
+  scatter: 0.006989 secondes
+  local_sort: 0.020976 secondes
+  sampling: 0.000470 secondes
+  compute_bounds: 0.000000 secondes
+  redistribute: 0.012485 secondes
+  final_sort: 0.025440 secondes
+  gather: 0.006002 secondes
+
+Processus 1:
+  gen_data: 0.000000 secondes
+  scatter: 0.001577 secondes
+  local_sort: 0.026067 secondes
+  sampling: 0.000746 secondes
+  compute_bounds: 0.000000 secondes
+  redistribute: 0.012409 secondes
+  final_sort: 0.012843 secondes
+  gather: 0.000000 secondes
+
+Processus 2:
+  gen_data: 0.000000 secondes
+  scatter: 0.002195 secondes
+  local_sort: 0.011255 secondes
+  sampling: 0.015011 secondes
+  compute_bounds: 0.000000 secondes
+  redistribute: 0.012202 secondes
+  final_sort: 0.012702 secondes
+  gather: 0.000000 secondes
+
+Processus 3:
+  gen_data: 0.000000 secondes
+  scatter: 0.002813 secondes
+  local_sort: 0.011946 secondes
+  sampling: 0.013669 secondes
+  compute_bounds: 0.000000 secondes
+  redistribute: 0.012546 secondes
+  final_sort: 0.013626 secondes
+  gather: 0.000000 secondes
+
+Processus 4:
+  gen_data: 0.000000 secondes
+  scatter: 0.004404 secondes
+  local_sort: 0.019823 secondes
+  sampling: 0.003554 secondes
+  compute_bounds: 0.000000 secondes
+  redistribute: 0.012676 secondes
+  final_sort: 0.014257 secondes
+  gather: 0.000000 secondes
+
+Processus 5:
+  gen_data: 0.000000 secondes
+  scatter: 0.005619 secondes
+  local_sort: 0.011557 secondes
+  sampling: 0.011246 secondes
+  compute_bounds: 0.000000 secondes
+  redistribute: 0.012470 secondes
+  final_sort: 0.015232 secondes
+  gather: 0.000000 secondes
+
+Processus 6:
+  gen_data: 0.000000 secondes
+  scatter: 0.006269 secondes
+  local_sort: 0.011868 secondes
+  sampling: 0.010294 secondes
+  compute_bounds: 0.000000 secondes
+  redistribute: 0.012634 secondes
+  final_sort: 0.015823 secondes
+  gather: 0.000000 secondes
+
+Processus 7:
+  gen_data: 0.000000 secondes
+  scatter: 0.006878 secondes
+  local_sort: 0.011773 secondes
+  sampling: 0.009753 secondes
+  compute_bounds: 0.000000 secondes
+  redistribute: 0.012287 secondes
+  final_sort: 0.017529 secondes
+  gather: 0.000000 secondes
+
+cedric@ns2:/media/cedric/DSCD/Projets/ENSTA/Parrallel_architcture/Cours_Ensta_2025/travaux_diriges/tp3$ mpirun --oversubscribe -n 16 parallelBucketSort.py
+N = 100000
+Métriques par processus :
+Processus 0:
+  gen_data: 0.000000 secondes
+  scatter: 0.011050 secondes
+  local_sort: 0.000417 secondes
+  sampling: 0.001459 secondes
+  compute_bounds: 0.000000 secondes
+  redistribute: 0.008378 secondes
+  final_sort: 0.003094 secondes
+  gather: 0.000589 secondes
+
+Processus 1:
+  gen_data: 0.000000 secondes
+  scatter: 0.000090 secondes
+  local_sort: 0.000435 secondes
+  sampling: 0.013307 secondes
+  compute_bounds: 0.000000 secondes
+  redistribute: 0.006100 secondes
+  final_sort: 0.003083 secondes
+  gather: 0.000000 secondes
+
+Processus 2:
+  gen_data: 0.000000 secondes
+  scatter: 0.004190 secondes
+  local_sort: 0.000430 secondes
+  sampling: 0.008319 secondes
+  compute_bounds: 0.000000 secondes
+  redistribute: 0.007549 secondes
+  final_sort: 0.004765 secondes
+  gather: 0.000000 secondes
+
+Processus 3:
+  gen_data: 0.000000 secondes
+  scatter: 0.004168 secondes
+  local_sort: 0.000427 secondes
+  sampling: 0.008250 secondes
+  compute_bounds: 0.000000 secondes
+  redistribute: 0.007076 secondes
+  final_sort: 0.002964 secondes
+  gather: 0.000000 secondes
+
+Processus 4:
+  gen_data: 0.000000 secondes
+  scatter: 0.004351 secondes
+  local_sort: 0.000452 secondes
+  sampling: 0.008157 secondes
+  compute_bounds: 0.000000 secondes
+  redistribute: 0.007071 secondes
+  final_sort: 0.003004 secondes
+  gather: 0.000000 secondes
+
+Processus 5:
+  gen_data: 0.000000 secondes
+  scatter: 0.004390 secondes
+  local_sort: 0.000452 secondes
+  sampling: 0.009573 secondes
+  compute_bounds: 0.000000 secondes
+  redistribute: 0.005605 secondes
+  final_sort: 0.003020 secondes
+  gather: 0.000000 secondes
+
+Processus 6:
+  gen_data: 0.000000 secondes
+  scatter: 0.000086 secondes
+  local_sort: 0.000453 secondes
+  sampling: 0.003792 secondes
+  compute_bounds: 0.000000 secondes
+  redistribute: 0.006938 secondes
+  final_sort: 0.003049 secondes
+  gather: 0.000000 secondes
+
+Processus 7:
+  gen_data: 0.000000 secondes
+  scatter: 0.008911 secondes
+  local_sort: 0.000447 secondes
+  sampling: 0.004599 secondes
+  compute_bounds: 0.000000 secondes
+  redistribute: 0.006520 secondes
+  final_sort: 0.009193 secondes
+  gather: 0.000000 secondes
+
+Processus 8:
+  gen_data: 0.000000 secondes
+  scatter: 0.008978 secondes
+  local_sort: 0.000448 secondes
+  sampling: 0.003525 secondes
+  compute_bounds: 0.000000 secondes
+  redistribute: 0.008307 secondes
+  final_sort: 0.001900 secondes
+  gather: 0.000000 secondes
+
+Processus 9:
+  gen_data: 0.000000 secondes
+  scatter: 0.009020 secondes
+  local_sort: 0.000836 secondes
+  sampling: 0.003093 secondes
+  compute_bounds: 0.000000 secondes
+  redistribute: 0.007407 secondes
+  final_sort: 0.002820 secondes
+  gather: 0.000000 secondes
+
+Processus 10:
+  gen_data: 0.000000 secondes
+  scatter: 0.008935 secondes
+  local_sort: 0.000432 secondes
+  sampling: 0.003855 secondes
+  compute_bounds: 0.000000 secondes
+  redistribute: 0.008112 secondes
+  final_sort: 0.003873 secondes
+  gather: 0.000000 secondes
+
+Processus 11:
+  gen_data: 0.000000 secondes
+  scatter: 0.010009 secondes
+  local_sort: 0.000425 secondes
+  sampling: 0.002657 secondes
+  compute_bounds: 0.000000 secondes
+  redistribute: 0.006835 secondes
+  final_sort: 0.003332 secondes
+  gather: 0.000000 secondes
+
+Processus 12:
+  gen_data: 0.000000 secondes
+  scatter: 0.010048 secondes
+  local_sort: 0.000399 secondes
+  sampling: 0.003390 secondes
+  compute_bounds: 0.000000 secondes
+  redistribute: 0.007723 secondes
+  final_sort: 0.001598 secondes
+  gather: 0.000000 secondes
+
+Processus 13:
+  gen_data: 0.000000 secondes
+  scatter: 0.009095 secondes
+  local_sort: 0.000516 secondes
+  sampling: 0.003551 secondes
+  compute_bounds: 0.000000 secondes
+  redistribute: 0.005732 secondes
+  final_sort: 0.009535 secondes
+  gather: 0.000000 secondes
+
+Processus 14:
+  gen_data: 0.000000 secondes
+  scatter: 0.010342 secondes
+  local_sort: 0.000433 secondes
+  sampling: 0.003148 secondes
+  compute_bounds: 0.000000 secondes
+  redistribute: 0.007185 secondes
+  final_sort: 0.002116 secondes
+  gather: 0.000000 secondes
+
+Processus 15:
+  gen_data: 0.000000 secondes
+  scatter: 0.010630 secondes
+  local_sort: 0.000401 secondes
+  sampling: 0.003698 secondes
+  compute_bounds: 0.000000 secondes
+  redistribute: 0.005139 secondes
+  final_sort: 0.003313 secondes
+  gather: 0.000000 secondes
+
+cedric@ns2:/media/cedric/DSCD/Projets/ENSTA/Parrallel_architcture/Cours_Ensta_2025/travaux_diriges/tp3$ mpirun --oversubscribe -n 8 parallelBucketSort.py
+N = 100000
+Métriques par processus :
+Processus 0:
+  gen_data: 0.000000 secondes
+  scatter: 0.078959 secondes
+  local_sort: 0.000934 secondes
+  sampling: 0.000493 secondes
+  compute_bounds: 0.000000 secondes
+  redistribute: 0.001280 secondes
+  final_sort: 0.002698 secondes
+  gather: 0.000667 secondes
+
+Processus 1:
+  gen_data: 0.000000 secondes
+  scatter: 0.000089 secondes
+  local_sort: 0.000931 secondes
+  sampling: 0.001051 secondes
+  compute_bounds: 0.000000 secondes
+  redistribute: 0.001395 secondes
+  final_sort: 0.001131 secondes
+  gather: 0.000000 secondes
+
+Processus 2:
+  gen_data: 0.000000 secondes
+  scatter: 0.026171 secondes
+  local_sort: 0.000939 secondes
+  sampling: 0.000948 secondes
+  compute_bounds: 0.000000 secondes
+  redistribute: 0.001344 secondes
+  final_sort: 0.001238 secondes
+  gather: 0.000000 secondes
+
+Processus 3:
+  gen_data: 0.000000 secondes
+  scatter: 0.000218 secondes
+  local_sort: 0.000943 secondes
+  sampling: 0.000874 secondes
+  compute_bounds: 0.000000 secondes
+  redistribute: 0.001307 secondes
+  final_sort: 0.001334 secondes
+  gather: 0.000000 secondes
+
+Processus 4:
+  gen_data: 0.000000 secondes
+  scatter: 0.004956 secondes
+  local_sort: 0.000959 secondes
+  sampling: 0.000768 secondes
+  compute_bounds: 0.000000 secondes
+  redistribute: 0.001379 secondes
+  final_sort: 0.001333 secondes
+  gather: 0.000000 secondes
+
+Processus 5:
+  gen_data: 0.000000 secondes
+  scatter: 0.000385 secondes
+  local_sort: 0.000969 secondes
+  sampling: 0.000682 secondes
+  compute_bounds: 0.000000 secondes
+  redistribute: 0.001370 secondes
+  final_sort: 0.001407 secondes
+  gather: 0.000000 secondes
+
+Processus 6:
+  gen_data: 0.000000 secondes
+  scatter: 0.005124 secondes
+  local_sort: 0.000953 secondes
+  sampling: 0.000601 secondes
+  compute_bounds: 0.000000 secondes
+  redistribute: 0.001695 secondes
+  final_sort: 0.001150 secondes
+  gather: 0.000000 secondes
+
+Processus 7:
+  gen_data: 0.000000 secondes
+  scatter: 0.000537 secondes
+  local_sort: 0.000922 secondes
+  sampling: 0.000554 secondes
+  compute_bounds: 0.000000 secondes
+  redistribute: 0.001338 secondes
+  final_sort: 0.001579 secondes
+  gather: 0.000000 secondes
+
+
+cedric@ns2:/media/cedric/DSCD/Projets/ENSTA/Parrallel_architcture/Cours_Ensta_2025/travaux_diriges/tp3$ mpirun --oversubscribe -n 16 parallelBucketSort.py
+N = 10000
+Métriques par processus :
+Processus 0:
+  gen_data: 0.000000 secondes
+  scatter: 0.227965 secondes
+  local_sort: 0.000046 secondes
+  sampling: 0.000885 secondes
+  compute_bounds: 0.000000 secondes
+  redistribute: 0.004565 secondes
+  final_sort: 0.000783 secondes
+  gather: 0.000034 secondes
+
+Processus 1:
+  gen_data: 0.000000 secondes
+  scatter: 0.000043 secondes
+  local_sort: 0.000042 secondes
+  sampling: 0.079048 secondes
+  compute_bounds: 0.000000 secondes
+  redistribute: 0.003855 secondes
+  final_sort: 0.000401 secondes
+  gather: 0.000000 secondes
+
+Processus 2:
+  gen_data: 0.000000 secondes
+  scatter: 0.000042 secondes
+  local_sort: 0.000039 secondes
+  sampling: 0.002257 secondes
+  compute_bounds: 0.000000 secondes
+  redistribute: 0.004718 secondes
+  final_sort: 0.030428 secondes
+  gather: 0.000000 secondes
+
+Processus 3:
+  gen_data: 0.000000 secondes
+  scatter: 0.226655 secondes
+  local_sort: 0.000049 secondes
+  sampling: 0.002212 secondes
+  compute_bounds: 0.000000 secondes
+  redistribute: 0.004656 secondes
+  final_sort: 0.000318 secondes
+  gather: 0.000000 secondes
+
+Processus 4:
+  gen_data: 0.000000 secondes
+  scatter: 0.226669 secondes
+  local_sort: 0.000040 secondes
+  sampling: 0.002192 secondes
+  compute_bounds: 0.000000 secondes
+  redistribute: 0.004533 secondes
+  final_sort: 0.000445 secondes
+  gather: 0.000000 secondes
+
+Processus 5:
+  gen_data: 0.000000 secondes
+  scatter: 0.141983 secondes
+  local_sort: 0.000045 secondes
+  sampling: 0.003557 secondes
+  compute_bounds: 0.000000 secondes
+  redistribute: 0.003384 secondes
+  final_sort: 0.000190 secondes
+  gather: 0.000000 secondes
+
+Processus 6:
+  gen_data: 0.000000 secondes
+  scatter: 0.226359 secondes
+  local_sort: 0.000046 secondes
+  sampling: 0.002127 secondes
+  compute_bounds: 0.000000 secondes
+  redistribute: 0.004544 secondes
+  final_sort: 0.000433 secondes
+  gather: 0.000000 secondes
+
+Processus 7:
+  gen_data: 0.000000 secondes
+  scatter: 0.107162 secondes
+  local_sort: 0.000042 secondes
+  sampling: 0.002614 secondes
+  compute_bounds: 0.000000 secondes
+  redistribute: 0.003791 secondes
+  final_sort: 0.003884 secondes
+  gather: 0.000000 secondes
+
+Processus 8:
+  gen_data: 0.000000 secondes
+  scatter: 0.075075 secondes
+  local_sort: 0.000042 secondes
+  sampling: 0.001647 secondes
+  compute_bounds: 0.000000 secondes
+  redistribute: 0.004590 secondes
+  final_sort: 0.044779 secondes
+  gather: 0.000000 secondes
+
+Processus 9:
+  gen_data: 0.000000 secondes
+  scatter: 0.063652 secondes
+  local_sort: 0.000043 secondes
+  sampling: 0.002081 secondes
+  compute_bounds: 0.000000 secondes
+  redistribute: 0.003996 secondes
+  final_sort: 0.014487 secondes
+  gather: 0.000000 secondes
+
+Processus 10:
+  gen_data: 0.000000 secondes
+  scatter: 0.075344 secondes
+  local_sort: 0.000045 secondes
+  sampling: 0.002014 secondes
+  compute_bounds: 0.000000 secondes
+  redistribute: 0.003992 secondes
+  final_sort: 0.000364 secondes
+  gather: 0.000000 secondes
+
+Processus 11:
+  gen_data: 0.000000 secondes
+  scatter: 0.075378 secondes
+  local_sort: 0.000043 secondes
+  sampling: 0.002016 secondes
+  compute_bounds: 0.000000 secondes
+  redistribute: 0.003960 secondes
+  final_sort: 0.000369 secondes
+  gather: 0.000000 secondes
+
+Processus 12:
+  gen_data: 0.000000 secondes
+  scatter: 0.140675 secondes
+  local_sort: 0.000043 secondes
+  sampling: 0.001011 secondes
+  compute_bounds: 0.000000 secondes
+  redistribute: 0.004561 secondes
+  final_sort: 0.017271 secondes
+  gather: 0.000000 secondes
+
+Processus 13:
+  gen_data: 0.000000 secondes
+  scatter: 0.140684 secondes
+  local_sort: 0.000044 secondes
+  sampling: 0.002400 secondes
+  compute_bounds: 0.000000 secondes
+  redistribute: 0.003430 secondes
+  final_sort: 0.082646 secondes
+  gather: 0.000000 secondes
+
+Processus 14:
+  gen_data: 0.000000 secondes
+  scatter: 0.140484 secondes
+  local_sort: 0.000041 secondes
+  sampling: 0.001664 secondes
+  compute_bounds: 0.000000 secondes
+  redistribute: 0.003958 secondes
+  final_sort: 0.000389 secondes
+  gather: 0.000000 secondes
+
+Processus 15:
+  gen_data: 0.000000 secondes
+  scatter: 0.140740 secondes
+  local_sort: 0.000047 secondes
+  sampling: 0.000924 secondes
+  compute_bounds: 0.000000 secondes
+  redistribute: 0.004545 secondes
+  final_sort: 0.000506 secondes
+  gather: 0.000000 secondes
+
+cedric@ns2:/media/cedric/DSCD/Projets/ENSTA/Parrallel_architcture/Cours_Ensta_2025/travaux_diriges/tp3$ mpirun --oversubscribe -n 8 parallelBucketSort.py
+N = 10000
+Métriques par processus :
+Processus 0:
+  gen_data: 0.000000 secondes
+  scatter: 0.015884 secondes
+  local_sort: 0.000081 secondes
+  sampling: 0.000500 secondes
+  compute_bounds: 0.000000 secondes
+  redistribute: 0.005970 secondes
+  final_sort: 0.000791 secondes
+  gather: 0.000036 secondes
+
+Processus 1:
+  gen_data: 0.000000 secondes
+  scatter: 0.000049 secondes
+  local_sort: 0.000088 secondes
+  sampling: 0.004318 secondes
+  compute_bounds: 0.000000 secondes
+  redistribute: 0.005913 secondes
+  final_sort: 0.000506 secondes
+  gather: 0.000000 secondes
+
+Processus 2:
+  gen_data: 0.000000 secondes
+  scatter: 0.012107 secondes
+  local_sort: 0.000089 secondes
+  sampling: 0.004256 secondes
+  compute_bounds: 0.000000 secondes
+  redistribute: 0.005932 secondes
+  final_sort: 0.000515 secondes
+  gather: 0.000000 secondes
+
+Processus 3:
+  gen_data: 0.000000 secondes
+  scatter: 0.000039 secondes
+  local_sort: 0.000080 secondes
+  sampling: 0.003921 secondes
+  compute_bounds: 0.000000 secondes
+  redistribute: 0.002760 secondes
+  final_sort: 0.000437 secondes
+  gather: 0.000000 secondes
+
+Processus 4:
+  gen_data: 0.000000 secondes
+  scatter: 0.015740 secondes
+  local_sort: 0.000080 secondes
+  sampling: 0.000607 secondes
+  compute_bounds: 0.000000 secondes
+  redistribute: 0.006022 secondes
+  final_sort: 0.000455 secondes
+  gather: 0.000000 secondes
+
+Processus 5:
+  gen_data: 0.000000 secondes
+  scatter: 0.003732 secondes
+  local_sort: 0.000086 secondes
+  sampling: 0.000584 secondes
+  compute_bounds: 0.000000 secondes
+  redistribute: 0.005939 secondes
+  final_sort: 0.000789 secondes
+  gather: 0.000000 secondes
+
+Processus 6:
+  gen_data: 0.000000 secondes
+  scatter: 0.015783 secondes
+  local_sort: 0.000082 secondes
+  sampling: 0.000548 secondes
+  compute_bounds: 0.000000 secondes
+  redistribute: 0.005948 secondes
+  final_sort: 0.000556 secondes
+  gather: 0.000000 secondes
+
+Processus 7:
+  gen_data: 0.000000 secondes
+  scatter: 0.000139 secondes
+  local_sort: 0.000085 secondes
+  sampling: 0.003804 secondes
+  compute_bounds: 0.000000 secondes
+  redistribute: 0.002671 secondes
+  final_sort: 0.000570 secondes
+  gather: 0.000000 secondes
+
+cedric@ns2:/media/cedric/DSCD/Projets/ENSTA/Parrallel_architcture/Cours_Ensta_2025/travaux_diriges/tp3$ mpirun --oversubscribe -n 8 parallelBucketSort.py
+N = 1000
+Métriques par processus :
+Processus 0:
+  gen_data: 0.000000 secondes
+  scatter: 0.013255 secondes
+  local_sort: 0.000021 secondes
+  sampling: 0.000844 secondes
+  compute_bounds: 0.000000 secondes
+  redistribute: 0.003053 secondes
+  final_sort: 0.000604 secondes
+  gather: 0.000028 secondes
+
+Processus 1:
+  gen_data: 0.000000 secondes
+  scatter: 0.000025 secondes
+  local_sort: 0.000014 secondes
+  sampling: 0.009238 secondes
+  compute_bounds: 0.000000 secondes
+  redistribute: 0.003052 secondes
+  final_sort: 0.000101 secondes
+  gather: 0.000000 secondes
+
+Processus 2:
+  gen_data: 0.000000 secondes
+  scatter: 0.004854 secondes
+  local_sort: 0.000020 secondes
+  sampling: 0.009252 secondes
+  compute_bounds: 0.000000 secondes
+  redistribute: 0.002973 secondes
+  final_sort: 0.000458 secondes
+  gather: 0.000000 secondes
+
+Processus 3:
+  gen_data: 0.000000 secondes
+  scatter: 0.000036 secondes
+  local_sort: 0.000014 secondes
+  sampling: 0.009189 secondes
+  compute_bounds: 0.000000 secondes
+  redistribute: 0.002961 secondes
+  final_sort: 0.000444 secondes
+  gather: 0.000000 secondes
+
+Processus 4:
+  gen_data: 0.000000 secondes
+  scatter: 0.004950 secondes
+  local_sort: 0.000017 secondes
+  sampling: 0.009161 secondes
+  compute_bounds: 0.000000 secondes
+  redistribute: 0.002962 secondes
+  final_sort: 0.000125 secondes
+  gather: 0.000000 secondes
+
+Processus 5:
+  gen_data: 0.000000 secondes
+  scatter: 0.000023 secondes
+  local_sort: 0.000013 secondes
+  sampling: 0.009317 secondes
+  compute_bounds: 0.000000 secondes
+  redistribute: 0.001450 secondes
+  final_sort: 0.000113 secondes
+  gather: 0.000000 secondes
+
+Processus 6:
+  gen_data: 0.000000 secondes
+  scatter: 0.000026 secondes
+  local_sort: 0.000012 secondes
+  sampling: 0.000926 secondes
+  compute_bounds: 0.000000 secondes
+  redistribute: 0.002934 secondes
+  final_sort: 0.000121 secondes
+  gather: 0.000000 secondes
+
+Processus 7:
+  gen_data: 0.000000 secondes
+  scatter: 0.008290 secondes
+  local_sort: 0.000019 secondes
+  sampling: 0.000967 secondes
+  compute_bounds: 0.000000 secondes
+  redistribute: 0.002906 secondes
+  final_sort: 0.000114 secondes
+  gather: 0.000000 secondes
+
+cedric@ns2:/media/cedric/DSCD/Projets/ENSTA/Parrallel_architcture/Cours_Ensta_2025/travaux_diriges/tp3$ mpirun --oversubscribe -n 16 parallelBucketSort.py
+N = 1000
+Métriques par processus :
+Processus 0:
+  gen_data: 0.000000 secondes
+  scatter: 0.076681 secondes
+  local_sort: 0.000017 secondes
+  sampling: 0.001059 secondes
+  compute_bounds: 0.000000 secondes
+  redistribute: 0.006337 secondes
+  final_sort: 0.034955 secondes
+  gather: 0.000040 secondes
+
+Processus 1:
+  gen_data: 0.000000 secondes
+  scatter: 0.000024 secondes
+  local_sort: 0.000017 secondes
+  sampling: 0.077617 secondes
+  compute_bounds: 0.000000 secondes
+  redistribute: 0.006684 secondes
+  final_sort: 0.000092 secondes
+  gather: 0.000000 secondes
+
+Processus 2:
+  gen_data: 0.000000 secondes
+  scatter: 0.000556 secondes
+  local_sort: 0.000014 secondes
+  sampling: 0.077226 secondes
+  compute_bounds: 0.000000 secondes
+  redistribute: 0.006655 secondes
+  final_sort: 0.000090 secondes
+  gather: 0.000000 secondes
+
+Processus 3:
+  gen_data: 0.000000 secondes
+  scatter: 0.000581 secondes
+  local_sort: 0.000016 secondes
+  sampling: 0.077618 secondes
+  compute_bounds: 0.000000 secondes
+  redistribute: 0.005866 secondes
+  final_sort: 0.003935 secondes
+  gather: 0.000000 secondes
+
+Processus 4:
+  gen_data: 0.000000 secondes
+  scatter: 0.000070 secondes
+  local_sort: 0.000026 secondes
+  sampling: 0.071845 secondes
+  compute_bounds: 0.000000 secondes
+  redistribute: 0.006857 secondes
+  final_sort: 0.005030 secondes
+  gather: 0.000000 secondes
+
+Processus 5:
+  gen_data: 0.000000 secondes
+  scatter: 0.002425 secondes
+  local_sort: 0.000035 secondes
+  sampling: 0.069472 secondes
+  compute_bounds: 0.000000 secondes
+  redistribute: 0.006719 secondes
+  final_sort: 0.000157 secondes
+  gather: 0.000000 secondes
+
+Processus 6:
+  gen_data: 0.000000 secondes
+  scatter: 0.002470 secondes
+  local_sort: 0.000018 secondes
+  sampling: 0.069716 secondes
+  compute_bounds: 0.000000 secondes
+  redistribute: 0.006010 secondes
+  final_sort: 0.000159 secondes
+  gather: 0.000000 secondes
+
+Processus 7:
+  gen_data: 0.000000 secondes
+  scatter: 0.002483 secondes
+  local_sort: 0.000020 secondes
+  sampling: 0.069435 secondes
+  compute_bounds: 0.000000 secondes
+  redistribute: 0.006267 secondes
+  final_sort: 0.000071 secondes
+  gather: 0.000000 secondes
+
+Processus 8:
+  gen_data: 0.000000 secondes
+  scatter: 0.008196 secondes
+  local_sort: 0.000017 secondes
+  sampling: 0.069409 secondes
+  compute_bounds: 0.000000 secondes
+  redistribute: 0.006645 secondes
+  final_sort: 0.034268 secondes
+  gather: 0.000000 secondes
+
+Processus 9:
+  gen_data: 0.000000 secondes
+  scatter: 0.002983 secondes
+  local_sort: 0.000018 secondes
+  sampling: 0.001752 secondes
+  compute_bounds: 0.000000 secondes
+  redistribute: 0.006090 secondes
+  final_sort: 0.000182 secondes
+  gather: 0.000000 secondes
+
+Processus 10:
+  gen_data: 0.000000 secondes
+  scatter: 0.073392 secondes
+  local_sort: 0.000019 secondes
+  sampling: 0.005023 secondes
+  compute_bounds: 0.000000 secondes
+  redistribute: 0.027797 secondes
+  final_sort: 0.000710 secondes
+  gather: 0.000000 secondes
+
+Processus 11:
+  gen_data: 0.000000 secondes
+  scatter: 0.075763 secondes
+  local_sort: 0.000038 secondes
+  sampling: 0.002412 secondes
+  compute_bounds: 0.000000 secondes
+  redistribute: 0.006378 secondes
+  final_sort: 0.000112 secondes
+  gather: 0.000000 secondes
+
+Processus 12:
+  gen_data: 0.000000 secondes
+  scatter: 0.075947 secondes
+  local_sort: 0.000027 secondes
+  sampling: 0.003170 secondes
+  compute_bounds: 0.000000 secondes
+  redistribute: 0.005315 secondes
+  final_sort: 0.013064 secondes
+  gather: 0.000000 secondes
+
+Processus 13:
+  gen_data: 0.000000 secondes
+  scatter: 0.075974 secondes
+  local_sort: 0.000020 secondes
+  sampling: 0.003160 secondes
+  compute_bounds: 0.000000 secondes
+  redistribute: 0.005274 secondes
+  final_sort: 0.002122 secondes
+  gather: 0.000000 secondes
+
+Processus 14:
+  gen_data: 0.000000 secondes
+  scatter: 0.076289 secondes
+  local_sort: 0.000019 secondes
+  sampling: 0.003263 secondes
+  compute_bounds: 0.000000 secondes
+  redistribute: 0.004295 secondes
+  final_sort: 0.008681 secondes
+  gather: 0.000000 secondes
+
+Processus 15:
+  gen_data: 0.000000 secondes
+  scatter: 0.076664 secondes
+  local_sort: 0.000017 secondes
+  sampling: 0.002704 secondes
+  compute_bounds: 0.000000 secondes
+  redistribute: 0.006165 secondes
+  final_sort: 0.000117 secondes
+  gather: 0.000000 secondes
+
+cedric@ns2:/media/cedric/DSCD/Projets/ENSTA/Parrallel_architcture/Cours_Ensta_2025/travaux_diriges/tp3$ mpirun --oversubscribe -n 16 parallelBucketSort.py
+N = 1000000
+Métriques par processus :
+Processus 0:
+  gen_data: 0.000000 secondes
+  scatter: 0.043217 secondes
+  local_sort: 0.006138 secondes
+  sampling: 0.007943 secondes
+  compute_bounds: 0.000000 secondes
+  redistribute: 0.051136 secondes
+  final_sort: 0.068491 secondes
+  gather: 0.014105 secondes
+
+Processus 1:
+  gen_data: 0.000000 secondes
+  scatter: 0.000309 secondes
+  local_sort: 0.008508 secondes
+  sampling: 0.048182 secondes
+  compute_bounds: 0.000000 secondes
+  redistribute: 0.061002 secondes
+  final_sort: 0.019181 secondes
+  gather: 0.000000 secondes
+
+Processus 2:
+  gen_data: 0.000000 secondes
+  scatter: 0.000356 secondes
+  local_sort: 0.011536 secondes
+  sampling: 0.024231 secondes
+  compute_bounds: 0.000000 secondes
+  redistribute: 0.046285 secondes
+  final_sort: 0.038323 secondes
+  gather: 0.000000 secondes
+
+Processus 3:
+  gen_data: 0.000000 secondes
+  scatter: 0.024172 secondes
+  local_sort: 0.005166 secondes
+  sampling: 0.028008 secondes
+  compute_bounds: 0.000000 secondes
+  redistribute: 0.058032 secondes
+  final_sort: 0.022845 secondes
+  gather: 0.000000 secondes
+
+Processus 4:
+  gen_data: 0.000000 secondes
+  scatter: 0.024582 secondes
+  local_sort: 0.017347 secondes
+  sampling: 0.018881 secondes
+  compute_bounds: 0.000000 secondes
+  redistribute: 0.045118 secondes
+  final_sort: 0.036743 secondes
+  gather: 0.000000 secondes
+
+Processus 5:
+  gen_data: 0.000000 secondes
+  scatter: 0.024859 secondes
+  local_sort: 0.005642 secondes
+  sampling: 0.030599 secondes
+  compute_bounds: 0.000000 secondes
+  redistribute: 0.052308 secondes
+  final_sort: 0.029564 secondes
+  gather: 0.000000 secondes
+
+Processus 6:
+  gen_data: 0.000000 secondes
+  scatter: 0.025136 secondes
+  local_sort: 0.005912 secondes
+  sampling: 0.033956 secondes
+  compute_bounds: 0.000000 secondes
+  redistribute: 0.048544 secondes
+  final_sort: 0.032866 secondes
+  gather: 0.000000 secondes
+
+Processus 7:
+  gen_data: 0.000000 secondes
+  scatter: 0.029710 secondes
+  local_sort: 0.005221 secondes
+  sampling: 0.022717 secondes
+  compute_bounds: 0.000000 secondes
+  redistribute: 0.048211 secondes
+  final_sort: 0.039483 secondes
+  gather: 0.000000 secondes
+
+Processus 8:
+  gen_data: 0.000000 secondes
+  scatter: 0.035397 secondes
+  local_sort: 0.005391 secondes
+  sampling: 0.016430 secondes
+  compute_bounds: 0.000000 secondes
+  redistribute: 0.050028 secondes
+  final_sort: 0.036517 secondes
+  gather: 0.000000 secondes
+
+Processus 9:
+  gen_data: 0.000000 secondes
+  scatter: 0.035681 secondes
+  local_sort: 0.005151 secondes
+  sampling: 0.016452 secondes
+  compute_bounds: 0.000000 secondes
+  redistribute: 0.050169 secondes
+  final_sort: 0.045746 secondes
+  gather: 0.000000 secondes
+
+Processus 10:
+  gen_data: 0.000000 secondes
+  scatter: 0.035979 secondes
+  local_sort: 0.005245 secondes
+  sampling: 0.015982 secondes
+  compute_bounds: 0.000000 secondes
+  redistribute: 0.048994 secondes
+  final_sort: 0.038965 secondes
+  gather: 0.000000 secondes
+
+Processus 11:
+  gen_data: 0.000000 secondes
+  scatter: 0.034312 secondes
+  local_sort: 0.005035 secondes
+  sampling: 0.015688 secondes
+  compute_bounds: 0.000000 secondes
+  redistribute: 0.051614 secondes
+  final_sort: 0.041116 secondes
+  gather: 0.000000 secondes
+
+Processus 12:
+  gen_data: 0.000000 secondes
+  scatter: 0.041482 secondes
+  local_sort: 0.005491 secondes
+  sampling: 0.010596 secondes
+  compute_bounds: 0.000000 secondes
+  redistribute: 0.055756 secondes
+  final_sort: 0.031980 secondes
+  gather: 0.000000 secondes
+
+Processus 13:
+  gen_data: 0.000000 secondes
+  scatter: 0.041806 secondes
+  local_sort: 0.014643 secondes
+  sampling: 0.007896 secondes
+  compute_bounds: 0.000000 secondes
+  redistribute: 0.053998 secondes
+  final_sort: 0.058989 secondes
+  gather: 0.000000 secondes
+
+Processus 14:
+  gen_data: 0.000000 secondes
+  scatter: 0.042114 secondes
+  local_sort: 0.005141 secondes
+  sampling: 0.017052 secondes
+  compute_bounds: 0.000000 secondes
+  redistribute: 0.048008 secondes
+  final_sort: 0.033653 secondes
+  gather: 0.000000 secondes
+
+Processus 15:
+  gen_data: 0.000000 secondes
+  scatter: 0.043008 secondes
+  local_sort: 0.005431 secondes
+  sampling: 0.012140 secondes
+  compute_bounds: 0.000000 secondes
+  redistribute: 0.045162 secondes
+  final_sort: 0.050488 secondes
+  gather: 0.000000 secondes
+
+cedric@ns2:/media/cedric/DSCD/Projets/ENSTA/Parrallel_architcture/Cours_Ensta_2025/travaux_diriges/tp3$ mpirun --oversubscribe -n 16 parallelBucketSort.py
+N = 10000000
+Métriques par processus :
+Processus 0:
+  gen_data: 0.000000 secondes
+  scatter: 0.124894 secondes
+  local_sort: 0.129099 secondes
+  sampling: 0.008303 secondes
+  compute_bounds: 0.000000 secondes
+  redistribute: 0.158671 secondes
+  final_sort: 0.577454 secondes
+  gather: 0.028713 secondes
+
+Processus 1:
+  gen_data: 0.000000 secondes
+  scatter: 0.005899 secondes
+  local_sort: 0.140054 secondes
+  sampling: 0.123584 secondes
+  compute_bounds: 0.000000 secondes
+  redistribute: 0.153325 secondes
+  final_sort: 0.259295 secondes
+  gather: 0.000000 secondes
+
+Processus 2:
+  gen_data: 0.000000 secondes
+  scatter: 0.007913 secondes
+  local_sort: 0.195255 secondes
+  sampling: 0.059109 secondes
+  compute_bounds: 0.000000 secondes
+  redistribute: 0.183812 secondes
+  final_sort: 0.251458 secondes
+  gather: 0.000000 secondes
+
+Processus 3:
+  gen_data: 0.000000 secondes
+  scatter: 0.013917 secondes
+  local_sort: 0.171627 secondes
+  sampling: 0.079761 secondes
+  compute_bounds: 0.000000 secondes
+  redistribute: 0.155688 secondes
+  final_sort: 0.314688 secondes
+  gather: 0.000000 secondes
+
+Processus 4:
+  gen_data: 0.000000 secondes
+  scatter: 0.016228 secondes
+  local_sort: 0.064276 secondes
+  sampling: 0.181877 secondes
+  compute_bounds: 0.000000 secondes
+  redistribute: 0.162267 secondes
+  final_sort: 0.302808 secondes
+  gather: 0.000000 secondes
+
+Processus 5:
+  gen_data: 0.000000 secondes
+  scatter: 0.032733 secondes
+  local_sort: 0.161915 secondes
+  sampling: 0.087082 secondes
+  compute_bounds: 0.000000 secondes
+  redistribute: 0.150870 secondes
+  final_sort: 0.319297 secondes
+  gather: 0.000000 secondes
+
+Processus 6:
+  gen_data: 0.000000 secondes
+  scatter: 0.035130 secondes
+  local_sort: 0.150466 secondes
+  sampling: 0.086343 secondes
+  compute_bounds: 0.000000 secondes
+  redistribute: 0.154443 secondes
+  final_sort: 0.385736 secondes
+  gather: 0.000000 secondes
+
+Processus 7:
+  gen_data: 0.000000 secondes
+  scatter: 0.037385 secondes
+  local_sort: 0.061522 secondes
+  sampling: 0.163470 secondes
+  compute_bounds: 0.000000 secondes
+  redistribute: 0.183184 secondes
+  final_sort: 0.376819 secondes
+  gather: 0.000000 secondes
+
+Processus 8:
+  gen_data: 0.000000 secondes
+  scatter: 0.044388 secondes
+  local_sort: 0.143631 secondes
+  sampling: 0.074065 secondes
+  compute_bounds: 0.000000 secondes
+  redistribute: 0.197002 secondes
+  final_sort: 0.399062 secondes
+  gather: 0.000000 secondes
+
+Processus 9:
+  gen_data: 0.000000 secondes
+  scatter: 0.046691 secondes
+  local_sort: 0.163041 secondes
+  sampling: 0.063139 secondes
+  compute_bounds: 0.000000 secondes
+  redistribute: 0.151785 secondes
+  final_sort: 0.445245 secondes
+  gather: 0.000000 secondes
+
+Processus 10:
+  gen_data: 0.000000 secondes
+  scatter: 0.048884 secondes
+  local_sort: 0.176544 secondes
+  sampling: 0.051746 secondes
+  compute_bounds: 0.000000 secondes
+  redistribute: 0.143750 secondes
+  final_sort: 0.454618 secondes
+  gather: 0.000000 secondes
+
+Processus 11:
+  gen_data: 0.000000 secondes
+  scatter: 0.049075 secondes
+  local_sort: 0.187963 secondes
+  sampling: 0.023073 secondes
+  compute_bounds: 0.000000 secondes
+  redistribute: 0.162470 secondes
+  final_sort: 0.454817 secondes
+  gather: 0.000000 secondes
+
+Processus 12:
+  gen_data: 0.000000 secondes
+  scatter: 0.082726 secondes
+  local_sort: 0.066410 secondes
+  sampling: 0.113064 secondes
+  compute_bounds: 0.000000 secondes
+  redistribute: 0.160572 secondes
+  final_sort: 0.460324 secondes
+  gather: 0.000000 secondes
+
+Processus 13:
+  gen_data: 0.000000 secondes
+  scatter: 0.088708 secondes
+  local_sort: 0.172731 secondes
+  sampling: 0.013630 secondes
+  compute_bounds: 0.000000 secondes
+  redistribute: 0.148765 secondes
+  final_sort: 0.463569 secondes
+  gather: 0.000000 secondes
+
+Processus 14:
+  gen_data: 0.000000 secondes
+  scatter: 0.120687 secondes
+  local_sort: 0.128670 secondes
+  sampling: 0.030380 secondes
+  compute_bounds: 0.000000 secondes
+  redistribute: 0.178346 secondes
+  final_sort: 0.433084 secondes
+  gather: 0.000000 secondes
+
+Processus 15:
+  gen_data: 0.000000 secondes
+  scatter: 0.124705 secondes
+  local_sort: 0.109356 secondes
+  sampling: 0.028596 secondes
+  compute_bounds: 0.000000 secondes
+  redistribute: 0.196517 secondes
+  final_sort: 0.435642 secondes
+  gather: 0.000000 secondes
+
+cedric@ns2:/media/cedric/DSCD/Projets/ENSTA/Parrallel_architcture/Cours_Ensta_2025/travaux_diriges/tp3$ mpirun --oversubscribe -n 16 parallelBucketSort.py
+N = 100000000
+Métriques par processus :
+Processus 0:
+  gen_data: 0.000000 secondes
+  scatter: 0.729896 secondes
+  local_sort: 2.120518 secondes
+  sampling: 0.163184 secondes
+  compute_bounds: 0.000000 secondes
+  redistribute: 1.351167 secondes
+  final_sort: 2.842405 secondes
+  gather: 0.137851 secondes
+
+Processus 1:
+  gen_data: 0.000000 secondes
+  scatter: 0.022133 secondes
+  local_sort: 2.161601 secondes
+  sampling: 0.914436 secondes
+  compute_bounds: 0.000000 secondes
+  redistribute: 1.347786 secondes
+  final_sort: 1.658207 secondes
+  gather: 0.000000 secondes
+
+Processus 2:
+  gen_data: 0.000000 secondes
+  scatter: 0.045094 secondes
+  local_sort: 1.874538 secondes
+  sampling: 1.094023 secondes
+  compute_bounds: 0.000000 secondes
+  redistribute: 1.374030 secondes
+  final_sort: 1.765539 secondes
+  gather: 0.000000 secondes
+
+Processus 3:
+  gen_data: 0.000000 secondes
+  scatter: 0.056713 secondes
+  local_sort: 1.627674 secondes
+  sampling: 1.334672 secondes
+  compute_bounds: 0.000000 secondes
+  redistribute: 1.354279 secondes
+  final_sort: 1.866023 secondes
+  gather: 0.000000 secondes
+
+Processus 4:
+  gen_data: 0.000000 secondes
+  scatter: 0.078698 secondes
+  local_sort: 0.870879 secondes
+  sampling: 2.064077 secondes
+  compute_bounds: 0.000000 secondes
+  redistribute: 1.383791 secondes
+  final_sort: 1.882052 secondes
+  gather: 0.000000 secondes
+
+Processus 5:
+  gen_data: 0.000000 secondes
+  scatter: 0.114374 secondes
+  local_sort: 2.171470 secondes
+  sampling: 0.742254 secondes
+  compute_bounds: 0.000000 secondes
+  redistribute: 1.348315 secondes
+  final_sort: 1.973322 secondes
+  gather: 0.000000 secondes
+
+Processus 6:
+  gen_data: 0.000000 secondes
+  scatter: 0.147773 secondes
+  local_sort: 2.035119 secondes
+  sampling: 0.838970 secondes
+  compute_bounds: 0.000000 secondes
+  redistribute: 1.345296 secondes
+  final_sort: 2.055380 secondes
+  gather: 0.000000 secondes
+
+Processus 7:
+  gen_data: 0.000000 secondes
+  scatter: 0.178407 secondes
+  local_sort: 0.935012 secondes
+  sampling: 1.900246 secondes
+  compute_bounds: 0.000000 secondes
+  redistribute: 1.379407 secondes
+  final_sort: 2.097697 secondes
+  gather: 0.000000 secondes
+
+Processus 8:
+  gen_data: 0.000000 secondes
+  scatter: 0.316110 secondes
+  local_sort: 1.225633 secondes
+  sampling: 1.472409 secondes
+  compute_bounds: 0.000000 secondes
+  redistribute: 1.337755 secondes
+  final_sort: 2.210765 secondes
+  gather: 0.000000 secondes
+
+Processus 9:
+  gen_data: 0.000000 secondes
+  scatter: 0.340166 secondes
+  local_sort: 1.675315 secondes
+  sampling: 1.013715 secondes
+  compute_bounds: 0.000000 secondes
+  redistribute: 1.358649 secondes
+  final_sort: 2.239733 secondes
+  gather: 0.000000 secondes
+
+Processus 10:
+  gen_data: 0.000000 secondes
+  scatter: 0.361728 secondes
+  local_sort: 1.437896 secondes
+  sampling: 1.214292 secondes
+  compute_bounds: 0.000000 secondes
+  redistribute: 1.343781 secondes
+  final_sort: 2.315114 secondes
+  gather: 0.000000 secondes
+
+Processus 11:
+  gen_data: 0.000000 secondes
+  scatter: 0.405695 secondes
+  local_sort: 2.136460 secondes
+  sampling: 0.476300 secondes
+  compute_bounds: 0.000000 secondes
+  redistribute: 1.333672 secondes
+  final_sort: 2.383402 secondes
+  gather: 0.000000 secondes
+
+Processus 12:
+  gen_data: 0.000000 secondes
+  scatter: 0.626760 secondes
+  local_sort: 1.824988 secondes
+  sampling: 0.561815 secondes
+  compute_bounds: 0.000000 secondes
+  redistribute: 1.338737 secondes
+  final_sort: 2.414356 secondes
+  gather: 0.000000 secondes
+
+Processus 13:
+  gen_data: 0.000000 secondes
+  scatter: 0.638735 secondes
+  local_sort: 1.423449 secondes
+  sampling: 0.951270 secondes
+  compute_bounds: 0.000000 secondes
+  redistribute: 1.340804 secondes
+  final_sort: 2.438920 secondes
+  gather: 0.000000 secondes
+
+Processus 14:
+  gen_data: 0.000000 secondes
+  scatter: 0.678978 secondes
+  local_sort: 2.333631 secondes
+  sampling: 0.057103 secondes
+  compute_bounds: 0.000000 secondes
+  redistribute: 1.308462 secondes
+  final_sort: 2.438780 secondes
+  gather: 0.000000 secondes
+
+Processus 15:
+  gen_data: 0.000000 secondes
+  scatter: 0.725376 secondes
+  local_sort: 2.062993 secondes
+  sampling: 0.225021 secondes
+  compute_bounds: 0.000000 secondes
+  redistribute: 1.353234 secondes
+  final_sort: 2.473041 secondes
+  gather: 0.000000 secondes
+
+  cedric@ns2:/media/cedric/DSCD/Projets/ENSTA/Parrallel_architcture/Cours_Ensta_2025/travaux_diriges/tp3$ mpirun --oversubscribe -n 16 parallelBucketSort.py
+N = 100000
+Métriques par processus :
+Processus 0:
+  gen_data: 0.000000 secondes
+  scatter: 0.135910 secondes
+  local_sort: 0.000537 secondes
+  sampling: 0.001535 secondes
+  compute_bounds: 0.000000 secondes
+  redistribute: 0.009686 secondes
+  final_sort: 0.003536 secondes
+  gather: 0.000637 secondes
+
+Processus 1:
+  gen_data: 0.000000 secondes
+  scatter: 0.000076 secondes
+  local_sort: 0.000454 secondes
+  sampling: 0.048902 secondes
+  compute_bounds: 0.000000 secondes
+  redistribute: 0.009428 secondes
+  final_sort: 0.001491 secondes
+  gather: 0.000000 secondes
+
+Processus 2:
+  gen_data: 0.000000 secondes
+  scatter: 0.042109 secondes
+  local_sort: 0.000426 secondes
+  sampling: 0.047512 secondes
+  compute_bounds: 0.000000 secondes
+  redistribute: 0.009640 secondes
+  final_sort: 0.004026 secondes
+  gather: 0.000000 secondes
+
+Processus 3:
+  gen_data: 0.000000 secondes
+  scatter: 0.000064 secondes
+  local_sort: 0.000423 secondes
+  sampling: 0.007523 secondes
+  compute_bounds: 0.000000 secondes
+  redistribute: 0.008709 secondes
+  final_sort: 0.001995 secondes
+  gather: 0.000000 secondes
+
+Processus 4:
+  gen_data: 0.000000 secondes
+  scatter: 0.096098 secondes
+  local_sort: 0.000437 secondes
+  sampling: 0.006443 secondes
+  compute_bounds: 0.000000 secondes
+  redistribute: 0.009656 secondes
+  final_sort: 0.002078 secondes
+  gather: 0.000000 secondes
+
+Processus 5:
+  gen_data: 0.000000 secondes
+  scatter: 0.010484 secondes
+  local_sort: 0.000416 secondes
+  sampling: 0.006419 secondes
+  compute_bounds: 0.000000 secondes
+  redistribute: 0.009641 secondes
+  final_sort: 0.002124 secondes
+  gather: 0.000000 secondes
+
+Processus 6:
+  gen_data: 0.000000 secondes
+  scatter: 0.096814 secondes
+  local_sort: 0.000447 secondes
+  sampling: 0.006696 secondes
+  compute_bounds: 0.000000 secondes
+  redistribute: 0.009104 secondes
+  final_sort: 0.025698 secondes
+  gather: 0.000000 secondes
+
+Processus 7:
+  gen_data: 0.000000 secondes
+  scatter: 0.096877 secondes
+  local_sort: 0.000471 secondes
+  sampling: 0.005602 secondes
+  compute_bounds: 0.000000 secondes
+  redistribute: 0.009648 secondes
+  final_sort: 0.002195 secondes
+  gather: 0.000000 secondes
+
+Processus 8:
+  gen_data: 0.000000 secondes
+  scatter: 0.133174 secondes
+  local_sort: 0.000431 secondes
+  sampling: 0.006920 secondes
+  compute_bounds: 0.000000 secondes
+  redistribute: 0.008019 secondes
+  final_sort: 0.004955 secondes
+  gather: 0.000000 secondes
+
+Processus 9:
+  gen_data: 0.000000 secondes
+  scatter: 0.049638 secondes
+  local_sort: 0.000455 secondes
+  sampling: 0.006778 secondes
+  compute_bounds: 0.000000 secondes
+  redistribute: 0.007599 secondes
+  final_sort: 0.004485 secondes
+  gather: 0.000000 secondes
+
+Processus 10:
+  gen_data: 0.000000 secondes
+  scatter: 0.069789 secondes
+  local_sort: 0.000463 secondes
+  sampling: 0.005912 secondes
+  compute_bounds: 0.000000 secondes
+  redistribute: 0.007879 secondes
+  final_sort: 0.001395 secondes
+  gather: 0.000000 secondes
+
+Processus 11:
+  gen_data: 0.000000 secondes
+  scatter: 0.134189 secondes
+  local_sort: 0.000435 secondes
+  sampling: 0.005884 secondes
+  compute_bounds: 0.000000 secondes
+  redistribute: 0.006970 secondes
+  final_sort: 0.002350 secondes
+  gather: 0.000000 secondes
+
+Processus 12:
+  gen_data: 0.000000 secondes
+  scatter: 0.040415 secondes
+  local_sort: 0.000446 secondes
+  sampling: 0.002514 secondes
+  compute_bounds: 0.000000 secondes
+  redistribute: 0.010201 secondes
+  final_sort: 0.004347 secondes
+  gather: 0.000000 secondes
+
+Processus 13:
+  gen_data: 0.000000 secondes
+  scatter: 0.036851 secondes
+  local_sort: 0.000457 secondes
+  sampling: 0.003437 secondes
+  compute_bounds: 0.000000 secondes
+  redistribute: 0.009135 secondes
+  final_sort: 0.006917 secondes
+  gather: 0.000000 secondes
+
+Processus 14:
+  gen_data: 0.000000 secondes
+  scatter: 0.040521 secondes
+  local_sort: 0.000439 secondes
+  sampling: 0.002398 secondes
+  compute_bounds: 0.000000 secondes
+  redistribute: 0.009669 secondes
+  final_sort: 0.002494 secondes
+  gather: 0.000000 secondes
+
+Processus 15:
+  gen_data: 0.000000 secondes
+  scatter: 0.041152 secondes
+  local_sort: 0.000417 secondes
+  sampling: 0.002656 secondes
+  compute_bounds: 0.000000 secondes
+  redistribute: 0.009182 secondes
+  final_sort: 0.002062 secondes
+  gather: 0.000000 secondes
+
+cedric@ns2:/media/cedric/DSCD/Projets/ENSTA/Parrallel_architcture/Cours_Ensta_2025/travaux_diriges/tp3$ mpirun --oversubscribe -n 16 parallelBucketSort.py
+N = 10000
+Métriques par processus :
+Processus 0:
+  gen_data: 0.000000 secondes
+  scatter: 0.210871 secondes
+  local_sort: 0.000046 secondes
+  sampling: 0.000864 secondes
+  compute_bounds: 0.000000 secondes
+  redistribute: 0.006745 secondes
+  final_sort: 0.000481 secondes
+  gather: 0.000030 secondes
+
+Processus 1:
+  gen_data: 0.000000 secondes
+  scatter: 0.000046 secondes
+  local_sort: 0.000042 secondes
+  sampling: 0.127116 secondes
+  compute_bounds: 0.000000 secondes
+  redistribute: 0.006436 secondes
+  final_sort: 0.000371 secondes
+  gather: 0.000000 secondes
+
+Processus 2:
+  gen_data: 0.000000 secondes
+  scatter: 0.000041 secondes
+  local_sort: 0.000042 secondes
+  sampling: 0.061188 secondes
+  compute_bounds: 0.000000 secondes
+  redistribute: 0.005718 secondes
+  final_sort: 0.000370 secondes
+  gather: 0.000000 secondes
+
+Processus 3:
+  gen_data: 0.000000 secondes
+  scatter: 0.099856 secondes
+  local_sort: 0.000046 secondes
+  sampling: 0.061162 secondes
+  compute_bounds: 0.000000 secondes
+  redistribute: 0.005821 secondes
+  final_sort: 0.004955 secondes
+  gather: 0.000000 secondes
+
+Processus 4:
+  gen_data: 0.000000 secondes
+  scatter: 0.151573 secondes
+  local_sort: 0.000041 secondes
+  sampling: 0.060199 secondes
+  compute_bounds: 0.000000 secondes
+  redistribute: 0.006551 secondes
+  final_sort: 0.000269 secondes
+  gather: 0.000000 secondes
+
+Processus 5:
+  gen_data: 0.000000 secondes
+  scatter: 0.138588 secondes
+  local_sort: 0.000043 secondes
+  sampling: 0.060881 secondes
+  compute_bounds: 0.000000 secondes
+  redistribute: 0.005719 secondes
+  final_sort: 0.000394 secondes
+  gather: 0.000000 secondes
+
+Processus 6:
+  gen_data: 0.000000 secondes
+  scatter: 0.009347 secondes
+  local_sort: 0.000043 secondes
+  sampling: 0.060163 secondes
+  compute_bounds: 0.000000 secondes
+  redistribute: 0.006422 secondes
+  final_sort: 0.000388 secondes
+  gather: 0.000000 secondes
+
+Processus 7:
+  gen_data: 0.000000 secondes
+  scatter: 0.028084 secondes
+  local_sort: 0.000042 secondes
+  sampling: 0.060833 secondes
+  compute_bounds: 0.000000 secondes
+  redistribute: 0.005944 secondes
+  final_sort: 0.000174 secondes
+  gather: 0.000000 secondes
+
+Processus 8:
+  gen_data: 0.000000 secondes
+  scatter: 0.151556 secondes
+  local_sort: 0.000044 secondes
+  sampling: 0.059237 secondes
+  compute_bounds: 0.000000 secondes
+  redistribute: 0.006556 secondes
+  final_sort: 0.000298 secondes
+  gather: 0.000000 secondes
+
+Processus 9:
+  gen_data: 0.000000 secondes
+  scatter: 0.113990 secondes
+  local_sort: 0.000045 secondes
+  sampling: 0.059824 secondes
+  compute_bounds: 0.000000 secondes
+  redistribute: 0.005968 secondes
+  final_sort: 0.012820 secondes
+  gather: 0.000000 secondes
+
+Processus 10:
+  gen_data: 0.000000 secondes
+  scatter: 0.151794 secondes
+  local_sort: 0.000039 secondes
+  sampling: 0.058752 secondes
+  compute_bounds: 0.000000 secondes
+  redistribute: 0.006556 secondes
+  final_sort: 0.005241 secondes
+  gather: 0.000000 secondes
+
+Processus 11:
+  gen_data: 0.000000 secondes
+  scatter: 0.151885 secondes
+  local_sort: 0.000059 secondes
+  sampling: 0.058871 secondes
+  compute_bounds: 0.000000 secondes
+  redistribute: 0.006545 secondes
+  final_sort: 0.026707 secondes
+  gather: 0.000000 secondes
+
+Processus 12:
+  gen_data: 0.000000 secondes
+  scatter: 0.152924 secondes
+  local_sort: 0.000057 secondes
+  sampling: 0.059245 secondes
+  compute_bounds: 0.000000 secondes
+  redistribute: 0.006049 secondes
+  final_sort: 0.001021 secondes
+  gather: 0.000000 secondes
+
+Processus 13:
+  gen_data: 0.000000 secondes
+  scatter: 0.000043 secondes
+  local_sort: 0.000040 secondes
+  sampling: 0.004602 secondes
+  compute_bounds: 0.000000 secondes
+  redistribute: 0.004188 secondes
+  final_sort: 0.000972 secondes
+  gather: 0.000000 secondes
+
+Processus 14:
+  gen_data: 0.000000 secondes
+  scatter: 0.209784 secondes
+  local_sort: 0.000086 secondes
+  sampling: 0.001262 secondes
+  compute_bounds: 0.000000 secondes
+  redistribute: 0.006084 secondes
+  final_sort: 0.000409 secondes
+  gather: 0.000000 secondes
+
+Processus 15:
+  gen_data: 0.000000 secondes
+  scatter: 0.210429 secondes
+  local_sort: 0.000043 secondes
+  sampling: 0.002358 secondes
+  compute_bounds: 0.000000 secondes
+  redistribute: 0.005014 secondes
+  final_sort: 0.007744 secondes
+  gather: 0.000000 secondes
+
+cedric@ns2:/media/cedric/DSCD/Projets/ENSTA/Parrallel_architcture/Cours_Ensta_2025/travaux_diriges/tp3$ mpirun --oversubscribe -n 16 parallelBucketSort.py
+N = 1000
+Métriques par processus :
+Processus 0:
+  gen_data: 0.000000 secondes
+  scatter: 0.105322 secondes
+  local_sort: 0.000015 secondes
+  sampling: 0.004291 secondes
+  compute_bounds: 0.000000 secondes
+  redistribute: 0.004758 secondes
+  final_sort: 0.000575 secondes
+  gather: 0.000027 secondes
+
+Processus 1:
+  gen_data: 0.000000 secondes
+  scatter: 0.000043 secondes
+  local_sort: 0.000016 secondes
+  sampling: 0.109606 secondes
+  compute_bounds: 0.000000 secondes
+  redistribute: 0.004671 secondes
+  final_sort: 0.000112 secondes
+  gather: 0.000000 secondes
+
+Processus 2:
+  gen_data: 0.000000 secondes
+  scatter: 0.000208 secondes
+  local_sort: 0.000015 secondes
+  sampling: 0.109441 secondes
+  compute_bounds: 0.000000 secondes
+  redistribute: 0.004778 secondes
+  final_sort: 0.004592 secondes
+  gather: 0.000000 secondes
+
+Processus 3:
+  gen_data: 0.000000 secondes
+  scatter: 0.000027 secondes
+  local_sort: 0.000013 secondes
+  sampling: 0.094944 secondes
+  compute_bounds: 0.000000 secondes
+  redistribute: 0.003897 secondes
+  final_sort: 0.000251 secondes
+  gather: 0.000000 secondes
+
+Processus 4:
+  gen_data: 0.000000 secondes
+  scatter: 0.000032 secondes
+  local_sort: 0.000011 secondes
+  sampling: 0.006831 secondes
+  compute_bounds: 0.000000 secondes
+  redistribute: 0.004739 secondes
+  final_sort: 0.000358 secondes
+  gather: 0.000000 secondes
+
+Processus 5:
+  gen_data: 0.000000 secondes
+  scatter: 0.000026 secondes
+  local_sort: 0.000013 secondes
+  sampling: 0.006804 secondes
+  compute_bounds: 0.000000 secondes
+  redistribute: 0.004692 secondes
+  final_sort: 0.000176 secondes
+  gather: 0.000000 secondes
+
+Processus 6:
+  gen_data: 0.000000 secondes
+  scatter: 0.000036 secondes
+  local_sort: 0.000014 secondes
+  sampling: 0.007212 secondes
+  compute_bounds: 0.000000 secondes
+  redistribute: 0.004156 secondes
+  final_sort: 0.000282 secondes
+  gather: 0.000000 secondes
+
+Processus 7:
+  gen_data: 0.000000 secondes
+  scatter: 0.000248 secondes
+  local_sort: 0.000015 secondes
+  sampling: 0.006594 secondes
+  compute_bounds: 0.000000 secondes
+  redistribute: 0.004678 secondes
+  final_sort: 0.000181 secondes
+  gather: 0.000000 secondes
+
+Processus 8:
+  gen_data: 0.000000 secondes
+  scatter: 0.103098 secondes
+  local_sort: 0.000017 secondes
+  sampling: 0.006540 secondes
+  compute_bounds: 0.000000 secondes
+  redistribute: 0.004692 secondes
+  final_sort: 0.000387 secondes
+  gather: 0.000000 secondes
+
+Processus 9:
+  gen_data: 0.000000 secondes
+  scatter: 0.103124 secondes
+  local_sort: 0.000018 secondes
+  sampling: 0.008055 secondes
+  compute_bounds: 0.000000 secondes
+  redistribute: 0.003340 secondes
+  final_sort: 0.012124 secondes
+  gather: 0.000000 secondes
+
+Processus 10:
+  gen_data: 0.000000 secondes
+  scatter: 0.104587 secondes
+  local_sort: 0.000015 secondes
+  sampling: 0.006424 secondes
+  compute_bounds: 0.000000 secondes
+  redistribute: 0.003542 secondes
+  final_sort: 0.000142 secondes
+  gather: 0.000000 secondes
+
+Processus 11:
+  gen_data: 0.000000 secondes
+  scatter: 0.056190 secondes
+  local_sort: 0.000015 secondes
+  sampling: 0.006374 secondes
+  compute_bounds: 0.000000 secondes
+  redistribute: 0.003567 secondes
+  final_sort: 0.000818 secondes
+  gather: 0.000000 secondes
+
+Processus 12:
+  gen_data: 0.000000 secondes
+  scatter: 0.036737 secondes
+  local_sort: 0.000014 secondes
+  sampling: 0.005262 secondes
+  compute_bounds: 0.000000 secondes
+  redistribute: 0.004174 secondes
+  final_sort: 0.000684 secondes
+  gather: 0.000000 secondes
+
+Processus 13:
+  gen_data: 0.000000 secondes
+  scatter: 0.036964 secondes
+  local_sort: 0.000015 secondes
+  sampling: 0.005038 secondes
+  compute_bounds: 0.000000 secondes
+  redistribute: 0.004108 secondes
+  final_sort: 0.007216 secondes
+  gather: 0.000000 secondes
+
+Processus 14:
+  gen_data: 0.000000 secondes
+  scatter: 0.036438 secondes
+  local_sort: 0.000016 secondes
+  sampling: 0.005023 secondes
+  compute_bounds: 0.000000 secondes
+  redistribute: 0.004103 secondes
+  final_sort: 0.004447 secondes
+  gather: 0.000000 secondes
+
+Processus 15:
+  gen_data: 0.000000 secondes
+  scatter: 0.036987 secondes
+  local_sort: 0.000016 secondes
+  sampling: 0.005332 secondes
+  compute_bounds: 0.000000 secondes
+  redistribute: 0.003681 secondes
+  final_sort: 0.000113 secondes
+  gather: 0.000000 secondes
+
+cedric@ns2:/media/cedric/DSCD/Projets/ENSTA/Parrallel_architcture/Cours_Ensta_2025/travaux_diriges/tp3$ mpirun --oversubscribe -n 8 parallelBucketSort.py
+N = 1000
+Métriques par processus :
+Processus 0:
+  gen_data: 0.000000 secondes
+  scatter: 0.000716 secondes
+  local_sort: 0.000017 secondes
+  sampling: 0.000604 secondes
+  compute_bounds: 0.000000 secondes
+  redistribute: 0.001086 secondes
+  final_sort: 0.000217 secondes
+  gather: 0.000016 secondes
+
+Processus 1:
+  gen_data: 0.000000 secondes
+  scatter: 0.000040 secondes
+  local_sort: 0.000021 secondes
+  sampling: 0.001256 secondes
+  compute_bounds: 0.000000 secondes
+  redistribute: 0.001056 secondes
+  final_sort: 0.000058 secondes
+  gather: 0.000000 secondes
+
+Processus 2:
+  gen_data: 0.000000 secondes
+  scatter: 0.000340 secondes
+  local_sort: 0.000016 secondes
+  sampling: 0.000969 secondes
+  compute_bounds: 0.000000 secondes
+  redistribute: 0.001055 secondes
+  final_sort: 0.000066 secondes
+  gather: 0.000000 secondes
+
+Processus 3:
+  gen_data: 0.000000 secondes
+  scatter: 0.000331 secondes
+  local_sort: 0.000016 secondes
+  sampling: 0.000959 secondes
+  compute_bounds: 0.000000 secondes
+  redistribute: 0.001046 secondes
+  final_sort: 0.000063 secondes
+  gather: 0.000000 secondes
+
+Processus 4:
+  gen_data: 0.000000 secondes
+  scatter: 0.000340 secondes
+  local_sort: 0.000017 secondes
+  sampling: 0.000939 secondes
+  compute_bounds: 0.000000 secondes
+  redistribute: 0.001055 secondes
+  final_sort: 0.000068 secondes
+  gather: 0.000000 secondes
+
+Processus 5:
+  gen_data: 0.000000 secondes
+  scatter: 0.000355 secondes
+  local_sort: 0.000018 secondes
+  sampling: 0.000922 secondes
+  compute_bounds: 0.000000 secondes
+  redistribute: 0.001056 secondes
+  final_sort: 0.000058 secondes
+  gather: 0.000000 secondes
+
+Processus 6:
+  gen_data: 0.000000 secondes
+  scatter: 0.000602 secondes
+  local_sort: 0.000104 secondes
+  sampling: 0.000584 secondes
+  compute_bounds: 0.000000 secondes
+  redistribute: 0.001056 secondes
+  final_sort: 0.000066 secondes
+  gather: 0.000000 secondes
+
+Processus 7:
+  gen_data: 0.000000 secondes
+  scatter: 0.000614 secondes
+  local_sort: 0.000018 secondes
+  sampling: 0.000634 secondes
+  compute_bounds: 0.000000 secondes
+  redistribute: 0.001057 secondes
+  final_sort: 0.000061 secondes
+  gather: 0.000000 secondes
