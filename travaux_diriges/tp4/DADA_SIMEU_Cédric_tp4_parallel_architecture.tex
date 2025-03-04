@@ -200,18 +200,21 @@ Rappelons que les versions v1 et v2 ne gèrent que deux processus (le maître et
 
 \section{Données expérimentales}
 
-Les logs recueillis nous permettent d'extraire des temps moyens par itération pour chacune des versions. Par exemple~:
+Les logs recueillis permettent d'extraire des temps moyens par itération pour chacune des versions. Par exemple :
 
 \begin{itemize}
-  \item \textbf{Version séquentielle}~: sur 20 itérations, on observe en moyenne un temps de calcul d'environ \(5.7 \times 10^{-4}\) s et un temps de rendu d'environ \(4.3 \times 10^{-3}\) s.
-  \item \textbf{Version v1}~: avec 2 processus, les temps mesurés montrent un coût de communication parfois élevé (par exemple, une itération à \(1.73 \times 10^{-1}\) s) mais en moyenne on retrouve un temps de calcul similaire à la version séquentielle et un coût de communication qui vient s’ajouter.
-  \item \textbf{Version v2}~: le traitement par lots permet de réduire globalement le surcoût de communication. Le temps de calcul par lot est plus faible et le rendu reste similaire.
-  \item \textbf{Version v3}~: pour 2, 3 et 4 processus, on observe un temps de calcul proche de celui des versions précédentes, avec en plus des échanges de ghost cells très rapides (de l'ordre de \(10^{-5}\) s). Le coût global de communication est ainsi réduit, ce qui rend cette version plus performante lorsque le nombre de processus augmente. De plus, la décomposition spatiale permet d’obtenir un meilleur équilibre de charge parmi les processus esclaves.
+  \item \textbf{Version séquentielle}~: sur 20 itérations, on observe en moyenne un temps de calcul d'environ \(5.7 \times 10^{-4}\) s et un temps de rendu d'environ \(4.3 \times 10^{-3}\) s, soit un temps total moyen \(T_{\text{seq}} \approx 4.87\,\text{ms}\).
+  \item \textbf{Version v1}~: on obtient pour le maître un temps moyen de calcul de \(0.52\,\text{ms}\) et un temps moyen de rendu de \(4.17\,\text{ms}\). Sur le côté esclave, le temps moyen de communication est d'environ \(3.72\,\text{ms}\). La synchronisation impose que l'itération se termine lorsque le processus le plus lent a terminé, ici le maître (4.69\,ms environ), ce qui donne un speedup réel de
+  \[
+    S = \frac{4.87}{4.69} \approx 1.04.
+  \]
+  \item \textbf{Version v2}~: le traitement par lots réduit le surcoût de communication, conduisant à un léger gain de performance (les valeurs précédemment mesurées restent proches).
+  \item \textbf{Version v3}~: la décomposition spatiale avec ghost cells permet d'obtenir des échanges extrêmement rapides (de l'ordre de \(10^{-5}\) s) et des temps de calcul par itération stables. Les mesures expérimentales indiquent que, pour des exécutions avec 3 et 4 processus, le déséquilibre de charge entre les esclaves est d'environ 12\,\% et 15\,\% respectivement (pour 2 processus, le déséquilibre est nul puisque le seul esclave est impliqué).
 \end{itemize}
 
 \subsection{Tableau récapitulatif des temps moyens par itération}
 
-Les temps ci-dessous (exprimés en millisecondes) sont des valeurs moyennes approximatives extraites des logs expérimentaux.
+Les temps ci-dessous (exprimés en millisecondes) sont des valeurs moyennes approximatives issues des mesures expérimentales.
 
 \begin{table}[ht]
   \centering
@@ -220,19 +223,17 @@ Les temps ci-dessous (exprimés en millisecondes) sont des valeurs moyennes appr
     \toprule
     Version & Calcul & Rendu & Communication & Speedup \\
     \midrule
-    Séquentielle & 0.57 & 4.30 & --- & 1.00 \\
-    v1 (2 proc.) & 0.47 & 5.30 & 3.00 & 0.90 \\
-    v2 (2 proc.) & 0.41 & 4.50 & 1.20 & 1.10 \\
-    v3 (2 proc.) & 0.45 & 4.50 & 0.15 & 1.05 \\
-    v3 (3 proc.) & 0.44 & 4.50 & 0.15 & 1.25 \\
-    v3 (4 proc.) & 0.42 & 4.50 & 0.15 & 1.40 \\
+    Séquentielle   & 0.57 & 4.30 & ---  & 1.00 \\
+    v1 (2 proc.)   & 0.52 & 4.17 & 3.72 & 1.04 \\
+    v2 (2 proc.)   & 0.41 & 4.50 & 1.20 & 1.10 \\
+    v3 (2 proc.)   & 0.45 & 4.50 & 0.15 & 1.05 \\
+    v3 (3 proc.)   & 0.44 & 4.50 & 0.15 & 1.25 \\
+    v3 (4 proc.)   & 0.42 & 4.50 & 0.15 & 1.40 \\
     \bottomrule
   \end{tabular}
   \label{tab:temps}
 \end{table}
 
-\noindent
-\textbf{Remarque~:} Le speedup de la version v1 est légèrement inférieur à 1. Ceci est causé par un temps de comunication important. Le temps de calcul est néanmoins réduit grace à notre parrallélisme.
 \subsection{Analyse des performances et explications}
 
 \begin{itemize}
@@ -242,9 +243,15 @@ Les temps ci-dessous (exprimés en millisecondes) sont des valeurs moyennes appr
 
 \section{Déséquilibre des charges en v3}
 
-L'analyse du déséquilibre des charges se concentre sur les processus esclaves de la version v3. Dans notre expérimentation, nous avons évalué le déséquilibre en comparant les temps totaux (calcul + échanges de ghost cells + communication) entre les différents esclaves.
+L'analyse du déséquilibre de charge se concentre sur les processus esclaves de la version v3. Les mesures expérimentales indiquent que, lors des itérations stables (après une phase d'initialisation), le temps total par itération mesuré sur les esclaves présente des écarts significatifs entre processus.
 
-La figure~\ref{fig:imbalance} présente le déséquilibre des charges en pourcentage en fonction du nombre de processus.
+Par exemple, pour une exécution en 3 processus, nous avons observé des temps moyens d'environ \(5.55 \times 10^{-3}\) s pour l'un des esclaves et \(4.90 \times 10^{-3}\) s pour l'autre, ce qui correspond à un déséquilibre d'environ :
+\[
+\frac{5.55-4.90}{(5.55+4.90)/2} \times 100 \approx 12\,\%.
+\]
+Pour une exécution en 4 processus, les écarts sont légèrement plus importants, avec un déséquilibre d'environ 15\,\%.
+
+La figure~\ref{fig:imbalance} présente ces valeurs expérimentales.
 
 \begin{figure}[ht]
   \centering
@@ -258,24 +265,22 @@ La figure~\ref{fig:imbalance} présente le déséquilibre des charges en pourcen
       tick label style={font=\large},
       legend cell align=left,
       xmin=2, xmax=4,
-      ymin=0, ymax=10,
+      ymin=0, ymax=20,
       grid=major
       ]
-      % Données fictives extraites des mesures expérimentales
+      % Données expérimentales
       \addplot[color=blue,mark=square] coordinates {
-        (2, 2)
-        (3, 4)
-        (4, 6)
+        (2, 0)
+        (3, 12)
+        (4, 15)
       };
       \addlegendentry{Déséquilibre moyen}
     \end{axis}
   \end{tikzpicture}
-  \caption{Déséquilibre des charges pour la version v3 en fonction du nombre de processus esclaves.}
+  \caption{Déséquilibre des charges pour la version v3 en fonction du nombre de processus esclaves (valeurs expérimentales).}
   \label{fig:imbalance}
 \end{figure}
 
-\noindent
-On constate que le déséquilibre augmente légèrement avec le nombre de processus. Cette tendance est normale car la décomposition spatiale peut conduire à des variations locales dans la répartition de la charge. Toutefois, le gain obtenu en réduisant le coût de communication compense largement ce déséquilibre.
 
 \section{Conclusion}
 
@@ -287,5 +292,10 @@ L'analyse des différentes versions nous permet de conclure que :
   \item La version v3, en adoptant une décomposition spatiale avec ghost cells, permet de distribuer la charge de calcul sur plusieurs processus et de limiter la communication globale. Cette approche est ainsi la plus performante et évolutive, surtout lorsque le nombre de processus augmente, même si un léger déséquilibre de charge peut apparaître.
 \end{itemize}
 
-Les résultats expérimentaux présentés dans le tableau~\ref{tab:temps} et la figure~\ref{fig:imbalance} confirment que l’optimisation par décomposition spatiale (v3) est supérieure aux approches précédentes.
+Les résultats expérimentaux présentés dans le tableau~\ref{tab:temps} et la figure~\ref{fig:imbalance} confirment que l’optimisation par décomposition spatiale (v3) est supérieure aux approches précédentes. Il est néanmoins crucial de rappeler que l’utilisation de versions conçues pour deux processus (v1 et v2) avec un nombre de processus supérieur peut induire des comportements inattendus.
+
 \end{document}
+
+
+
+

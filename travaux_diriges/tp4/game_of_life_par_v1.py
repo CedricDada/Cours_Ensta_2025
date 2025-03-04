@@ -4,7 +4,7 @@ from mpi4py import MPI
 import sys
 import time
 
-ITERATIONS = 50
+ITERATIONS = 20
 
 comm = MPI.COMM_WORLD
 rank = comm.Get_rank()
