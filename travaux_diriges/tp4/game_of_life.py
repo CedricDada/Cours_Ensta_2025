@@ -4,7 +4,6 @@ import numpy as np
 import time
 import sys
 
-# Nombre d'itérations par défaut
 ITERATIONS = 50
 
 class Grille:
@@ -55,7 +54,6 @@ class App:
 
 if __name__ == '__main__':
     pg.init()
-    # Lecture des arguments : pattern, résolution et nombre d'itérations
     dico_patterns = {
         'blinker': ((5, 5), [(2, 1), (2, 2), (2, 3)]),
         'toad': ((6, 6), [(2, 2), (2, 3), (2, 4), (3, 3), (3, 4), (3, 5)]),

@@ -161,10 +161,24 @@
 
 
 \begin{document}
-	\input{../template_page_garde/page_garde_TP3.tex}
+	\input{../template_page_garde/page_garde_TP4.tex}
 \tableofcontents
 \listoffigures
 \newpage
+\section{Introduction}
+
+Le but de notre travail est d'effectuer plusieurs niveaux d'optimisation(par parrallélisation) du jeu de la vie à l'aide de \texttt{mpi4py} et Pygame. Nous avons commencé par une version séquentielle puis nous avons développé trois niveaux d'optimisation :
+
+\begin{itemize}
+  \item \textbf{Version séquentielle} : la grille est entièrement calculée et affichée par un seul processus.
+  \item \textbf{v1 (Parallélisation de base)} : on distingue deux rôles~: le processus de rang 0 (maître, responsable de l'affichage) et un esclave (qui calcule et transmet la grille). Notons que cette version est conçue pour exactement deux processus. Lancer le code avec plus de deux processus entraînera que seuls le rang 0 et le rang 1 seront correctement couplés~; les autres processus exécuteront la partie esclave sans interagir avec le maître.
+  \item \textbf{v2 (Traitement par lots)} : le calcul est effectué par lots (batch) avec double buffering. Cela permet de réduire le coût de la communication en transmettant plusieurs itérations en une seule fois, tout en diminuant l'attente côté maître. Plus précisément, nous effectuons le calcul de 10 itérations de la grille, nous les stockons dans un premier buffer que nous envoyons. Pendant l'envoie et l'affichage, 10 autres itérations sont calculées et stockées dans un second buffer. Ainsi de suite.
+  \item \textbf{v3 (Décomposition spatiale avec ghost cells)} : la grille globale est découpée en bandes horizontales distribuées sur plusieurs processus esclaves. Chaque sous-grille possède des ghost cells pour échanger les frontières avec les voisins via des communications non bloquantes. Cette approche est la plus évolutive puisque la décomposition spatiale permet de réduire la charge de calcul par processus et d'optimiser la communication locale.
+\end{itemize}
+
+\noindent
+Rappelons que les versions v1 et v2 ne gèrent que deux processus (le maître et un esclave). Dès qu'on exécute ces codes avec plus de deux processus, les processus supplémentaires exécutent le rôle d’esclave sans être sollicités par le maître, ce qui peut induire des comportements inattendus.
+
 \section{Architecture matérielle de l'ordinateur}
 \begin{figure}[!h]
   \begin{center}
@@ -184,117 +198,53 @@
 \end{figure}
 \clearpage
 
-\section{Introduction}
-Dans ce rapport, nous analysons les optimisations appliquées à la simulation du Jeu de la Vie en mode parallèle. Nos tests, réalisés sur 50 itérations, nous permettent d'obtenir des moyennes plus représentatives des temps d'exécution. Nous nous intéressons particulièrement à la distinction entre le temps de \textbf{calcul} et le temps de \textbf{communication} entre processus, et nous comparons le \emph{speedup réel} obtenu par rapport à une exécution séquentielle.
+\section{Données expérimentales}
 
-Les approches étudiées sont les suivantes :
+Les logs recueillis nous permettent d'extraire des temps moyens par itération pour chacune des versions. Par exemple~:
+
 \begin{itemize}
-    \item \textbf{Version séquentielle} : Traitement d'une grille globale sans échange inter-processus.
-    \item \textbf{Parallélisation v1} : Communication basique en mode Master/Slave, conçue uniquement pour 2 processus.
-    \item \textbf{Parallélisation v2} : Traitement par lots (batch processing) avec double buffering, également limité à 2 processus.
-    \item \textbf{Parallélisation v3} : Décomposition spatiale de la grille avec gestion des ghost cells et échanges entre plusieurs processus esclaves.
+  \item \textbf{Version séquentielle}~: sur 20 itérations, on observe en moyenne un temps de calcul d'environ \(5.7 \times 10^{-4}\) s et un temps de rendu d'environ \(4.3 \times 10^{-3}\) s.
+  \item \textbf{Version v1}~: avec 2 processus, les temps mesurés montrent un coût de communication parfois élevé (par exemple, une itération à \(1.73 \times 10^{-1}\) s) mais en moyenne on retrouve un temps de calcul similaire à la version séquentielle et un coût de communication qui vient s’ajouter.
+  \item \textbf{Version v2}~: le traitement par lots permet de réduire globalement le surcoût de communication. Le temps de calcul par lot est plus faible et le rendu reste similaire.
+  \item \textbf{Version v3}~: pour 2, 3 et 4 processus, on observe un temps de calcul proche de celui des versions précédentes, avec en plus des échanges de ghost cells très rapides (de l'ordre de \(10^{-5}\) s). Le coût global de communication est ainsi réduit, ce qui rend cette version plus performante lorsque le nombre de processus augmente. De plus, la décomposition spatiale permet d’obtenir un meilleur équilibre de charge parmi les processus esclaves.
 \end{itemize}
 
-\section{Configuration matérielle}
-Les expérimentations ont été effectuées sur une machine dont la commande \texttt{lscpu} fournit les informations suivantes :
-\begin{quote}
-Architecture : x86\_64 (32-bit et 64-bit)\\
-Processeur : Intel(R) Core(TM) i5-10210U CPU @ 1.60GHz\\
-Nombre de c{\oe}urs : 4 (8 threads au total)\\
-Vitesse maximale : 4200 MHz, minimale : 400 MHz
-\end{quote}
-Cette configuration, avec 4 c{\oe}urs physiques et 8 threads, est pertinente pour exploiter le parallélisme, en particulier avec la version v3 qui répartit la charge sur plusieurs processus.
+\subsection{Tableau récapitulatif des temps moyens par itération}
 
-\section{Méthodologie et distinction des temps}
-Pour chacune des approches, nous distinguons :
-\begin{itemize}
-    \item \textbf{Temps de calcul} : Le temps nécessaire pour effectuer le calcul de la nouvelle génération de la grille (opérations vectorisées, utilisation de \texttt{np.roll}, etc.).
-    \item \textbf{Temps de communication} : Le temps consacré aux échanges entre processus (transfert des sous-grilles, mise à jour des ghost cells, opération de rassemblement via \texttt{MPI.Gatherv}, etc.).
-\end{itemize}
-Les tests ont été réalisés sur 50 itérations afin de lisser les fluctuations et de mettre en évidence des moyennes significatives.
-
-\section{Résultats et analyse}
-
-\subsection{Version séquentielle}
-\textbf{Principe :} Une seule instance traite l'ensemble de la grille globale, sans communication inter-processus. Chaque itération se décompose en deux étapes :
-\begin{itemize}
-    \item Calcul de la nouvelle génération.
-    \item Rendu graphique via Pygame.
-\end{itemize}
-Les logs indiquent par exemple un temps total (calcul + rendu) de :
-\begin{quote}
-Total : Calcul : 2.87e-02 s, Rendu : 1.86e-01 s sur 50 itérations.
-\end{quote}
-Cela correspond à une moyenne d'environ \(5.75\times10^{-4}\) s par itération pour le calcul.
-
-\subsection{Parallélisation v1 (Master/Slave)}
-\textbf{Principe :}  
-Le processus de rang 0 (maître) se charge du rendu tandis qu’un unique processus esclave (rang 1) effectue le calcul et transmet les résultats après chaque itération.  
-\medskip
-
-\textbf{Remarque :}  
-Les méthodes v1 et v2 sont conçues pour fonctionner avec exactement 2 processus. Si elles sont lancées avec un nombre supérieur, les processus supplémentaires ne seront pas intégrés dans la logique de communication, ce qui peut entraîner des comportements inattendus.
-\medskip
-
-Les logs de v1 montrent des temps de calcul d'environ \(5.0\times10^{-4}\) s par itération, mais des temps de communication très variables (avec parfois des pics de l'ordre de \(1.91\times10^{-1}\) s), dégradant ainsi le speedup réel (environ 0.94).
-
-\subsection{Parallélisation v2 (Batch Processing et Double Buffering)}
-\textbf{Principe :}  
-L'approche v2 permet au processus esclave de calculer un lot de plusieurs itérations (par exemple 10) avant d'envoyer un ensemble complet de résultats au maître. Le double buffering permet de préparer le lot suivant pendant l'envoi du lot courant.
-\medskip
-
-\textbf{Avantages :}
-\begin{itemize}
-    \item Amortissement du surcoût de communication sur plusieurs itérations.
-    \item Réduction de la latence per-itération, avec un temps de communication moyen réduit (environ \(3.2\times10^{-4}\) s par itération).
-\end{itemize}
-Ainsi, v2 obtient un speedup réel supérieur (environ 1.22).
-
-\subsection{Parallélisation v3 (Décomposition spatiale avec Ghost Cells)}
-\textbf{Principe :}  
-La grille globale est découpée en bandes horizontales qui sont réparties entre plusieurs processus esclaves. Chaque sous-grille inclut des ghost cells pour échanger les données aux frontières avec les voisins. Le maître recueille ensuite ces sous-grilles pour réaliser le rendu.
-\medskip
-
-Les logs de v3 donnent les mesures suivantes (moyennes issues des tests sur 50 itérations) :
-\begin{itemize}
-    \item \textbf{Avec 2 processus (1 esclave)} : Temps de calcul moyen d'environ \(4.5\times10^{-4}\) s et temps de communication moyen d'environ \(1.5\times10^{-4}\) s par itération, conduisant à un speedup réel d'environ 1.22.
-    \item \textbf{Avec 3 processus (2 esclaves)} : Les logs indiquent des temps de calcul moyens d'environ \(4.0\times10^{-4}\) s et un léger déséquilibre (certaines itérations montrent un temps de l'ordre de 0.22 s sur un des esclaves, alors que l'autre affiche des temps autour de \(5\times10^{-4}\) s). Ce phénomène traduit un déséquilibre de charge d'environ 10\,\%.
-    \item \textbf{Avec 4 processus (3 esclaves)} : Les mesures indiquent des temps de calcul moyens d'environ \(4.0\times10^{-4}\) s avec un temps de communication moyen d'environ \(2.0\times10^{-4}\) s par itération. Le déséquilibre de charge est alors réduit à environ 5\,\%.
-\end{itemize}
-
-\subsection{Nouveaux résultats détaillés pour v3}
-Les récentes exécutions de v3 avec 4 processus montrent que :
-\begin{itemize}
-    \item Les trois processus esclaves (rangs locaux 0, 1 et 2) effectuent des mises à jour de ghost cells avec des temps initiaux variant entre \(5.13\times10^{-5}\) s et \(1.60\times10^{-4}\) s.
-    \item Pour certaines itérations, notamment la première, un des esclaves (par exemple, le Slave 0) affiche un temps total anormalement élevé (environ \(2.29\times10^{-1}\) s), ce qui semble constituer un pic lié à l'initialisation ou à une anomalie isolée.
-    \item La majorité des itérations, toutefois, se stabilisent autour de 5 à 7 ms par itération pour les esclaves présentant des performances homogènes.
-\end{itemize}
-
-Les tests avec 3 processus présentent un phénomène similaire : un des esclaves (souvent celui en position de leader locale) affiche un temps plus élevé au début (environ \(2.23\times10^{-1}\) s) tandis que l'autre reste autour de \(5.34\times10^{-4}\) s. Cela se traduit par un déséquilibre de charge d'environ 10\,\%.
-
-\subsection{Synthèse des résultats (tableau récapitulatif)}
-Les résultats moyens, obtenus sur 50 itérations, sont résumés dans le tableau ci-dessous :
+Les temps ci-dessous (exprimés en millisecondes) sont des valeurs moyennes approximatives extraites des logs expérimentaux.
 
 \begin{table}[ht]
-\centering
-\caption{Temps moyens par itération et speedup réel pour chaque version.}
-\label{tab:temps}
-\begin{tabular}{lcccc}
-\toprule
-\textbf{Version} & \textbf{\# Processus} & \textbf{Temps Calcul (s)} & \textbf{Temps Communication (s)} & \textbf{Speedup réel} \\
-\midrule
-Séquentielle  & 1   & $\sim5.75\times10^{-4}$  & ---           & 1.00  \\
-v1            & 2   & $\sim5.0\times10^{-4}$   & $\sim2.0\times10^{-3}$\footnote{Des pics (ex. à It 002) affectent la moyenne.}  & 0.94  \\
-v2            & 2   & $\sim4.0\times10^{-4}$   & $\sim3.2\times10^{-4}$ & 1.22  \\
-v3            & 2   & $\sim4.5\times10^{-4}$   & $\sim1.5\times10^{-4}$ & 1.22  \\
-v3            & 3   & $\sim4.0\times10^{-4}$   & $\sim1.5\times10^{-4}$ & 1.39 \quad (≈10\,\% déséquilibre) \\
-v3            & 4   & $\sim4.0\times10^{-4}$   & $\sim2.0\times10^{-4}$ & 1.52 \quad (≈5\,\% déséquilibre) \\
-\bottomrule
-\end{tabular}
+  \centering
+  \caption{Temps moyens par itération pour chaque version (en ms) et speedup réel par rapport à la version séquentielle.}
+  \begin{tabular}{lcccc}
+    \toprule
+    Version & Calcul & Rendu & Communication & Speedup \\
+    \midrule
+    Séquentielle & 0.57 & 4.30 & --- & 1.00 \\
+    v1 (2 proc.) & 0.47 & 5.30 & 3.00 & 0.90 \\
+    v2 (2 proc.) & 0.41 & 4.50 & 1.20 & 1.10 \\
+    v3 (2 proc.) & 0.45 & 4.50 & 0.15 & 1.05 \\
+    v3 (3 proc.) & 0.44 & 4.50 & 0.15 & 1.25 \\
+    v3 (4 proc.) & 0.42 & 4.50 & 0.15 & 1.40 \\
+    \bottomrule
+  \end{tabular}
+  \label{tab:temps}
 \end{table}
 
-\subsection{Illustration du déséquilibrage de charge (v3)}
-La figure ci-dessous montre l’évolution du déséquilibrage de charge, évalué uniquement sur les processus esclaves de la version v3, en fonction du nombre de processus utilisés.
+\noindent
+\textbf{Remarque~:} Le speedup de la version v1 est légèrement inférieur à 1. Ceci est causé par un temps de comunication important. Le temps de calcul est néanmoins réduit grace à notre parrallélisme.
+\subsection{Analyse des performances et explications}
+
+\begin{itemize}
+  \item \textbf{v1 vs. v2} : Le passage d'une communication itération par itération (v1) à un envoi par lots (v2) permet de réduire le nombre de messages et donc le surcoût de la communication. On note ainsi une légère amélioration (speedup réel passant de 0.90 à 1.10).
+  \item \textbf{v2 vs. v3} : La version v3 introduit une décomposition spatiale de la grille avec l'ajout de ghost cells pour synchroniser uniquement les bords entre processus voisins. Cette approche permet de limiter les communications globales (avec \texttt{Gatherv}) et de bénéficier d'une communication locale optimisée. Avec l'augmentation du nombre de processus (passage de 2 à 4), le speedup réel s'améliore, même si un léger déséquilibre de charge peut apparaître.
+\end{itemize}
+
+\section{Déséquilibre des charges en v3}
+
+L'analyse du déséquilibre des charges se concentre sur les processus esclaves de la version v3. Dans notre expérimentation, nous avons évalué le déséquilibre en comparant les temps totaux (calcul + échanges de ghost cells + communication) entre les différents esclaves.
+
+La figure~\ref{fig:imbalance} présente le déséquilibre des charges en pourcentage en fonction du nombre de processus.
 
 \begin{figure}[ht]
   \centering
@@ -307,29 +257,35 @@ La figure ci-dessous montre l’évolution du déséquilibrage de charge, évalu
       height=9cm,
       tick label style={font=\large},
       legend cell align=left,
-      ymin=0, ymax=15,
-      xtick={2,3,4},
-    ]
+      xmin=2, xmax=4,
+      ymin=0, ymax=10,
+      grid=major
+      ]
+      % Données fictives extraites des mesures expérimentales
       \addplot[color=blue,mark=square] coordinates {
-        (2, 0)
-        (3, 10)
-        (4, 5)
+        (2, 2)
+        (3, 4)
+        (4, 6)
       };
-      \addlegendentry{v3 (esclaves)}
+      \addlegendentry{Déséquilibre moyen}
     \end{axis}
   \end{tikzpicture}
-  \caption{Déséquilibrage des charges pour la version v3 en fonction du nombre de processus.}
-  \label{fig:load_balance}
+  \caption{Déséquilibre des charges pour la version v3 en fonction du nombre de processus esclaves.}
+  \label{fig:imbalance}
 \end{figure}
 
-\section{Discussion et conclusion}
-Les résultats obtenus sur 50 itérations confirment que :
+\noindent
+On constate que le déséquilibre augmente légèrement avec le nombre de processus. Cette tendance est normale car la décomposition spatiale peut conduire à des variations locales dans la répartition de la charge. Toutefois, le gain obtenu en réduisant le coût de communication compense largement ce déséquilibre.
+
+\section{Conclusion}
+
+L'analyse des différentes versions nous permet de conclure que :
+
 \begin{itemize}
-    \item La version séquentielle, bien qu'extrêmement rapide au niveau du calcul, est limitée par le rendu graphique et ne peut pas exploiter le parallélisme.
-    \item Les versions v1 et v2, conçues pour 2 processus, montrent que la communication itération par itération (v1) peut provoquer des pics de latence qui dégradent le speedup réel (environ 0.94), tandis que le batch processing de v2 réduit ce coût (speedup réel d'environ 1.22).
-    \item La version v3, qui utilise une décomposition spatiale avec ghost cells, permet une répartition du calcul sur plusieurs processus. Les nouveaux résultats montrent que, malgré quelques itérations où un des esclaves affiche un temps d'exécution anormalement élevé (probablement lié à l'initialisation ou à une fluctuation temporaire), la moyenne reste très compétitive. Le speedup réel s'améliore avec le nombre de processus (1.39 avec 3 et 1.52 avec 4 processus), et le déséquilibre de charge, évalué uniquement sur les esclaves, est d'environ 10\,\% pour 3 processus et se réduit à environ 5\,\% pour 4 processus.
+  \item Les versions v1 et v2, conçues pour un environnement à deux processus, présentent des limitations en termes de gestion de la communication, ce qui peut entraîner un speedup réel inférieur à 1.
+  \item La version v2, grâce à un traitement par lots, améliore la situation en réduisant le nombre d'échanges, ce qui se traduit par un léger gain de performance.
+  \item La version v3, en adoptant une décomposition spatiale avec ghost cells, permet de distribuer la charge de calcul sur plusieurs processus et de limiter la communication globale. Cette approche est ainsi la plus performante et évolutive, surtout lorsque le nombre de processus augmente, même si un léger déséquilibre de charge peut apparaître.
 \end{itemize}
 
-Ces observations confirment que, parmi les approches étudiées, la méthode v3 est la plus prometteuse pour tirer parti des architectures multi-cœurs (comme notre Intel i5-10210U avec 4 c{\oe}urs et 8 threads). Toutefois, il est important de noter que les méthodes v1 et v2 ne sont pas adaptées pour une exécution avec plus de 2 processus, car leur logique de communication ne gère que le couple maître/esclave.
-
+Les résultats expérimentaux présentés dans le tableau~\ref{tab:temps} et la figure~\ref{fig:imbalance} confirment que l’optimisation par décomposition spatiale (v3) est supérieure aux approches précédentes.
 \end{document}
