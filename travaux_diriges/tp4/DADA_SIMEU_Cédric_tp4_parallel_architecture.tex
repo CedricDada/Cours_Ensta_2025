@@ -237,7 +237,7 @@ Les temps ci-dessous (exprimés en millisecondes) sont des valeurs moyennes appr
 \subsection{Analyse des performances et explications}
 
 \begin{itemize}
-  \item \textbf{v1 vs. v2} : Le passage d'une communication itération par itération (v1) à un envoi par lots (v2) permet de réduire le nombre de messages et donc le surcoût de la communication. On note ainsi une légère amélioration (speedup réel passant de 0.90 à 1.10).
+  \item \textbf{v1 vs. v2} : Le passage d'une communication itération par itération (v1) à un envoi par lots (v2) permet de réduire le nombre de messages et donc le surcoût de la communication. On note ainsi une légère amélioration (speedup réel passant de 1.04 à 1.10).
   \item \textbf{v2 vs. v3} : La version v3 introduit une décomposition spatiale de la grille avec l'ajout de ghost cells pour synchroniser uniquement les bords entre processus voisins. Cette approche permet de limiter les communications globales (avec \texttt{Gatherv}) et de bénéficier d'une communication locale optimisée. Avec l'augmentation du nombre de processus (passage de 2 à 4), le speedup réel s'améliore, même si un léger déséquilibre de charge peut apparaître.
 \end{itemize}
 
