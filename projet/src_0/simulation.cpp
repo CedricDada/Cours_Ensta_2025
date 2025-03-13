@@ -199,17 +199,50 @@ int main( int nargs, char* args[] )
     if (!check_params(params)) return EXIT_FAILURE;
 
     auto displayer = Displayer::init_instance( params.discretization, params.discretization );
-    auto simu = Model( params.length, params.discretization, params.wind,
-                       params.start);
+    auto simu = Model( params.length, params.discretization, params.wind, params.start );
+    
     SDL_Event event;
-    while (simu.update())
+
+    // Variables d'agrégation pour mesurer les temps
+    std::chrono::duration<double> total_update_time(0);
+    std::chrono::duration<double> total_display_time(0);
+    std::size_t steps = 0;
+
+    while (true)
     {
-        if ((simu.time_step() & 31) == 0) 
-            std::cout << "Time step " << simu.time_step() << "\n===============" << std::endl;
+        // Mesurer le temps de mise à jour
+        auto start_update = std::chrono::high_resolution_clock::now();
+        bool continue_simulation = simu.update();
+        auto end_update = std::chrono::high_resolution_clock::now();
+        total_update_time += (end_update - start_update);
+
+        // Si la simulation est terminée, on sort de la boucle.
+        if (!continue_simulation)
+            break;
+
+        // Mesurer le temps d'affichage
+        auto start_display = std::chrono::high_resolution_clock::now();
         displayer->update( simu.vegetal_map(), simu.fire_map() );
+        auto end_display = std::chrono::high_resolution_clock::now();
+        total_display_time += (end_display - start_display);
+
+        if ((simu.time_step() % 100) == 0)
+            std::cout << "Time step " << simu.time_step() << "\n===============" << std::endl;
+
         if (SDL_PollEvent(&event) && event.type == SDL_QUIT)
             break;
+
         std::this_thread::sleep_for(0.1s);
+        ++steps;
     }
+
+    // Calculer et afficher les temps moyens
+    double avg_update_time = total_update_time.count() / steps;
+    double avg_display_time = total_display_time.count() / steps;
+    std::cout << "Temps moyen de mise à jour : " << avg_update_time << " s" << std::endl;
+    std::cout << "Temps moyen d'affichage : " << avg_display_time << " s" << std::endl;
+
     return EXIT_SUCCESS;
 }
+
+

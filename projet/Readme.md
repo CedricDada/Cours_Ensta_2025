@@ -66,7 +66,7 @@ Il faudra également conserver le code pour chaque étape décrit ici et rendre 
 ### Première étape
 
 - Regarder le nombre de coeurs physiques sur votre machine et la taille des différentes mémoires caches que vous donnerez dans votre rapport.
-- Mesurer les temps moyen ris pour chaque pas de temps, puis pour l'affichage et l'avancement en temps
+- Mesurer les temps moyen pris pour chaque pas de temps, puis pour l'affichage et l'avancement en temps
 - Paralléliser l'avancement en temps à l'aide d'OPENMP :
 
   - Récupérez dans un tableau toutes les clefs contenues dans le dictionnaire et à l'aide d'un indice, parcourez ces clefs pour l'avancement en temps

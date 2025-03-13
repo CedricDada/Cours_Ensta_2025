@@ -1,6 +1,8 @@
 #include <stdexcept>
 #include <cmath>
 #include <iostream>
+#include <fstream>  // Pour std::ofstream
+#include <iomanip>  // Pour std::setw
 #include "model.hpp"
 
 
@@ -75,6 +77,12 @@ Model::Model( double t_length, unsigned t_discretization, std::array<double,2> t
 bool 
 Model::update()
 {
+    static const std::size_t max_iterations = 2000; // Nombre max d'itérations
+
+    if (m_time_step >= max_iterations) {
+        std::cout << "Arrêt de la simulation après " << max_iterations << " itérations.\n";
+        return false;  // Stoppe la simulation
+    }
     auto next_front = m_fire_front;
     for (auto f : m_fire_front)
     {
@@ -162,6 +170,11 @@ Model::update()
             m_vegetation_map[f.first] -= 1;
     }
     m_time_step += 1;
+
+    // Log toutes les 100 itérations
+    if (m_time_step % 100 == 0) {
+        log_grids(m_time_step);
+    }
     return !m_fire_front.empty();
 }
 // ====================================================================================================================
@@ -178,4 +191,22 @@ Model::get_lexicographic_from_index( std::size_t t_global_index ) const -> Lexic
     ind_coords.row    = t_global_index/this->geometry();
     ind_coords.column = t_global_index%this->geometry();
     return ind_coords;
+}
+void Model::log_grids(std::size_t step) const {
+    std::ofstream file("simulation_log.txt", std::ios::app);  // Mode append
+    file << "Step " << step << " - Fire Map:\n";
+    for (std::size_t i = 0; i < m_geometry; ++i) {
+        for (std::size_t j = 0; j < m_geometry; ++j) {
+            file << std::setw(4) << static_cast<int>(m_fire_map[i * m_geometry + j]);
+        }
+        file << "\n";
+    }
+    file << "Vegetation Map:\n";
+    for (std::size_t i = 0; i < m_geometry; ++i) {
+        for (std::size_t j = 0; j < m_geometry; ++j) {
+            file << std::setw(4) << static_cast<int>(m_vegetation_map[i * m_geometry + j]);
+        }
+        file << "\n";
+    }
+    file << "\n";
 }

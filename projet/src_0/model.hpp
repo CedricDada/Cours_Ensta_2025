@@ -26,6 +26,14 @@ public:
     Model& operator = ( Model      && ) = delete;
 
     bool update();
+    void merge_new_fires(const std::vector<std::vector<std::pair<std::size_t, std::uint8_t>>>& thread_new_fires,
+                           std::unordered_map<std::size_t, std::uint8_t>& next_front);
+    void merge_updates(const std::vector<std::vector<std::pair<std::size_t, std::uint8_t>>>& thread_current_updates,
+                         std::unordered_map<std::size_t, std::uint8_t>& next_front);
+    void process_neighbor(std::size_t neighbor_key, std::size_t key, int tid, double power, double alpha, 
+                            std::vector<std::vector<std::pair<std::size_t, std::uint8_t>>>& thread_new_fires);
+    
+    void log_grids(std::size_t step) const;
 
     unsigned geometry() const { return m_geometry; }
     std::vector<std::uint8_t> vegetal_map() const { return m_vegetation_map; }
@@ -38,7 +46,7 @@ private:
 
     double m_length;                    // Taille du carré représentant le terrain (en km)
     double m_distance;                  // Taille d'une case du terrain modélisé
-    std::size_t m_time_step;            // Dernier numéro du pas de temps calculé
+    std::size_t m_time_step=0;          // Dernier numéro du pas de temps calculé
     unsigned m_geometry;                // Taille en nombre de cases de la carte 2D
     std::array<double,2> m_wind{0.,0.}; // Vitesse et direction du vent suivant les axes x et y en km/h
     double m_wind_speed;                // Norme euclidienne de la vitesse du vent
