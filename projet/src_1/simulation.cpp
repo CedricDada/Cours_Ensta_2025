@@ -227,7 +227,7 @@ int main( int nargs, char* args[] )
         auto end_display = std::chrono::high_resolution_clock::now();
         total_display_time += (end_display - start_display);
 
-        if ((simu.time_step() & 31) == 0)
+        if ((simu.time_step() % 100) == 0)
             std::cout << "Time step " << simu.time_step() << "\n===============" << std::endl;
 
         if (SDL_PollEvent(&event) && event.type == SDL_QUIT)

@@ -1,10 +1,11 @@
 #include <stdexcept>
 #include <cmath>
 #include <iostream>
-#include <fstream>  // Pour std::ofstream
-#include <iomanip>  // Pour std::setw
+#include <fstream>
+#include <iomanip>
+#include <omp.h>
 #include "model.hpp"
-#include <chrono>
+#include "display.hpp"
 
 
 
@@ -76,112 +77,131 @@ Model::Model( double t_length, unsigned t_discretization, std::array<double,2> t
     }
 }
 // --------------------------------------------------------------------------------------------------------------------
-bool 
-Model::update()
+bool Model::update()
 {
-    auto next_front = m_fire_front;
-    std::vector<std::size_t> keys;
-    keys.reserve(m_fire_front.size());
-    for (auto const &f : m_fire_front) {
-        keys.push_back(f.first);
-    }
-#pragma omp parallel for schedule(static)
-for (std::size_t i = 0; i < keys.size(); ++i) {
-    auto key = keys[i];
-    // Récupération de la coordonnée lexicographique de la case en feu :
-    LexicoIndices coord = get_lexicographic_from_index(key);
-    // Récupération de la puissance du foyer
-    double power = log_factor(m_fire_front[key]);
-
-    // Pour chaque voisin, on calcule le tirage, etc.
-    if (coord.row < m_geometry-1) {
-        double tirage      = pseudo_random(key + m_time_step, m_time_step);
-        double green_power = m_vegetation_map[key + m_geometry];
-        double correction  = power * log_factor(green_power);
-        if (tirage < alphaSouthNorth * p1 * correction) {
-            #pragma omp critical
-            {
-                m_fire_map[key + m_geometry] = 255;
-                next_front[key + m_geometry] = 255;
-            }
-        }
+    static const std::size_t max_iterations = 500; // Par exemple
+    if (m_time_step >= max_iterations) {
+        std::cout << "Arrêt de la simulation après " << max_iterations << " itérations.\n";
+        return false;
     }
 
-    if (coord.row > 0) {
-        double tirage      = pseudo_random(key * 13427 + m_time_step, m_time_step);
-        double green_power = m_vegetation_map[key - m_geometry];
-        double correction  = power * log_factor(green_power);
-        if (tirage < alphaNorthSouth * p1 * correction) {
-            #pragma omp critical
-            {
-                m_fire_map[key - m_geometry] = 255;
-                next_front[key - m_geometry] = 255;
+    // On crée des buffers temporaires pour calculer la nouvelle itération
+    std::vector<std::uint8_t> new_fire_map = m_fire_map;
+    std::vector<std::uint8_t> new_vegetation_map = m_vegetation_map;
+
+    // Mise à jour en double buffer : toutes les cellules se mettent à jour en fonction de l'état précédent
+    #pragma omp parallel for schedule(dynamic)
+    for (int i = 0; i < static_cast<int>(m_geometry); ++i) {
+        for (int j = 0; j < static_cast<int>(m_geometry); ++j) {
+            std::size_t key = i * m_geometry + j;
+            // Si la cellule est en feu dans l'itération précédente
+            if (m_fire_map[key] > 0) {
+                double power = log_factor(m_fire_map[key]);
+
+                // Voisin Sud (i+1)
+                if (i < static_cast<int>(m_geometry)-1) {
+                    std::size_t nkey = key + m_geometry;
+                    double tirage = pseudo_random(key + m_time_step, m_time_step);
+                    double green_power = m_vegetation_map[nkey];
+                    double correction = power * log_factor(green_power);
+                    if (tirage < alphaSouthNorth * p1 * correction) {
+                        new_fire_map[nkey] = 255;
+                    }
+                }
+                // Voisin Nord (i-1)
+                if (i > 0) {
+                    std::size_t nkey = key - m_geometry;
+                    double tirage = pseudo_random(key * 13427 + m_time_step, m_time_step);
+                    double green_power = m_vegetation_map[nkey];
+                    double correction = power * log_factor(green_power);
+                    if (tirage < alphaNorthSouth * p1 * correction) {
+                        new_fire_map[nkey] = 255;
+                    }
+                }
+                // Voisin Est (j+1)
+                if (j < static_cast<int>(m_geometry)-1) {
+                    std::size_t nkey = key + 1;
+                    double tirage = pseudo_random(key * 13427 * 13427 + m_time_step, m_time_step);
+                    double green_power = m_vegetation_map[nkey];
+                    double correction = power * log_factor(green_power);
+                    if (tirage < alphaEastWest * p1 * correction) {
+                        new_fire_map[nkey] = 255;
+                    }
+                }
+                // Voisin Ouest (j-1)
+                if (j > 0) {
+                    std::size_t nkey = key - 1;
+                    double tirage = pseudo_random(key * 13427 * 13427 * 13427 + m_time_step, m_time_step);
+                    double green_power = m_vegetation_map[nkey];
+                    double correction = power * log_factor(green_power);
+                    if (tirage < alphaWestEast * p1 * correction) {
+                        new_fire_map[nkey] = 255;
+                    }
+                }
+
+                // Gestion de l'extinction dans la cellule courante
+                if (m_fire_map[key] == 255) {
+                    double tirage = pseudo_random(key * 52513 + m_time_step, m_time_step);
+                    if (tirage < p2) {
+                        new_fire_map[key] = m_fire_map[key] >> 1;
+                    } else {
+                        new_fire_map[key] = m_fire_map[key];
+                    }
+                } else {
+                    new_fire_map[key] = m_fire_map[key] >> 1;
+                }
+
+                // Diminution de la végétation sur la cellule en feu
+                if (m_vegetation_map[key] > 0)
+                    new_vegetation_map[key] = m_vegetation_map[key] - 1;
             }
         }
     }
 
-    if (coord.column < m_geometry-1) {
-        double tirage      = pseudo_random(key * 13427 * 13427 + m_time_step, m_time_step);
-        double green_power = m_vegetation_map[key + 1];
-        double correction  = power * log_factor(green_power);
-        if (tirage < alphaEastWest * p1 * correction) {
-            #pragma omp critical
-            {
-                m_fire_map[key + 1] = 255;
-                next_front[key + 1] = 255;
-            }
-        }
-    }
+    // On met à jour l'état global avec les nouvelles valeurs
+    m_fire_map = new_fire_map;
+    m_vegetation_map = new_vegetation_map;
 
-    if (coord.column > 0) {
-        double tirage      = pseudo_random(key * 13427 * 13427 * 13427 + m_time_step, m_time_step);
-        double green_power = m_vegetation_map[key - 1];
-        double correction  = power * log_factor(green_power);
-        if (tirage < alphaWestEast * p1 * correction) {
-            #pragma omp critical
-            {
-                m_fire_map[key - 1] = 255;
-                next_front[key - 1] = 255;
-            }
-        }
-    }
-
-    // Traitement du foyer courant
-    if (m_fire_front[key] == 255) {
-        double tirage = pseudo_random(key * 52513 + m_time_step, m_time_step);
-        if (tirage < p2) {
-            #pragma omp critical
-            {
-                m_fire_map[key] >>= 1;
-                next_front[key]   >>= 1;
-            }
-        }
-    }
-    else {
-        #pragma omp critical
-        {
-            m_fire_map[key] >>= 1;
-            next_front[key]   >>= 1;
-            if (next_front[key] == 0) {
-                next_front.erase(key);
-            }
-        }
-    }
-}
-    // A chaque itération, la végétation à l'endroit d'un foyer diminue
-    m_fire_front = next_front;
-    for (auto f : m_fire_front)
+    // Maintenant, on actualise l'affichage en découpant la grille en tranches
+    // On s'assure de bien couvrir toutes les lignes, même si m_geometry n'est pas divisible par num_threads
+    int num_threads = 1;
+    #pragma omp parallel
     {
-        if (m_vegetation_map[f.first] > 0)
-            m_vegetation_map[f.first] -= 1;
+        #pragma omp single
+        num_threads = omp_get_num_threads();
     }
-    m_time_step += 1;
+    int rows_per_thread = m_geometry / num_threads;
 
-    // Log toutes les 100 itérations
-    if (m_time_step % 100 == 0) {
-        log_grids(m_time_step);
-    }
-    return !m_fire_front.empty();
+    #pragma omp parallel
+    {
+        int tid = omp_get_thread_num();
+        int row_start = tid * rows_per_thread;
+        int row_end = (tid == num_threads - 1) ? m_geometry : row_start + rows_per_thread;
+
+        // Construction des sous-tableaux locaux pour la tranche assignée
+        std::vector<std::uint8_t> local_vegetation;
+        std::vector<std::uint8_t> local_fire;
+        int nrows = row_end - row_start;
+        local_vegetation.resize(nrows * m_geometry);
+        local_fire.resize(nrows * m_geometry);
+        for (int i = row_start; i < row_end; ++i) {
+            for (int j = 0; j < static_cast<int>(m_geometry); ++j) {
+                std::size_t global_index = i * m_geometry + j;
+                int local_index = (i - row_start) * m_geometry + j;
+                local_vegetation[local_index] = m_vegetation_map[global_index];
+                local_fire[local_index] = m_fire_map[global_index];
+            }
+        }
+        // Chaque thread transmet sa région à l'affichage
+        Displayer::instance()->update_region(0, row_start, m_geometry, nrows,
+                                               local_vegetation, local_fire);
+    } // Fin de la section parallèle pour l'affichage
+
+    // Afficher la frame complète une fois que toutes les régions ont été dessinées
+    Displayer::instance()->present_renderer();
+
+    m_time_step++;
+    return true;
 }
 // ====================================================================================================================
 std::size_t   

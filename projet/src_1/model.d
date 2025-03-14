@@ -1,1 +1,1 @@
-model.o: model.cpp model.hpp
+model.o: model.cpp model.hpp display.hpp

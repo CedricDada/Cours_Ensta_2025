@@ -54,6 +54,9 @@
         "typeinfo": "cpp",
         "fstream": "cpp",
         "iomanip": "cpp",
-        "sstream": "cpp"
+        "sstream": "cpp",
+        "cstring": "cpp",
+        "condition_variable": "cpp",
+        "mutex": "cpp"
     }
 }
