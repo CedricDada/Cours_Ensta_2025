@@ -193,57 +193,57 @@ void display_params(ParamsType const& params)
               << "\tPosition initiale du foyer (col, ligne) : " << params.start.column << ", " << params.start.row << std::endl;
 }
 
-int main( int nargs, char* args[] )
+int main(int nargs, char* args[])
 {
-    auto params = parse_arguments(nargs-1, &args[1]);
+    // Afficher le nombre maximal de threads disponibles
+    int max_threads = omp_get_max_threads();
+    std::cout << "Nombre maximal de threads disponibles : " << max_threads << std::endl;
+    auto params = parse_arguments(nargs - 1, &args[1]);
     display_params(params);
     if (!check_params(params)) return EXIT_FAILURE;
 
-    auto displayer = Displayer::init_instance( params.discretization, params.discretization );
-    auto simu = Model( params.length, params.discretization, params.wind, params.start );
-    
+    auto displayer = Displayer::init_instance(params.discretization, params.discretization);
+    auto simu = Model(params.length, params.discretization, params.wind, params.start);
+
     SDL_Event event;
 
-    // Variables d'agrégation pour mesurer les temps
-    std::chrono::duration<double> total_update_time(0);
+    // Variables pour mesurer les temps
+    std::chrono::duration<double> total_computation_time(0);
     std::chrono::duration<double> total_display_time(0);
     std::size_t steps = 0;
 
-    while (true)
-    {
-        // Mesurer le temps de mise à jour
-        auto start_update = std::chrono::high_resolution_clock::now();
-        bool continue_simulation = simu.update();
-        auto end_update = std::chrono::high_resolution_clock::now();
-        total_update_time += (end_update - start_update);
+    while (true) {
+        
+        // Appel de update() et récupération des temps
+        auto timings = simu.update();
 
-        // Si la simulation est terminée, on sort de la boucle.
-        if (!continue_simulation)
-            break;
+        // Accumulation des temps
+        total_computation_time += timings.computation_time;
+        total_display_time += timings.display_time;
+        steps++;
 
-        // Mesurer le temps d'affichage
-        auto start_display = std::chrono::high_resolution_clock::now();
-        displayer->update( simu.vegetal_map(), simu.fire_map() );
-        auto end_display = std::chrono::high_resolution_clock::now();
-        total_display_time += (end_display - start_display);
+        static const std::size_t max_iterations = 2000; // Nombre max d'itérations
 
+        if (steps >= max_iterations) {
+            std::cout << "Arrêt de la simulation après " << max_iterations << " itérations.\n";
+            break;  // Stoppe la simulation
+        }
         if ((simu.time_step() % 100) == 0)
             std::cout << "Time step " << simu.time_step() << "\n===============" << std::endl;
+
 
         if (SDL_PollEvent(&event) && event.type == SDL_QUIT)
             break;
 
         std::this_thread::sleep_for(0.1s);
-        ++steps;
     }
 
-    // Calculer et afficher les temps moyens
-    double avg_update_time = total_update_time.count() / steps;
+    // Calcul des temps moyens
+    double avg_computation_time = total_computation_time.count() / steps;
     double avg_display_time = total_display_time.count() / steps;
-    std::cout << "Temps moyen de mise à jour : " << avg_update_time << " s" << std::endl;
-    std::cout << "Temps moyen d'affichage : " << avg_display_time << " s" << std::endl;
+
+    std::cout << "Temps moyen de calcul par itération : " << avg_computation_time << " s" << std::endl;
+    std::cout << "Temps moyen d'affichage par itération : " << avg_display_time << " s" << std::endl;
 
     return EXIT_SUCCESS;
 }
-
-

@@ -77,7 +77,7 @@ Model::Model( double t_length, unsigned t_discretization, std::array<double,2> t
 bool 
 Model::update()
 {
-    static const std::size_t max_iterations = 5; // Nombre max d'itérations
+    static const std::size_t max_iterations = 500; // Nombre max d'itérations
 
     if (m_time_step >= max_iterations) {
         std::cout << "Arrêt de la simulation après " << max_iterations << " itérations.\n";

@@ -3,11 +3,17 @@
 #include <array>
 #include <vector>
 #include <unordered_map>
+#include <chrono>
 
 /**
  * @brief 
  * 
  */
+
+struct UpdateTimings {
+    std::chrono::duration<double> computation_time;
+    std::chrono::duration<double> display_time;
+};
 class Model
 {
 public:
@@ -25,7 +31,7 @@ public:
     Model& operator = ( Model const & ) = delete;
     Model& operator = ( Model      && ) = delete;
 
-    bool update();
+    UpdateTimings update();
     void merge_new_fires(const std::vector<std::vector<std::pair<std::size_t, std::uint8_t>>>& thread_new_fires,
                            std::unordered_map<std::size_t, std::uint8_t>& next_front);
     void merge_updates(const std::vector<std::vector<std::pair<std::size_t, std::uint8_t>>>& thread_current_updates,

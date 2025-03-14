@@ -4,6 +4,7 @@
 #include <fstream>
 #include <iomanip>
 #include <omp.h>
+#include <chrono>
 #include "model.hpp"
 #include "display.hpp"
 
@@ -77,12 +78,18 @@ Model::Model( double t_length, unsigned t_discretization, std::array<double,2> t
     }
 }
 // --------------------------------------------------------------------------------------------------------------------
-bool Model::update()
+#include <chrono> // Pour std::chrono
+
+
+UpdateTimings Model::update()
 {
+    UpdateTimings timings;
+    auto start_computation = std::chrono::high_resolution_clock::now();
+
     static const std::size_t max_iterations = 500; // Par exemple
     if (m_time_step >= max_iterations) {
         std::cout << "Arrêt de la simulation après " << max_iterations << " itérations.\n";
-        return false;
+        return timings; // Retourne des temps nuls si la simulation est terminée
     }
 
     // On crée des buffers temporaires pour calculer la nouvelle itération
@@ -162,8 +169,13 @@ bool Model::update()
     m_fire_map = new_fire_map;
     m_vegetation_map = new_vegetation_map;
 
+    auto end_computation = std::chrono::high_resolution_clock::now();
+    timings.computation_time = end_computation - start_computation;
+
+    // Mesure du temps d'affichage
+    auto start_display = std::chrono::high_resolution_clock::now();
+
     // Maintenant, on actualise l'affichage en découpant la grille en tranches
-    // On s'assure de bien couvrir toutes les lignes, même si m_geometry n'est pas divisible par num_threads
     int num_threads = 1;
     #pragma omp parallel
     {
@@ -200,8 +212,11 @@ bool Model::update()
     // Afficher la frame complète une fois que toutes les régions ont été dessinées
     Displayer::instance()->present_renderer();
 
+    auto end_display = std::chrono::high_resolution_clock::now();
+    timings.display_time = end_display - start_display;
+
     m_time_step++;
-    return true;
+    return timings;
 }
 // ====================================================================================================================
 std::size_t   
