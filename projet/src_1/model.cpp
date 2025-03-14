@@ -91,7 +91,7 @@ UpdateTimings Model::update()
     std::vector<std::uint8_t> new_vegetation_map = m_vegetation_map;
 
     // Mise à jour en double buffer : toutes les cellules se mettent à jour en fonction de l'état précédent
-    #pragma omp parallel for schedule(dynamic)
+    #pragma omp parallel for schedule(static)
     for (int i = 0; i < static_cast<int>(m_geometry); ++i) {
         for (int j = 0; j < static_cast<int>(m_geometry); ++j) {
             std::size_t key = i * m_geometry + j;
@@ -208,6 +208,10 @@ UpdateTimings Model::update()
 
     auto end_display = std::chrono::high_resolution_clock::now();
     timings.display_time = end_display - start_display;
+    // Log à la 1100 e itération
+    if (m_time_step == 1100) {
+        log_grids(m_time_step);
+    }
 
     m_time_step++;
     return timings;

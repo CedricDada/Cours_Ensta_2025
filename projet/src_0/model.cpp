@@ -77,7 +77,7 @@ Model::Model( double t_length, unsigned t_discretization, std::array<double,2> t
 bool 
 Model::update()
 {
-    static const std::size_t max_iterations = 500; // Nombre max d'itérations
+    static const std::size_t max_iterations = 2000; // Nombre max d'itérations
 
     if (m_time_step >= max_iterations) {
         std::cout << "Arrêt de la simulation après " << max_iterations << " itérations.\n";
@@ -171,8 +171,8 @@ Model::update()
     }
     m_time_step += 1;
 
-    // Log toutes les 100 itérations
-    if (m_time_step % 100 == 0) {
+    // Log à la 1100 e itération
+    if (m_time_step == 1100) {
         log_grids(m_time_step);
     }
     return !m_fire_front.empty();
