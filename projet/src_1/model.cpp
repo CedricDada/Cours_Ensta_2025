@@ -86,12 +86,6 @@ UpdateTimings Model::update()
     UpdateTimings timings;
     auto start_computation = std::chrono::high_resolution_clock::now();
 
-    static const std::size_t max_iterations = 500; // Par exemple
-    if (m_time_step >= max_iterations) {
-        std::cout << "Arrêt de la simulation après " << max_iterations << " itérations.\n";
-        return timings; // Retourne des temps nuls si la simulation est terminée
-    }
-
     // On crée des buffers temporaires pour calculer la nouvelle itération
     std::vector<std::uint8_t> new_fire_map = m_fire_map;
     std::vector<std::uint8_t> new_vegetation_map = m_vegetation_map;
