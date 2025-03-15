@@ -4,7 +4,6 @@
 #include <fstream>
 #include <iomanip>
 #include <omp.h>
-#include <chrono>
 #include "model.hpp"
 #include "display.hpp"
 
@@ -78,13 +77,17 @@ Model::Model( double t_length, unsigned t_discretization, std::array<double,2> t
     }
 }
 // --------------------------------------------------------------------------------------------------------------------
-#include <chrono> // Pour std::chrono
 
 
-UpdateTimings Model::update()
+
+bool Model::update()
 {
-    UpdateTimings timings;
-    auto start_computation = std::chrono::high_resolution_clock::now();
+    static const std::size_t max_iterations = 2000; // Nombre max d'itérations
+
+    if (m_time_step >= max_iterations) {
+        std::cout << "Arrêt de la simulation après " << max_iterations << " itérations.\n";
+        return false;  // Stoppe la simulation
+    }
 
     // On crée des buffers temporaires pour calculer la nouvelle itération
     std::vector<std::uint8_t> new_fire_map = m_fire_map;
@@ -163,58 +166,13 @@ UpdateTimings Model::update()
     m_fire_map = new_fire_map;
     m_vegetation_map = new_vegetation_map;
 
-    auto end_computation = std::chrono::high_resolution_clock::now();
-    timings.computation_time = end_computation - start_computation;
 
-    // Mesure du temps d'affichage
-    auto start_display = std::chrono::high_resolution_clock::now();
-
-    // Maintenant, on actualise l'affichage en découpant la grille en tranches
-    int num_threads = 1;
-    #pragma omp parallel
-    {
-        #pragma omp single
-        num_threads = omp_get_num_threads();
-    }
-    int rows_per_thread = m_geometry / num_threads;
-
-    #pragma omp parallel
-    {
-        int tid = omp_get_thread_num();
-        int row_start = tid * rows_per_thread;
-        int row_end = (tid == num_threads - 1) ? m_geometry : row_start + rows_per_thread;
-
-        // Construction des sous-tableaux locaux pour la tranche assignée
-        std::vector<std::uint8_t> local_vegetation;
-        std::vector<std::uint8_t> local_fire;
-        int nrows = row_end - row_start;
-        local_vegetation.resize(nrows * m_geometry);
-        local_fire.resize(nrows * m_geometry);
-        for (int i = row_start; i < row_end; ++i) {
-            for (int j = 0; j < static_cast<int>(m_geometry); ++j) {
-                std::size_t global_index = i * m_geometry + j;
-                int local_index = (i - row_start) * m_geometry + j;
-                local_vegetation[local_index] = m_vegetation_map[global_index];
-                local_fire[local_index] = m_fire_map[global_index];
-            }
-        }
-        // Chaque thread transmet sa région à l'affichage
-        Displayer::instance()->update_region(0, row_start, m_geometry, nrows,
-                                               local_vegetation, local_fire);
-    } // Fin de la section parallèle pour l'affichage
-
-    // Afficher la frame complète une fois que toutes les régions ont été dessinées
-    Displayer::instance()->present_renderer();
-
-    auto end_display = std::chrono::high_resolution_clock::now();
-    timings.display_time = end_display - start_display;
     // Log à la 1100 e itération
     if (m_time_step == 1100) {
         log_grids(m_time_step);
     }
-
     m_time_step++;
-    return timings;
+    return !m_fire_front.empty();
 }
 // ====================================================================================================================
 std::size_t   

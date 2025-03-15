@@ -10,10 +10,6 @@
  * 
  */
 
-struct UpdateTimings {
-    std::chrono::duration<double> computation_time;
-    std::chrono::duration<double> display_time;
-};
 class Model
 {
 public:
@@ -31,13 +27,7 @@ public:
     Model& operator = ( Model const & ) = delete;
     Model& operator = ( Model      && ) = delete;
 
-    UpdateTimings update();
-    void merge_new_fires(const std::vector<std::vector<std::pair<std::size_t, std::uint8_t>>>& thread_new_fires,
-                           std::unordered_map<std::size_t, std::uint8_t>& next_front);
-    void merge_updates(const std::vector<std::vector<std::pair<std::size_t, std::uint8_t>>>& thread_current_updates,
-                         std::unordered_map<std::size_t, std::uint8_t>& next_front);
-    void process_neighbor(std::size_t neighbor_key, std::size_t key, int tid, double power, double alpha, 
-                            std::vector<std::vector<std::pair<std::size_t, std::uint8_t>>>& thread_new_fires);
+    bool update();
     
     void log_grids(std::size_t step) const;
 

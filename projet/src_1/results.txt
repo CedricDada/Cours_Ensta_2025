@@ -1,8 +1,4 @@
-cedric@ns2:/media/cedric/DSCD/Projets/ENSTA/Parrallel_architcture/Cours_Ensta_2025/projet/src_1$ make all
-g++ -fopenmp -std=c++17 -Wall -O3 -march=native -fopenmp -MMD -c simulation.cpp -o simulation.o
-g++ -fopenmp -std=c++17 -Wall -O3 -march=native -fopenmp display.o model.o simulation.o -o simulation_parallel.exe -lpthread -lSDL2
 cedric@ns2:/media/cedric/DSCD/Projets/ENSTA/Parrallel_architcture/Cours_Ensta_2025/projet/src_1$ simulation_parallel.exe -l 400 -n 1500 -w 20.0,12.0 -s 12,15
-Nombre maximal de threads disponibles : 4
 Parametres définis pour la simulation : 
         Taille du terrain : 400
         Nombre de cellules par direction : 1500
@@ -46,6 +42,8 @@ Time step 1800
 ===============
 Time step 1900
 ===============
+Time step 2000
+===============
 Arrêt de la simulation après 2000 itérations.
-Temps moyen de calcul par itération : 0.0169356 s
-Temps moyen d'affichage par itération : 0.156637 s
+Temps moyen de mise à jour : 0.0257903 s
+Temps moyen d'affichage : 0.155345 s
