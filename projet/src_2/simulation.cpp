@@ -191,6 +191,7 @@ void display_params(ParamsType const& params)
               << "\tVecteur vitesse : [" << params.wind[0] << ", " << params.wind[1] << "]" << std::endl
               << "\tPosition initiale du foyer (col, ligne) : " << params.start.column << ", " << params.start.row << std::endl;
 }
+
 int main(int argc, char* argv[])
 {
     MPI_Init(&argc, &argv);
@@ -199,6 +200,7 @@ int main(int argc, char* argv[])
     MPI_Comm_rank(MPI_COMM_WORLD, &rank);
     MPI_Comm_size(MPI_COMM_WORLD, &size);
 
+    // On exige au moins 2 processus : maître (rank 0) et esclave (rank 1)
     if (size < 2)
     {
         if (rank == 0)
@@ -206,102 +208,122 @@ int main(int argc, char* argv[])
         MPI_Abort(MPI_COMM_WORLD, EXIT_FAILURE);
     }
 
-    // Tous les processus récupèrent les mêmes paramètres
+    // Récupération commune des paramètres
     auto params = parse_arguments(argc - 1, &argv[1]);
+
+    // Variables pour accumuler le temps global de chaque itération
+    double total_global_iter_time = 0.0;
+    int nb_iter = 0;
 
     if (rank == 0)
     {
-        // ---------- Processus Maître : affichage ----------
+        // ------------------ Processus Maître : Affichage ------------------
         display_params(params);
         auto displayer = Displayer::init_instance(params.discretization, params.discretization);
-
         bool keep_running = true;
-        double total_iter_time = 0.0;
-        int nb_iter = 0;
-
-        std::vector<std::uint8_t> vegetation(params.discretization * params.discretization);
-        std::vector<std::uint8_t> fire(params.discretization * params.discretization);
-        MPI_Request req1, req2;
 
         while (keep_running)
         {
+            // Vérification d'un message de terminaison envoyé par l'esclave (tag = 2)
+            int flag = 0;
+            MPI_Status status;
+            MPI_Iprobe(1, 2, MPI_COMM_WORLD, &flag, &status);
+            if (flag)
+            {
+                int term;
+                MPI_Recv(&term, 1, MPI_INT, 1, 2, MPI_COMM_WORLD, MPI_STATUS_IGNORE);
+                keep_running = false;
+                break;
+            }
+
             double iter_start = MPI_Wtime();
 
-            // Réception asynchrone des tableaux envoyés 
-            MPI_Irecv(vegetation.data(), vegetation.size(), MPI_UINT8_T, 1, 0, MPI_COMM_WORLD, &req1);
-            MPI_Irecv(fire.data(), fire.size(), MPI_UINT8_T, 1, 1, MPI_COMM_WORLD, &req2);
+            std::vector<std::uint8_t> vegetation(params.discretization * params.discretization);
+            std::vector<std::uint8_t> fire(params.discretization * params.discretization);
+            MPI_Request reqs[2];
 
-            MPI_Wait(&req1, MPI_STATUS_IGNORE);
-            MPI_Wait(&req2, MPI_STATUS_IGNORE);
+            // Réception asynchrone des tableaux depuis l'esclave
+            MPI_Irecv(vegetation.data(), vegetation.size(), MPI_UINT8_T, 1, 0, MPI_COMM_WORLD, &reqs[0]);
+            MPI_Irecv(fire.data(), fire.size(), MPI_UINT8_T, 1, 1, MPI_COMM_WORLD, &reqs[1]);
 
-            // Mise à jour de l'affichage
+            // Attente de la réception complète
+            MPI_Waitall(2, reqs, MPI_STATUSES_IGNORE);
+
+            // Mise à jour de l'affichage via SDL
             displayer->update(vegetation, fire);
 
-            // Vérifier si l'utilisateur demande la fermeture via SDL
+            // Gestion d'événement pour permettre une fermeture manuelle
             SDL_Event event;
             if (SDL_PollEvent(&event) && event.type == SDL_QUIT)
+            {
+                // Envoi d'un message de terminaison à l'esclave si l'utilisateur ferme la fenêtre
+                int term = 1;
+                MPI_Send(&term, 1, MPI_INT, 1, 2, MPI_COMM_WORLD);
                 keep_running = false;
+            }
 
             double iter_end = MPI_Wtime();
             double local_iter_time = iter_end - iter_start;
 
-            // Pour obtenir le temps d'itération global, on récupère le maximum parmi les processus
+            // Récupération du temps maximal de l'itération parmi les processus
             double global_iter_time = 0.0;
             MPI_Reduce(&local_iter_time, &global_iter_time, 1, MPI_DOUBLE, MPI_MAX, 0, MPI_COMM_WORLD);
 
-            total_iter_time += global_iter_time;
+            total_global_iter_time += global_iter_time;
             nb_iter++;
         }
 
         if (nb_iter > 0)
         {
-            std::cout << "Temps moyen global par itération (affichage et communication) : "
-                      << (total_iter_time / nb_iter) << " s" << std::endl;
+            std::cout << "Temps moyen global par itération (affichage, calcul et communication) : "
+                      << (total_global_iter_time / nb_iter) << " s" << std::endl;
         }
     }
-    else
+    else if (rank == 1)
     {
-        // ---------- Processus Esclave : calcul ----------
+        // ------------------ Processus Esclave : Calcul ------------------
         if (!check_params(params))
         {
             MPI_Abort(MPI_COMM_WORLD, EXIT_FAILURE);
         }
 
         Model simu(params.length, params.discretization, params.wind, params.start);
+        bool simulation_running = true;
 
-        double total_iter_time = 0.0;
-        int nb_iter = 0;
-
-        while (simu.update())
+        while (simulation_running)
         {
             double iter_start = MPI_Wtime();
 
-            // Récupérer les tableaux mis à jour par la simulation
+            // Mise à jour de la simulation ; update retourne false si on a atteint la limite d'itérations
+            simulation_running = simu.update();
+
+            // Récupération des tableaux mis à jour
             auto vegetation = simu.vegetal_map();
             auto fire = simu.fire_map();
 
-            MPI_Request req1, req2;
-            // Envoi asynchrone vers le processus maître (rank 0)
-            MPI_Isend(vegetation.data(), vegetation.size(), MPI_UINT8_T, 0, 0, MPI_COMM_WORLD, &req1);
-            MPI_Isend(fire.data(), fire.size(), MPI_UINT8_T, 0, 1, MPI_COMM_WORLD, &req2);
+            MPI_Request reqs[2];
+            // Envoi asynchrone des tableaux vers le maître
+            MPI_Isend(vegetation.data(), vegetation.size(), MPI_UINT8_T, 0, 0, MPI_COMM_WORLD, &reqs[0]);
+            MPI_Isend(fire.data(), fire.size(), MPI_UINT8_T, 0, 1, MPI_COMM_WORLD, &reqs[1]);
 
-            // Attendre que les envois soient terminés avant de passer à la prochaine itération
-            MPI_Wait(&req1, MPI_STATUS_IGNORE);
-            MPI_Wait(&req2, MPI_STATUS_IGNORE);
+            // Attente de la complétion des envois regroupés
+            MPI_Waitall(2, reqs, MPI_STATUSES_IGNORE);
 
             double iter_end = MPI_Wtime();
             double local_iter_time = iter_end - iter_start;
 
-            // On effectue la réduction pour obtenir le maximum entre tous les processus
+            // Réduction pour récupérer le maximum des temps locaux 
             double global_iter_time = 0.0;
             MPI_Reduce(&local_iter_time, &global_iter_time, 1, MPI_DOUBLE, MPI_MAX, 0, MPI_COMM_WORLD);
 
-            total_iter_time += local_iter_time;
+            total_global_iter_time += local_iter_time;
             nb_iter++;
         }
 
-        std::cout << "Temps moyen par itération (calcul, rank " << rank << ") : "
-                  << (total_iter_time / nb_iter) << " s" << std::endl;
+        // Envoi d'un message de terminaison au maître (tag = 2) pour indiquer la fin de la simulation
+        int term = 1;
+        MPI_Send(&term, 1, MPI_INT, 0, 2, MPI_COMM_WORLD);
+
     }
 
     MPI_Finalize();
