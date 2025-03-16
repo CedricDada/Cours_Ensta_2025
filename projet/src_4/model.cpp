@@ -30,7 +30,7 @@ namespace
 Model::Model(double t_length, unsigned t_discretization, std::array<double,2> t_wind,
              LexicoIndices t_start_fire_position,
              int local_rows, int local_offset, int cols,
-             std::uint8_t* vegetation_ptr, std::uint8_t* fire_ptr,
+             std::vector<std::uint8_t>& vegetation_vec, std::vector<std::uint8_t>& fire_vec,
              double t_max_wind)
     : m_local_rows(local_rows),
       m_local_offset(local_offset),
@@ -40,8 +40,8 @@ Model::Model(double t_length, unsigned t_discretization, std::array<double,2> t_
       m_wind(t_wind),
       m_wind_speed(std::sqrt(t_wind[0] * t_wind[0] + t_wind[1] * t_wind[1])),
       m_max_wind(t_max_wind),
-      m_vegetation_map(vegetation_ptr, vegetation_ptr + (local_rows + 2) * cols),
-      m_fire_map(fire_ptr, fire_ptr + (local_rows + 2) * cols)
+      m_vegetation_map(vegetation_vec),
+      m_fire_map(fire_vec)
 {
     if (t_discretization == 0) {
         throw std::range_error("Le nombre de cases par direction doit être plus grand que zéro.");
@@ -81,111 +81,129 @@ Model::Model(double t_length, unsigned t_discretization, std::array<double,2> t_
         alphaSouthNorth = 1. - std::abs(m_wind[1] / t_max_wind);
     }
 }
-// --------------------------------------------------------------------------------------------------------------------
 
+void Model::update_fire_front() {
+    m_fire_front.clear();
+    for (size_t idx = 0; idx < m_fire_map.size(); ++idx) {
+        if (m_fire_map[idx] == 255u) {
+            m_fire_front[idx] = 255u;
+        }
+    }
+}
+// --------------------------------------------------------------------------------------------------------------------
 bool Model::update()
 {
-    static const std::size_t max_iterations = 2000;
-    std::cout << "[Model::update] Début de l'itération " << m_time_step 
-              << " avec " << m_fire_front.size() << " foyers." << std::endl;
-
+    static const std::size_t max_iterations = 20000;
+    
     if (m_time_step >= max_iterations) {
-        std::cout << "[Model::update] Nombre maximal d'itérations atteint." << std::endl;
+        std::cout << "[Model] Maximum iterations reached." << std::endl;
         return false;
     }
 
     auto next_front = m_fire_front;
-    // Parcours de tous les foyers en feu
-    for (auto f : m_fire_front)
+    
+    for (auto& f : m_fire_front)
     {
         LexicoIndices coord = get_lexicographic_from_index(f.first);
+        int global_row = (coord.row -1) + m_local_offset;
 
-        // Vérifier si la cellule est RÉELLE (pas une cellule fantôme)
-        if (coord.row >= 1 && coord.row <= m_local_rows) 
-        {
-            if (m_vegetation_map[f.first] > 0) {
+        if (global_row < 0 || global_row >= m_geometry) continue;
+
+        if (coord.row >= 1 && coord.row <= m_local_rows) {
+            // Consommer complètement la végétation quand le feu est éteint
+            if (m_fire_map[f.first] == 0 && m_vegetation_map[f.first] > 0) {
+                m_vegetation_map[f.first] = 0;
+            }
+            else if (m_vegetation_map[f.first] > 0) {
                 m_vegetation_map[f.first]--;
-                //std::cout << "[DEBUG] Vegetation décrémentée à l'index " << f.first  << " (valeur: " << (int)m_vegetation_map[f.first] << ")\n";
             }
         }
+
         double power = log_factor(f.second);
-        //std::cout << "[Model::update] Traitement du foyer à l'index " << f.first 
-                 // << " (ligne=" << coord.row << ", col=" << coord.column << ") avec puissance " << power << std::endl;
 
-        // Propagation Nord (vers fantôme)
-        if (coord.row > 0) { // Ligne fantôme supérieure existe
+        // Propagation Nord
+        if (global_row > 0) {
             size_t neighbor_idx = f.first - m_geometry;
-            double tirage = pseudo_random(neighbor_idx * 13427 + m_time_step, m_time_step);
-            double green_power = m_vegetation_map[neighbor_idx];
-            if (tirage < alphaNorthSouth * p1 * power * log_factor(green_power)) {
-                m_fire_map[neighbor_idx] = 255;
-                next_front[neighbor_idx] = 255;
-                //std::cout << "[Model::update] Propagation Nord activée vers l'index " << neighbor_idx << std::endl;
+            if (neighbor_idx < m_fire_map.size()) {
+                double tirage = pseudo_random(neighbor_idx * 13427 + m_time_step, m_time_step);
+                double green_power = m_vegetation_map[neighbor_idx];
+                if (tirage < alphaNorthSouth * p1 * power * log_factor(green_power)) {
+                    m_fire_map[neighbor_idx] = 255;
+                    next_front[neighbor_idx] = 255;
+                }
             }
         }
 
-        // Propagation Sud (vers fantôme)
-        if (coord.row < m_local_rows + 1) { // Ligne fantôme inférieure existe
+        // Propagation Sud
+        if (global_row < m_geometry - 1) {
             size_t neighbor_idx = f.first + m_geometry;
-            double tirage = pseudo_random(neighbor_idx + m_time_step, m_time_step);
-            double green_power = m_vegetation_map[neighbor_idx];
-            if (tirage < alphaSouthNorth * p1 * power * log_factor(green_power)) {
-                m_fire_map[neighbor_idx] = 255;
-                next_front[neighbor_idx] = 255;
-                //std::cout << "[Model::update] Propagation Sud activée vers l'index " << neighbor_idx << std::endl;
+            if (neighbor_idx < m_fire_map.size()) {
+                double tirage = pseudo_random(neighbor_idx * 75329 + m_time_step, m_time_step);
+                double green_power = m_vegetation_map[neighbor_idx];
+                if (tirage < alphaSouthNorth * p1 * power * log_factor(green_power)) {
+                    m_fire_map[neighbor_idx] = 255;
+                    next_front[neighbor_idx] = 255;
+                }
             }
         }
 
-        // Propagation Ouest (vers la gauche)
+        // Propagation Ouest
         if (coord.column > 0) {
             size_t neighbor_idx = f.first - 1;
-            double tirage = pseudo_random(neighbor_idx * 75329 + m_time_step, m_time_step);
-            double green_power = m_vegetation_map[neighbor_idx];
-            double correction = power * log_factor(green_power);
-            if (tirage < alphaWestEast * p1 * correction) {
-                m_fire_map[neighbor_idx] = 255;
-                next_front[neighbor_idx] = 255;
-                //std::cout << "[Model::update] Propagation Ouest activée vers l'index " << neighbor_idx << std::endl;
+            if (neighbor_idx < m_fire_map.size()) {
+                double tirage = pseudo_random(neighbor_idx * 45673 + m_time_step, m_time_step);
+                double green_power = m_vegetation_map[neighbor_idx];
+                if (tirage < alphaWestEast * p1 * power * log_factor(green_power)) {
+                    m_fire_map[neighbor_idx] = 255;
+                    next_front[neighbor_idx] = 255;
+                }
             }
         }
 
-        // Propagation Est (vers la droite)
+        // Propagation Est
         if (coord.column < m_geometry - 1) {
             size_t neighbor_idx = f.first + 1;
-            double tirage = pseudo_random(neighbor_idx * 45673 + m_time_step, m_time_step);
-            double green_power = m_vegetation_map[neighbor_idx];
-            double correction = power * log_factor(green_power);
-            if (tirage < alphaEastWest * p1 * correction) {
-                m_fire_map[neighbor_idx] = 255;
-                next_front[neighbor_idx] = 255;
-                //std::cout << "[Model::update] Propagation Est activée vers l'index " << neighbor_idx << std::endl;
+            if (neighbor_idx < m_fire_map.size()) {
+                double tirage = pseudo_random(neighbor_idx * 29123 + m_time_step, m_time_step);
+                double green_power = m_vegetation_map[neighbor_idx];
+                if (tirage < alphaEastWest * p1 * power * log_factor(green_power)) {
+                    m_fire_map[neighbor_idx] = 255;
+                    next_front[neighbor_idx] = 255;
+                }
             }
         }
-
-        // Gestion de l'extinction
-        if (f.second == 255) {
-            double tirage = pseudo_random(f.first * 52513 + m_time_step, m_time_step);
-            if (tirage < p2) {
+        // Si le feu est à son max,
+        if (f.second == 255)
+        {   // On regarde si il commence à faiblir pour s'éteindre au bout d'un moment :
+            double tirage = pseudo_random( f.first * 52513 + m_time_step, m_time_step);
+            if (tirage < p2)
+            {
                 m_fire_map[f.first] >>= 1;
                 next_front[f.first] >>= 1;
-                //std::cout << "[Model::update] Extinction débutée pour l'index " << f.first << std::endl;
-            }
-        } else {
-            m_fire_map[f.first] >>= 1;
-            next_front[f.first] >>= 1;
-            if (next_front[f.first] == 0) {
-                next_front.erase(f.first);
-                //std::cout << "[Model::update] Feu éteint à l'index " << f.first << std::endl;
             }
         }
-    }
+        else
+        {
+            // Foyer en train de s'éteindre.
+            m_fire_map[f.first] >>= 1;
+            next_front[f.first] >>= 1;
+            if (next_front[f.first] == 0)
+            {
+                next_front.erase(f.first);
+            }
+        }
 
+    }    
+    // A chaque itération, la végétation à l'endroit d'un foyer diminue
     m_fire_front = next_front;
+    for (auto f : m_fire_front)
+    {
+        if (m_vegetation_map[f.first] > 0)
+            m_vegetation_map[f.first] -= 1;
+    }
     m_time_step += 1;
-    std::cout << "[Model::update] Fin de l'itération " << m_time_step 
-              << " avec " << m_fire_front.size() << " foyers restants." << std::endl;
+    
     return !m_fire_front.empty();
-    //return true;
 }
 
 std::size_t Model::get_index_from_lexicographic_indices(LexicoIndices t_lexico) const {
@@ -195,7 +213,7 @@ std::size_t Model::get_index_from_lexicographic_indices(LexicoIndices t_lexico) 
 
 Model::LexicoIndices Model::get_lexicographic_from_index(std::size_t t_local_index) const {
     LexicoIndices ind_coords;
-    ind_coords.row = (t_local_index / m_geometry) - 1; // Ajuster pour les fantômes
+    ind_coords.row = (t_local_index / m_geometry); 
     ind_coords.column = t_local_index % m_geometry;
     return ind_coords;
 }

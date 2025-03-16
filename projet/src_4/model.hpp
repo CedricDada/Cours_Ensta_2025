@@ -18,10 +18,10 @@ public:
 
     
 Model(double t_length, unsigned t_discretization, std::array<double,2> t_wind,
-      LexicoIndices t_start_fire_position,
-      int local_rows, int local_offset, int cols,
-      std::uint8_t* vegetation_ptr, std::uint8_t* fire_ptr,
-      double t_max_wind = 60.0);
+             LexicoIndices t_start_fire_position,
+             int local_rows, int local_offset, int cols,
+             std::vector<std::uint8_t>& vegetation_vec, std::vector<std::uint8_t>& fire_vec,
+             double t_max_wind=60.);
     Model( Model const & ) = delete;
     Model( Model      && ) = delete;
     ~Model() = default;
@@ -35,7 +35,9 @@ Model(double t_length, unsigned t_discretization, std::array<double,2> t_wind,
     unsigned geometry() const { return m_geometry; }
     std::vector<std::uint8_t> vegetal_map() const { return m_vegetation_map; }
     std::vector<std::uint8_t> fire_map() const { return m_fire_map; }
+    int local_rows() const { return m_local_rows; }
     std::size_t time_step() const { return m_time_step; }
+    void update_fire_front(); 
 
 private:
     int m_local_rows;    // Nombre de lignes locales (sans cellules fantômes)
@@ -50,7 +52,8 @@ private:
     std::array<double,2> m_wind{0.,0.}; // Vitesse et direction du vent suivant les axes x et y en km/h
     double m_wind_speed;                // Norme euclidienne de la vitesse du vent
     double m_max_wind; //+ Vitesse à partir de laquelle le feu ne peut pas se propager dans le sens opposé à celui du vent.
-    std::vector<std::uint8_t> m_vegetation_map, m_fire_map;
+    std::vector<std::uint8_t>& m_vegetation_map; // Référence
+    std::vector<std::uint8_t>& m_fire_map;       // Référence
     double p1{0.}, p2{0.};
     double alphaEastWest, alphaWestEast, alphaSouthNorth, alphaNorthSouth;
 

@@ -1,4 +1,3 @@
-
 #include <string>
 #include <cstdlib>
 #include <cassert>
@@ -207,98 +206,76 @@ void display_params(ParamsType const& params)
               << "\tVecteur vitesse : [" << params.wind[0] << ", " << params.wind[1] << "]" << std::endl
               << "\tPosition initiale du foyer (col, ligne) : " << params.start.column << ", " << params.start.row << std::endl;
 }
-// Fonction utilitaire pour afficher un message de log avec le rang dans le sous-communicateur
-// Fonction utilitaire pour afficher un message de log avec le rang dans le sous-communicateur
-void log_message(MPI_Comm comm, const std::string &msg) {
-    int rank;
-    MPI_Comm_rank(comm, &rank);
-    std::cout << "[Rank " << rank << "] " << msg << std::endl;
-}
-
+// Fonction mise à jour pour les cellules fantômes avec réordonnement des appels
 // Fonction mise à jour pour les cellules fantômes avec réordonnement des appels
 void update_ghost_cells(std::vector<std::uint8_t>& local_fire,
-                        std::vector<std::uint8_t>& local_vegetation, // Ajouté
+                        std::vector<std::uint8_t>& local_vegetation,
                         int local_rows, int cols,
                         MPI_Comm newComm, int comp_rank, int comp_size) 
 {
-    // Échange pour le FEU
+    // Échange pour le FEU ---------------------------------------------
     MPI_Request fire_requests[4];
     int fire_req_count = 0;
     
-    // Réception feu
+    // Réception Nord / Envoi Nord
     if (comp_rank > 0) {
-        MPI_Irecv(&local_fire[0], cols, MPI_UINT8_T, comp_rank - 1, 0, newComm, &fire_requests[fire_req_count++]);
-    }
-    if (comp_rank < comp_size - 1) {
-        MPI_Irecv(&local_fire[(local_rows + 1) * cols], cols, MPI_UINT8_T, comp_rank + 1, 1, newComm, &fire_requests[fire_req_count++]);
-    }
-    
-    // Envoi feu
-    if (comp_rank > 0) {
-        MPI_Isend(&local_fire[cols], cols, MPI_UINT8_T, comp_rank - 1, 1, newComm, &fire_requests[fire_req_count++]);
-    }
-    if (comp_rank < comp_size - 1) {
-        MPI_Isend(&local_fire[local_rows * cols], cols, MPI_UINT8_T, comp_rank + 1, 0, newComm, &fire_requests[fire_req_count++]);
+        MPI_Irecv(local_fire.data(), cols, MPI_UINT8_T, comp_rank-1, 0, newComm, &fire_requests[fire_req_count++]);
+        MPI_Isend(local_fire.data() + cols, cols, MPI_UINT8_T, comp_rank-1, 1, newComm, &fire_requests[fire_req_count++]);
     }
 
-    // Échange pour la VÉGÉTATION (mêmes étapes avec tags différents)
+    // Réception Sud / Envoi Sud
+    if (comp_rank < comp_size-1) {
+        MPI_Irecv(local_fire.data() + (local_rows+1)*cols, cols, MPI_UINT8_T, comp_rank+1, 1, newComm, &fire_requests[fire_req_count++]);
+        MPI_Isend(local_fire.data() + local_rows*cols, cols, MPI_UINT8_T, comp_rank+1, 0, newComm, &fire_requests[fire_req_count++]);
+    }
+
+    MPI_Waitall(fire_req_count, fire_requests, MPI_STATUSES_IGNORE);
+
+    // Échange pour la VÉGÉTATION ---------------------------------------
     MPI_Request veg_requests[4];
     int veg_req_count = 0;
     
-    // Réception végétation (tags 2 et 3)
+    // Réception Nord / Envoi Nord (tags différents: 2/3)
     if (comp_rank > 0) {
-        MPI_Irecv(&local_vegetation[0], cols, MPI_UINT8_T, comp_rank - 1, 2, newComm, &veg_requests[veg_req_count++]);
-    }
-    if (comp_rank < comp_size - 1) {
-        MPI_Irecv(&local_vegetation[(local_rows + 1) * cols], cols, MPI_UINT8_T, comp_rank + 1, 3, newComm, &veg_requests[veg_req_count++]);
-    }
-    
-    // Envoi végétation (tags 3 et 2)
-    if (comp_rank > 0) {
-        MPI_Isend(&local_vegetation[cols], cols, MPI_UINT8_T, comp_rank - 1, 3, newComm, &veg_requests[veg_req_count++]);
-    }
-    if (comp_rank < comp_size - 1) {
-        MPI_Isend(&local_vegetation[local_rows * cols], cols, MPI_UINT8_T, comp_rank + 1, 2, newComm, &veg_requests[veg_req_count++]);
+        MPI_Irecv(local_vegetation.data(), cols, MPI_UINT8_T, comp_rank-1, 2, newComm, &veg_requests[veg_req_count++]);
+        MPI_Isend(local_vegetation.data() + cols, cols, MPI_UINT8_T, comp_rank-1, 3, newComm, &veg_requests[veg_req_count++]);
     }
 
-    // Attente complète pour feu ET végétation
-    MPI_Waitall(fire_req_count, fire_requests, MPI_STATUSES_IGNORE);
+    // Réception Sud / Envoi Sud
+    if (comp_rank < comp_size-1) {
+        MPI_Irecv(local_vegetation.data() + (local_rows+1)*cols, cols, MPI_UINT8_T, comp_rank+1, 3, newComm, &veg_requests[veg_req_count++]);
+        MPI_Isend(local_vegetation.data() + local_rows*cols, cols, MPI_UINT8_T, comp_rank+1, 2, newComm, &veg_requests[veg_req_count++]);
+    }
+
     MPI_Waitall(veg_req_count, veg_requests, MPI_STATUSES_IGNORE);
 
-    // Gestion des bords (exemple pour feu, à dupliquer pour végétation si nécessaire)
+    // Conditions aux limites NEUMANN -----------------------------------
+    // Pour le FEU
     if (comp_rank == 0) {
-        std::copy(local_fire.begin() + cols, local_fire.begin() + 2 * cols, local_fire.begin());
-        std::copy(local_vegetation.begin() + cols, local_vegetation.begin() + 2 * cols, local_vegetation.begin());
+        std::copy(local_fire.begin() + cols, local_fire.begin() + 2*cols, local_fire.begin());
     }
-    if (comp_rank == comp_size - 1) {
-        std::copy(local_fire.begin() + local_rows * cols, local_fire.begin() + (local_rows + 1) * cols, local_fire.begin() + (local_rows + 1) * cols);
-        std::copy(local_vegetation.begin() + local_rows * cols, local_vegetation.begin() + (local_rows + 1) * cols, local_vegetation.begin() + (local_rows + 1) * cols);
-    }
-}
-void print_local_grids(const std::vector<std::uint8_t>& local_fire,
-                       const std::vector<std::uint8_t>& local_vegetation,
-                       int local_rows, int cols, int comp_rank) 
-{
-    std::cout << "[DEBUG] Grilles locales pour le processus " << comp_rank << " :\n";
-
-    // Afficher la carte du feu
-    std::cout << "Carte du feu :\n";
-    for (int i = 0; i < local_rows + 2; ++i) { // +2 pour inclure les cellules fantômes
-        for (int j = 0; j < cols; ++j) {
-            std::cout << std::setw(4) << static_cast<int>(local_fire[i * cols + j]);
-        }
-        std::cout << "\n";
+    if (comp_rank == comp_size-1) {
+        std::copy(
+            local_fire.begin() + (local_rows) * cols,
+            local_fire.begin() + (local_rows + 1) * cols,
+            local_fire.begin() + (local_rows + 1) * cols
+        );
     }
 
-    // Afficher la carte de la végétation
-    std::cout << "Carte de la végétation :\n";
-    for (int i = 0; i < local_rows + 2; ++i) { // +2 pour inclure les cellules fantômes
-        for (int j = 0; j < cols; ++j) {
-            std::cout << std::setw(4) << static_cast<int>(local_vegetation[i * cols + j]);
-        }
-        std::cout << "\n";
+    // Pour la VÉGÉTATION
+    if (comp_rank == 0) {
+        std::copy(local_vegetation.begin() + cols, 
+                 local_vegetation.begin() + 2*cols, 
+                 local_vegetation.begin());
     }
+    if (comp_rank == comp_size-1) {
+        std::copy(local_vegetation.begin() + local_rows*cols,
+                 local_vegetation.begin() + (local_rows+1)*cols,
+                 local_vegetation.begin() + (local_rows+1)*cols);
+    }
+    MPI_Barrier(newComm);
 }
+
 void print_grid_state(const std::vector<std::uint8_t>& fire_map,
                       const std::vector<std::uint8_t>& veg_map,
                       unsigned geometry,
@@ -320,6 +297,8 @@ void print_grid_state(const std::vector<std::uint8_t>& fire_map,
     }
     file << "\n";
 }
+
+
 int main(int argc, char* argv[]) {
     MPI_Init(&argc, &argv);
     MPI_Comm globComm;
@@ -396,7 +375,7 @@ int main(int argc, char* argv[]) {
         int local_rows = rows_per_proc + (comp_rank < remainder ? 1 : 0);
         int local_offset = 0;
         for (int i = 0; i < comp_rank; ++i) {
-            local_offset += rows_per_proc + (i < remainder ? 1 : 0);
+            local_offset += (i < remainder) ? rows_per_proc + 1 : rows_per_proc;
         }
         std::cout << "[Global " << world_rank << " / Compute " << comp_rank 
                   << "] Portion locale : " << local_rows << " lignes, offset = " << local_offset << "." << std::endl;
@@ -426,6 +405,19 @@ int main(int argc, char* argv[]) {
                     local_fire.begin() + (r + 1) * cols
                 );
             }
+            std::copy(local_vegetation.begin() + cols, 
+                    local_vegetation.begin() + 2*cols, 
+                    local_vegetation.begin());
+            std::copy(local_vegetation.begin() + (proc_rows)*cols, 
+                    local_vegetation.begin() + (proc_rows + 1)*cols, 
+                    local_vegetation.begin() + (proc_rows + 1)*cols);
+            
+            std::copy(local_fire.begin() + cols, 
+                    local_fire.begin() + 2*cols, 
+                    local_fire.begin());
+            std::copy(local_fire.begin() + (proc_rows)*cols, 
+                    local_fire.begin() + (proc_rows + 1)*cols, 
+                    local_fire.begin() + (proc_rows + 1)*cols);
             std::cout << "[Global " << world_rank << " / Compute 0] Tranche locale initialisée." << std::endl;
 
             // Envoi aux autres workers (processus de calcul dont comp_rank != 0)
@@ -435,31 +427,75 @@ int main(int argc, char* argv[]) {
                 for (int j = 0; j < i; ++j)
                     proc_offset += rows_per_proc + (j < remainder ? 1 : 0);
 
-                std::vector<std::uint8_t> buffer_veg((proc_rows + 2) * cols, 255);
+                // Buffer fire avec 2 lignes fantômes
                 std::vector<std::uint8_t> buffer_fire((proc_rows + 2) * cols, 0);
+                // Buffer végétation avec 2 lignes fantômes
+                std::vector<std::uint8_t> buffer_veg((proc_rows + 2) * cols, 255);
+
+                // Remplir les lignes réelles (entre les fantômes)
                 for (int r = 0; r < proc_rows; ++r) {
-                    std::copy(
-                        global_veg.begin() + (proc_offset + r) * cols,
-                        global_veg.begin() + (proc_offset + r + 1) * cols,
-                        buffer_veg.begin() + (r + 1) * cols
-                    );
                     std::copy(
                         global_fire.begin() + (proc_offset + r) * cols,
                         global_fire.begin() + (proc_offset + r + 1) * cols,
                         buffer_fire.begin() + (r + 1) * cols
                     );
                 }
-                std::cout << "[Global " << world_rank << " / Compute 0] Envoi de la tranche au processus " << i + 1 << "." << std::endl;
-                MPI_Send(buffer_veg.data(), buffer_veg.size(), MPI_UINT8_T, i + 1, tag_veg, globComm);
+                // Remplir les lignes réelles (entre les fantômes)
+                for (int r = 0; r < proc_rows; ++r) {
+                    std::copy(
+                        global_veg.begin() + (proc_offset + r) * cols,
+                        global_veg.begin() + (proc_offset + r + 1) * cols,
+                        buffer_veg.begin() + (r + 1) * cols
+                    );
+                }
+
+                // Gestion des fantômes HAUT (sauf pour premier worker)
+                if (i > 0) { 
+                    std::copy(
+                        global_fire.begin() + (proc_offset - 1) * cols,
+                        global_fire.begin() + proc_offset * cols,
+                        buffer_fire.begin()
+                    );
+                }
+
+                // Gestion des fantômes BAS (sauf pour dernier worker)
+                if (i < num_compute_procs - 1) {
+                    std::copy(
+                        global_fire.begin() + (proc_offset + proc_rows) * cols,
+                        global_fire.begin() + (proc_offset + proc_rows + 1) * cols,
+                        buffer_fire.end() - cols
+                    );
+                }
+                                // Gestion des fantômes HAUT (sauf pour premier worker)
+                if (i > 0) { 
+                    std::copy(
+                        global_veg.begin() + (proc_offset - 1) * cols,
+                        global_veg.begin() + proc_offset * cols,
+                        buffer_veg.begin()
+                    );
+                }
+
+                // Gestion des fantômes BAS (sauf pour dernier worker)
+                if (i < num_compute_procs - 1) {
+                    std::copy(
+                        global_veg.begin() + (proc_offset + proc_rows) * cols,
+                        global_veg.begin() + (proc_offset + proc_rows + 1) * cols,
+                        buffer_veg.end() - cols
+                    );
+                }
+
+                // Envoi du buffer fire
                 MPI_Send(buffer_fire.data(), buffer_fire.size(), MPI_UINT8_T, i + 1, tag_fire, globComm);
+                // Envoi du buffer végétation
+                MPI_Send(buffer_veg.data(), buffer_veg.size(), MPI_UINT8_T, i + 1, tag_veg, globComm);
             }
         }
         
         // Les workers (comp_rank != 0) reçoivent la tranche initiale depuis le maître de calcul (global rank 1)
         if (comp_rank != 0) {
             std::cout << "[Global " << world_rank << " / Compute " << comp_rank << "] Réception des données initiales." << std::endl;
-            MPI_Recv(local_vegetation.data(), local_vegetation.size(), MPI_UINT8_T, 1, tag_veg, globComm, MPI_STATUS_IGNORE);
             MPI_Recv(local_fire.data(), local_fire.size(), MPI_UINT8_T, 1, tag_fire, globComm, MPI_STATUS_IGNORE);
+            MPI_Recv(local_vegetation.data(), local_vegetation.size(), MPI_UINT8_T, 1, tag_veg, globComm, MPI_STATUS_IGNORE);
             std::cout << "[Global " << world_rank << " / Compute " << comp_rank << "] Données initiales reçues." << std::endl;
         } else {
             std::cout << "[Global " << world_rank << " / Compute 0] Utilisation des données initiales déjà disponibles localement." << std::endl;
@@ -469,96 +505,95 @@ int main(int argc, char* argv[]) {
         Model model(
             params.length, params.discretization, params.wind,
             params.start, local_rows, local_offset, cols,
-            local_vegetation.data(), local_fire.data()
+            local_vegetation,  // Référence directe
+            local_fire         // Référence directe
         );
         std::cout << "[Global " << world_rank << " / Compute " << comp_rank << "] Modèle initialisé." << std::endl;
 
         // Boucle de simulation
         bool simulation_running = true;
         int iteration = 0;
+
         while (simulation_running) {
-            std::cout << "[Global " << world_rank << " / Compute " << comp_rank << "] Itération " << iteration << " début." << std::endl;
-            
-            // Échange des cellules fantômes entre les workers
+            // 1. Échange des cellules fantômes
             update_ghost_cells(local_fire, local_vegetation, local_rows, cols, newComm, comp_rank, num_compute_procs);
             std::cout << "[Global " << world_rank << " / Compute " << comp_rank << "] Échange des cellules fantômes terminé." << std::endl;
 
-            // Calcul de la nouvelle génération d'incendie (update renvoie false si le feu local est épuisé)
+            //  Mettre à jour le front de feu avec les nouvelles cellules fantômes
+            model.update_fire_front();
+            // 2. Mise à jour du modèle
             bool local_continue = model.update();
             std::cout << "[Global " << world_rank << " / Compute " << comp_rank << "] Calcul de la nouvelle génération terminé." << std::endl;
 
-            // Vérification globale de l'activité (on ne termine la simulation que si aucun processus n'a de feu)
+            // 3. Extraction des données réelles (sans fantômes)
+            std::vector<std::uint8_t> local_fire_data(local_fire.begin() + cols, local_fire.end() - cols);
+            std::vector<std::uint8_t> local_veg_data(local_vegetation.begin() + cols, local_vegetation.end() - cols);
+            
+            // Vérifications de taille
+            assert(local_fire.size() == (local_rows + 2) * cols);
+            assert(local_vegetation.size() == (local_rows + 2) * cols);
+            assert(local_fire_data.size() == local_rows * cols);
+            assert(local_veg_data.size() == local_rows * cols);
+            std::cout << "[Global " << world_rank << " / Compute " << comp_rank << "] Itération " << iteration << " début." << std::endl;
+
+            // 4. Vérification de l'activité globale
             int local_active = local_continue ? 1 : 0;
             int global_active = 0;
             MPI_Allreduce(&local_active, &global_active, 1, MPI_INT, MPI_SUM, newComm);
             simulation_running = (global_active > 0);
+            std::cout << "[Global " << world_rank << " / Compute " << comp_rank << "] AllReduce terminé. Feu actif: " << global_active << std::endl;
 
-            // Récupération des données RÉELLES du modèle (sans fantômes)
-            const auto& model_fire = model.fire_map();
-            const auto& model_veg = model.vegetal_map();
-
-            // Préparation des données locales pour le Gatherv
-            std::vector<std::uint8_t> local_fire_data(
-                model_fire.begin() + cols, // Ignorer la première ligne fantôme
-                model_fire.end() - cols    // Ignorer la dernière ligne fantôme
-            );
-            std::vector<std::uint8_t> local_veg_data(
-                model_veg.begin() + cols, 
-                model_veg.end() - cols
-            );
-
-            // Vérification des tailles
-            assert(local_fire_data.size() == local_rows * cols);
-            assert(local_veg_data.size() == local_rows * cols);
-
-            // Rassemblement des données locales (hors zones fantômes) pour l'affichage
-            std::vector<int> counts(num_compute_procs), displs(num_compute_procs);
-            int off = 0;
+            // 5. Préparation données pour Gatherv
+            // Calcul des counts/displs exacts
+            std::vector<int> counts(num_compute_procs);
+            std::vector<int> displs(num_compute_procs);
+            int offset = 0;
             for (int i = 0; i < num_compute_procs; ++i) {
-                int r = rows_per_proc + (i < remainder ? 1 : 0);
-                counts[i] = r * cols;
-                displs[i] = off;
-                off += r * cols;
+                counts[i] = ((i < remainder) ? rows_per_proc + 1 : rows_per_proc) * cols;
+                displs[i] = offset;
+                offset += counts[i];
             }
 
-            std::vector<std::uint8_t> global_veg, global_fire;
-            if (comp_rank == 0) {
-                global_veg.resize(total_rows * cols);
-                global_fire.resize(total_rows * cols);
-            }
+            // Vérification finale
+            assert(offset == total_rows * cols);
 
-            MPI_Gatherv(
-                local_fire_data.data(), local_fire_data.size(), MPI_UINT8_T,
-                global_fire.data(), counts.data(), displs.data(), MPI_UINT8_T,
-                0, newComm
-            );
+            // Log des paramètres Gatherv
+            std::cout << "[Global " << world_rank << " / Compute " << comp_rank << "] counts: ";
+            for (auto c : counts) std::cout << c << " ";
+            std::cout << "\nDispls: ";
+            for (auto d : displs) std::cout << d << " ";
+            std::cout << std::endl;
 
-            MPI_Gatherv(
-                local_veg_data.data(), local_veg_data.size(), MPI_UINT8_T,
-                global_veg.data(), counts.data(), displs.data(), MPI_UINT8_T,
-                0, newComm
-            );
-
-            std::cout << "[Global " << world_rank << " / Compute " << comp_rank << "] Gatherv terminé." << std::endl;
+            // 6. Rassemblement des données
+            std::vector<std::uint8_t> global_fire(total_rows * cols), global_veg(total_rows * cols);
             
-            // Le maître de calcul (comp_rank == 0) envoie les données rassemblées au processus d'affichage (global rank 0)
+            MPI_Gatherv(local_fire_data.data(), local_fire_data.size(), MPI_UINT8_T,
+                        global_fire.data(), counts.data(), displs.data(), MPI_UINT8_T,
+                        0, newComm);
+            
+            MPI_Gatherv(local_veg_data.data(), local_veg_data.size(), MPI_UINT8_T,
+                        global_veg.data(), counts.data(), displs.data(), MPI_UINT8_T,
+                        0, newComm);
+            std::cout << "[Global " << world_rank << " / Compute " << comp_rank << "] Gatherv terminé." << std::endl;
+
+            // 7. Envoi au processus d'affichage
             if (comp_rank == 0) {
-                std::cout << "[Global " << world_rank << " / Compute 0] Avant envoi à l'affichage : global_veg.size() = " 
-                          << global_veg.size() << ", global_fire.size() = " << global_fire.size() << std::endl;
+                std::cout << "[Global " << world_rank << " / Compute 0] Envoi des données (" 
+                        << global_veg.size() << " éléments) à l'affichage." << std::endl;
                 MPI_Send(global_veg.data(), global_veg.size(), MPI_UINT8_T, 0, tag_veg, globComm);
                 MPI_Send(global_fire.data(), global_fire.size(), MPI_UINT8_T, 0, tag_fire, globComm);
-                std::cout << "[Global " << world_rank << " / Compute 0] Données globales envoyées à l'affichage." << std::endl;
             }
-            
-            // Vérification d'un éventuel signal d'arrêt (envoyé par le processus d'affichage)
+
+            // 8. Vérification arrêt
             int flag;
             MPI_Iprobe(0, tag_signal, globComm, &flag, MPI_STATUS_IGNORE);
             if (flag) {
                 int signal;
                 MPI_Recv(&signal, 1, MPI_INT, 0, tag_signal, globComm, MPI_STATUS_IGNORE);
                 simulation_running = (signal != -1);
-                std::cout << "[Global " << world_rank << " / Compute " << comp_rank << "] Signal d'arrêt reçu : " << signal << std::endl;
+                std::cout << "[Global " << world_rank << " / Compute " << comp_rank << "] Signal d'arrêt: " << signal << std::endl;
             }
+
             iteration++;
         }
         std::cout << "[Global " << world_rank << " / Compute " << comp_rank << "] Simulation terminée." << std::endl;
