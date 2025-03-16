@@ -85,15 +85,15 @@ Model::Model(double t_length, unsigned t_discretization, std::array<double,2> t_
 void Model::update_fire_front() {
     m_fire_front.clear();
     for (size_t idx = 0; idx < m_fire_map.size(); ++idx) {
-        if (m_fire_map[idx] == 255u) {
-            m_fire_front[idx] = 255u;
+        if (m_fire_map[idx] > 0u) {  
+            m_fire_front[idx] = m_fire_map[idx]; 
         }
     }
 }
 // --------------------------------------------------------------------------------------------------------------------
 bool Model::update()
 {
-    static const std::size_t max_iterations = 20000;
+    static const std::size_t max_iterations = 2000;
     
     if (m_time_step >= max_iterations) {
         std::cout << "[Model] Maximum iterations reached." << std::endl;
@@ -107,17 +107,6 @@ bool Model::update()
         LexicoIndices coord = get_lexicographic_from_index(f.first);
         int global_row = (coord.row -1) + m_local_offset;
 
-        if (global_row < 0 || global_row >= m_geometry) continue;
-
-        if (coord.row >= 1 && coord.row <= m_local_rows) {
-            // Consommer complètement la végétation quand le feu est éteint
-            if (m_fire_map[f.first] == 0 && m_vegetation_map[f.first] > 0) {
-                m_vegetation_map[f.first] = 0;
-            }
-            else if (m_vegetation_map[f.first] > 0) {
-                m_vegetation_map[f.first]--;
-            }
-        }
 
         double power = log_factor(f.second);
 
@@ -194,15 +183,15 @@ bool Model::update()
         }
 
     }    
-    // A chaque itération, la végétation à l'endroit d'un foyer diminue
-    m_fire_front = next_front;
     for (auto f : m_fire_front)
     {
         if (m_vegetation_map[f.first] > 0)
             m_vegetation_map[f.first] -= 1;
     }
+
     m_time_step += 1;
-    
+    m_fire_front = next_front;  
+
     return !m_fire_front.empty();
 }
 

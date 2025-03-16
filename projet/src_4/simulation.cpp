@@ -278,26 +278,35 @@ void update_ghost_cells(std::vector<std::uint8_t>& local_fire,
 
 void print_grid_state(const std::vector<std::uint8_t>& fire_map,
                       const std::vector<std::uint8_t>& veg_map,
-                      unsigned geometry,
-                      unsigned iteration) {
-    std::ofstream file("simulation_log.txt", std::ios::app);  // Mode append
-    file << "Step " << iteration << " - Fire Map:\n";
-    for (std::size_t i = 0; i < geometry; ++i) {
-        for (std::size_t j = 0; j < geometry; ++j) {
-            file << std::setw(4) << static_cast<int>(fire_map[i * geometry + j]);
-        }
-        file << "\n";
+                      unsigned discretization, int steps) 
+{
+    std::ofstream file("simulation_log.txt", std::ios::app);
+    
+    // Vérification cohérence taille des grilles
+    const auto size = discretization * discretization;
+    if (fire_map.size() != size || veg_map.size() != size) {
+        file << "Erreur: Taille de grille incompatible avec la discrétisation\n";
+        return;
     }
-    file << "Vegetation Map:\n";
-    for (std::size_t i = 0; i < geometry; ++i) {
-        for (std::size_t j = 0; j < geometry; ++j) {
-            file << std::setw(4) << static_cast<int>(veg_map[i * geometry + j]);
-        }
-        file << "\n";
-    }
-    file << "\n";
-}
 
+    // Affichage carte de feu
+    file << "\n Step " << steps << " - Fire Map:\n";
+    for (unsigned row = 0; row < discretization; ++row) {
+        for (unsigned col = 0; col < discretization; ++col) {
+            file << std::setw(4) << static_cast<int>(fire_map[row * discretization + col]);
+        }
+        file << "\n";
+    }
+
+    // Affichage carte végétation
+    file << "\nVegetation Map:\n";
+    for (unsigned row = 0; row < discretization; ++row) {
+        for (unsigned col = 0; col < discretization; ++col) {
+            file << std::setw(4) << static_cast<int>(veg_map[row * discretization + col]);
+        }
+        file << "\n";
+    }
+}
 
 int main(int argc, char* argv[]) {
     MPI_Init(&argc, &argv);
@@ -343,8 +352,8 @@ int main(int argc, char* argv[]) {
             std::cout << "[Global 0] Grilles reçues. Mise à jour de l'affichage." << std::endl;
             
             displayer->update(global_vegetation, global_fire);
-            if(steps == 0)
-                print_grid_state(global_fire, global_vegetation, params.discretization, steps); 
+            if(steps == 100)
+                print_grid_state(global_fire, global_vegetation, params.discretization, steps);
             steps++;
 
             SDL_Event event;
