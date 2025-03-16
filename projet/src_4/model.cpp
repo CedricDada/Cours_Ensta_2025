@@ -99,6 +99,15 @@ bool Model::update()
     for (auto f : m_fire_front)
     {
         LexicoIndices coord = get_lexicographic_from_index(f.first);
+
+        // Vérifier si la cellule est RÉELLE (pas une cellule fantôme)
+        if (coord.row >= 1 && coord.row <= m_local_rows) 
+        {
+            if (m_vegetation_map[f.first] > 0) {
+                m_vegetation_map[f.first]--;
+                //std::cout << "[DEBUG] Vegetation décrémentée à l'index " << f.first  << " (valeur: " << (int)m_vegetation_map[f.first] << ")\n";
+            }
+        }
         double power = log_factor(f.second);
         //std::cout << "[Model::update] Traitement du foyer à l'index " << f.first 
                  // << " (ligne=" << coord.row << ", col=" << coord.column << ") avec puissance " << power << std::endl;

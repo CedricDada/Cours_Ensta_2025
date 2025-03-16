@@ -216,53 +216,88 @@ void log_message(MPI_Comm comm, const std::string &msg) {
 }
 
 // Fonction mise à jour pour les cellules fantômes avec réordonnement des appels
-
 void update_ghost_cells(std::vector<std::uint8_t>& local_fire,
-                          int local_rows, int cols,
-                          MPI_Comm newComm, int comp_rank, int comp_size) {
-    std::cout << "[update_ghost_cells] [Compute " << comp_rank 
-              << "] Début de l'échange des cellules fantômes." << std::endl;
+                        std::vector<std::uint8_t>& local_vegetation, // Ajouté
+                        int local_rows, int cols,
+                        MPI_Comm newComm, int comp_rank, int comp_size) 
+{
+    // Échange pour le FEU
+    MPI_Request fire_requests[4];
+    int fire_req_count = 0;
     
-    MPI_Request requests[4];
-    int req_count = 0;
-    
-    // Pour la ligne fantôme supérieure : si le processus a un voisin au-dessus, il le reçoit
+    // Réception feu
     if (comp_rank > 0) {
-        MPI_Irecv(&local_fire[0], cols, MPI_UINT8_T, comp_rank - 1, 0, newComm, &requests[req_count++]);
+        MPI_Irecv(&local_fire[0], cols, MPI_UINT8_T, comp_rank - 1, 0, newComm, &fire_requests[fire_req_count++]);
     }
-    // Pour la ligne fantôme inférieure : si le processus a un voisin en-dessous, il le reçoit
     if (comp_rank < comp_size - 1) {
-        MPI_Irecv(&local_fire[(local_rows + 1) * cols], cols, MPI_UINT8_T, comp_rank + 1, 1, newComm, &requests[req_count++]);
+        MPI_Irecv(&local_fire[(local_rows + 1) * cols], cols, MPI_UINT8_T, comp_rank + 1, 1, newComm, &fire_requests[fire_req_count++]);
     }
     
-    // Envoi de la première ligne réelle (ligne 1) vers le voisin au-dessus pour mettre à jour sa zone inférieure
+    // Envoi feu
     if (comp_rank > 0) {
-        MPI_Isend(&local_fire[cols], cols, MPI_UINT8_T, comp_rank - 1, 1, newComm, &requests[req_count++]);
+        MPI_Isend(&local_fire[cols], cols, MPI_UINT8_T, comp_rank - 1, 1, newComm, &fire_requests[fire_req_count++]);
     }
-    // Envoi de la dernière ligne réelle (ligne local_rows) vers le voisin en-dessous pour mettre à jour sa zone supérieure
     if (comp_rank < comp_size - 1) {
-        MPI_Isend(&local_fire[local_rows * cols], cols, MPI_UINT8_T, comp_rank + 1, 0, newComm, &requests[req_count++]);
+        MPI_Isend(&local_fire[local_rows * cols], cols, MPI_UINT8_T, comp_rank + 1, 0, newComm, &fire_requests[fire_req_count++]);
+    }
+
+    // Échange pour la VÉGÉTATION (mêmes étapes avec tags différents)
+    MPI_Request veg_requests[4];
+    int veg_req_count = 0;
+    
+    // Réception végétation (tags 2 et 3)
+    if (comp_rank > 0) {
+        MPI_Irecv(&local_vegetation[0], cols, MPI_UINT8_T, comp_rank - 1, 2, newComm, &veg_requests[veg_req_count++]);
+    }
+    if (comp_rank < comp_size - 1) {
+        MPI_Irecv(&local_vegetation[(local_rows + 1) * cols], cols, MPI_UINT8_T, comp_rank + 1, 3, newComm, &veg_requests[veg_req_count++]);
     }
     
-    // Pour le bord supérieur : s'il n'y a pas de voisin au-dessus, on copie la première ligne réelle dans la zone ghost supérieure
+    // Envoi végétation (tags 3 et 2)
+    if (comp_rank > 0) {
+        MPI_Isend(&local_vegetation[cols], cols, MPI_UINT8_T, comp_rank - 1, 3, newComm, &veg_requests[veg_req_count++]);
+    }
+    if (comp_rank < comp_size - 1) {
+        MPI_Isend(&local_vegetation[local_rows * cols], cols, MPI_UINT8_T, comp_rank + 1, 2, newComm, &veg_requests[veg_req_count++]);
+    }
+
+    // Attente complète pour feu ET végétation
+    MPI_Waitall(fire_req_count, fire_requests, MPI_STATUSES_IGNORE);
+    MPI_Waitall(veg_req_count, veg_requests, MPI_STATUSES_IGNORE);
+
+    // Gestion des bords (exemple pour feu, à dupliquer pour végétation si nécessaire)
     if (comp_rank == 0) {
         std::copy(local_fire.begin() + cols, local_fire.begin() + 2 * cols, local_fire.begin());
-        std::cout << "[update_ghost_cells] [Compute 0] Copie de la première ligne réelle dans la zone fantôme supérieure." << std::endl;
+        std::copy(local_vegetation.begin() + cols, local_vegetation.begin() + 2 * cols, local_vegetation.begin());
     }
-    // Pour le bord inférieur : s'il n'y a pas de voisin en-dessous, on copie la dernière ligne réelle dans la zone ghost inférieure
     if (comp_rank == comp_size - 1) {
-        std::copy(local_fire.begin() + local_rows * cols, local_fire.begin() + (local_rows + 1) * cols,
-                  local_fire.begin() + (local_rows + 1) * cols);
-        std::cout << "[update_ghost_cells] [Compute " << comp_rank 
-                  << "] Copie de la dernière ligne réelle dans la zone fantôme inférieure." << std::endl;
+        std::copy(local_fire.begin() + local_rows * cols, local_fire.begin() + (local_rows + 1) * cols, local_fire.begin() + (local_rows + 1) * cols);
+        std::copy(local_vegetation.begin() + local_rows * cols, local_vegetation.begin() + (local_rows + 1) * cols, local_vegetation.begin() + (local_rows + 1) * cols);
     }
-    
-    if (req_count > 0) {
-        MPI_Waitall(req_count, requests, MPI_STATUSES_IGNORE);
+}
+void print_local_grids(const std::vector<std::uint8_t>& local_fire,
+                       const std::vector<std::uint8_t>& local_vegetation,
+                       int local_rows, int cols, int comp_rank) 
+{
+    std::cout << "[DEBUG] Grilles locales pour le processus " << comp_rank << " :\n";
+
+    // Afficher la carte du feu
+    std::cout << "Carte du feu :\n";
+    for (int i = 0; i < local_rows + 2; ++i) { // +2 pour inclure les cellules fantômes
+        for (int j = 0; j < cols; ++j) {
+            std::cout << std::setw(4) << static_cast<int>(local_fire[i * cols + j]);
+        }
+        std::cout << "\n";
     }
-    
-    std::cout << "[update_ghost_cells] [Compute " << comp_rank 
-              << "] Fin de l'échange." << std::endl;
+
+    // Afficher la carte de la végétation
+    std::cout << "Carte de la végétation :\n";
+    for (int i = 0; i < local_rows + 2; ++i) { // +2 pour inclure les cellules fantômes
+        for (int j = 0; j < cols; ++j) {
+            std::cout << std::setw(4) << static_cast<int>(local_vegetation[i * cols + j]);
+        }
+        std::cout << "\n";
+    }
 }
 void print_grid_state(const std::vector<std::uint8_t>& fire_map,
                       const std::vector<std::uint8_t>& veg_map,
@@ -328,7 +363,8 @@ int main(int argc, char* argv[]) {
             std::cout << "[Global 0] Grilles reçues. Mise à jour de l'affichage." << std::endl;
             
             displayer->update(global_vegetation, global_fire);
-            print_grid_state(global_fire, global_vegetation, params.discretization, steps); 
+            if(steps == 0)
+                print_grid_state(global_fire, global_vegetation, params.discretization, steps); 
             steps++;
 
             SDL_Event event;
@@ -443,7 +479,7 @@ int main(int argc, char* argv[]) {
             std::cout << "[Global " << world_rank << " / Compute " << comp_rank << "] Itération " << iteration << " début." << std::endl;
             
             // Échange des cellules fantômes entre les workers
-            update_ghost_cells(local_fire, local_rows, cols, newComm, comp_rank, num_compute_procs);
+            update_ghost_cells(local_fire, local_vegetation, local_rows, cols, newComm, comp_rank, num_compute_procs);
             std::cout << "[Global " << world_rank << " / Compute " << comp_rank << "] Échange des cellules fantômes terminé." << std::endl;
 
             // Calcul de la nouvelle génération d'incendie (update renvoie false si le feu local est épuisé)
