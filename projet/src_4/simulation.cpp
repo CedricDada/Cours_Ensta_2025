@@ -340,6 +340,7 @@ int main(int argc, char* argv[]) {
     MPI_Comm_split(globComm, color, world_rank, &newComm);
     std::cout << "[Global " << world_rank << "] Communicateur splitté (color " << color << ")." << std::endl;
 
+    // Parsing des arguments
     ParamsType params = parse_arguments(argc - 1, argv + 1);
     if (!check_params(params)) {
         std::cerr << "[Global " << world_rank << "] Erreur dans les paramètres. Abandon." << std::endl;
@@ -492,6 +493,24 @@ int main(int argc, char* argv[]) {
             MPI_Allreduce(&local_active, &global_active, 1, MPI_INT, MPI_SUM, newComm);
             simulation_running = (global_active > 0);
 
+            // Récupération des données RÉELLES du modèle (sans fantômes)
+            const auto& model_fire = model.fire_map();
+            const auto& model_veg = model.vegetal_map();
+
+            // Préparation des données locales pour le Gatherv
+            std::vector<std::uint8_t> local_fire_data(
+                model_fire.begin() + cols, // Ignorer la première ligne fantôme
+                model_fire.end() - cols    // Ignorer la dernière ligne fantôme
+            );
+            std::vector<std::uint8_t> local_veg_data(
+                model_veg.begin() + cols, 
+                model_veg.end() - cols
+            );
+
+            // Vérification des tailles
+            assert(local_fire_data.size() == local_rows * cols);
+            assert(local_veg_data.size() == local_rows * cols);
+
             // Rassemblement des données locales (hors zones fantômes) pour l'affichage
             std::vector<int> counts(num_compute_procs), displs(num_compute_procs);
             int off = 0;
@@ -501,35 +520,25 @@ int main(int argc, char* argv[]) {
                 displs[i] = off;
                 off += r * cols;
             }
-            std::vector<std::uint8_t> local_veg_data(local_rows * cols);
-            std::vector<std::uint8_t> local_fire_data(local_rows * cols);
-            for (int i = 0; i < local_rows; ++i) {
-                std::copy(
-                    local_vegetation.begin() + (i + 1) * cols,
-                    local_vegetation.begin() + (i + 2) * cols,
-                    local_veg_data.begin() + i * cols
-                );
-                std::copy(
-                    local_fire.begin() + (i + 1) * cols,
-                    local_fire.begin() + (i + 2) * cols,
-                    local_fire_data.begin() + i * cols
-                );
-            }
+
             std::vector<std::uint8_t> global_veg, global_fire;
             if (comp_rank == 0) {
                 global_veg.resize(total_rows * cols);
                 global_fire.resize(total_rows * cols);
             }
-            MPI_Gatherv(
-                local_veg_data.data(), local_veg_data.size(), MPI_UINT8_T,
-                global_veg.data(), counts.data(), displs.data(), MPI_UINT8_T,
-                0, newComm
-            );
+
             MPI_Gatherv(
                 local_fire_data.data(), local_fire_data.size(), MPI_UINT8_T,
                 global_fire.data(), counts.data(), displs.data(), MPI_UINT8_T,
                 0, newComm
             );
+
+            MPI_Gatherv(
+                local_veg_data.data(), local_veg_data.size(), MPI_UINT8_T,
+                global_veg.data(), counts.data(), displs.data(), MPI_UINT8_T,
+                0, newComm
+            );
+
             std::cout << "[Global " << world_rank << " / Compute " << comp_rank << "] Gatherv terminé." << std::endl;
             
             // Le maître de calcul (comp_rank == 0) envoie les données rassemblées au processus d'affichage (global rank 0)
