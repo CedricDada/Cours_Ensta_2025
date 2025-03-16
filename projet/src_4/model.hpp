@@ -17,9 +17,11 @@ public:
     };
 
     
-    Model(double t_length, unsigned t_discretization, std::array<double,2> t_wind,
-          LexicoIndices t_start_fire_position,
-          int local_rows, int local_offset,double t_max_wind = 60.0);
+Model(double t_length, unsigned t_discretization, std::array<double,2> t_wind,
+      LexicoIndices t_start_fire_position,
+      int local_rows, int local_offset, int cols,
+      std::uint8_t* vegetation_ptr, std::uint8_t* fire_ptr,
+      double t_max_wind = 60.0);
     Model( Model const & ) = delete;
     Model( Model      && ) = delete;
     ~Model() = default;
