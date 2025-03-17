@@ -17,9 +17,11 @@
 #include <cmath>
 #include <iostream>
 #include <fstream>
+#include <condition_variable>
 #include <iomanip>
 #include <omp.h>
 #include <chrono>
+#include <mutex>
 #include "model.hpp"
 #include "display.hpp"
 
@@ -307,7 +309,67 @@ void print_grid_state(const std::vector<std::uint8_t>& fire_map,
         file << "\n";
     }
 }
+// Structure pour partager les données d'affichage entre threads
+struct DisplayData {
+    std::vector<std::uint8_t> vegetation;
+    std::vector<std::uint8_t> fire;
+    bool data_ready = false;
+    bool keep_running = true;
+    bool rendering_finished = false;
+    double display_time = 0.0;
+    int steps = 0;
+};
 
+// Fonction d'affichage dans un thread séparé
+void rendering_thread_func(DisplayData& data, 
+                          std::mutex& mtx, 
+                          std::condition_variable& cv,
+                          int discretization) {
+    auto displayer = Displayer::init_instance(discretization, discretization);
+    bool local_keep_running = true;
+
+    while (local_keep_running) {
+        std::unique_lock<std::mutex> lock(mtx);
+        cv.wait(lock, [&data]{ return data.data_ready || !data.keep_running; });
+
+        if (!data.keep_running) {
+            local_keep_running = false;
+            break;
+        }
+
+        // Copie locale des données pour minimiser le temps de verrouillage
+        auto veg = data.vegetation;
+        auto fire = data.fire;
+        data.data_ready = false;
+        lock.unlock();
+
+        // Mesure du temps d'affichage
+        auto start_display = std::chrono::high_resolution_clock::now();
+        displayer->update(veg, fire);
+        auto end_display = std::chrono::high_resolution_clock::now();
+        double display_duration = std::chrono::duration<double, std::nano>(end_display - start_display).count() / 1e9; // Convertit en secondes
+
+        // Mise à jour du temps d'affichage cumulé
+        {
+            std::lock_guard<std::mutex> lock(mtx);
+            data.display_time += display_duration;
+        }
+
+        // Gestion des événements SDL
+        SDL_Event event;
+        while (SDL_PollEvent(&event)) {
+            if (event.type == SDL_QUIT) {
+                std::lock_guard<std::mutex> lock(mtx);
+                data.keep_running = false;
+                local_keep_running = false;
+            }
+        }
+    }
+
+    std::lock_guard<std::mutex> lock(mtx);
+    data.rendering_finished = true;
+    cv.notify_one();
+}
 int main(int argc, char* argv[]) {
     MPI_Init(&argc, &argv);
     MPI_Comm globComm;
@@ -344,53 +406,96 @@ int main(int argc, char* argv[]) {
     }
 
     if (world_rank == 0) {
-        // Processus d'affichage
-        display_params(params);
-        auto displayer = Displayer::init_instance(params.discretization, params.discretization);
+        DisplayData display_data;
+        std::mutex mtx;
+        std::condition_variable cv;
+
+        // Lancement du thread d'affichage
+        std::thread rendering_thread(rendering_thread_func, 
+                                    std::ref(display_data), 
+                                    std::ref(mtx), 
+                                    std::ref(cv),
+                                    params.discretization);
+
         bool keep_running = true;
         int steps = 0;
-        std::chrono::duration<double> display_time{0};
 
         while (keep_running && steps < MAX_ITERATIONS) {
-            auto start_comm = std::chrono::high_resolution_clock::now();
-            
             std::vector<std::uint8_t> global_vegetation(params.discretization * params.discretization);
             std::vector<std::uint8_t> global_fire(params.discretization * params.discretization);
-            
-            
-            MPI_Recv(global_vegetation.data(), global_vegetation.size(), MPI_UINT8_T, 
-                    MPI_ANY_SOURCE, tag_veg, globComm, MPI_STATUS_IGNORE);
-            MPI_Recv(global_fire.data(), global_fire.size(), MPI_UINT8_T, 
-                    MPI_ANY_SOURCE, tag_fire, globComm, MPI_STATUS_IGNORE);
-            
-            auto end_comm = std::chrono::high_resolution_clock::now();
-            auto comm_duration = std::chrono::duration_cast<std::chrono::duration<double>>(end_comm - start_comm);
-            total_comm_time += comm_duration.count(); 
 
-            auto start_display = std::chrono::high_resolution_clock::now();
-            displayer->update(global_vegetation, global_fire);
-            auto end_display = std::chrono::high_resolution_clock::now();
-            display_time += (end_display - start_display);
+            // Réception non-bloquante des données
+            MPI_Status status;
+            int flag;
+            MPI_Iprobe(MPI_ANY_SOURCE, tag_veg, globComm, &flag, &status);
+            
+            if (flag) {
+                MPI_Recv(global_vegetation.data(), global_vegetation.size(), 
+                        MPI_UINT8_T, MPI_ANY_SOURCE, tag_veg, globComm, MPI_STATUS_IGNORE);
+                MPI_Recv(global_fire.data(), global_fire.size(), 
+                        MPI_UINT8_T, MPI_ANY_SOURCE, tag_fire, globComm, MPI_STATUS_IGNORE);
 
-            SDL_Event event;
-            if (SDL_PollEvent(&event) && event.type == SDL_QUIT) {
-                int signal = -1;
-                for (int i = 1; i < world_size; ++i) {
-                    MPI_Send(&signal, 1, MPI_INT, i, tag_signal, globComm);
+                // Vérification des données reçues
+                if (global_vegetation.empty() || global_fire.empty()) {
+                    std::cerr << "Erreur : données reçues invalides." << std::endl;
+                    continue;
                 }
-                keep_running = false;
+
+                // Mise à jour des données d'affichage
+                {
+                    std::lock_guard<std::mutex> lock(mtx);
+                    display_data.vegetation = global_vegetation;
+                    display_data.fire = global_fire;
+                    display_data.data_ready = true;
+                    display_data.steps = steps;
+                }
+                cv.notify_one();
+                steps++;
             }
-            if(steps % 100 == 0)
-                std::cout << "Time step - "<< steps<< std::endl;
-            steps++;
-            actual_iterations = steps;
+
+            // Vérification de l'arrêt
+            {
+                std::lock_guard<std::mutex> lock(mtx);
+                if (!display_data.keep_running) {
+                    keep_running = false;
+                }
+            }
         }
 
-        // Collecte des statistiques finales
-        double avg_display = display_time.count() / actual_iterations;
-        std::cout << "\n=== Statistiques d'affichage ==="
-                  << "\nTemps moyen par frame: " << avg_display << "s"
-                  << std::endl;
+        // Signal d'arrêt au thread de rendu
+        {
+            std::lock_guard<std::mutex> lock(mtx);
+            display_data.keep_running = false;
+        }
+        cv.notify_one();
+
+        // Attente de la fin du thread
+        rendering_thread.join();
+
+        // Récupération du temps d'affichage cumulé
+        double total_display_time = 0.0;
+        int total_steps = 0;
+        {
+            std::lock_guard<std::mutex> lock(mtx);
+            total_display_time = display_data.display_time;
+            total_steps = display_data.steps;
+        }
+
+        // Affichage des statistiques
+        if (total_steps > 0) {
+            std::cout << "\n=== Statistiques d'affichage ==="
+                      << "\nTemps total d'affichage: " << total_display_time << "s"
+                      << "\nTemps moyen par frame: " << total_display_time / total_steps << "s"
+                      << std::endl;
+        } else {
+            std::cerr << "Aucune itération n'a été effectuée." << std::endl;
+        }
+
+        // Envoi du signal d'arrêt aux autres processus
+        int signal = -1;
+        for (int i = 1; i < world_size; ++i) {
+            MPI_Send(&signal, 1, MPI_INT, i, tag_signal, globComm);
+        }
     } 
     else {
         // Processus de calcul
@@ -632,12 +737,12 @@ int main(int argc, char* argv[]) {
     }
 
     // Affichage final des stats de communication
-    if (world_rank == 0) {
-        double avg_comm = total_comm_time / actual_iterations;
-        std::cout << "\n=== Statistiques de communication ==="
-                  << "\nTemps moyen de communication globale: " << avg_comm << "s"
-                  << std::endl;
-    }
+    // if (world_rank == 0) {
+    //     double avg_comm = total_comm_time / actual_iterations;
+    //     std::cout << "\n=== Statistiques de communication ==="
+    //               << "\nTemps moyen de communication globale: " << avg_comm << "s"
+    //               << std::endl;
+    // }
 
     MPI_Finalize();
     return EXIT_SUCCESS;

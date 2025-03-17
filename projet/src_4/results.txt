@@ -27,15 +27,13 @@ Time step - 1900
 
 === Statistiques de calcul ===
 Temps moyen par iteration:
-- Communications fantômes: 0.09011s
-- Calcul modèle: 0.0610098s
-- Rassemblement données: 0.0432805s
+- Communications fantômes: 0.000810492s
+- Calcul modèle: 0.0743561s
+- Rassemblement données: 0.0523113s
 
 === Statistiques d'affichage ===
-Temps moyen par frame: 0.237605s
-
-=== Statistiques de communication ===
-Temps moyen de communication globale: 0.00211372s
+Temps total d'affichage: 253.307s
+Temps moyen par frame: 0.126717s
 
 cedric@ns2:/media/cedric/DSCD/Projets/ENSTA/Parrallel_architcture/Cours_Ensta_2025/projet/src_4$ mpiexec -n 3 ./simulation.exe -l 400 -n 1500 -w 20.0,12.0 -s 12,15
 Parametres définis pour la simulation : 
@@ -66,16 +64,13 @@ Time step - 1900
 
 === Statistiques de calcul ===
 Temps moyen par iteration:
-- Communications fantômes: 0.05303s
-- Calcul modèle: 0.104311s
-- Rassemblement données: 0.0479018s
+- Communications fantômes: 0.000613059s
+- Calcul modèle: 0.102665s
+- Rassemblement données: 0.0478858s
 
 === Statistiques d'affichage ===
-Temps moyen par frame: 0.256174s
-
-=== Statistiques de communication ===
-Temps moyen de communication globale: 0.00247413s
-cedric@ns2:/media/cedric/DSCD/Projets/ENSTA/Parrallel_architcture/Cours_Ensta_2025/projet/src_4$ 
+Temps total d'affichage: 287.456s
+Temps moyen par frame: 0.1438s
 
 
 cedric@ns2:/media/cedric/DSCD/Projets/ENSTA/Parrallel_architcture/Cours_Ensta_2025/projet/src_4$ mpiexec -n 2 ./simulation.exe -l 400 -n 1500 -w 20.0,12.0 -s 12,15
@@ -107,16 +102,13 @@ Time step - 1900
 
 === Statistiques de calcul ===
 Temps moyen par iteration:
-- Communications fantômes: 4.34605e-06s
-- Calcul modèle: 0.209002s
-- Rassemblement données: 0.00722199s
+- Communications fantômes: 3.11833e-06s
+- Calcul modèle: 0.179021s
+- Rassemblement données: 0.00654441s
 
 === Statistiques d'affichage ===
-Temps moyen par frame: 0.238838s
-
-=== Statistiques de communication ===
-Temps moyen de communication globale: 0.0559528s
-cedric@ns2:/media/cedric/DSCD/Projets/ENSTA/Parrallel_architcture/Cours_Ensta_2025/projet/src_4$ 
+Temps total d'affichage: 341.12s
+Temps moyen par frame: 0.170645s
 
 cedric@ns2:/media/cedric/DSCD/Projets/ENSTA/Parrallel_architcture/Cours_Ensta_2025/projet/src_4$ mpiexec --oversubscribe -n 8 ./simulation.exe -l 400 -n 1500 -w 20.0,1
 2.0 -s 12,15
@@ -146,15 +138,13 @@ Time step - 1700
 Time step - 1800
 Time step - 1900
 
+
 === Statistiques de calcul ===
 Temps moyen par iteration:
-- Communications fantômes: 0.347423s
-- Calcul modèle: 0.0410681s
-- Rassemblement données: 0.0528387s
+- Communications fantômes: 0.00264209s
+- Calcul modèle: 0.0378597s
+- Rassemblement données: 0.0498054s
 
 === Statistiques d'affichage ===
-Temps moyen par frame: 0.498057s
-
-=== Statistiques de communication ===
-Temps moyen de communication globale: 0.00258544s
-cedric@ns2:/media/cedric/DSCD/Projets/ENSTA/Parrallel_architcture/Cours_Ensta_2025/projet/src_4$ 
+Temps total d'affichage: 183.118s
+Temps moyen par frame: 0.0916049s
