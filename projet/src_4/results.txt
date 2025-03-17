@@ -1,28 +1,160 @@
-cedric@ns2:/media/cedric/DSCD/Projets/ENSTA/Parrallel_architcture/Cours_Ensta_2025/projet/src_2$ mpiexec -n 2 ./simulation.exe -l 400 -n 1500 -w 20.0,12.0 -s 12,15
+cedric@ns2:/media/cedric/DSCD/Projets/ENSTA/Parrallel_architcture/Cours_Ensta_2025/projet/src_4$ mpiexec -n 4 ./simulation.exe -l 400 -n 1500 -w 20.0,12.0 -s 12,15
 Parametres définis pour la simulation : 
         Taille du terrain : 400
         Nombre de cellules par direction : 1500
         Vecteur vitesse : [20, 12]
         Position initiale du foyer (col, ligne) : 12, 15
-Time step : 0
-Time step : 100
-Time step : 200
-Time step : 300
-Time step : 400
-Time step : 500
-Time step : 600
-Time step : 700
-Time step : 800
-Time step : 900
-Time step : 1000
-Time step : 1100
-Time step : 1200
-Time step : 1300
-Time step : 1400
-Time step : 1500
-Time step : 1600
-Time step : 1700
-Time step : 1800
-Time step : 1900
-Arrêt de la simulation après 2000 itérations.
-Temps moyen global par itération (affichage, calcul et communication) : 0.17396 s
+Time step - 0
+Time step - 100
+Time step - 200
+Time step - 300
+Time step - 400
+Time step - 500
+Time step - 600
+Time step - 700
+Time step - 800
+Time step - 900
+Time step - 1000
+Time step - 1100
+Time step - 1200
+Time step - 1300
+Time step - 1400
+Time step - 1500
+Time step - 1600
+Time step - 1700
+Time step - 1800
+Time step - 1900
+
+=== Statistiques de calcul ===
+Temps moyen par iteration:
+- Communications fantômes: 0.09011s
+- Calcul modèle: 0.0610098s
+- Rassemblement données: 0.0432805s
+
+=== Statistiques d'affichage ===
+Temps moyen par frame: 0.237605s
+
+=== Statistiques de communication ===
+Temps moyen de communication globale: 0.00211372s
+
+cedric@ns2:/media/cedric/DSCD/Projets/ENSTA/Parrallel_architcture/Cours_Ensta_2025/projet/src_4$ mpiexec -n 3 ./simulation.exe -l 400 -n 1500 -w 20.0,12.0 -s 12,15
+Parametres définis pour la simulation : 
+        Taille du terrain : 400
+        Nombre de cellules par direction : 1500
+        Vecteur vitesse : [20, 12]
+        Position initiale du foyer (col, ligne) : 12, 15
+Time step - 0
+Time step - 100
+Time step - 200
+Time step - 300
+Time step - 400
+Time step - 500
+Time step - 600
+Time step - 700
+Time step - 800
+Time step - 900
+Time step - 1000
+Time step - 1100
+Time step - 1200
+Time step - 1300
+Time step - 1400
+Time step - 1500
+Time step - 1600
+Time step - 1700
+Time step - 1800
+Time step - 1900
+
+=== Statistiques de calcul ===
+Temps moyen par iteration:
+- Communications fantômes: 0.05303s
+- Calcul modèle: 0.104311s
+- Rassemblement données: 0.0479018s
+
+=== Statistiques d'affichage ===
+Temps moyen par frame: 0.256174s
+
+=== Statistiques de communication ===
+Temps moyen de communication globale: 0.00247413s
+cedric@ns2:/media/cedric/DSCD/Projets/ENSTA/Parrallel_architcture/Cours_Ensta_2025/projet/src_4$ 
+
+
+cedric@ns2:/media/cedric/DSCD/Projets/ENSTA/Parrallel_architcture/Cours_Ensta_2025/projet/src_4$ mpiexec -n 2 ./simulation.exe -l 400 -n 1500 -w 20.0,12.0 -s 12,15
+Parametres définis pour la simulation : 
+        Taille du terrain : 400
+        Nombre de cellules par direction : 1500
+        Vecteur vitesse : [20, 12]
+        Position initiale du foyer (col, ligne) : 12, 15
+Time step - 0
+Time step - 100
+Time step - 200
+Time step - 300
+Time step - 400
+Time step - 500
+Time step - 600
+Time step - 700
+Time step - 800
+Time step - 900
+Time step - 1000
+Time step - 1100
+Time step - 1200
+Time step - 1300
+Time step - 1400
+Time step - 1500
+Time step - 1600
+Time step - 1700
+Time step - 1800
+Time step - 1900
+
+=== Statistiques de calcul ===
+Temps moyen par iteration:
+- Communications fantômes: 4.34605e-06s
+- Calcul modèle: 0.209002s
+- Rassemblement données: 0.00722199s
+
+=== Statistiques d'affichage ===
+Temps moyen par frame: 0.238838s
+
+=== Statistiques de communication ===
+Temps moyen de communication globale: 0.0559528s
+cedric@ns2:/media/cedric/DSCD/Projets/ENSTA/Parrallel_architcture/Cours_Ensta_2025/projet/src_4$ 
+
+cedric@ns2:/media/cedric/DSCD/Projets/ENSTA/Parrallel_architcture/Cours_Ensta_2025/projet/src_4$ mpiexec --oversubscribe -n 8 ./simulation.exe -l 400 -n 1500 -w 20.0,1
+2.0 -s 12,15
+Parametres définis pour la simulation : 
+        Taille du terrain : 400
+        Nombre de cellules par direction : 1500
+        Vecteur vitesse : [20, 12]
+        Position initiale du foyer (col, ligne) : 12, 15
+Time step - 0
+Time step - 100
+Time step - 200
+Time step - 300
+Time step - 400
+Time step - 500
+Time step - 600
+Time step - 700
+Time step - 800
+Time step - 900
+Time step - 1000
+Time step - 1100
+Time step - 1200
+Time step - 1300
+Time step - 1400
+Time step - 1500
+Time step - 1600
+Time step - 1700
+Time step - 1800
+Time step - 1900
+
+=== Statistiques de calcul ===
+Temps moyen par iteration:
+- Communications fantômes: 0.347423s
+- Calcul modèle: 0.0410681s
+- Rassemblement données: 0.0528387s
+
+=== Statistiques d'affichage ===
+Temps moyen par frame: 0.498057s
+
+=== Statistiques de communication ===
+Temps moyen de communication globale: 0.00258544s
+cedric@ns2:/media/cedric/DSCD/Projets/ENSTA/Parrallel_architcture/Cours_Ensta_2025/projet/src_4$ 

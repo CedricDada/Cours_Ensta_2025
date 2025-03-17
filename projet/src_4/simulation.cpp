@@ -380,7 +380,7 @@ int main(int argc, char* argv[]) {
                 }
                 keep_running = false;
             }
-            if(steps % 100 = 0)
+            if(steps % 100 == 0)
                 std::cout << "Time step - "<< steps<< std::endl;
             steps++;
             actual_iterations = steps;
