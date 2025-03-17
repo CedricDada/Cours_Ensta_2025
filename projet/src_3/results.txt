@@ -81,3 +81,20 @@ Parametres définis pour la simulation :
 
 Arrêt de la simulation après 2000 itérations.
 Temps moyen global par itération (affichage, calcul et communication) : 0.308398 s
+
+
+cedric@ns2:/media/cedric/DSCD/Projets/ENSTA/Parrallel_architcture/Cours_Ensta_2025/projet/src_3$ export OPEN_NUM_THREADS=8
+cedric@ns2:/media/cedric/DSCD/Projets/ENSTA/Parrallel_architcture/Cours_Ensta_2025/projet/src_3$ mpiexec -n 2 -bind-to none ./simulation.exe -l 400 -n 2000 -w 20.0,12.0 -s 12,15
+Parametres définis pour la simulation : 
+        Taille du terrain : 400
+        Nombre de cellules par direction : 2000
+        Vecteur vitesse : [20, 12]
+        Position initiale du foyer (col, ligne) : 12, 15
+
+Arrêt de la simulation après 2000 itérations.
+Temps moyen global par itération (affichage, calcul et communication) : 0.30248 s
+
+
+
+
+

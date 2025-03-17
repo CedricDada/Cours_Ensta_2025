@@ -236,7 +236,6 @@ int main(int argc, char* argv[])
                 break;
             }
 
-            double iter_start = MPI_Wtime();
 
             std::vector<std::uint8_t> vegetation(params.discretization * params.discretization);
             std::vector<std::uint8_t> fire(params.discretization * params.discretization);
@@ -249,9 +248,11 @@ int main(int argc, char* argv[])
             // Attente de la réception complète
             MPI_Waitall(2, reqs, MPI_STATUSES_IGNORE);
 
+            double iter_start = MPI_Wtime();
             // Mise à jour de l'affichage via SDL
             displayer->update(vegetation, fire);
 
+            double iter_end = MPI_Wtime();
             // Gestion d'événement pour permettre une fermeture manuelle
             SDL_Event event;
             if (SDL_PollEvent(&event) && event.type == SDL_QUIT)
@@ -262,7 +263,6 @@ int main(int argc, char* argv[])
                 keep_running = false;
             }
 
-            double iter_end = MPI_Wtime();
             double local_iter_time = iter_end - iter_start;
 
             // Récupération du temps maximal de l'itération parmi les processus
@@ -296,6 +296,7 @@ int main(int argc, char* argv[])
 
             // Mise à jour de la simulation ; update retourne false si on a atteint la limite d'itérations
             simulation_running = simu.update();
+            double iter_end = MPI_Wtime();
 
             // Récupération des tableaux mis à jour
             auto vegetation = simu.vegetal_map();
@@ -309,7 +310,6 @@ int main(int argc, char* argv[])
             // Attente de la complétion des envois regroupés
             MPI_Waitall(2, reqs, MPI_STATUSES_IGNORE);
 
-            double iter_end = MPI_Wtime();
             double local_iter_time = iter_end - iter_start;
 
             // Réduction pour récupérer le maximum des temps locaux 

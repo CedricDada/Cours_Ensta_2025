@@ -190,7 +190,7 @@ Model::get_lexicographic_from_index( std::size_t t_global_index ) const -> Lexic
     return ind_coords;
 }
 void Model::log_grids(std::size_t step) const {
-    std::ofstream file("simulation_log.txt", std::ios::app);  // Mode append
+    std::ofstream file("simulation_log.txt", std::ios::app);  
     file << "Step " << step << " - Fire Map:\n";
     for (std::size_t i = 0; i < m_geometry; ++i) {
         for (std::size_t j = 0; j < m_geometry; ++j) {
