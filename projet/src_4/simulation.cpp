@@ -720,9 +720,9 @@ int main(int argc, char* argv[]) {
 
         // Réduction MPI pour obtenir les totaux globaux
         double global_ghost, global_compute, global_gather;
-        MPI_Reduce(&local_ghost, &global_ghost, 1, MPI_DOUBLE, MPI_SUM, 0, newComm);
-        MPI_Reduce(&local_compute, &global_compute, 1, MPI_DOUBLE, MPI_SUM, 0, newComm);
-        MPI_Reduce(&local_gather, &global_gather, 1, MPI_DOUBLE, MPI_SUM, 0, newComm);
+        MPI_Reduce(&local_ghost, &global_ghost, 1, MPI_DOUBLE, MPI_MAX, 0, newComm);
+        MPI_Reduce(&local_compute, &global_compute, 1, MPI_DOUBLE, MPI_MAX, 0, newComm);
+        MPI_Reduce(&local_gather, &global_gather, 1, MPI_DOUBLE, MPI_MAX, 0, newComm);
 
         // Affichage des résultats sur le processus racine du calcul
         if (comp_rank == 0) {
