@@ -124,8 +124,7 @@ Parametres définis pour la simulation :
         Nombre de cellules par direction : 2000
         Vecteur vitesse : [20, 12]
         Position initiale du foyer (col, ligne) : 12, 15
-cedric@ns2:/media/cedric/DSCD/Projets/ENSTA/Parrallel_architcture/Cours_Ensta_2025/projet/src_4$ mpiexec --oversubscribe -n 8 ./simulation.exe -l 400 -n 2000 -w 20.0,12.0 -s 12,15
-
+        
 === Statistiques de calcul ===
 Temps moyen par iteration:
 - Communications fantômes: 0.000966527s
