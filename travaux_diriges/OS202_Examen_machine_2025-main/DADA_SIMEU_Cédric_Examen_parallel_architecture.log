@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2022/dev/Debian) (preloaded format=pdflatex 2025.2.3)  18 MAR 2025 11:59
+This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2022/dev/Debian) (preloaded format=pdflatex 2025.2.3)  18 MAR 2025 12:01
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -1165,32 +1165,6 @@ spelling (e.g., `I\hbox'). Otherwise just continue,
 and I'll forget about whatever was undefined.
 
 [8]
-/media/cedric/DSCD/Projets/ENSTA/Parrallel_architcture/Cours_Ensta_2025/travaux_diriges/OS202_Examen_machine_2025-main/DADA_SIMEU_Cédric_Examen_parallel_architecture.tex:363: Missing $ inserted.
-<inserted text> 
-                $
-l.363 ...llélisation du programme double_size.py}
-                                                  
-I've inserted a begin-math/end-math symbol since I think
-you left one out. Proceed, with fingers crossed.
-
-LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <12> not available
-(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 363.
-LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <9> not available
-(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 363.
-LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <7> not available
-(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 363.
-/media/cedric/DSCD/Projets/ENSTA/Parrallel_architcture/Cours_Ensta_2025/travaux_diriges/OS202_Examen_machine_2025-main/DADA_SIMEU_Cédric_Examen_parallel_architecture.tex:363: Missing $ inserted.
-<inserted text> 
-                $
-l.363 ...llélisation du programme double_size.py}
-                                                  
-I've inserted a begin-math/end-math symbol since I think
-you left one out. Proceed, with fingers crossed.
-
-
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `subscript' on input line 363.
-
 
 /media/cedric/DSCD/Projets/ENSTA/Parrallel_architcture/Cours_Ensta_2025/travaux_diriges/OS202_Examen_machine_2025-main/DADA_SIMEU_Cédric_Examen_parallel_architecture.tex:373: LaTeX Error: Unicode character   (U+202F)
                not set up for use with LaTeX.
@@ -1213,33 +1187,7 @@ Type  H <return>  for immediate help.
  ...                                              
                                                   
 l.374     2 processus : $\approx$17.4 
-                                        s (max) => speedup ≈1.53≈1.53
-You may provide a definition with
-\DeclareUnicodeCharacter 
-
-
-/media/cedric/DSCD/Projets/ENSTA/Parrallel_architcture/Cours_Ensta_2025/travaux_diriges/OS202_Examen_machine_2025-main/DADA_SIMEU_Cédric_Examen_parallel_architecture.tex:374: LaTeX Error: Unicode character ≈ (U+2248)
-               not set up for use with LaTeX.
-
-See the LaTeX manual or LaTeX Companion for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.374 ... : $\approx$17.4 s (max) => speedup ≈
-                                                  1.53≈1.53
-You may provide a definition with
-\DeclareUnicodeCharacter 
-
-
-/media/cedric/DSCD/Projets/ENSTA/Parrallel_architcture/Cours_Ensta_2025/travaux_diriges/OS202_Examen_machine_2025-main/DADA_SIMEU_Cédric_Examen_parallel_architecture.tex:374: LaTeX Error: Unicode character ≈ (U+2248)
-               not set up for use with LaTeX.
-
-See the LaTeX manual or LaTeX Companion for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.374 ...prox$17.4 s (max) => speedup ≈1.53≈
-                                                  1.53
+                                        s (max) => speedup $\approx$1.53$\ap...
 You may provide a definition with
 \DeclareUnicodeCharacter 
 
@@ -1252,33 +1200,7 @@ Type  H <return>  for immediate help.
  ...                                              
                                                   
 l.375     3 processus : $\approx$17.2 
-                                        s => speedup ≈1.55≈1.55
-You may provide a definition with
-\DeclareUnicodeCharacter 
-
-
-/media/cedric/DSCD/Projets/ENSTA/Parrallel_architcture/Cours_Ensta_2025/travaux_diriges/OS202_Examen_machine_2025-main/DADA_SIMEU_Cédric_Examen_parallel_architecture.tex:375: LaTeX Error: Unicode character ≈ (U+2248)
-               not set up for use with LaTeX.
-
-See the LaTeX manual or LaTeX Companion for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.375 ...cessus : $\approx$17.2 s => speedup ≈
-                                                  1.55≈1.55
-You may provide a definition with
-\DeclareUnicodeCharacter 
-
-
-/media/cedric/DSCD/Projets/ENSTA/Parrallel_architcture/Cours_Ensta_2025/travaux_diriges/OS202_Examen_machine_2025-main/DADA_SIMEU_Cédric_Examen_parallel_architecture.tex:375: LaTeX Error: Unicode character ≈ (U+2248)
-               not set up for use with LaTeX.
-
-See the LaTeX manual or LaTeX Companion for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.375 ...: $\approx$17.2 s => speedup ≈1.55≈
-                                                  1.55
+                                        s => speedup $\approx$1.55$\approx$1...
 You may provide a definition with
 \DeclareUnicodeCharacter 
 
@@ -1291,33 +1213,7 @@ Type  H <return>  for immediate help.
  ...                                              
                                                   
 l.376     4 processus : $\approx$9.96 
-                                        s => speedup ≈2.67≈2.67
-You may provide a definition with
-\DeclareUnicodeCharacter 
-
-
-/media/cedric/DSCD/Projets/ENSTA/Parrallel_architcture/Cours_Ensta_2025/travaux_diriges/OS202_Examen_machine_2025-main/DADA_SIMEU_Cédric_Examen_parallel_architecture.tex:376: LaTeX Error: Unicode character ≈ (U+2248)
-               not set up for use with LaTeX.
-
-See the LaTeX manual or LaTeX Companion for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.376 ...cessus : $\approx$9.96 s => speedup ≈
-                                                  2.67≈2.67
-You may provide a definition with
-\DeclareUnicodeCharacter 
-
-
-/media/cedric/DSCD/Projets/ENSTA/Parrallel_architcture/Cours_Ensta_2025/travaux_diriges/OS202_Examen_machine_2025-main/DADA_SIMEU_Cédric_Examen_parallel_architecture.tex:376: LaTeX Error: Unicode character ≈ (U+2248)
-               not set up for use with LaTeX.
-
-See the LaTeX manual or LaTeX Companion for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.376 ...: $\approx$9.96 s => speedup ≈2.67≈
-                                                  2.67
+                                        s => speedup $\approx$2.67$\approx$2.67
 You may provide a definition with
 \DeclareUnicodeCharacter 
 
@@ -1368,7 +1264,7 @@ Type  H <return>  for immediate help.
  ...                                              
                                                   
 l.439 ...ersion séquentielle : $\approx$26.584 
-                                                  s
+                                                  s\\
 You may provide a definition with
 \DeclareUnicodeCharacter 
 
@@ -1381,33 +1277,7 @@ Type  H <return>  for immediate help.
  ...                                              
                                                   
 l.440         2 processus : $\approx$23.372 
-                                              s => speedup ≈1.14≈1.14
-You may provide a definition with
-\DeclareUnicodeCharacter 
-
-
-/media/cedric/DSCD/Projets/ENSTA/Parrallel_architcture/Cours_Ensta_2025/travaux_diriges/OS202_Examen_machine_2025-main/DADA_SIMEU_Cédric_Examen_parallel_architecture.tex:440: LaTeX Error: Unicode character ≈ (U+2248)
-               not set up for use with LaTeX.
-
-See the LaTeX manual or LaTeX Companion for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.440 ...ssus : $\approx$23.372 s => speedup ≈
-                                                  1.14≈1.14
-You may provide a definition with
-\DeclareUnicodeCharacter 
-
-
-/media/cedric/DSCD/Projets/ENSTA/Parrallel_architcture/Cours_Ensta_2025/travaux_diriges/OS202_Examen_machine_2025-main/DADA_SIMEU_Cédric_Examen_parallel_architecture.tex:440: LaTeX Error: Unicode character ≈ (U+2248)
-               not set up for use with LaTeX.
-
-See the LaTeX manual or LaTeX Companion for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.440 ...$\approx$23.372 s => speedup ≈1.14≈
-                                                  1.14
+                                              s => speedup $\approx$1.14$\ap...
 You may provide a definition with
 \DeclareUnicodeCharacter 
 
@@ -1420,54 +1290,9 @@ Type  H <return>  for immediate help.
  ...                                              
                                                   
 l.441         3 processus : $\approx$20.203 
-                                              s => speedup ≈1.31≈1.31
+                                              s => speedup $\approx$1.31$\ap...
 You may provide a definition with
 \DeclareUnicodeCharacter 
-
-
-/media/cedric/DSCD/Projets/ENSTA/Parrallel_architcture/Cours_Ensta_2025/travaux_diriges/OS202_Examen_machine_2025-main/DADA_SIMEU_Cédric_Examen_parallel_architecture.tex:441: LaTeX Error: Unicode character ≈ (U+2248)
-               not set up for use with LaTeX.
-
-See the LaTeX manual or LaTeX Companion for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.441 ...ssus : $\approx$20.203 s => speedup ≈
-                                                  1.31≈1.31
-You may provide a definition with
-\DeclareUnicodeCharacter 
-
-
-/media/cedric/DSCD/Projets/ENSTA/Parrallel_architcture/Cours_Ensta_2025/travaux_diriges/OS202_Examen_machine_2025-main/DADA_SIMEU_Cédric_Examen_parallel_architecture.tex:441: LaTeX Error: Unicode character ≈ (U+2248)
-               not set up for use with LaTeX.
-
-See the LaTeX manual or LaTeX Companion for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.441 ...$\approx$20.203 s => speedup ≈1.31≈
-                                                  1.31
-You may provide a definition with
-\DeclareUnicodeCharacter 
-
-/media/cedric/DSCD/Projets/ENSTA/Parrallel_architcture/Cours_Ensta_2025/travaux_diriges/OS202_Examen_machine_2025-main/DADA_SIMEU_Cédric_Examen_parallel_architecture.tex:443: Missing $ inserted.
-<inserted text> 
-                $
-l.443 ...edup est moins important que pour double_
-                                                  size.py, ce qui peut s’e...
-I've inserted a begin-math/end-math symbol since I think
-you left one out. Proceed, with fingers crossed.
-
-
-LaTeX Warning: Command \textquoteright invalid in math mode on input line 443.
-
-/media/cedric/DSCD/Projets/ENSTA/Parrallel_architcture/Cours_Ensta_2025/travaux_diriges/OS202_Examen_machine_2025-main/DADA_SIMEU_Cédric_Examen_parallel_architecture.tex:444: Missing $ inserted.
-<inserted text> 
-                $
-l.444 
-      
-I've inserted a begin-math/end-math symbol since I think
-you left one out. Proceed, with fingers crossed.
 
 Package minitoc Info: I0009
 (minitoc)             Listing minitoc auxiliary files. 
@@ -1489,7 +1314,76 @@ Package minitoc(hints) Warning: W0024
 (minitoc(hints))                Some hints have been written 
 (minitoc(hints))                in the DADA_SIMEU_Cédric_Examen_parallel_architecture.log file.
 
-[10] (./DADA_SIMEU_Cédric_Examen_parallel_architecture.aux)
+[10] (./DADA_SIMEU_Cédric_Examen_parallel_architecture.aux
+./DADA_SIMEU_Cédric_Examen_parallel_architecture.aux:46: Missing \endcsname inserted.
+<to be read again> 
+                   \protect 
+l.46 ...{double\_size}\relax }{table.caption.7}{}}
+                                                  
+The control sequence marked <to be read again> should
+not appear between \csname and \endcsname.
+
+./DADA_SIMEU_Cédric_Examen_parallel_architecture.aux:46: Extra \endcsname.
+\@newl@bel ... \bbl@tempa \csname #1@#2\endcsname 
+                                                  \def \bbl@tempb {#3}\@safe...
+l.46 ...{double\_size}\relax }{table.caption.7}{}}
+                                                  
+I'm ignoring this, since I wasn't doing a \csname.
+
+./DADA_SIMEU_Cédric_Examen_parallel_architecture.aux:48: Missing \endcsname inserted.
+<to be read again> 
+                   \protect 
+l.48 ... de processus\relax }{figure.caption.8}{}}
+                                                  
+The control sequence marked <to be read again> should
+not appear between \csname and \endcsname.
+
+./DADA_SIMEU_Cédric_Examen_parallel_architecture.aux:48: Missing $ inserted.
+<inserted text> 
+                $
+l.48 ... de processus\relax }{figure.caption.8}{}}
+                                                  
+I've inserted a begin-math/end-math symbol since I think
+you left one out. Proceed, with fingers crossed.
+
+./DADA_SIMEU_Cédric_Examen_parallel_architecture.aux:48: Extra \endcsname.
+\@newl@bel ... \bbl@tempa \csname #1@#2\endcsname 
+                                                  \def \bbl@tempb {#3}\@safe...
+l.48 ... de processus\relax }{figure.caption.8}{}}
+                                                  
+I'm ignoring this, since I wasn't doing a \csname.
+
+./DADA_SIMEU_Cédric_Examen_parallel_architecture.aux:56: Missing \endcsname inserted.
+<to be read again> 
+                   \protect 
+l.56 ...double\_size2}\relax }{table.caption.9}{}}
+                                                  
+The control sequence marked <to be read again> should
+not appear between \csname and \endcsname.
+
+./DADA_SIMEU_Cédric_Examen_parallel_architecture.aux:56: Extra \endcsname.
+\@newl@bel ... \bbl@tempa \csname #1@#2\endcsname 
+                                                  \def \bbl@tempb {#3}\@safe...
+l.56 ...double\_size2}\relax }{table.caption.9}{}}
+                                                  
+I'm ignoring this, since I wasn't doing a \csname.
+
+./DADA_SIMEU_Cédric_Examen_parallel_architecture.aux:60: Missing \endcsname inserted.
+<to be read again> 
+                   \protect 
+l.60 ...de processus\relax }{figure.caption.10}{}}
+                                                  
+The control sequence marked <to be read again> should
+not appear between \csname and \endcsname.
+
+./DADA_SIMEU_Cédric_Examen_parallel_architecture.aux:60: Extra \endcsname.
+\@newl@bel ... \bbl@tempa \csname #1@#2\endcsname 
+                                                  \def \bbl@tempb {#3}\@safe...
+l.60 ...de processus\relax }{figure.caption.10}{}}
+                                                  
+I'm ignoring this, since I wasn't doing a \csname.
+
+)
 
 LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
 
@@ -1500,21 +1394,32 @@ Package rerunfilecheck Warning: File `DADA_SIMEU_Cédric_Examen_parallel_archite
 
 Package rerunfilecheck Info: Checksums for `DADA_SIMEU_Cédric_Examen_parallel_architecture.out':
 (rerunfilecheck)             Before: <no file>
-(rerunfilecheck)             After:  36EF08BAE6D67353F1D43513DA585382;3189.
+(rerunfilecheck)             After:  486BFBDB27A47461A4A26664DD6FD4C6;3197.
+/media/cedric/DSCD/Projets/ENSTA/Parrallel_architcture/Cours_Ensta_2025/travaux_diriges/OS202_Examen_machine_2025-main/DADA_SIMEU_Cédric_Examen_parallel_architecture.tex:448: Missing $ inserted.
+<inserted text> 
+                $
+l.448 \end{document}
+                    
+I've inserted something that you may have forgotten.
+(See the <inserted text> above.)
+With luck, this will get me unwedged. But if you
+really didn't forget anything, try typing `2' now; then
+my insertion and my current dilemma will both disappear.
+
  ) 
 Here is how much of TeX's memory you used:
- 44594 strings out of 479624
- 1012529 string characters out of 5877755
+ 44551 strings out of 479624
+ 1012005 string characters out of 5877755
  1420777 words of memory out of 5000000
- 61648 multiletter control sequences out of 15000+600000
- 526243 words of font info for 117 fonts, out of 8000000 for 9000
+ 61618 multiletter control sequences out of 15000+600000
+ 512425 words of font info for 80 fonts, out of 8000000 for 9000
  350 hyphenation exceptions out of 8191
  99i,12n,96p,944b,2005s stack positions out of 5000i,500n,10000p,200000b,80000s
-{/usr/share/texlive/texmf-dist/fonts/enc/dvips/base/8r.enc} </home/cedric/.texlive2021/texmf-var/fonts/pk/ljfour/jknappen/ec/ectt1000.600pk></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmb8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmr8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmri8a.pfb>
-Output written on DADA_SIMEU_Cédric_Examen_parallel_architecture.pdf (10 pages, 367395 bytes).
+ </home/cedric/.texlive2021/texmf-var/fonts/pk/ljfour/jknappen/ec/ectt1000.600pk>{/usr/share/texlive/texmf-dist/fonts/enc/dvips/base/8r.enc}</usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmb8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmr8a.pfb>
+Output written on DADA_SIMEU_Cédric_Examen_parallel_architecture.pdf (10 pages, 358536 bytes).
 PDF statistics:
- 178 PDF objects out of 1000 (max. 8388607)
- 109 compressed objects within 2 object streams
+ 173 PDF objects out of 1000 (max. 8388607)
+ 106 compressed objects within 2 object streams
  37 named destinations out of 1000 (max. 500000)
  172 words of extra memory for PDF output out of 10000 (max. 10000000)
 

@@ -297,7 +297,7 @@ On constate donc que, dans ce cas précis, le gain n’est pas spectaculaire, vo
 \begin{table}[h!]
     \centering
     \caption{Temps et speedup pour \texttt{double\_size}}
-    \label{tab:double_size}
+    \label{tab:double\_size}
     \begin{tabular}{@{}cccc@{}}
     \toprule
     \textbf{Nombre de processus} & \textbf{Temps (s)} & \textbf{Speedup} & \textbf{Commentaires}\\
@@ -338,7 +338,7 @@ On constate donc que, dans ce cas précis, le gain n’est pas spectaculaire, vo
         \end{axis}
         \end{tikzpicture}
         \caption{Speedup de \texttt{double\_size} en fonction du nombre de processus}
-        \label{fig:double_size_speedup}
+        \label{fig:double\_size_speedup}
         \end{figure}
 
 \section{Question 3}
@@ -360,7 +360,7 @@ Ici, on cherche à doubler la taille d’une unique photo (en haute résolution)
     L’approche en bandes (ou en tuiles) est nécessaire ici pour ne pas charger la totalité de l’image dans chaque processus.
     On peut dire qu’elle est adaptée (et souvent optimale) pour un traitement d’une seule image, tandis que la question 2 était une distribution par “liste d’images”.
 
-\subsection{ Parallélisation du programme double_size.py}
+\subsection{ Parallélisation du programme double\_size.py}
 
     On lit l’image sur le processus 0, on la convertit en un tableau.
     On découpe ce tableau en N blocs (un par processus).
@@ -371,15 +371,15 @@ Ici, on cherche à doubler la taille d’une unique photo (en haute résolution)
 
 
     Version séquentielle : $\approx$26.600 s
-    2 processus : $\approx$17.4 s (max) => speedup ≈1.53≈1.53
-    3 processus : $\approx$17.2 s => speedup ≈1.55≈1.55
-    4 processus : $\approx$9.96 s => speedup ≈2.67≈2.67
+    2 processus : $\approx$17.4 s (max) => speedup $\approx$1.53$\approx$1.53\\
+    3 processus : $\approx$17.2 s => speedup $\approx$1.55$\approx$1.55\\
+    4 processus : $\approx$9.96 s => speedup $\approx$2.67$\approx$2.67
 
 On observe un speedup significatif, surtout à 4 processus.
 \begin{table}[h!]
     \centering
     \caption{Temps et speedup pour \texttt{double\_size2}}
-    \label{tab:double_size2}
+    \label{tab:double\_size2}
     \begin{tabular}{@{}cccc@{}}
     \toprule
     \textbf{Nombre de processus} & \textbf{Temps (s)} & \textbf{Speedup} & \textbf{Commentaires}\\
@@ -419,7 +419,7 @@ On observe un speedup significatif, surtout à 4 processus.
     \end{axis}
     \end{tikzpicture}
     \caption{Speedup de \texttt{double\_size2} en fonction du nombre de processus}
-    \label{fig:double_size2_speedup}
+    \label{fig:double\_size2_speedup}
     \end{figure}
     \subsection{Stratégie de parallélisation}
 
@@ -436,11 +436,11 @@ On observe un speedup significatif, surtout à 4 processus.
         Inconvénient : si la communication des bords est nécessaire, on peut avoir un surcoût de synchronisation.
 
     
-        Version séquentielle : $\approx$26.584 s
-        2 processus : $\approx$23.372 s => speedup ≈1.14≈1.14
-        3 processus : $\approx$20.203 s => speedup ≈1.31≈1.31
+        Version séquentielle : $\approx$26.584 s\\
+        2 processus : $\approx$23.372 s => speedup $\approx$1.14$\approx$1.14\\
+        3 processus : $\approx$20.203 s => speedup $\approx$1.31$\approx$1.31
     
-    Le speedup est moins important que pour double_size.py, ce qui peut s’expliquer par :
+    Le speedup est moins important que pour double\_size.py, ce qui peut s’expliquer par :
     
         Un overhead plus grand,
         Le masque plus grand sur la composante V (ou un autre type de filtre) qui ajoute du temps de calcul,
