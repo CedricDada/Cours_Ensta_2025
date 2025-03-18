@@ -1,0 +1,29 @@
+cedric@ns2:/media/cedric/DSCD/Projets/ENSTA/Parrallel_architcture/Cours_Ensta_2025/travaux_diriges/OS202_Examen_machine_2025-main$ mpirun -n 2 python3 double_size.py
+Taille originale de l'image : (7500, 4219)
+Taille du morceau après doublement : (4218, 15000, 3)
+Taille du morceau après doublement : (4220, 15000, 3)
+Processus 0 a traité son morceau en 17.077 s
+Processus 1 a traité son morceau en 17.420 s
+Image sauvegardée dans sorties/paysage_double_2.jpg
+
+cedric@ns2:/media/cedric/DSCD/Projets/ENSTA/Parrallel_architcture/Cours_Ensta_2025/travaux_diriges/OS202_Examen_machine_2025-main$ mpirun -n 3 python3 double_size.py
+Taille originale de l'image : (7500, 4219)
+Taille du morceau après doublement : (2812, 15000, 3)
+Taille du morceau après doublement : (2812, 15000, 3)
+Taille du morceau après doublement : (2814, 15000, 3)
+Processus 1 a traité son morceau en 17.155 s
+Processus 2 a traité son morceau en 17.143 s
+Processus 0 a traité son morceau en 17.176 s
+Image sauvegardée dans sorties/paysage_double_2.jpg
+
+cedric@ns2:/media/cedric/DSCD/Projets/ENSTA/Parrallel_architcture/Cours_Ensta_2025/travaux_diriges/OS202_Examen_machine_2025-main$ mpirun -n 4 python3 double_size.py
+Taille originale de l'image : (7500, 4219)
+Taille du morceau après doublement : (2110, 15000, 3)
+Taille du morceau après doublement : (2110, 15000, 3)
+Taille du morceau après doublement : (2108, 15000, 3)
+Taille du morceau après doublement : (2110, 15000, 3)
+Processus 1 a traité son morceau en 9.695 s
+Processus 3 a traité son morceau en 9.803 s
+Processus 2 a traité son morceau en 9.960 s
+Processus 0 a traité son morceau en 9.858 s
+Image sauvegardée dans sorties/paysage_double_2.jpg

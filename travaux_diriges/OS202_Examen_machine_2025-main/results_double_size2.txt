@@ -1,0 +1,24 @@
+cedric@ns2:/media/cedric/DSCD/Projets/ENSTA/Parrallel_architcture/Cours_Ensta_2025/travaux_diriges/OS202_Examen_machine_2025-main$ mpirun -n 2 python3 double_size2.py
+Taille originale de l'image : (7500, 4219)
+Nouvelle taille après doublement : (8438, 15000, 3)
+Temps de chargement et prétraitement : 2.471 s
+Temps de distribution des données (scatter) : 4.540 s
+Processus 0 a traité 4219 lignes en 10.182 s
+Processus 1 a traité 4219 lignes en 10.873 s
+Temps de rassemblement des données (gather) : 0.383 s
+Image sauvegardée dans sorties/paysage_double_2.jpg
+Temps de sauvegarde de l'image : 0.588 s
+Temps total d'exécution : 23.372 s
+
+cedric@ns2:/media/cedric/DSCD/Projets/ENSTA/Parrallel_architcture/Cours_Ensta_2025/travaux_diriges/OS202_Examen_machine_2025-main$ mpirun -n 3 python3 double_size2.py
+Taille originale de l'image : (7500, 4219)
+Nouvelle taille après doublement : (8438, 15000, 3)
+Temps de chargement et prétraitement : 2.334 s
+Temps de distribution des données (scatter) : 4.011 s
+Processus 0 a traité 2813 lignes en 8.425 s
+Processus 1 a traité 2813 lignes en 8.441 s
+Processus 2 a traité 2812 lignes en 8.481 s
+Temps de rassemblement des données (gather) : 0.362 s
+Image sauvegardée dans sorties/paysage_double_2.jpg
+Temps de sauvegarde de l'image : 0.514 s
+Temps total d'exécution : 20.203 s

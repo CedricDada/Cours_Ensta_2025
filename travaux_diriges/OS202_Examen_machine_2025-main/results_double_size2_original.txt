@@ -1,0 +1,5 @@
+cedric@ns2:/media/cedric/DSCD/Projets/ENSTA/Parrallel_architcture/Cours_Ensta_2025/travaux_diriges/OS202_Examen_machine_2025-main$ python3 double_size2_original.py 
+Chargement datas/paysage.jpg en 1.119 s
+Traitement datas/paysage.jpg en 20.732 s
+Sauvegarde de l'image en 0.538 s
+Temps total d'exécution : 26.584 s

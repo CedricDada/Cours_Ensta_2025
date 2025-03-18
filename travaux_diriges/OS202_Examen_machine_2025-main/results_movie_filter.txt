@@ -1,0 +1,380 @@
+cedric@ns2:/media/cedric/DSCD/Projets/ENSTA/Parrallel_architcture/Cours_Ensta_2025/travaux_diriges/OS202_Examen_machine_2025-main$ mpirun -n 2 python3 movie_filter.py
+Taille originale (1920, 1080)
+Taille originale (1920, 1080)
+Nouvelle taille : (2160, 3840, 3)
+Nouvelle taille : (2160, 3840, 3)
+Image 20 traitée
+Taille originale (1920, 1080)
+Image 1 traitée
+Taille originale (1920, 1080)
+Nouvelle taille : (2160, 3840, 3)
+Nouvelle taille : (2160, 3840, 3)
+Image 21 traitée
+Taille originale (1920, 1080)
+Image 2 traitée
+Taille originale (1920, 1080)
+Nouvelle taille : (2160, 3840, 3)
+Nouvelle taille : (2160, 3840, 3)
+Image 22 traitée
+Taille originale (1920, 1080)
+Image 3 traitée
+Taille originale (1920, 1080)
+Nouvelle taille : (2160, 3840, 3)
+Nouvelle taille : (2160, 3840, 3)
+Image 4 traitée
+Taille originale (1920, 1080)
+Image 23 traitée
+Taille originale (1920, 1080)
+Nouvelle taille : (2160, 3840, 3)
+Nouvelle taille : (2160, 3840, 3)
+Image 5 traitée
+Taille originale (1920, 1080)
+Nouvelle taille : (2160, 3840, 3)
+Image 24 traitée
+Taille originale (1920, 1080)
+Nouvelle taille : (2160, 3840, 3)
+Image 6 traitée
+Taille originale (1920, 1080)
+Nouvelle taille : (2160, 3840, 3)
+Image 25 traitée
+Taille originale (1920, 1080)
+Nouvelle taille : (2160, 3840, 3)
+Image 7 traitée
+Taille originale (1920, 1080)
+Nouvelle taille : (2160, 3840, 3)
+Image 26 traitée
+Taille originale (1920, 1080)
+Nouvelle taille : (2160, 3840, 3)
+Image 8 traitée
+Taille originale (1920, 1080)
+Nouvelle taille : (2160, 3840, 3)
+Image 27 traitée
+Taille originale (1920, 1080)
+Nouvelle taille : (2160, 3840, 3)
+Image 9 traitée
+Taille originale (1920, 1080)
+Nouvelle taille : (2160, 3840, 3)
+Image 28 traitée
+Taille originale (1920, 1080)
+Nouvelle taille : (2160, 3840, 3)
+Image 10 traitée
+Taille originale (1920, 1080)
+Nouvelle taille : (2160, 3840, 3)
+Image 29 traitée
+Taille originale (1920, 1080)
+Nouvelle taille : (2160, 3840, 3)
+Image 11 traitée
+Taille originale (1920, 1080)
+Nouvelle taille : (2160, 3840, 3)
+Image 30 traitée
+Taille originale (1920, 1080)
+Nouvelle taille : (2160, 3840, 3)
+Image 12 traitée
+Taille originale (1920, 1080)
+Nouvelle taille : (2160, 3840, 3)
+Image 31 traitée
+Taille originale (1920, 1080)
+Nouvelle taille : (2160, 3840, 3)
+Image 13 traitée
+Taille originale (1920, 1080)
+Nouvelle taille : (2160, 3840, 3)
+Image 32 traitée
+Taille originale (1920, 1080)
+Nouvelle taille : (2160, 3840, 3)
+Image 14 traitée
+Taille originale (1920, 1080)
+Nouvelle taille : (2160, 3840, 3)
+Image 33 traitée
+Taille originale (1920, 1080)
+Nouvelle taille : (2160, 3840, 3)
+Image 15 traitée
+Taille originale (1920, 1080)
+Nouvelle taille : (2160, 3840, 3)
+Image 34 traitée
+Taille originale (1920, 1080)
+Nouvelle taille : (2160, 3840, 3)
+Image 16 traitée
+Taille originale (1920, 1080)
+Nouvelle taille : (2160, 3840, 3)
+Image 35 traitée
+Taille originale (1920, 1080)
+Nouvelle taille : (2160, 3840, 3)
+Image 17 traitée
+Taille originale (1920, 1080)
+Nouvelle taille : (2160, 3840, 3)
+Image 36 traitée
+Taille originale (1920, 1080)
+Nouvelle taille : (2160, 3840, 3)
+Image 18 traitée
+Taille originale (1920, 1080)
+Nouvelle taille : (2160, 3840, 3)
+Image 37 traitée
+Traitement terminé
+Image 19 traitée
+Traitement terminé
+Images sauvegardées
+Images sauvegardées
+
+Temps de calcul par processus (secondes) :
+  - Processus 0: 35.674
+  - Processus 1: 35.273
+
+Déséquilibre max/min : 35.674 s vs 35.273 s
+Ratio de déséquilibrage : 1.1%
+
+cedric@ns2:/media/cedric/DSCD/Projets/ENSTA/Parrallel_architcture/Cours_Ensta_2025/travaux_diriges/OS202_Examen_machine_2025-main$ mpirun -n 3 python3 movie_filter.py
+Taille originale (1920, 1080)
+Taille originale (1920, 1080)
+Taille originale (1920, 1080)
+Nouvelle taille : (2160, 3840, 3)
+Nouvelle taille : (2160, 3840, 3)
+Nouvelle taille : (2160, 3840, 3)
+Image 1 traitée
+Image 26 traitée
+Image 14 traitée
+Taille originale (1920, 1080)
+Taille originale (1920, 1080)
+Taille originale (1920, 1080)
+Nouvelle taille : (2160, 3840, 3)
+Nouvelle taille : (2160, 3840, 3)
+Nouvelle taille : (2160, 3840, 3)
+Image 27 traitée
+Taille originale (1920, 1080)
+Image 2 traitée
+Taille originale (1920, 1080)
+Image 15 traitée
+Taille originale (1920, 1080)
+Nouvelle taille : (2160, 3840, 3)
+Nouvelle taille : (2160, 3840, 3)
+Nouvelle taille : (2160, 3840, 3)
+Image 28 traitée
+Taille originale (1920, 1080)
+Image 16 traitée
+Image 3 traitée
+Taille originale (1920, 1080)
+Taille originale (1920, 1080)
+Nouvelle taille : (2160, 3840, 3)
+Nouvelle taille : (2160, 3840, 3)
+Nouvelle taille : (2160, 3840, 3)
+Image 29 traitée
+Taille originale (1920, 1080)
+Image 17 traitée
+Image 4 traitée
+Taille originale (1920, 1080)
+Taille originale (1920, 1080)
+Nouvelle taille : (2160, 3840, 3)
+Nouvelle taille : (2160, 3840, 3)
+Nouvelle taille : (2160, 3840, 3)
+Image 30 traitée
+Taille originale (1920, 1080)
+Image 18 traitée
+Image 5 traitée
+Taille originale (1920, 1080)
+Taille originale (1920, 1080)
+Nouvelle taille : (2160, 3840, 3)
+Nouvelle taille : (2160, 3840, 3)
+Nouvelle taille : (2160, 3840, 3)
+Image 6 traitée
+Taille originale (1920, 1080)
+Image 31 traitée
+Taille originale (1920, 1080)
+Image 19 traitée
+Taille originale (1920, 1080)
+Nouvelle taille : (2160, 3840, 3)
+Nouvelle taille : (2160, 3840, 3)
+Nouvelle taille : (2160, 3840, 3)
+Image 7 traitée
+Taille originale (1920, 1080)
+Image 20 traitée
+Taille originale (1920, 1080)
+Image 32 traitée
+Taille originale (1920, 1080)
+Nouvelle taille : (2160, 3840, 3)
+Nouvelle taille : (2160, 3840, 3)
+Nouvelle taille : (2160, 3840, 3)
+Image 8 traitée
+Taille originale (1920, 1080)
+Nouvelle taille : (2160, 3840, 3)
+Image 21 traitée
+Taille originale (1920, 1080)
+Image 33 traitée
+Taille originale (1920, 1080)
+Nouvelle taille : (2160, 3840, 3)
+Nouvelle taille : (2160, 3840, 3)
+Image 9 traitée
+Taille originale (1920, 1080)
+Nouvelle taille : (2160, 3840, 3)
+Image 22 traitée
+Taille originale (1920, 1080)
+Image 34 traitée
+Taille originale (1920, 1080)
+Nouvelle taille : (2160, 3840, 3)
+Nouvelle taille : (2160, 3840, 3)
+Image 10 traitée
+Taille originale (1920, 1080)
+Nouvelle taille : (2160, 3840, 3)
+Image 35 traitée
+Taille originale (1920, 1080)
+Image 23 traitée
+Taille originale (1920, 1080)
+Nouvelle taille : (2160, 3840, 3)
+Nouvelle taille : (2160, 3840, 3)
+Image 11 traitée
+Taille originale (1920, 1080)
+Nouvelle taille : (2160, 3840, 3)
+Image 36 traitée
+Taille originale (1920, 1080)
+Image 24 traitée
+Taille originale (1920, 1080)
+Nouvelle taille : (2160, 3840, 3)
+Nouvelle taille : (2160, 3840, 3)
+Image 12 traitée
+Taille originale (1920, 1080)
+Nouvelle taille : (2160, 3840, 3)
+Image 25 traitée
+Traitement terminé
+Image 37 traitée
+Traitement terminé
+Images sauvegardées
+Images sauvegardées
+Image 13 traitée
+Traitement terminé
+Images sauvegardées
+
+Temps de calcul par processus (secondes) :
+  - Processus 0: 26.968
+  - Processus 1: 25.501
+  - Processus 2: 25.503
+
+Déséquilibre max/min : 26.968 s vs 25.501 s
+Ratio de déséquilibrage : 5.4%
+
+cedric@ns2:/media/cedric/DSCD/Projets/ENSTA/Parrallel_architcture/Cours_Ensta_2025/travaux_diriges/OS202_Examen_machine_2025-main$ mpirun -n 4 python3 movie_filter.py
+Taille originale (1920, 1080)
+Taille originale (1920, 1080)
+Taille originale (1920, 1080)
+Taille originale (1920, 1080)
+Nouvelle taille : (2160, 3840, 3)
+Nouvelle taille : (2160, 3840, 3)
+Nouvelle taille : (2160, 3840, 3)
+Nouvelle taille : (2160, 3840, 3)
+Image 29 traitée
+Taille originale (1920, 1080)
+Image 20 traitée
+Taille originale (1920, 1080)
+Image 11 traitée
+Taille originale (1920, 1080)
+Image 1 traitée
+Taille originale (1920, 1080)
+Nouvelle taille : (2160, 3840, 3)
+Nouvelle taille : (2160, 3840, 3)
+Nouvelle taille : (2160, 3840, 3)
+Nouvelle taille : (2160, 3840, 3)
+Image 30 traitée
+Taille originale (1920, 1080)
+Image 2 traitée
+Taille originale (1920, 1080)
+Nouvelle taille : (2160, 3840, 3)
+Image 12 traitée
+Taille originale (1920, 1080)
+Image 21 traitée
+Taille originale (1920, 1080)
+Nouvelle taille : (2160, 3840, 3)
+Nouvelle taille : (2160, 3840, 3)
+Nouvelle taille : (2160, 3840, 3)
+Image 31 traitée
+Taille originale (1920, 1080)
+Nouvelle taille : (2160, 3840, 3)
+Image 3 traitée
+Taille originale (1920, 1080)
+Image 22 traitée
+Taille originale (1920, 1080)
+Image 13 traitée
+Taille originale (1920, 1080)
+Nouvelle taille : (2160, 3840, 3)
+Nouvelle taille : (2160, 3840, 3)
+Nouvelle taille : (2160, 3840, 3)
+Image 32 traitée
+Taille originale (1920, 1080)
+Nouvelle taille : (2160, 3840, 3)
+Image 4 traitée
+Taille originale (1920, 1080)
+Nouvelle taille : (2160, 3840, 3)
+Image 23 traitée
+Taille originale (1920, 1080)
+Image 14 traitée
+Taille originale (1920, 1080)
+Nouvelle taille : (2160, 3840, 3)
+Nouvelle taille : (2160, 3840, 3)
+Image 33 traitée
+Taille originale (1920, 1080)
+Image 5 traitée
+Taille originale (1920, 1080)
+Nouvelle taille : (2160, 3840, 3)
+Nouvelle taille : (2160, 3840, 3)
+Image 24 traitée
+Taille originale (1920, 1080)
+Image 15 traitée
+Taille originale (1920, 1080)
+Nouvelle taille : (2160, 3840, 3)
+Nouvelle taille : (2160, 3840, 3)
+Image 34 traitée
+Taille originale (1920, 1080)
+Image 6 traitée
+Taille originale (1920, 1080)
+Nouvelle taille : (2160, 3840, 3)
+Nouvelle taille : (2160, 3840, 3)
+Image 25 traitée
+Taille originale (1920, 1080)
+Image 16 traitée
+Taille originale (1920, 1080)
+Nouvelle taille : (2160, 3840, 3)
+Nouvelle taille : (2160, 3840, 3)
+Image 35 traitée
+Taille originale (1920, 1080)
+Nouvelle taille : (2160, 3840, 3)
+Image 7 traitée
+Taille originale (1920, 1080)
+Nouvelle taille : (2160, 3840, 3)
+Image 26 traitée
+Taille originale (1920, 1080)
+Image 17 traitée
+Taille originale (1920, 1080)
+Nouvelle taille : (2160, 3840, 3)
+Nouvelle taille : (2160, 3840, 3)
+Image 36 traitée
+Taille originale (1920, 1080)
+Nouvelle taille : (2160, 3840, 3)
+Image 8 traitée
+Taille originale (1920, 1080)
+Nouvelle taille : (2160, 3840, 3)
+Image 27 traitée
+Taille originale (1920, 1080)
+Image 18 traitée
+Taille originale (1920, 1080)
+Nouvelle taille : (2160, 3840, 3)
+Nouvelle taille : (2160, 3840, 3)
+Image 37 traitée
+Traitement terminé
+Image 9 traitée
+Taille originale (1920, 1080)
+Images sauvegardées
+Nouvelle taille : (2160, 3840, 3)
+Image 28 traitée
+Traitement terminé
+Image 19 traitée
+Traitement terminé
+Images sauvegardées
+Images sauvegardées
+Image 10 traitée
+Traitement terminé
+Images sauvegardées
+
+Temps de calcul par processus (secondes) :
+  - Processus 0: 23.744
+  - Processus 1: 22.503
+  - Processus 2: 22.476
+  - Processus 3: 21.435
+
+Déséquilibre max/min : 23.744 s vs 21.435 s
+Ratio de déséquilibrage : 9.7%
